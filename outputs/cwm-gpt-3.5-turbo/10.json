@@ -1,0 +1,32 @@
+{
+    "ID": 10,
+    "q_ch": "对于Michael下的SweaterAndShorts的订单，还有哪些产品没有制造完成，列出未完成产品的类型及属性描述和数量？",
+    "q_en": "For Michael's SweaterAndShorts order, which other products have not been manufactured yet? Please list the types, attributes and quantities of unfinished products.",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM customers WHERE customer_name = 'Michael';",
+            "description": "Retrieve the customer ID for the customer with the name \"Michael\"",
+            "results": [
+                {
+                    "id": 6
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM orders WHERE order_name = 'SweaterAndShorts';",
+            "description": "Retrieve the order ID for the order with the name \"SweaterAndShorts\"",
+            "results": "no results found."
+        },
+        {
+            "type": "Tool",
+            "results": {
+                "input": "Find the product details of the order\n['tool_find_order_details, {\"order_id\": <order_id>}, Find the product details of an order']",
+                "output": "The product details of the order are as follows:\n1. Product ID: 1, Description: T-shirt, Attributes: Red, M size, Quantity: 100\n2. Product ID: 19, Description: T-shirt, Attributes: Green, M size, Quantity: 240\n3. Product ID: 3, Description: T-shirt, Attributes: Blue, L size, Quantity: 150\n4. Product ID: 11, Description: T-shirt, Attributes: White, XL size, Quantity: 220\n5. Product ID: 27, Description: T-shirt, Attributes: Yellow, S size, Quantity: 260"
+            }
+        }
+    ],
+    "response": "I'm sorry, but it seems that there are no results found for the order with the name \"SweaterAndShorts\" for the customer named \"Michael\". 🤔\n\nIf you have any other questions or need further assistance, feel free to ask! 😄",
+    "token_used": 7194
+}

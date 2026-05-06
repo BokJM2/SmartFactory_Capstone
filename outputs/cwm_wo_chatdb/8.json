@@ -1,0 +1,28 @@
+{
+  "ID": 8,
+  "q_ch": "Olivia的订单中使用了哪些原料？",
+  "q_en": "What materials were used in Olivia's order?",
+  "sql": "SELECT m.id, m.name, m.unit, m.type FROM customers c JOIN orders o ON c.id = o.user_id JOIN order_product op ON o.id = op.order_id JOIN cutting_tasks ct ON op.id = ct.order_product_id JOIN cutting_material_allocation cma ON ct.id = cma.cutting_task_id JOIN warehouse_material wm ON cma.warehouse_material_id = wm.id JOIN materials m ON wm.material_id = m.id WHERE c.customer_name = 'Olivia' UNION SELECT m.id, m.name, m.unit, m.type FROM customers c JOIN orders o ON c.id = o.user_id JOIN order_product op ON o.id = op.order_id JOIN sewing_tasks st ON op.id = st.order_product_id JOIN sewing_material_allocation sma ON st.id = sma.sewing_task_id JOIN warehouse_material wm ON sma.warehouse_material_id = wm.id JOIN materials m ON wm.material_id = m.id WHERE c.customer_name = 'Olivia';",
+  "thought": "First, we need to identify Olivia's customer ID from the customers table. Then, we'll find Olivia's orders using her customer ID in the orders table. After that, we'll get the order-product relationships from the order_product table. Using these relationships, we need to find the cutting and sewing tasks associated with the products in Olivia's orders from the cutting_tasks and sewing_tasks tables. Finally, we'll look up the materials used in these tasks from the cutting_material_allocation and sewing_material_allocation tables, along with their details from the materials table.",
+  "total_tokens": "3038",
+  "rows": [
+    {
+      "id": "m13",
+      "name": "Down",
+      "unit": "kilograms",
+      "type": "origin"
+    },
+    {
+      "id": "m3",
+      "name": "Wool",
+      "unit": "kilograms",
+      "type": "origin"
+    },
+    {
+      "id": "m7",
+      "name": "Leather",
+      "unit": "meters",
+      "type": "origin"
+    }
+  ]
+}

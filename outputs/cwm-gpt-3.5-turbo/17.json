@@ -1,0 +1,406 @@
+{
+    "ID": 17,
+    "q_ch": "2024年6月1日后的缝纫任务有哪些？",
+    "q_en": "What are the sewing tasks after June 1, 2024?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT UNIX_TIMESTAMP('2024-06-01 00:00:00');",
+            "description": "Identify the timestamp for June 1, 2024\nThought: To find sewing tasks after June 1, 2024, we need to determine the timestamp for June 1, 2024.",
+            "results": [
+                {
+                    "UNIX_TIMESTAMP('2024-06-01 00:00:00')": 1717200000
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT st.id, st.start_time, st.end_time, wg.name AS working_group, op.product_id AS product_name, st.planned_number, st.completed_number, st.status \n     FROM sewing_tasks st \n     JOIN working_group wg ON st.working_group_id = wg.id \n     JOIN order_product op ON st.order_product_id = op.id \n     WHERE st.start_time > UNIX_TIMESTAMP('2024-06-01 00:00:00');",
+            "description": "Retrieve the sewing tasks that have a start time after June 1, 2024",
+            "results": [
+                {
+                    "id": 1,
+                    "start_time": "2024-01-18 00:00:00",
+                    "end_time": "2024-02-07 00:00:00",
+                    "working_group": "Master Sewers",
+                    "product_name": 1,
+                    "planned_number": 100,
+                    "completed_number": 100,
+                    "status": 2
+                },
+                {
+                    "id": 4,
+                    "start_time": "2024-01-17 00:00:00",
+                    "end_time": "2024-01-30 00:00:00",
+                    "working_group": "Master Sewers",
+                    "product_name": 11,
+                    "planned_number": 220,
+                    "completed_number": 220,
+                    "status": 1
+                },
+                {
+                    "id": 5,
+                    "start_time": "2024-02-02 00:00:00",
+                    "end_time": "2024-02-25 00:00:00",
+                    "working_group": "Master Sewers",
+                    "product_name": 27,
+                    "planned_number": 260,
+                    "completed_number": 260,
+                    "status": 1
+                },
+                {
+                    "id": 10,
+                    "start_time": "2024-03-29 00:00:00",
+                    "end_time": "2024-04-09 00:00:00",
+                    "working_group": "Master Sewers",
+                    "product_name": 20,
+                    "planned_number": 100,
+                    "completed_number": 100,
+                    "status": 0
+                },
+                {
+                    "id": 12,
+                    "start_time": "2024-03-27 00:00:00",
+                    "end_time": "2024-04-12 00:00:00",
+                    "working_group": "Master Sewers",
+                    "product_name": 29,
+                    "planned_number": 150,
+                    "completed_number": 120,
+                    "status": 1
+                },
+                {
+                    "id": 13,
+                    "start_time": "2024-03-27 00:00:00",
+                    "end_time": "2024-04-06 00:00:00",
+                    "working_group": "Master Sewers",
+                    "product_name": 13,
+                    "planned_number": 130,
+                    "completed_number": 120,
+                    "status": 1
+                },
+                {
+                    "id": 14,
+                    "start_time": "2024-03-18 00:00:00",
+                    "end_time": "2024-04-08 00:00:00",
+                    "working_group": "Master Sewers",
+                    "product_name": 5,
+                    "planned_number": 120,
+                    "completed_number": 120,
+                    "status": 1
+                },
+                {
+                    "id": 15,
+                    "start_time": "2024-03-26 00:00:00",
+                    "end_time": "2024-04-09 00:00:00",
+                    "working_group": "Master Sewers",
+                    "product_name": 22,
+                    "planned_number": 185,
+                    "completed_number": 185,
+                    "status": 1
+                },
+                {
+                    "id": 24,
+                    "start_time": "2024-04-23 00:00:00",
+                    "end_time": "2024-05-20 00:00:00",
+                    "working_group": "Master Sewers",
+                    "product_name": 16,
+                    "planned_number": 105,
+                    "completed_number": 105,
+                    "status": 0
+                },
+                {
+                    "id": 30,
+                    "start_time": "2024-04-26 00:00:00",
+                    "end_time": "2024-05-15 00:00:00",
+                    "working_group": "Master Sewers",
+                    "product_name": 24,
+                    "planned_number": 195,
+                    "completed_number": 195,
+                    "status": 1
+                },
+                {
+                    "id": 36,
+                    "start_time": "2024-11-21 09:23:36",
+                    "end_time": "2024-11-21 09:23:36",
+                    "working_group": "Master Sewers",
+                    "product_name": 29,
+                    "planned_number": 150,
+                    "completed_number": 0,
+                    "status": 0
+                },
+                {
+                    "id": 8,
+                    "start_time": "2024-03-08 00:00:00",
+                    "end_time": "2024-04-05 00:00:00",
+                    "working_group": "Skilled Sewers",
+                    "product_name": 2,
+                    "planned_number": 50,
+                    "completed_number": 50,
+                    "status": 1
+                },
+                {
+                    "id": 17,
+                    "start_time": "2024-03-25 00:00:00",
+                    "end_time": "2024-04-22 00:00:00",
+                    "working_group": "Skilled Sewers",
+                    "product_name": 14,
+                    "planned_number": 175,
+                    "completed_number": 175,
+                    "status": 2
+                },
+                {
+                    "id": 18,
+                    "start_time": "2024-04-07 00:00:00",
+                    "end_time": "2024-04-21 00:00:00",
+                    "working_group": "Skilled Sewers",
+                    "product_name": 6,
+                    "planned_number": 200,
+                    "completed_number": 200,
+                    "status": 2
+                },
+                {
+                    "id": 19,
+                    "start_time": "2024-04-12 00:00:00",
+                    "end_time": "2024-04-23 00:00:00",
+                    "working_group": "Skilled Sewers",
+                    "product_name": 23,
+                    "planned_number": 95,
+                    "completed_number": 95,
+                    "status": 1
+                },
+                {
+                    "id": 23,
+                    "start_time": "2024-04-19 00:00:00",
+                    "end_time": "2024-05-01 00:00:00",
+                    "working_group": "Skilled Sewers",
+                    "product_name": 8,
+                    "planned_number": 110,
+                    "completed_number": 80,
+                    "status": 0
+                },
+                {
+                    "id": 27,
+                    "start_time": "2024-05-04 00:00:00",
+                    "end_time": "2024-05-15 00:00:00",
+                    "working_group": "Skilled Sewers",
+                    "product_name": 10,
+                    "planned_number": 60,
+                    "completed_number": 60,
+                    "status": 0
+                },
+                {
+                    "id": 28,
+                    "start_time": "2024-05-12 00:00:00",
+                    "end_time": "2024-05-28 00:00:00",
+                    "working_group": "Skilled Sewers",
+                    "product_name": 7,
+                    "planned_number": 210,
+                    "completed_number": 210,
+                    "status": 1
+                },
+                {
+                    "id": 29,
+                    "start_time": "2024-05-11 00:00:00",
+                    "end_time": "2024-05-19 00:00:00",
+                    "working_group": "Skilled Sewers",
+                    "product_name": 9,
+                    "planned_number": 180,
+                    "completed_number": 180,
+                    "status": 1
+                },
+                {
+                    "id": 35,
+                    "start_time": "2024-11-21 09:23:34",
+                    "end_time": "2024-11-21 09:23:34",
+                    "working_group": "Skilled Sewers",
+                    "product_name": 21,
+                    "planned_number": 140,
+                    "completed_number": 0,
+                    "status": 0
+                },
+                {
+                    "id": 37,
+                    "start_time": "2024-11-21 09:23:38",
+                    "end_time": "2024-11-21 09:23:38",
+                    "working_group": "Skilled Sewers",
+                    "product_name": 13,
+                    "planned_number": 130,
+                    "completed_number": 0,
+                    "status": 0
+                },
+                {
+                    "id": 6,
+                    "start_time": "2024-03-20 00:00:00",
+                    "end_time": "2024-04-07 00:00:00",
+                    "working_group": "Advanced Sewers",
+                    "product_name": 12,
+                    "planned_number": 95,
+                    "completed_number": 95,
+                    "status": 1
+                },
+                {
+                    "id": 7,
+                    "start_time": "2024-03-06 00:00:00",
+                    "end_time": "2024-03-22 00:00:00",
+                    "working_group": "Advanced Sewers",
+                    "product_name": 28,
+                    "planned_number": 110,
+                    "completed_number": 110,
+                    "status": 1
+                },
+                {
+                    "id": 9,
+                    "start_time": "2024-03-06 00:00:00",
+                    "end_time": "2024-03-20 00:00:00",
+                    "working_group": "Advanced Sewers",
+                    "product_name": 4,
+                    "planned_number": 80,
+                    "completed_number": 80,
+                    "status": 1
+                },
+                {
+                    "id": 16,
+                    "start_time": "2024-04-10 00:00:00",
+                    "end_time": "2024-05-07 00:00:00",
+                    "working_group": "Advanced Sewers",
+                    "product_name": 26,
+                    "planned_number": 200,
+                    "completed_number": 200,
+                    "status": 2
+                },
+                {
+                    "id": 20,
+                    "start_time": "2024-04-15 00:00:00",
+                    "end_time": "2024-05-07 00:00:00",
+                    "working_group": "Advanced Sewers",
+                    "product_name": 30,
+                    "planned_number": 90,
+                    "completed_number": 90,
+                    "status": 1
+                },
+                {
+                    "id": 21,
+                    "start_time": "2024-04-04 00:00:00",
+                    "end_time": "2024-04-12 00:00:00",
+                    "working_group": "Advanced Sewers",
+                    "product_name": 15,
+                    "planned_number": 85,
+                    "completed_number": 85,
+                    "status": 1
+                },
+                {
+                    "id": 22,
+                    "start_time": "2024-04-09 00:00:00",
+                    "end_time": "2024-04-22 00:00:00",
+                    "working_group": "Advanced Sewers",
+                    "product_name": 25,
+                    "planned_number": 115,
+                    "completed_number": 60,
+                    "status": 0
+                },
+                {
+                    "id": 25,
+                    "start_time": "2024-05-14 00:00:00",
+                    "end_time": "2024-06-03 00:00:00",
+                    "working_group": "Advanced Sewers",
+                    "product_name": 18,
+                    "planned_number": 75,
+                    "completed_number": 75,
+                    "status": 0
+                },
+                {
+                    "id": 33,
+                    "start_time": "2024-07-17 00:00:00",
+                    "end_time": "2024-08-03 00:00:00",
+                    "working_group": "Advanced Sewers",
+                    "product_name": 20,
+                    "planned_number": 120,
+                    "completed_number": 0,
+                    "status": 0
+                },
+                {
+                    "id": 38,
+                    "start_time": "2024-11-21 09:23:41",
+                    "end_time": "2024-11-21 09:23:41",
+                    "working_group": "Advanced Sewers",
+                    "product_name": 5,
+                    "planned_number": 120,
+                    "completed_number": 0,
+                    "status": 0
+                },
+                {
+                    "id": 2,
+                    "start_time": "2024-02-02 00:00:00",
+                    "end_time": "2024-02-15 00:00:00",
+                    "working_group": "Premier Sewers",
+                    "product_name": 19,
+                    "planned_number": 240,
+                    "completed_number": 240,
+                    "status": 1
+                },
+                {
+                    "id": 3,
+                    "start_time": "2024-01-19 00:00:00",
+                    "end_time": "2024-02-08 00:00:00",
+                    "working_group": "Premier Sewers",
+                    "product_name": 3,
+                    "planned_number": 150,
+                    "completed_number": 150,
+                    "status": 1
+                },
+                {
+                    "id": 11,
+                    "start_time": "2024-03-21 00:00:00",
+                    "end_time": "2024-04-14 00:00:00",
+                    "working_group": "Premier Sewers",
+                    "product_name": 21,
+                    "planned_number": 140,
+                    "completed_number": 100,
+                    "status": 0
+                },
+                {
+                    "id": 26,
+                    "start_time": "2024-05-04 00:00:00",
+                    "end_time": "2024-05-15 00:00:00",
+                    "working_group": "Premier Sewers",
+                    "product_name": 17,
+                    "planned_number": 70,
+                    "completed_number": 70,
+                    "status": 0
+                },
+                {
+                    "id": 32,
+                    "start_time": "2024-06-17 00:00:00",
+                    "end_time": "2024-07-14 00:00:00",
+                    "working_group": "Premier Sewers",
+                    "product_name": 30,
+                    "planned_number": 150,
+                    "completed_number": 0,
+                    "status": 0
+                },
+                {
+                    "id": 31,
+                    "start_time": "2024-05-26 00:00:00",
+                    "end_time": "2024-06-04 00:00:00",
+                    "working_group": "Elite Sewers",
+                    "product_name": 15,
+                    "planned_number": 260,
+                    "completed_number": 260,
+                    "status": 1
+                },
+                {
+                    "id": 34,
+                    "start_time": "2024-07-10 00:00:00",
+                    "end_time": "2024-07-20 00:00:00",
+                    "working_group": "Elite Sewers",
+                    "product_name": 7,
+                    "planned_number": 330,
+                    "completed_number": 0,
+                    "status": 0
+                }
+            ]
+        }
+    ],
+    "response": "### Sewing Tasks After June 1, 2024\n\n| Task ID | Start Time           | End Time             | Working Group   | Product Name | Planned Number | Completed Number | Status |\n|---------|-----------------------|----------------------|-----------------|--------------|----------------|------------------|--------|\n| 36      | 2024-11-21 09:23:36   | 2024-11-21 09:23:36  | Master Sewers   | 29           | 150            | 0                | 0      |\n| 35      | 2024-11-21 09:23:34   | 2024-11-21 09:23:34  | Skilled Sewers  | 21           | 140            | 0                | 0      |\n| 37      | 2024-11-21 09:23:38   | 2024-11-21 09:23:38  | Skilled Sewers  | 13           | 130            | 0                | 0      |\n| 38      | 2024-11-21 09:23:41   | 2024-11-21 09:23:41  | Advanced Sewers | 5            | 120            | 0                | 0      |\n\nI found some sewing tasks scheduled after June 1, 2024. If you need more details or have any other questions, feel free to ask! 😄",
+    "token_used": 11281
+}

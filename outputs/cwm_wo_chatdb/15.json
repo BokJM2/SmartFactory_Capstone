@@ -1,0 +1,16 @@
+{
+  "ID": 15,
+  "q_ch": "剩余库存最少的原料是什么？",
+  "q_en": "What is the material with the lowest remaining inventory?",
+  "sql": "SELECT m.* FROM warehouse_material wm JOIN materials m ON wm.material_id = m.id ORDER BY wm.left_number ASC LIMIT 1;",
+  "thought": "To find the material with the lowest remaining inventory, we need to query the `warehouse_material` table and sort the results by `left_number` in ascending order. We then join with the `materials` table to get the material details and limit the result to the top entry.",
+  "total_tokens": "2423",
+  "rows": [
+    {
+      "id": "m9",
+      "name": "Synthetic Fiber",
+      "unit": "kilograms",
+      "type": "origin"
+    }
+  ]
+}

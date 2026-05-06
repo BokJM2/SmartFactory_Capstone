@@ -1,0 +1,24 @@
+{
+    "ID": 22,
+    "q_ch": "我们现在有哪些缝纫组，哪些裁剪组？",
+    "q_en": "What sewing groups and cutting groups do we have now?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id, name FROM working_group WHERE name IN ('Elite Sewers', 'Expert Cutters');",
+            "description": "To find the working groups with the names 'Elite Sewers' and 'Expert Cutters', we can use a single SQL query to retrieve the working group IDs for these names.",
+            "results": [
+                {
+                    "id": 4,
+                    "name": "Expert Cutters"
+                },
+                {
+                    "id": 10,
+                    "name": "Elite Sewers"
+                }
+            ]
+        }
+    ],
+    "response": "Sure! Here is the answer to the user's question:\n\n| ID  | Name           |\n|-----|----------------|\n| 4   | Expert Cutters |\n| 10  | Elite Sewers   |\n\nWe currently have the working groups \"Expert Cutters\" and \"Elite Sewers\"! 😄",
+    "token_used": 5356
+}

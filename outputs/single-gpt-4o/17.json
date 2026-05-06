@@ -1,0 +1,46 @@
+{
+    "ID": 17,
+    "q_ch": "2024年6月1日后的缝纫任务有哪些？",
+    "q_en": "What are the sewing tasks after June 1, 2024?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT * FROM sewing_tasks WHERE start_time > '2024-06-01';",
+            "description": "To find the sewing tasks that started after June 1, 2024, we need to query the sewing_tasks table for tasks with a start_time greater than June 1, 2024.",
+            "results": [
+                {
+                    "id": 32,
+                    "start_time": "2024-06-17 00:00:00",
+                    "end_time": "2024-07-14 00:00:00",
+                    "working_group_id": 9,
+                    "order_product_id": 32,
+                    "planned_number": 150,
+                    "completed_number": 0,
+                    "status": 0
+                },
+                {
+                    "id": 33,
+                    "start_time": "2024-07-17 00:00:00",
+                    "end_time": "2024-08-03 00:00:00",
+                    "working_group_id": 8,
+                    "order_product_id": 33,
+                    "planned_number": 120,
+                    "completed_number": 0,
+                    "status": 0
+                },
+                {
+                    "id": 34,
+                    "start_time": "2024-07-10 00:00:00",
+                    "end_time": "2024-07-20 00:00:00",
+                    "working_group_id": 10,
+                    "order_product_id": 34,
+                    "planned_number": 330,
+                    "completed_number": 0,
+                    "status": 0
+                }
+            ]
+        }
+    ],
+    "response": "Sure thing! Here are the sewing tasks that are scheduled to start after June 1, 2024. Let's take a look at the details:\n\n| Task ID | Start Time          | End Time            | Working Group ID | Order Product ID | Planned Number | Completed Number | Status |\n|---------|---------------------|---------------------|------------------|------------------|----------------|------------------|--------|\n| 32      | June 17, 2024       | July 14, 2024       | 9                | 32               | 150            | 0                | 0      |\n| 33      | July 17, 2024       | August 3, 2024      | 8                | 33               | 120            | 0                | 0      |\n| 34      | July 10, 2024       | July 20, 2024       | 10               | 34               | 330            | 0                | 0      |\n\nThese tasks are all set to kick off after June 1, 2024. If you have any more questions or need further details, feel free to ask! 😊",
+    "token_used": 5737
+}

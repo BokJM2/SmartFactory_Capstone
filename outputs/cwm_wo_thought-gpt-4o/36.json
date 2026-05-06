@@ -1,0 +1,112 @@
+{
+    "ID": 36,
+    "q_ch": "顾客是PolyU 的裁剪任务有哪些？",
+    "q_en": "What are the cutting tasks for customers who are PolyU?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM customers WHERE customer_name = 'PolyU';",
+            "description": "Retrieve the customer ID for the customer with the name \"PolyU\"",
+            "results": [
+                {
+                    "id": 1
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM orders WHERE user_id = 1;",
+            "description": "Retrieve the order IDs for the customer \"PolyU\"",
+            "results": [
+                {
+                    "id": 1
+                },
+                {
+                    "id": 9
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM order_product WHERE order_id IN (1, 9);",
+            "description": "Retrieve the order product IDs for the orders of customer \"PolyU\"",
+            "results": [
+                {
+                    "id": 1
+                },
+                {
+                    "id": 2
+                },
+                {
+                    "id": 3
+                },
+                {
+                    "id": 4
+                },
+                {
+                    "id": 5
+                },
+                {
+                    "id": 31
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT ct.id, ct.start_time, ct.end_time, wg.name AS working_group_name, p.attributes AS product_attributes, pt.description AS product_type FROM cutting_tasks ct JOIN working_group wg ON ct.working_group_id = wg.id JOIN order_product op ON ct.order_product_id = op.id JOIN products p ON op.product_id = p.id JOIN products_types pt ON p.products_type_id = pt.id WHERE op.id IN (1, 2, 3, 4, 5, 31);",
+            "description": "Retrieve the cutting tasks for the order products of customer \"PolyU\"",
+            "results": [
+                {
+                    "id": 1,
+                    "start_time": "2024-01-10 00:00:00",
+                    "end_time": "2024-01-18 00:00:00",
+                    "working_group_name": "Master Sewers",
+                    "product_attributes": "Red, M size",
+                    "product_type": "T-shirt"
+                },
+                {
+                    "id": 4,
+                    "start_time": "2024-01-10 00:00:00",
+                    "end_time": "2024-01-17 00:00:00",
+                    "working_group_name": "Master Sewers",
+                    "product_attributes": "White, XL size",
+                    "product_type": "T-shirt"
+                },
+                {
+                    "id": 5,
+                    "start_time": "2024-01-10 00:00:00",
+                    "end_time": "2024-02-02 00:00:00",
+                    "working_group_name": "Master Sewers",
+                    "product_attributes": "Yellow, S size",
+                    "product_type": "T-shirt"
+                },
+                {
+                    "id": 2,
+                    "start_time": "2024-01-10 00:00:00",
+                    "end_time": "2024-02-02 00:00:00",
+                    "working_group_name": "Master Cutters",
+                    "product_attributes": "Green, M size",
+                    "product_type": "T-shirt"
+                },
+                {
+                    "id": 3,
+                    "start_time": "2024-01-10 00:00:00",
+                    "end_time": "2024-01-19 00:00:00",
+                    "working_group_name": "Master Cutters",
+                    "product_attributes": "Blue, L size",
+                    "product_type": "T-shirt"
+                },
+                {
+                    "id": 31,
+                    "start_time": "2024-05-10 00:00:00",
+                    "end_time": "2024-05-26 00:00:00",
+                    "working_group_name": "Master Cutters",
+                    "product_attributes": "Pink, M size",
+                    "product_type": "Skirt"
+                }
+            ]
+        }
+    ],
+    "response": "Sure thing! Here are the cutting tasks for the customer \"PolyU\". I've organized the details into a neat table for you. 😊\n\n| Task ID | Start Time          | End Time            | Working Group   | Product Attributes | Product Type |\n|---------|---------------------|---------------------|-----------------|--------------------|--------------|\n| 1       | 2024-01-10 00:00    | 2024-01-18 00:00    | Master Sewers   | Red, M size        | T-shirt      |\n| 4       | 2024-01-10 00:00    | 2024-01-17 00:00    | Master Sewers   | White, XL size     | T-shirt      |\n| 5       | 2024-01-10 00:00    | 2024-02-02 00:00    | Master Sewers   | Yellow, S size     | T-shirt      |\n| 2       | 2024-01-10 00:00    | 2024-02-02 00:00    | Master Cutters  | Green, M size      | T-shirt      |\n| 3       | 2024-01-10 00:00    | 2024-01-19 00:00    | Master Cutters  | Blue, L size       | T-shirt      |\n| 31      | 2024-05-10 00:00    | 2024-05-26 00:00    | Master Cutters  | Pink, M size       | Skirt        |\n\nIf you have any more questions or need further assistance, feel free to ask! 😄",
+    "token_used": 8987
+}

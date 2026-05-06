@@ -1,0 +1,22 @@
+USER INPUT: To allocate tasks for the order with name "Emily_Dress," which involves producing a Red, M size Dress. Half of the cutting tasks will be assigned to the cutting group "Master Cutters," and the other half to the cutting group "Professional Cutters." The task will start from today and must be completed within 30 days. All sewing tasks will be assigned to "Elite Sewers," and are required to be completed within 60 days starting from today.
+ANSWER:
+```
+Step1: Retrieve the order ID for the order with the name "Emily_Dress"
+SQL `SELECT id FROM orders WHERE order_name = 'Emily_Dress';`
+
+Step2: Retrieve the product ID for the product with attributes "Red, M size" and type "Dress"
+SQL `SELECT p.id FROM products p JOIN products_types pt ON p.products_type_id = pt.id WHERE p.attributes = 'Red, M size' AND pt.description = 'Dress';`
+
+Step3: Retrieve the order_product ID and the number of required products for the specific order and product
+SQL `SELECT id, number FROM order_product WHERE order_id = '<order_id>' AND product_id = '<product_id>';`
+
+Step4: Retrieve the working group IDs for "Master Cutters", "Professional Cutters", and "Elite Sewers"
+SQL `SELECT id, name FROM working_group WHERE name IN ('Master Cutters', 'Professional Cutters', 'Elite Sewers');`
+
+Step5: Insert the cutting tasks for "Master Cutters" and "Professional Cutters"
+SQL `INSERT INTO cutting_tasks (start_time, end_time, working_group_id, order_product_id, planned_number, is_started)
+ VALUES (CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, INTERVAL 30 DAY), '<master_cutters_id>', '<order_product_id>', <half_number>, FALSE),
+        (CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, INTERVAL 30 DAY), '<professional_cutters_id>', '<order_product_id>', <half_number>, FALSE);`
+
+Step6: Insert the sewing task for "Elite Sewers"
+SQL `INSERT INTO sewing_tasks (start_time, end_time, working_group_id, order_product_id, planned_number, is_started) VALUES (CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, INTERVAL 60 DAY), '<elite_sewers_id>', '<order_product_id>', <total_number>, TRUE);`

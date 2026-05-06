@@ -1,0 +1,47 @@
+{
+  "ID": 17,
+  "q_ch": "2024年6月1日后的缝纫任务有哪些？",
+  "q_en": "What are the sewing tasks after June 1, 2024?",
+  "sqls": [
+    {
+      "command": [
+        "SELECT id, start_time, end_time, working_group_id, order_product_id, planned_number, completed_number, is_started \n FROM sewing_tasks \n WHERE start_time > '2024-06-01';"
+      ],
+      "Result of executing SQL": [
+        [
+          {
+            "id": "sw32",
+            "start_time": "2024年06月17日 00:00",
+            "end_time": "2024年07月14日 00:00",
+            "working_group_id": "wg9",
+            "order_product_id": "op32",
+            "planned_number": 150,
+            "completed_number": 0,
+            "is_started": 0
+          },
+          {
+            "id": "sw33",
+            "start_time": "2024年07月17日 00:00",
+            "end_time": "2024年08月03日 00:00",
+            "working_group_id": "wg8",
+            "order_product_id": "op33",
+            "planned_number": 120,
+            "completed_number": 0,
+            "is_started": 0
+          },
+          {
+            "id": "sw34",
+            "start_time": "2024年07月10日 00:00",
+            "end_time": "2024年07月20日 00:00",
+            "working_group_id": "wg10",
+            "order_product_id": "op34",
+            "planned_number": 330,
+            "completed_number": 0,
+            "is_started": 0
+          }
+        ]
+      ]
+    }
+  ],
+  "total_tokens": 8391
+}

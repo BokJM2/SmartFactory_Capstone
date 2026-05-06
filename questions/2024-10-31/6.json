@@ -1,0 +1,78 @@
+{
+    "ID": 6,
+    "q_ch": "顾客理大2024年1月的订单包含哪些产品？",
+    "q_en": "What products are included in PolyU's January 2024 orders?",
+    "gt": "Hey there! 😄 Let's take a look at the products included in PolyU's January 2024 orders. Here's a neat table for you:\n\n| Product ID | Quantity | Attributes     | Description |\n|------------|----------|----------------|-------------|\n| 1          | 100      | Red, M size    | T-shirt     |\n| 19         | 240      | Blue, L size   | T-shirt     |\n| 3          | 150      | White, XL size | T-shirt     |\n| 11         | 220      | Green, M size  | T-shirt     |\n| 27         | 260      | Yellow, S size | T-shirt     |\n\nThese are the awesome T-shirts that PolyU ordered in January 2024. If you have any more questions, feel free to ask! 😊",
+    "steps": [
+        {
+            "sql": "SELECT id FROM customers WHERE customer_name = 'PolyU';",
+            "description": "Retrieve the customer ID for the customer with the name \"PolyU\"",
+            "results": [
+                {
+                    "id": 1
+                }
+            ]
+        },
+        {
+            "sql": "SELECT id FROM orders WHERE user_id = '1' AND created_at BETWEEN '2024-01-01' AND '2024-01-31';",
+            "description": "Retrieve the order IDs for orders placed by the customer \"PolyU\" in January 2024",
+            "results": [
+                {
+                    "id": 1
+                }
+            ]
+        },
+        {
+            "sql": "SELECT product_id, number FROM order_product WHERE order_id IN (1);",
+            "description": "Retrieve the product IDs and quantities for each order placed by \"PolyU\" in January 2024",
+            "results": [
+                {
+                    "product_id": 1,
+                    "number": 100
+                },
+                {
+                    "product_id": 19,
+                    "number": 240
+                },
+                {
+                    "product_id": 3,
+                    "number": 150
+                },
+                {
+                    "product_id": 11,
+                    "number": 220
+                },
+                {
+                    "product_id": 27,
+                    "number": 260
+                }
+            ]
+        },
+        {
+            "sql": "SELECT p.attributes, pt.description FROM products p JOIN products_types pt ON p.products_type_id = pt.id WHERE p.id IN (1, 19, 3, 11, 27);",
+            "description": "Retrieve the product attributes and type descriptions for the products included in the orders",
+            "results": [
+                {
+                    "attributes": "Red, M size",
+                    "description": "T-shirt"
+                },
+                {
+                    "attributes": "Blue, L size",
+                    "description": "T-shirt"
+                },
+                {
+                    "attributes": "White, XL size",
+                    "description": "T-shirt"
+                },
+                {
+                    "attributes": "Green, M size",
+                    "description": "T-shirt"
+                },
+                {
+                    "attributes": "Yellow, S size",
+                    "description": "T-shirt"
+                }
+            ]
+        }
+    ]
+}

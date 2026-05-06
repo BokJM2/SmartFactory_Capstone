@@ -1,0 +1,13 @@
+{
+  "ID": 29,
+  "q_ch": "对所有已经开始但是尚未完成的缝纫任务进行统计，剩余工作量最多的工作组是哪个？",
+  "q_en": "Which workgroup has the highest remaining workload for all sewing tasks that have been started but not yet completed?",
+  "sql": "SELECT working_group_id FROM sewing_tasks WHERE is_started = TRUE AND completed_number < planned_number GROUP BY working_group_id ORDER BY SUM(planned_number - completed_number) DESC LIMIT 1;",
+  "thought": "To determine which workgroup has the highest remaining workload for all sewing tasks that have been started but not yet completed, we need to first filter the sewing tasks that have started (`is_started = TRUE`) but are not fully completed (`completed_number < planned_number`). We can then group these tasks by `working_group_id`, calculate the total remaining workload for each workgroup, and finally select the workgroup with the highest remaining workload.",
+  "total_tokens": "2482",
+  "rows": [
+    {
+      "working_group_id": "wg2"
+    }
+  ]
+}

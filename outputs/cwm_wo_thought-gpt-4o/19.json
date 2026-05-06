@@ -1,0 +1,73 @@
+{
+    "ID": 19,
+    "q_ch": "使用 Silk 的缝纫任务有哪些？",
+    "q_en": "Which sewing tasks use Silk?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM materials WHERE name = 'Silk';",
+            "description": "Retrieve the material ID for the material with the name \"Silk\"",
+            "results": [
+                {
+                    "id": 5
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT sewing_task_id FROM sewing_material_allocation WHERE warehouse_material_id IN (SELECT id FROM warehouse_material WHERE material_id = '5');",
+            "description": "Retrieve the sewing task IDs that use the material \"Silk\"",
+            "results": [
+                {
+                    "sewing_task_id": 11
+                },
+                {
+                    "sewing_task_id": 12
+                },
+                {
+                    "sewing_task_id": 13
+                },
+                {
+                    "sewing_task_id": 14
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT st.id, st.start_time, st.end_time, wg.name AS working_group_name, op.id AS order_product_id FROM sewing_tasks st JOIN working_group wg ON st.working_group_id = wg.id JOIN order_product op ON st.order_product_id = op.id WHERE st.id IN (11, 12, 13, 14);",
+            "description": "Retrieve the details of sewing tasks that use the material \"Silk\"",
+            "results": [
+                {
+                    "id": 12,
+                    "start_time": "2024-03-27 00:00:00",
+                    "end_time": "2024-04-12 00:00:00",
+                    "working_group_name": "Master Sewers",
+                    "order_product_id": 12
+                },
+                {
+                    "id": 13,
+                    "start_time": "2024-03-27 00:00:00",
+                    "end_time": "2024-04-06 00:00:00",
+                    "working_group_name": "Master Sewers",
+                    "order_product_id": 13
+                },
+                {
+                    "id": 14,
+                    "start_time": "2024-03-18 00:00:00",
+                    "end_time": "2024-04-08 00:00:00",
+                    "working_group_name": "Master Sewers",
+                    "order_product_id": 14
+                },
+                {
+                    "id": 11,
+                    "start_time": "2024-03-21 00:00:00",
+                    "end_time": "2024-04-14 00:00:00",
+                    "working_group_name": "Premier Sewers",
+                    "order_product_id": 11
+                }
+            ]
+        }
+    ],
+    "response": "Sure thing! Let's dive into the sewing tasks that use the luxurious material, Silk. 🧵✨\n\nHere's a neat table with all the details:\n\n| Sewing Task ID | Start Time          | End Time            | Working Group Name | Order Product ID |\n|----------------|---------------------|---------------------|--------------------|------------------|\n| 11             | March 21, 2024      | April 14, 2024      | Premier Sewers     | 11               |\n| 12             | March 27, 2024      | April 12, 2024      | Master Sewers      | 12               |\n| 13             | March 27, 2024      | April 6, 2024       | Master Sewers      | 13               |\n| 14             | March 18, 2024      | April 8, 2024       | Master Sewers      | 14               |\n\nThese tasks are handled by our talented Premier and Master Sewers teams. If you have any more questions or need further details, feel free to ask! 😊",
+    "token_used": 7741
+}

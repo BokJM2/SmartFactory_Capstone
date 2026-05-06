@@ -1,0 +1,248 @@
+{
+    "ID": 12,
+    "q_ch": "2024年5月31日前完成的缝纫任务有哪些？",
+    "q_en": "What sewing tasks will be completed before May 31, 2024?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT st.id, st.end_time, wg.name AS working_group_name, op.id AS order_product_id, p.attributes AS product_attributes, pt.description AS product_type FROM sewing_tasks st JOIN working_group wg ON st.working_group_id = wg.id JOIN order_product op ON st.order_product_id = op.id JOIN products p ON op.product_id = p.id JOIN products_types pt ON p.products_type_id = pt.id WHERE st.end_time < '2024-05-31';",
+            "description": "Retrieve the sewing tasks that are scheduled to be completed before May 31, 2024",
+            "results": [
+                {
+                    "id": 1,
+                    "end_time": "2024-02-07 00:00:00",
+                    "working_group_name": "Master Sewers",
+                    "order_product_id": 1,
+                    "product_attributes": "Red, M size",
+                    "product_type": "T-shirt"
+                },
+                {
+                    "id": 4,
+                    "end_time": "2024-01-30 00:00:00",
+                    "working_group_name": "Master Sewers",
+                    "order_product_id": 4,
+                    "product_attributes": "White, XL size",
+                    "product_type": "T-shirt"
+                },
+                {
+                    "id": 5,
+                    "end_time": "2024-02-25 00:00:00",
+                    "working_group_name": "Master Sewers",
+                    "order_product_id": 5,
+                    "product_attributes": "Yellow, S size",
+                    "product_type": "T-shirt"
+                },
+                {
+                    "id": 10,
+                    "end_time": "2024-04-09 00:00:00",
+                    "working_group_name": "Master Sewers",
+                    "order_product_id": 10,
+                    "product_attributes": "Grey, 29 size",
+                    "product_type": "Pants"
+                },
+                {
+                    "id": 12,
+                    "end_time": "2024-04-12 00:00:00",
+                    "working_group_name": "Master Sewers",
+                    "order_product_id": 12,
+                    "product_attributes": "Red, M size",
+                    "product_type": "Dress"
+                },
+                {
+                    "id": 13,
+                    "end_time": "2024-04-06 00:00:00",
+                    "working_group_name": "Master Sewers",
+                    "order_product_id": 13,
+                    "product_attributes": "Black, S size",
+                    "product_type": "Dress"
+                },
+                {
+                    "id": 14,
+                    "end_time": "2024-04-08 00:00:00",
+                    "working_group_name": "Master Sewers",
+                    "order_product_id": 14,
+                    "product_attributes": "Pink, S size",
+                    "product_type": "Dress"
+                },
+                {
+                    "id": 15,
+                    "end_time": "2024-04-09 00:00:00",
+                    "working_group_name": "Master Sewers",
+                    "order_product_id": 15,
+                    "product_attributes": "Brown, S size",
+                    "product_type": "Jacket"
+                },
+                {
+                    "id": 24,
+                    "end_time": "2024-05-20 00:00:00",
+                    "working_group_name": "Master Sewers",
+                    "order_product_id": 24,
+                    "product_attributes": "Grey, XL size",
+                    "product_type": "Shorts"
+                },
+                {
+                    "id": 30,
+                    "end_time": "2024-05-15 00:00:00",
+                    "working_group_name": "Master Sewers",
+                    "order_product_id": 30,
+                    "product_attributes": "Red, L size",
+                    "product_type": "Shorts"
+                },
+                {
+                    "id": 8,
+                    "end_time": "2024-04-05 00:00:00",
+                    "working_group_name": "Skilled Sewers",
+                    "order_product_id": 8,
+                    "product_attributes": "Blue, 35 size",
+                    "product_type": "Pants"
+                },
+                {
+                    "id": 17,
+                    "end_time": "2024-04-22 00:00:00",
+                    "working_group_name": "Skilled Sewers",
+                    "order_product_id": 17,
+                    "product_attributes": "Yellow, L size",
+                    "product_type": "Jacket"
+                },
+                {
+                    "id": 18,
+                    "end_time": "2024-04-21 00:00:00",
+                    "working_group_name": "Skilled Sewers",
+                    "order_product_id": 18,
+                    "product_attributes": "Brown, L size",
+                    "product_type": "Jacket"
+                },
+                {
+                    "id": 19,
+                    "end_time": "2024-04-23 00:00:00",
+                    "working_group_name": "Skilled Sewers",
+                    "order_product_id": 19,
+                    "product_attributes": "Green, XL size",
+                    "product_type": "Skirt"
+                },
+                {
+                    "id": 23,
+                    "end_time": "2024-05-01 00:00:00",
+                    "working_group_name": "Skilled Sewers",
+                    "order_product_id": 23,
+                    "product_attributes": "Silver, S size",
+                    "product_type": "Shorts"
+                },
+                {
+                    "id": 27,
+                    "end_time": "2024-05-15 00:00:00",
+                    "working_group_name": "Skilled Sewers",
+                    "order_product_id": 27,
+                    "product_attributes": "White, L size",
+                    "product_type": "Coat"
+                },
+                {
+                    "id": 28,
+                    "end_time": "2024-05-28 00:00:00",
+                    "working_group_name": "Skilled Sewers",
+                    "order_product_id": 28,
+                    "product_attributes": "Purple, M size",
+                    "product_type": "Skirt"
+                },
+                {
+                    "id": 29,
+                    "end_time": "2024-05-19 00:00:00",
+                    "working_group_name": "Skilled Sewers",
+                    "order_product_id": 29,
+                    "product_attributes": "Grey, L size",
+                    "product_type": "Sweater"
+                },
+                {
+                    "id": 6,
+                    "end_time": "2024-04-07 00:00:00",
+                    "working_group_name": "Advanced Sewers",
+                    "order_product_id": 6,
+                    "product_attributes": "Blue, 30 size",
+                    "product_type": "Pants"
+                },
+                {
+                    "id": 7,
+                    "end_time": "2024-03-22 00:00:00",
+                    "working_group_name": "Advanced Sewers",
+                    "order_product_id": 7,
+                    "product_attributes": "Brown, 34 size",
+                    "product_type": "Pants"
+                },
+                {
+                    "id": 9,
+                    "end_time": "2024-03-20 00:00:00",
+                    "working_group_name": "Advanced Sewers",
+                    "order_product_id": 9,
+                    "product_attributes": "Black, 34 size",
+                    "product_type": "Pants"
+                },
+                {
+                    "id": 16,
+                    "end_time": "2024-05-07 00:00:00",
+                    "working_group_name": "Advanced Sewers",
+                    "order_product_id": 16,
+                    "product_attributes": "Red, M size",
+                    "product_type": "Coat"
+                },
+                {
+                    "id": 20,
+                    "end_time": "2024-05-07 00:00:00",
+                    "working_group_name": "Advanced Sewers",
+                    "order_product_id": 20,
+                    "product_attributes": "Black, XL size",
+                    "product_type": "Jacket"
+                },
+                {
+                    "id": 21,
+                    "end_time": "2024-04-12 00:00:00",
+                    "working_group_name": "Advanced Sewers",
+                    "order_product_id": 21,
+                    "product_attributes": "Pink, M size",
+                    "product_type": "Skirt"
+                },
+                {
+                    "id": 22,
+                    "end_time": "2024-04-22 00:00:00",
+                    "working_group_name": "Advanced Sewers",
+                    "order_product_id": 22,
+                    "product_attributes": "Blue, S size",
+                    "product_type": "Sweater"
+                },
+                {
+                    "id": 2,
+                    "end_time": "2024-02-15 00:00:00",
+                    "working_group_name": "Premier Sewers",
+                    "order_product_id": 2,
+                    "product_attributes": "Green, M size",
+                    "product_type": "T-shirt"
+                },
+                {
+                    "id": 3,
+                    "end_time": "2024-02-08 00:00:00",
+                    "working_group_name": "Premier Sewers",
+                    "order_product_id": 3,
+                    "product_attributes": "Blue, L size",
+                    "product_type": "T-shirt"
+                },
+                {
+                    "id": 11,
+                    "end_time": "2024-04-14 00:00:00",
+                    "working_group_name": "Premier Sewers",
+                    "order_product_id": 11,
+                    "product_attributes": "Gold, L size",
+                    "product_type": "Dress"
+                },
+                {
+                    "id": 26,
+                    "end_time": "2024-05-15 00:00:00",
+                    "working_group_name": "Premier Sewers",
+                    "order_product_id": 26,
+                    "product_attributes": "Blue, XL size",
+                    "product_type": "Sweater"
+                }
+            ]
+        }
+    ],
+    "response": "Sure! Here are the sewing tasks that are scheduled to be completed before May 31, 2024. Let's take a look at the details! 🧵✨\n\n| Task ID | End Time       | Working Group     | Order Product ID | Product Attributes | Product Type |\n|---------|----------------|-------------------|------------------|--------------------|--------------|\n| 1       | 2024-02-07     | Master Sewers     | 1                | Red, M size        | T-shirt      |\n| 4       | 2024-01-30     | Master Sewers     | 4                | White, XL size     | T-shirt      |\n| 5       | 2024-02-25     | Master Sewers     | 5                | Yellow, S size     | T-shirt      |\n| 10      | 2024-04-09     | Master Sewers     | 10               | Grey, 29 size      | Pants        |\n| 12      | 2024-04-12     | Master Sewers     | 12               | Red, M size        | Dress        |\n| 13      | 2024-04-06     | Master Sewers     | 13               | Black, S size      | Dress        |\n| 14      | 2024-04-08     | Master Sewers     | 14               | Pink, S size       | Dress        |\n| 15      | 2024-04-09     | Master Sewers     | 15               | Brown, S size      | Jacket       |\n| 24      | 2024-05-20     | Master Sewers     | 24               | Grey, XL size      | Shorts       |\n| 30      | 2024-05-15     | Master Sewers     | 30               | Red, L size        | Shorts       |\n| 8       | 2024-04-05     | Skilled Sewers    | 8                | Blue, 35 size      | Pants        |\n| 17      | 2024-04-22     | Skilled Sewers    | 17               | Yellow, L size     | Jacket       |\n| 18      | 2024-04-21     | Skilled Sewers    | 18               | Brown, L size      | Jacket       |\n| 19      | 2024-04-23     | Skilled Sewers    | 19               | Green, XL size     | Skirt        |\n| 23      | 2024-05-01     | Skilled Sewers    | 23               | Silver, S size     | Shorts       |\n| 27      | 2024-05-15     | Skilled Sewers    | 27               | White, L size      | Coat         |\n| 28      | 2024-05-28     | Skilled Sewers    | 28               | Purple, M size     | Skirt        |\n| 29      | 2024-05-19     | Skilled Sewers    | 29               | Grey, L size       | Sweater      |\n| 6       | 2024-04-07     | Advanced Sewers   | 6                | Blue, 30 size      | Pants        |\n| 7       | 2024-03-22     | Advanced Sewers   | 7                | Brown, 34 size     | Pants        |\n| 9       | 2024-03-20     | Advanced Sewers   | 9                | Black, 34 size     | Pants        |\n| 16      | 2024-05-07     | Advanced Sewers   | 16               | Red, M size        | Coat         |\n| 20      | 2024-05-07     | Advanced Sewers   | 20               | Black, XL size     | Jacket       |\n| 21      | 2024-04-12     | Advanced Sewers   | 21               | Pink, M size       | Skirt        |\n| 22      | 2024-04-22     | Advanced Sewers   | 22               | Blue, S size       | Sweater      |\n| 2       | 2024-02-15     | Premier Sewers    | 2                | Green, M size      | T-shirt      |\n| 3       | 2024-02-08     | Premier Sewers    | 3                | Blue, L size       | T-shirt      |\n| 11      | 2024-04-14     | Premier Sewers    | 11               | Gold, L size       | Dress        |\n| 26      | 2024-05-15     | Premier Sewers    | 26               | Blue, XL size      | Sweater      |\n\nI hope this helps! If you have any more questions, feel free to ask. 😊",
+    "token_used": 10243
+}

@@ -1,0 +1,27 @@
+{
+    "ID": 37,
+    "q_ch": "对所有结束时间在2024年7月前，且未完成的裁剪任务中，计划裁剪数量最多的任务是什么？",
+    "q_en": "What is the task with the highest planned quantity among all cutting tasks that have not been completed and have an end date before July 2024??",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT * FROM cutting_tasks WHERE status != 2 AND end_time < '2024-07-01' ORDER BY planned_number DESC LIMIT 1;",
+            "description": "To find the task with the highest planned quantity among all cutting tasks that have not been completed and have an end date before July 2024, we need to filter the cutting tasks by status and end_time, and then select the task with the maximum planned_number.",
+            "results": [
+                {
+                    "id": 5,
+                    "start_time": "2024-01-10 00:00:00",
+                    "end_time": "2024-02-02 00:00:00",
+                    "working_group_id": 2,
+                    "order_product_id": 5,
+                    "produced_wip_id": 8,
+                    "planned_number": 260,
+                    "completed_number": 260,
+                    "status": 1
+                }
+            ]
+        }
+    ],
+    "response": "Sure thing! Let's dive into the details of the task you're curious about. Here's the task with the highest planned quantity among all cutting tasks that haven't been completed and have an end date before July 2024:\n\n| Task ID | Start Time       | End Time         | Working Group ID | Order Product ID | Produced WIP ID | Planned Quantity | Completed Quantity | Status |\n|---------|------------------|------------------|------------------|------------------|-----------------|------------------|--------------------|--------|\n| 5       | 2024-01-10       | 2024-02-02       | 2                | 5                | 8               | 260              | 260                | 1      |\n\nThis task is quite a standout with a planned quantity of 260! 🎉 If you have any more questions or need further details, feel free to ask. 😊",
+    "token_used": 5397
+}

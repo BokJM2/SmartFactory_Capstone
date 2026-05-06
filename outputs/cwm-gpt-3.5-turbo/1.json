@@ -1,0 +1,26 @@
+{
+    "ID": 1,
+    "q_ch": "PolyU的订单有哪些？",
+    "q_en": "What are the orders for PolyU?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM customers WHERE customer_name = 'PolyU';",
+            "description": "Retrieve the customer ID for the customer with the name \"PolyU\"",
+            "results": [
+                {
+                    "id": 1
+                }
+            ]
+        },
+        {
+            "type": "Tool",
+            "results": {
+                "input": "Retrieve the details of products for each order, including product attributes and type description\n['tool_find_order_details, {\"order_id\": 1}, Find the product details of an order']",
+                "output": "Here are the details of the products for order ID 1:\n\n1. Product ID: 1\n   - Attributes: Red, M size\n   - Type Description: T-shirt\n   - Quantity: 100\n\n2. Product ID: 19\n   - Attributes: Green, M size\n   - Type Description: T-shirt\n   - Quantity: 240\n\n3. Product ID: 3\n   - Attributes: Blue, L size\n   - Type Description: T-shirt\n   - Quantity: 150\n\n4. Product ID: 11\n   - Attributes: White, XL size\n   - Type Description: T-shirt\n   - Quantity: 220\n\n5. Product ID: 27\n   - Attributes: Yellow, S size\n   - Type Description: T-shirt\n   - Quantity: 260"
+            }
+        }
+    ],
+    "response": "Hey there! 🌟 Here are the details of the orders for PolyU:\n\n| Product ID | Attributes     | Type Description | Quantity |\n|------------|----------------|------------------|----------|\n| 1          | Red, M size    | T-shirt          | 100      |\n| 19         | Green, M size  | T-shirt          | 240      |\n| 3          | Blue, L size   | T-shirt          | 150      |\n| 11         | White, XL size | T-shirt          | 220      |\n| 27         | Yellow, S size | T-shirt          | 260      |\n\nI hope this information helps! Let me know if you need anything else. 😊",
+    "token_used": 7090
+}

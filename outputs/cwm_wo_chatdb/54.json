@@ -1,0 +1,35 @@
+{
+  "ID": 54,
+  "q_ch": "列出所有缝纫组的进度百分比。",
+  "q_en": "List the progress percentage of all sewing groups",
+  "sql": "SELECT wg.id AS working_group_id, wg.name AS working_group_name, (SUM(st.completed_number) / SUM(st.planned_number)) * 100 AS progress_percentage FROM working_group wg JOIN sewing_tasks st ON wg.id = st.working_group_id GROUP BY wg.id, wg.name;",
+  "thought": "To find the progress percentages of all sewing groups, we need to calculate the percentage of completed sewing tasks relative to the planned tasks. This involves summing the planned numbers and completed numbers for each sewing group from the 'sewing_tasks' table and then calculating the ratio of completed to planned tasks.",
+  "total_tokens": "2451",
+  "rows": [
+    {
+      "working_group_id": "wg10",
+      "working_group_name": "Elite Sewers",
+      "progress_percentage": null
+    },
+    {
+      "working_group_id": "wg2",
+      "working_group_name": "Master Sewers",
+      "progress_percentage": null
+    },
+    {
+      "working_group_id": "wg7",
+      "working_group_name": "Skilled Sewers",
+      "progress_percentage": null
+    },
+    {
+      "working_group_id": "wg8",
+      "working_group_name": "Advanced Sewers",
+      "progress_percentage": null
+    },
+    {
+      "working_group_id": "wg9",
+      "working_group_name": "Premier Sewers",
+      "progress_percentage": null
+    }
+  ]
+}

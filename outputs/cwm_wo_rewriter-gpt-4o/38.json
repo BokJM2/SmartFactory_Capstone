@@ -1,0 +1,25 @@
+{
+    "ID": 38,
+    "q_ch": "Advanced裁剪组还未完成的裁剪任务是哪些顾客的订单？",
+    "q_en": "Which customer orders are the cutting tasks that the Advanced Cutting Group has not yet completed?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM working_group WHERE name = 'Advanced Cutters';",
+            "description": "Retrieve the working group ID for the group with the name \"Advanced Cutters\"",
+            "results": [
+                {
+                    "id": 6
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT order_product_id FROM cutting_tasks WHERE working_group_id = '6' AND status != 2;",
+            "description": "Retrieve the order product IDs for cutting tasks assigned to \"Advanced Cutters\" that are not yet completed",
+            "results": "no results found."
+        }
+    ],
+    "response": "Hey there! 😄 It looks like the \"Advanced Cutters\" team is on top of their game because there are no pending cutting tasks for them at the moment. 🎉 So, no customer orders are waiting on them to finish up. If you have any more questions or need further assistance, feel free to ask!",
+    "token_used": 7499
+}

@@ -1,0 +1,8 @@
+{
+  "ID": 44,
+  "q_ch": "请将100件p15号产品入库到辅助仓库。",
+  "q_en": "Please store 100 units of product p15 in the auxiliary warehouse.",
+  "sql": "SELECT id INTO @warehouse_id FROM warehouse WHERE name = 'Auxiliary warehouse';INSERT INTO warehouse_product (id, warehouse_id, product_id, left_number) VALUES (UUID(), @warehouse_id, 'p15', 100) ON DUPLICATE KEY UPDATE left_number = left_number + 100;",
+  "thought": "First, we need to find the ID of the 'Auxiliary warehouse'. Then we can insert or update the corresponding entry in the warehouse_product table to store 100 units of product p15.",
+  "total_tokens": "2844"
+}

@@ -1,0 +1,150 @@
+{
+    "ID": 27,
+    "q_ch": "我是Advanced Sewers，我尚未完成的任务有哪些，对应的顾客都是谁？",
+    "q_en": "I am Advanced Sewers. What are the tasks I have not yet completed?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM working_group WHERE name = 'Advanced Sewers';",
+            "description": "Retrieve the working group ID for the group named \"Advanced Sewers\"",
+            "results": [
+                {
+                    "id": 8
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT id, start_time, end_time, order_product_id, planned_number, completed_number, status FROM sewing_tasks WHERE working_group_id = '8' AND status != 2;",
+            "description": "Retrieve the sewing tasks that are not yet completed for the working group \"Advanced Sewers\"",
+            "results": [
+                {
+                    "id": 6,
+                    "start_time": "2024-03-20 00:00:00",
+                    "end_time": "2024-04-07 00:00:00",
+                    "order_product_id": 6,
+                    "planned_number": 95,
+                    "completed_number": 95,
+                    "status": 1
+                },
+                {
+                    "id": 7,
+                    "start_time": "2024-03-06 00:00:00",
+                    "end_time": "2024-03-22 00:00:00",
+                    "order_product_id": 7,
+                    "planned_number": 110,
+                    "completed_number": 110,
+                    "status": 1
+                },
+                {
+                    "id": 9,
+                    "start_time": "2024-03-06 00:00:00",
+                    "end_time": "2024-03-20 00:00:00",
+                    "order_product_id": 9,
+                    "planned_number": 80,
+                    "completed_number": 80,
+                    "status": 1
+                },
+                {
+                    "id": 20,
+                    "start_time": "2024-04-15 00:00:00",
+                    "end_time": "2024-05-07 00:00:00",
+                    "order_product_id": 20,
+                    "planned_number": 90,
+                    "completed_number": 90,
+                    "status": 1
+                },
+                {
+                    "id": 21,
+                    "start_time": "2024-04-04 00:00:00",
+                    "end_time": "2024-04-12 00:00:00",
+                    "order_product_id": 21,
+                    "planned_number": 85,
+                    "completed_number": 85,
+                    "status": 1
+                },
+                {
+                    "id": 22,
+                    "start_time": "2024-04-09 00:00:00",
+                    "end_time": "2024-04-22 00:00:00",
+                    "order_product_id": 22,
+                    "planned_number": 115,
+                    "completed_number": 60,
+                    "status": 0
+                },
+                {
+                    "id": 25,
+                    "start_time": "2024-05-14 00:00:00",
+                    "end_time": "2024-06-03 00:00:00",
+                    "order_product_id": 25,
+                    "planned_number": 75,
+                    "completed_number": 75,
+                    "status": 0
+                },
+                {
+                    "id": 33,
+                    "start_time": "2024-07-17 00:00:00",
+                    "end_time": "2024-08-03 00:00:00",
+                    "order_product_id": 33,
+                    "planned_number": 120,
+                    "completed_number": 0,
+                    "status": 0
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT op.id, o.order_name, p.attributes FROM order_product op JOIN orders o ON op.order_id = o.id JOIN products p ON op.product_id = p.id WHERE op.id IN (6, 7, 9, 20, 21, 22, 25, 33);",
+            "description": "Retrieve the order product details for the tasks obtained in Step2",
+            "results": [
+                {
+                    "id": 6,
+                    "order_name": "John_Pants",
+                    "attributes": "Blue, 30 size"
+                },
+                {
+                    "id": 7,
+                    "order_name": "John_Pants",
+                    "attributes": "Brown, 34 size"
+                },
+                {
+                    "id": 9,
+                    "order_name": "John_Pants",
+                    "attributes": "Black, 34 size"
+                },
+                {
+                    "id": 20,
+                    "order_name": "Sophia_SkirtAndJacket",
+                    "attributes": "Black, XL size"
+                },
+                {
+                    "id": 21,
+                    "order_name": "Sophia_SkirtAndJacket",
+                    "attributes": "Pink, M size"
+                },
+                {
+                    "id": 22,
+                    "order_name": "Michael_SweaterAndShorts",
+                    "attributes": "Blue, S size"
+                },
+                {
+                    "id": 25,
+                    "order_name": "Olivia_WinterOrder",
+                    "attributes": "Purple, S size"
+                },
+                {
+                    "id": 33,
+                    "order_name": "Emily_Pants",
+                    "attributes": "Grey, 29 size"
+                }
+            ]
+        },
+        {
+            "type": "Thought",
+            "operation": "Use the results from Step2 and Step3 to replace order_product_id with the corresponding order name and product attributes, providing a detailed list of tasks that are not yet completed for the \"Advanced Sewers\" group.",
+            "results": "To achieve the objective, we need to replace the `order_product_id` in the sewing tasks with the corresponding order name and product attributes, focusing on tasks that are not yet completed for the \"Advanced Sewers\" group. Based on the context provided, we can follow these steps:\n\n1. **Identify Incomplete Tasks**: From the results of Step 2, we need to identify tasks that are not yet completed. The status of a task indicates its completion: a status of `0` means the task is not completed, while a status of `1` means it is completed. Therefore, we focus on tasks with a status of `0`.\n\n2. **Retrieve Order Product Details**: From the results of Step 3, we have the order name and product attributes for each `order_product_id`. We will use this information to replace the `order_product_id` in the incomplete tasks.\n\n3. **Compile the Detailed List**: For each incomplete task, we will compile a detailed list that includes the task ID, start time, end time, order name, product attributes, planned number, completed number, and status.\n\nLet's apply these steps to the data:\n\n- **Incomplete Tasks**: From Step 2, the tasks with status `0` are:\n  - Task ID 22: `order_product_id` 22\n  - Task ID 25: `order_product_id` 25\n  - Task ID 33: `order_product_id` 33\n\n- **Order Product Details**: From Step 3, the details for these `order_product_id`s are:\n  - `order_product_id` 22: Order Name \"Michael_SweaterAndShorts\", Attributes \"Blue, S size\"\n  - `order_product_id` 25: Order Name \"Olivia_WinterOrder\", Attributes \"Purple, S size\"\n  - `order_product_id` 33: Order Name \"Emily_Pants\", Attributes \"Grey, 29 size\"\n\n- **Detailed List of Incomplete Tasks**:\n  - Task ID 22:\n    - Start Time: 2024-04-09\n    - End Time: 2024-04-22\n    - Order Name: Michael_SweaterAndShorts\n    - Product Attributes: Blue, S size\n    - Planned Number: 115\n    - Completed Number: 60\n    - Status: 0 (Not Completed)\n  \n  - Task ID 25:\n    - Start Time: 2024-05-14\n    - End Time: 2024-06-03\n    - Order Name: Olivia_WinterOrder\n    - Product Attributes: Purple, S size\n    - Planned Number: 75\n    - Completed Number: 75\n    - Status: 0 (Not Completed)\n  \n  - Task ID 33:\n    - Start Time: 2024-07-17\n    - End Time: 2024-08-03\n    - Order Name: Emily_Pants\n    - Product Attributes: Grey, 29 size\n    - Planned Number: 120\n    - Completed Number: 0\n    - Status: 0 (Not Completed)\n\nThis detailed list provides the necessary information about the tasks that are not yet completed for the \"Advanced Sewers\" group, with the `order_product_id` replaced by the corresponding order name and product attributes."
+        }
+    ],
+    "response": "Hello there! 😄 It looks like you're part of the \"Advanced Sewers\" group, and you're curious about the tasks that are still on your to-do list. Let's take a look at the tasks that haven't been completed yet:\n\n| Task ID | Start Time  | End Time    | Order Name            | Product Attributes | Planned Number | Completed Number | Status         |\n|---------|-------------|-------------|-----------------------|--------------------|----------------|------------------|----------------|\n| 22      | 2024-04-09  | 2024-04-22  | Michael_SweaterAndShorts | Blue, S size       | 115            | 60               | Not Completed  |\n| 25      | 2024-05-14  | 2024-06-03  | Olivia_WinterOrder    | Purple, S size     | 75             | 75               | Not Completed  |\n| 33      | 2024-07-17  | 2024-08-03  | Emily_Pants           | Grey, 29 size      | 120            | 0                | Not Completed  |\n\nThese tasks are still pending, so let's get them done! 💪 If you need any more help or details, feel free to ask. 😊",
+    "token_used": 11688
+}

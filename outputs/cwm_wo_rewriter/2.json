@@ -1,0 +1,41 @@
+{
+  "ID": 2,
+  "q_ch": "John 的订单全部生产完成了么？",
+  "q_en": "Have all of John's orders been completed?",
+  "sqls": [
+    {
+      "command": [
+        "SELECT id FROM customers WHERE customer_name = 'John';",
+        "SELECT id FROM orders WHERE user_id = 'c2';",
+        "SELECT COUNT(*) FROM cutting_tasks WHERE order_product_id IN (SELECT id FROM order_product WHERE order_id IN (SELECT id FROM orders WHERE user_id = 'c2')) AND completed_number < planned_number;",
+        "SELECT COUNT(*) FROM sewing_tasks WHERE order_product_id IN (SELECT id FROM order_product WHERE order_id IN (SELECT id FROM orders WHERE user_id = 'c2')) AND completed_number < planned_number;"
+      ],
+      "Result of executing SQL": [
+        [
+          {
+            "id": "c2"
+          }
+        ],
+        [
+          {
+            "id": "o10"
+          },
+          {
+            "id": "o2"
+          }
+        ],
+        [
+          {
+            "COUNT(*)": 1
+          }
+        ],
+        [
+          {
+            "COUNT(*)": 2
+          }
+        ]
+      ]
+    }
+  ],
+  "total_tokens": 3481
+}

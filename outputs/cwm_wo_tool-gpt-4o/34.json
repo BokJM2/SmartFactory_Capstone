@@ -1,0 +1,33 @@
+{
+    "ID": 34,
+    "q_ch": "Master Cutters当前已完成的裁剪任务有哪些？",
+    "q_en": "Which cutting tasks have been completed by Master Cutters?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM working_group WHERE name = 'Master Cutters';",
+            "description": "Retrieve the working group ID for the group named \"Master Cutters\"",
+            "results": [
+                {
+                    "id": 3
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT id, start_time, end_time, planned_number, completed_number FROM cutting_tasks WHERE working_group_id = '3' AND status = 2;",
+            "description": "Retrieve the cutting tasks that have been completed by the working group \"Master Cutters\"",
+            "results": [
+                {
+                    "id": 3,
+                    "start_time": "2024-01-10 00:00:00",
+                    "end_time": "2024-01-19 00:00:00",
+                    "planned_number": 150,
+                    "completed_number": 150
+                }
+            ]
+        }
+    ],
+    "response": "Hey there! 😄 Let's take a look at the cutting tasks completed by the \"Master Cutters\" group. Here's what I found:\n\n| Task ID | Start Time          | End Time            | Planned Number | Completed Number |\n|---------|---------------------|---------------------|----------------|------------------|\n| 3       | January 10, 2024    | January 19, 2024    | 150            | 150              |\n\nIt looks like the \"Master Cutters\" did an amazing job, completing all their planned tasks! 🎉 If you have any more questions, feel free to ask!",
+    "token_used": 6495
+}

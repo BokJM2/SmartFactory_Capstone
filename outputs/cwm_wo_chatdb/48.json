@@ -1,0 +1,10 @@
+{
+  "ID": 48,
+  "q_ch": "我是Advanced Sewers，请将属于我的所有2024年5月1日-2024年5月30日之间开始的裁剪任务转给Premier Sewers。",
+  "q_en": "I am an Advanced Sewer. Please transfer all cutting tasks that started between May 1, 2024, and May 30, 2024, to Premier Sewers.",
+  "sql": "SELECT id FROM working_group WHERE name = 'Advanced Sewers';SELECT id FROM working_group WHERE name = 'Premier Sewers';UPDATE cutting_tasks SET working_group_id = <Premier_Sewers_ID> WHERE working_group_id = <Advanced_Sewers_ID> AND start_time BETWEEN '2024-05-01 00:00:00' AND '2024-05-30 23:59:59';",
+  "thought": "To transfer all cutting tasks that started between May 1, 2024, and May 30, 2024, from the 'Advanced Sewers' to 'Premier Sewers', we need to identify the IDs of these working groups first. Then, we will update the `working_group_id` for all relevant cutting tasks.",
+  "completion_tokens": "166",
+  "prompt_tokens": "1877",
+  "total_tokens": "3017"
+}

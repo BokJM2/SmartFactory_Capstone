@@ -1,0 +1,104 @@
+{
+    "ID": 39,
+    "q_ch": "使用 Leather 的裁剪任务有哪些？",
+    "q_en": "Which cutting tasks use Leather?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT ct.* FROM cutting_tasks ct JOIN cutting_material_allocation cma ON ct.id = cma.cutting_task_id JOIN warehouse_material wm ON cma.warehouse_material_id = wm.id JOIN materials m ON wm.material_id = m.id WHERE m.name = 'Leather';",
+            "description": "To find the cutting tasks that use the material with the name 'Leather', we need to query the cutting tasks that are associated with the cutting material allocations of the specified material.",
+            "results": [
+                {
+                    "id": 15,
+                    "start_time": "2024-03-11 00:00:00",
+                    "end_time": "2024-03-26 00:00:00",
+                    "working_group_id": 2,
+                    "order_product_id": 15,
+                    "produced_wip_id": 6,
+                    "planned_number": 185,
+                    "completed_number": 185,
+                    "status": 1
+                },
+                {
+                    "id": 16,
+                    "start_time": "2024-03-11 00:00:00",
+                    "end_time": "2024-04-10 00:00:00",
+                    "working_group_id": 4,
+                    "order_product_id": 16,
+                    "produced_wip_id": 8,
+                    "planned_number": 200,
+                    "completed_number": 200,
+                    "status": 1
+                },
+                {
+                    "id": 17,
+                    "start_time": "2024-03-11 00:00:00",
+                    "end_time": "2024-03-25 00:00:00",
+                    "working_group_id": 2,
+                    "order_product_id": 17,
+                    "produced_wip_id": 4,
+                    "planned_number": 175,
+                    "completed_number": 175,
+                    "status": 1
+                },
+                {
+                    "id": 18,
+                    "start_time": "2024-03-11 00:00:00",
+                    "end_time": "2024-04-07 00:00:00",
+                    "working_group_id": 1,
+                    "order_product_id": 18,
+                    "produced_wip_id": 10,
+                    "planned_number": 200,
+                    "completed_number": 200,
+                    "status": 1
+                },
+                {
+                    "id": 20,
+                    "start_time": "2024-03-18 00:00:00",
+                    "end_time": "2024-04-15 00:00:00",
+                    "working_group_id": 4,
+                    "order_product_id": 20,
+                    "produced_wip_id": 12,
+                    "planned_number": 90,
+                    "completed_number": 90,
+                    "status": 1
+                },
+                {
+                    "id": 25,
+                    "start_time": "2024-04-14 00:00:00",
+                    "end_time": "2024-05-14 00:00:00",
+                    "working_group_id": 2,
+                    "order_product_id": 25,
+                    "produced_wip_id": 6,
+                    "planned_number": 75,
+                    "completed_number": 75,
+                    "status": 1
+                },
+                {
+                    "id": 27,
+                    "start_time": "2024-04-14 00:00:00",
+                    "end_time": "2024-05-04 00:00:00",
+                    "working_group_id": 4,
+                    "order_product_id": 27,
+                    "produced_wip_id": 8,
+                    "planned_number": 60,
+                    "completed_number": 60,
+                    "status": 0
+                },
+                {
+                    "id": 32,
+                    "start_time": "2024-06-01 00:00:00",
+                    "end_time": "2024-06-17 00:00:00",
+                    "working_group_id": 2,
+                    "order_product_id": 32,
+                    "produced_wip_id": 8,
+                    "planned_number": 150,
+                    "completed_number": 120,
+                    "status": 1
+                }
+            ]
+        }
+    ],
+    "response": "Sure! Here is the answer to your question:\n\n| ID | Start Time | End Time | Working Group ID | Order Product ID | Produced WIP ID | Planned Number | Completed Number | Status |\n|----|------------|----------|------------------|------------------|-----------------|----------------|-----------------|--------|\n| 15 | 2024-03-11 | 2024-03-26 | 2 | 15 | 6 | 185 | 185 | 1 |\n| 16 | 2024-03-11 | 2024-04-10 | 4 | 16 | 8 | 200 | 200 | 1 |\n| 17 | 2024-03-11 | 2024-03-25 | 2 | 17 | 4 | 175 | 175 | 1 |\n| 18 | 2024-03-11 | 2024-04-07 | 1 | 18 | 10 | 200 | 200 | 1 |\n| 20 | 2024-03-18 | 2024-04-15 | 4 | 20 | 12 | 90 | 90 | 1 |\n| 25 | 2024-04-14 | 2024-05-14 | 2 | 25 | 6 | 75 | 75 | 1 |\n| 27 | 2024-04-14 | 2024-05-04 | 4 | 27 | 8 | 60 | 60 | 0 |\n| 32 | 2024-06-01 | 2024-06-17 | 2 | 32 | 8 | 150 | 120 | 1 |\n\nI hope this helps! If you have any more questions, feel free to ask. 😄",
+    "token_used": 6987
+}

@@ -1,0 +1,356 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: chat manufacture
+  use_icon_as_answer_icon: false
+kind: app
+version: 0.1.2
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      image:
+        enabled: true
+        number_limits: 3
+        transfer_methods:
+        - remote_url
+        - local_file
+    opening_statement: ''
+    retriever_resource:
+      enabled: false
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: answer
+      id: 1730955470263-source-1731069488796-target
+      selected: false
+      source: '1730955470263'
+      sourceHandle: source
+      target: '1731069488796'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: question-classifier
+      id: 1719857123829-source-1731295551550-target
+      source: '1719857123829'
+      sourceHandle: source
+      target: '1731295551550'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: question-classifier
+        targetType: tool
+      id: 1731295551550-2-1719932621778-target
+      source: '1731295551550'
+      sourceHandle: '2'
+      target: '1719932621778'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: tool
+        targetType: llm
+      id: 1719932621778-source-1730955470263-target
+      source: '1719932621778'
+      sourceHandle: source
+      target: '1730955470263'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: question-classifier
+        targetType: llm
+      id: 1731295551550-1-1731296935525-target
+      source: '1731295551550'
+      sourceHandle: '1'
+      target: '1731296935525'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: answer
+      id: 1731296935525-source-1731295682764-target
+      source: '1731296935525'
+      sourceHandle: source
+      target: '1731295682764'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables: []
+      height: 54
+      id: '1719857123829'
+      position:
+        x: 30
+        y: 316
+      positionAbsolute:
+        x: 30
+        y: 316
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        provider_id: 4479841f-69d6-4b53-97ca-790bcc98aefe
+        provider_name: chatDB
+        provider_type: api
+        selected: false
+        title: chatDB
+        tool_configurations: {}
+        tool_label: chatDB
+        tool_name: chatDB
+        tool_parameters:
+          conversation_id:
+            type: mixed
+            value: '{{#sys.conversation_id#}}'
+          user_input:
+            type: mixed
+            value: '{{#sys.query#}}'
+        type: tool
+      height: 54
+      id: '1719932621778'
+      position:
+        x: 638
+        y: 316
+      positionAbsolute:
+        x: 638
+        y: 316
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-3.5-turbo-1106
+          provider: openai
+        prompt_template:
+        - id: b08571d6-88dc-429f-9729-2fc30866c24b
+          role: system
+          text: '# role
+
+            你是chatDB智能助手，你能够根据<sql-result> xml 标签中sql语句的执行结果回答用户问题。
+
+            # sql-result
+
+            <sql-result>
+
+            {{#1719932621778.text#}}
+
+            </sql-result>
+
+            # 回答要求
+
+            - 不要提及你是从<sql-result>标签中获取到的信息
+
+            - 使用markdown格式优化你的答案，将结果整理适合人阅读的的形式，比如表格。
+
+            - 请使用友好活泼的语气回答的问题，可以适当使用一些emoj表情。'
+        - id: f3514bee-e9a2-40d9-a9ba-5b01c0e5ead2
+          role: user
+          text: '{{#sys.query#}}'
+        selected: false
+        title: Response generation
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1730955470263'
+      position:
+        x: 942
+        y: 316
+      positionAbsolute:
+        x: 942
+        y: 316
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1730955470263.text#}}'
+        desc: ''
+        selected: false
+        title: 直接回复
+        type: answer
+        variables: []
+      height: 107
+      id: '1731069488796'
+      position:
+        x: 1246
+        y: 316
+      positionAbsolute:
+        x: 1246
+        y: 316
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        classes:
+        - id: '1'
+          name: 如何用户输入为“你好、Hi、使用说明”等内容，此时需要展示欢迎词，引导用户提出请求。
+        - id: '2'
+          name: 用户给出的请求，包含查询、分配、创建、计算、统计等需要调用工具进行回答。
+        desc: ''
+        instructions: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-3.5-turbo-1106
+          provider: openai
+        query_variable_selector:
+        - sys
+        - query
+        selected: true
+        title: 问题分类器
+        topics: []
+        type: question-classifier
+      height: 248
+      id: '1731295551550'
+      position:
+        x: 334
+        y: 316
+      positionAbsolute:
+        x: 334
+        y: 316
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1731296935525.text#}}'
+        desc: ''
+        selected: false
+        title: 直接回复 2
+        type: answer
+        variables: []
+      height: 107
+      id: '1731295682764'
+      position:
+        x: 942
+        y: 454
+      positionAbsolute:
+        x: 942
+        y: 454
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-3.5-turbo-1106
+          provider: openai
+        prompt_template:
+        - id: a36aa8f9-cb81-414d-8a5b-adae40f3d306
+          role: system
+          text: '你是ChatManufacturing的系统引导，需要根据用户的提问，给出系统使用帮助，并引导用户说出他的需求。你的第一次回复要带上下面的系统介绍。
+
+
+            关于系统的介绍如下：
+
+            Welcome to the ChatManufacturing, a Fashion Manufacturing System Assistant!
+
+
+            This system is designed to help you efficiently manage your apparel manufacturing
+            operations, including products, designs, materials, personnel, orders,
+            warehouses, and tasks. You can interact with me to gather vital information
+            or perform important tasks related to your clothing factory.
+
+
+            Here are a few examples of the types of questions and requests you can
+            make:
+
+
+            Please list all products, including the product type and attributes.
+
+            1. Please list all product storage in the warehouse.
+
+            2. Please list the customer list.
+
+            3. Please create a customer named [xxx].
+
+            4. Create an order for the customer [xxx], including 50 red T-shirts in
+            size M and 30 blue sweaters in size XL.
+
+            5. Automatically assign production tasks to the order with ID [xxx].
+
+            6. List the completion progress of the order with ID [29].
+
+
+            Feel free to ask any of these or other related questions to manage your
+            production pipeline smoothly! Let’s get started!'
+        selected: false
+        title: LLM 2
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1731296935525'
+      position:
+        x: 638
+        y: 436.5
+      positionAbsolute:
+        x: 638
+        y: 436.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: -165.72230724431574
+      y: 269.7002052879567
+      zoom: 0.8397314929441405

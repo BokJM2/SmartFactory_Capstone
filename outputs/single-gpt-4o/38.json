@@ -1,0 +1,15 @@
+{
+    "ID": 38,
+    "q_ch": "Advanced裁剪组还未完成的裁剪任务是哪些顾客的订单？",
+    "q_en": "Which customer orders are the cutting tasks that the Advanced Cutting Group has not yet completed?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT DISTINCT o.id, o.order_name FROM cutting_tasks ct JOIN working_group wg ON ct.working_group_id = wg.id JOIN order_product op ON ct.order_product_id = op.id JOIN orders o ON op.order_id = o.id JOIN customers c ON o.user_id = c.id WHERE wg.name = 'Advanced Cutters' AND ct.status != 2;",
+            "description": "To find the customer orders associated with cutting tasks that the working group named 'Advanced Cutters' have not yet completed, we need to join the cutting_tasks table with the working_group, orders, and customers tables. We will filter the results to include only those tasks that are not completed (status != 2) and are associated with the specified working group.",
+            "results": "no results found."
+        }
+    ],
+    "response": "It looks like the \"Advanced Cutters\" team is on top of their game! 🎉 There are currently no customer orders with cutting tasks that they haven't completed. Keep up the great work! 😄",
+    "token_used": 5438
+}

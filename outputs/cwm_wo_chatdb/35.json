@@ -1,0 +1,22 @@
+{
+  "ID": 35,
+  "q_ch": "对于所有Expert Cutters负责的且尚未完成的裁剪任务，共分配了哪些原料，按照裁剪任务进行整理？",
+  "q_en": "Which materials have been allocated for all cutting tasks that are assigned to Expert Cutters and have not been completed, organized by cutting task?",
+  "sql": "SELECT ct.id AS cutting_task_id, m.id AS material_id, m.name AS material_name, cma.allocated_num FROM cutting_tasks ct JOIN working_group wg ON ct.working_group_id = wg.id JOIN cutting_material_allocation cma ON ct.id = cma.cutting_task_id JOIN warehouse_material wm ON cma.warehouse_material_id = wm.id JOIN materials m ON wm.material_id = m.id WHERE wg.name = 'Expert Cutters' AND ct.completed_number < ct.planned_number;",
+  "thought": "To find the materials allocated to cutting tasks assigned to the working group named 'Expert Cutters' and have not been fully completed, we need to follow these steps: 1. Join the cutting_tasks table with the working_group table to filter tasks assigned to 'Expert Cutters'. 2. Further filter the tasks to include only those with `completed_number` less than `planned_number`. 3. Join the resulting tasks with the cutting_material_allocation table to get the allocated materials for these tasks. 4. Finally, join with the materials table to get the material details for each task.",
+  "total_tokens": "2993",
+  "rows": [
+    {
+      "cutting_task_id": "ct34",
+      "material_id": "m1",
+      "material_name": "Cotton Fabric",
+      "allocated_num": 330
+    },
+    {
+      "cutting_task_id": "ct34",
+      "material_id": "m9",
+      "material_name": "Synthetic Fiber",
+      "allocated_num": 330
+    }
+  ]
+}

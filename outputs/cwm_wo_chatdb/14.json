@@ -1,0 +1,15 @@
+{
+  "ID": 14,
+  "q_ch": "剩余库存最多的原料是什么？",
+  "q_en": "What is the material with the highest remaining inventory?",
+  "sql": "SELECT m.id, m.name, SUM(wm.left_number) AS total_inventory FROM materials m JOIN warehouse_material wm ON m.id = wm.material_id GROUP BY wm.material_id ORDER BY total_inventory DESC LIMIT 1;",
+  "thought": "To find the material with the highest remaining inventory, we need to aggregate the inventory data from the `warehouse_material` table. We will sum the `left_number` for each `material_id` and then select the material with the maximum sum.",
+  "total_tokens": "2429",
+  "rows": [
+    {
+      "id": "m6",
+      "name": "Silk Pieces",
+      "total_inventory": null
+    }
+  ]
+}

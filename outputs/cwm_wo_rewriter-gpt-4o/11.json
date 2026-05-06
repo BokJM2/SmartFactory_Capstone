@@ -1,0 +1,28 @@
+{
+    "ID": 11,
+    "q_ch": "2024年4月30日前完成的裁剪任务有哪些？",
+    "q_en": "What cutting tasks will be completed before April 30, 2024?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT ct.id, ct.end_time, wg.name AS working_group_name, op.id AS order_product_id FROM cutting_tasks ct JOIN working_group wg ON ct.working_group_id = wg.id JOIN order_product op ON ct.order_product_id = op.id WHERE ct.end_time < '2024-04-30' AND ct.status = 2;",
+            "description": "Retrieve the cutting tasks that will be completed before April 30, 2024",
+            "results": [
+                {
+                    "id": 1,
+                    "end_time": "2024-01-18 00:00:00",
+                    "working_group_name": "Master Sewers",
+                    "order_product_id": 1
+                },
+                {
+                    "id": 3,
+                    "end_time": "2024-01-19 00:00:00",
+                    "working_group_name": "Master Cutters",
+                    "order_product_id": 3
+                }
+            ]
+        }
+    ],
+    "response": "Hey there! 😄 Let's take a look at the cutting tasks that are set to be completed before April 30, 2024. Here's what we found:\n\n| Task ID | End Time       | Working Group Name | Order Product ID |\n|---------|----------------|--------------------|------------------|\n| 1       | January 18, 2024 | Master Sewers     | 1                |\n| 3       | January 19, 2024 | Master Cutters    | 3                |\n\nThese tasks are on track to be wrapped up before the end of April. If you have any more questions or need further details, feel free to ask! 😊",
+    "token_used": 6457
+}

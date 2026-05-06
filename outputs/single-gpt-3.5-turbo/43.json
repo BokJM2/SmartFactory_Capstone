@@ -1,0 +1,15 @@
+{
+    "ID": 43,
+    "q_ch": "向仓库Main Warehouse，入库Leather 1000份。",
+    "q_en": "Send 1000 Leathers to the Main Warehouse for storage.",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "UPDATE warehouse_material SET total_number = total_number + 1000, left_number = left_number + 1000 WHERE material_id IN (SELECT id FROM materials WHERE name = 'Leather') AND warehouse_id IN (SELECT id FROM warehouse WHERE name = 'Main Warehouse');",
+            "description": "To send 1000 units of Leather to the Main Warehouse for storage, we need to update the total_number and left_number columns in the warehouse_material table for the specified material and warehouse.",
+            "results": "update data successfully."
+        }
+    ],
+    "response": "Sure! Here is the optimized answer in a friendly and lively tone:\n\n---\n\nHey there! 😄\n\nTo send 1000 units of Leather to the Main Warehouse for storage, we've successfully updated the necessary data in the database. Check out the details below:\n\n| Description                                                                                                      | Results               |\n|------------------------------------------------------------------------------------------------------------------|-----------------------|\n| To send 1000 units of Leather to the Main Warehouse for storage, we need to update the total_number and left_number columns in the warehouse_material table for the specified material and warehouse. | update data successfully. |\n\nFeel free to reach out if you have any more questions! 📦🏭\n\n---",
+    "token_used": 5519
+}

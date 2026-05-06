@@ -1,0 +1,53 @@
+{
+    "ID": 24,
+    "q_ch": "Elite Sewers 在2024年6月30日前分配的缝纫任务有哪些？",
+    "q_en": "What sewing tasks will Elite Sewers be assigned before June 30, 2024?",
+    "hint": "应查找Elite Sewers所有任务中start_time < 2024-6-30的任务",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM working_group WHERE name = 'Elite Sewers';",
+            "description": "Retrieve the working group ID for the group named \"Elite Sewers\"",
+            "results": [
+                {
+                    "id": 10
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT id, start_time, end_time, order_product_id, planned_number, completed_number, status FROM sewing_tasks WHERE working_group_id = '10' AND end_time < '2024-06-30';",
+            "description": "Retrieve the sewing tasks assigned to the working group \"Elite Sewers\" with end time before June 30, 2024",
+            "results": [
+                {
+                    "id": 31,
+                    "start_time": "2024-05-26 00:00:00",
+                    "end_time": "2024-06-04 00:00:00",
+                    "order_product_id": 31,
+                    "planned_number": 260,
+                    "completed_number": 260,
+                    "status": 1
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT op.id, o.order_name, p.attributes FROM order_product op JOIN orders o ON op.order_id = o.id JOIN products p ON op.product_id = p.id WHERE op.id IN (31);",
+            "description": "Retrieve the order product details for the sewing tasks",
+            "results": [
+                {
+                    "id": 31,
+                    "order_name": "PolyU_Skirt",
+                    "attributes": "Pink, M size"
+                }
+            ]
+        },
+        {
+            "type": "Thought",
+            "operation": "Combine the results from Step2 and Step3 to provide a detailed list of sewing tasks, including order names and product attributes, assigned to \"Elite Sewers\" before June 30, 2024.",
+            "results": "To achieve the objective, we need to combine the results from Step 2 and Step 3 to provide a detailed list of sewing tasks assigned to \"Elite Sewers\" before June 30, 2024. Here is the detailed list:\n\n1. **Sewing Task ID**: 31\n   - **Order Name**: PolyU_Skirt\n   - **Product Attributes**: Pink, M size\n   - **Start Time**: May 26, 2024\n   - **End Time**: June 4, 2024\n   - **Planned Number**: 260\n   - **Completed Number**: 260\n   - **Status**: Completed (status code 1 indicates completion)\n\nThis list includes the order names and product attributes for the sewing tasks assigned to the \"Elite Sewers\" working group, with tasks ending before June 30, 2024."
+        }
+    ],
+    "response": "Hey there! 😄 Let's take a look at the sewing tasks assigned to the \"Elite Sewers\" before June 30, 2024. Here's a detailed list for you:\n\n| **Sewing Task ID** | **Order Name** | **Product Attributes** | **Start Time** | **End Time** | **Planned Number** | **Completed Number** | **Status** |\n|--------------------|----------------|------------------------|----------------|--------------|--------------------|----------------------|------------|\n| 31                 | PolyU_Skirt    | Pink, M size           | May 26, 2024   | June 4, 2024 | 260                | 260                  | Completed  |\n\nThe \"Elite Sewers\" have been busy working on the PolyU_Skirt order, and they've completed all 260 pieces! 🎉 Keep up the great work, Elite Sewers! If you have any more questions, feel free to ask. 😊",
+    "token_used": 8358
+}

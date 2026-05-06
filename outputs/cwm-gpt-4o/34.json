@@ -1,0 +1,33 @@
+{
+    "ID": 34,
+    "q_ch": "Master Cutters当前已完成的裁剪任务有哪些？",
+    "q_en": "Which cutting tasks have been completed by Master Cutters?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM working_group WHERE name = 'Master Cutters';",
+            "description": "Retrieve the working group ID for the group with the name \"Master Cutters\"",
+            "results": [
+                {
+                    "id": 3
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT ct.id, ct.start_time, ct.end_time, op.product_id, op.number FROM cutting_tasks ct JOIN order_product op ON ct.order_product_id = op.id WHERE ct.working_group_id = '3' AND ct.status = 2;",
+            "description": "Retrieve the details of completed cutting tasks for the working group \"Master Cutters\"",
+            "results": [
+                {
+                    "id": 3,
+                    "start_time": "2024-01-10 00:00:00",
+                    "end_time": "2024-01-19 00:00:00",
+                    "product_id": 3,
+                    "number": 150
+                }
+            ]
+        }
+    ],
+    "response": "Hey there! 😄 It looks like the \"Master Cutters\" have been busy! Here's a summary of the cutting tasks they've completed:\n\n| Task ID | Start Time          | End Time            | Product ID | Quantity |\n|---------|---------------------|---------------------|------------|----------|\n| 3       | January 10, 2024    | January 19, 2024    | 3          | 150      |\n\nIf you have any more questions or need further details, feel free to ask! 😊",
+    "token_used": 7062
+}

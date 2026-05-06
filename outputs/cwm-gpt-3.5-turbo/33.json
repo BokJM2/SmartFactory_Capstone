@@ -1,0 +1,59 @@
+{
+    "ID": 33,
+    "q_ch": "分配给Precision Cutters的裁剪任务有哪些？",
+    "q_en": "What are the cutting tasks assigned to Precision Cutters?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM working_group WHERE name = 'Precision Cutters' AND type = 'cut';",
+            "description": "Retrieve the working group ID for the group named 'Precision Cutters'",
+            "results": [
+                {
+                    "id": 1
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT * FROM cutting_tasks WHERE working_group_id = 1;",
+            "description": "Retrieve the cutting tasks assigned to the working group with the ID obtained in Step1",
+            "results": [
+                {
+                    "id": 18,
+                    "start_time": "2024-03-11 00:00:00",
+                    "end_time": "2024-04-07 00:00:00",
+                    "working_group_id": 1,
+                    "order_product_id": 18,
+                    "produced_wip_id": 10,
+                    "planned_number": 200,
+                    "completed_number": 200,
+                    "status": 1
+                },
+                {
+                    "id": 30,
+                    "start_time": "2024-04-19 00:00:00",
+                    "end_time": "2024-04-26 00:00:00",
+                    "working_group_id": 1,
+                    "order_product_id": 30,
+                    "produced_wip_id": 10,
+                    "planned_number": 195,
+                    "completed_number": 195,
+                    "status": 1
+                },
+                {
+                    "id": 35,
+                    "start_time": "2024-11-21 09:29:03",
+                    "end_time": "2024-11-21 09:29:03",
+                    "working_group_id": 1,
+                    "order_product_id": 5,
+                    "produced_wip_id": 10,
+                    "planned_number": 330,
+                    "completed_number": 0,
+                    "status": 0
+                }
+            ]
+        }
+    ],
+    "response": "Hey there! 😄\n\nBased on the SQL queries executed, here are the cutting tasks assigned to the working group named 'Precision Cutters':\n\n| Task ID | Start Time           | End Time             | Order Product ID | Planned Number | Completed Number | Status |\n|---------|----------------------|----------------------|------------------|----------------|------------------|--------|\n| 18      | 2024-03-11 00:00:00  | 2024-04-07 00:00:00  | 18               | 200            | 200              | 1      |\n| 30      | 2024-04-19 00:00:00  | 2024-04-26 00:00:00  | 30               | 195            | 195              | 1      |\n| 35      | 2024-11-21 09:29:03  | 2024-11-21 09:29:03  | 5                | 330            | 0                | 0      |\n\nIf you have any more questions or need further assistance, feel free to ask! 😊",
+    "token_used": 7349
+}

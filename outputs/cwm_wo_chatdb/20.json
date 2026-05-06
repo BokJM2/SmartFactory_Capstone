@@ -1,0 +1,13 @@
+{
+  "ID": 20,
+  "q_ch": "剩余库存为零的材料有哪些，列出材料名字？",
+  "q_en": "What are the materials with zero remaining inventory and list their names?",
+  "sql": "SELECT m.name FROM warehouse_material wm INNER JOIN materials m ON wm.material_id = m.id WHERE wm.left_number = 0;",
+  "thought": "To find the materials with zero remaining inventory, I need to check the 'left_number' field in the 'warehouse_material' table. If it's zero, then I should list the corresponding 'name' from the 'materials' table by joining these two tables on the 'material_id'.",
+  "total_tokens": "2426",
+  "rows": [
+    {
+      "name": "Synthetic Fiber"
+    }
+  ]
+}

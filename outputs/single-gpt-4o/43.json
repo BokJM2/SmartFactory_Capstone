@@ -1,0 +1,15 @@
+{
+    "ID": 43,
+    "q_ch": "向仓库Main Warehouse，入库Leather 1000份。",
+    "q_en": "Send 1000 Leathers to the Main Warehouse for storage.",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "UPDATE warehouse_material wm JOIN materials m ON wm.material_id = m.id JOIN warehouse w ON wm.warehouse_id = w.id SET wm.left_number = wm.left_number + 1000 WHERE m.name = 'Leather' AND w.name = 'Main Warehouse';",
+            "description": "Update the left_number of the Leather material in the Main Warehouse by adding 1000 to the current left_number.",
+            "results": "update data successfully."
+        }
+    ],
+    "response": "### Update Successful! 🎉\n\nGreat news! We've successfully updated the inventory. Here's a quick summary of the changes:\n\n| Material | Warehouse      | Quantity Added |\n|----------|----------------|----------------|\n| Leather  | Main Warehouse | 1000           |\n\nThe Leather material has been increased by 1000 units in the Main Warehouse. If you have any more tasks or questions, feel free to ask! 😊",
+    "token_used": 5413
+}

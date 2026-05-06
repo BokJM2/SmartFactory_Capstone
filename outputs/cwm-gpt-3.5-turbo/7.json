@@ -1,0 +1,38 @@
+{
+    "ID": 7,
+    "q_ch": "顾客PolyU 下的订单总数是多少？",
+    "q_en": "How many orders are there in total under PolyU?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM customers WHERE customer_name = 'PolyU';",
+            "description": "Retrieve the customer ID for the customer with the name \"PolyU\"",
+            "results": [
+                {
+                    "id": 1
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT * FROM orders WHERE user_id = 1;",
+            "description": "Retrieve all orders for the customer with the ID obtained in Step1",
+            "results": [
+                {
+                    "id": 1,
+                    "user_id": 1,
+                    "order_name": "PolyU_Tshirt",
+                    "created_at": "2024-01-10 00:00:00"
+                },
+                {
+                    "id": 9,
+                    "user_id": 1,
+                    "order_name": "PolyU_Skirt",
+                    "created_at": "2024-05-10 00:00:00"
+                }
+            ]
+        }
+    ],
+    "response": "Sure! Let me check that for you. 🧐\n\n| Total Orders |\n|--------------|\n|       2      |\n\nThere are a total of 2 orders under the order name 'PolyU'. 🎉",
+    "token_used": 6693
+}

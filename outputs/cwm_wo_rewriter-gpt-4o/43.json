@@ -1,0 +1,36 @@
+{
+    "ID": 43,
+    "q_ch": "向仓库Main Warehouse，入库Leather 1000份。",
+    "q_en": "Send 1000 Leathers to the Main Warehouse for storage.",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM materials WHERE name = 'Leather';",
+            "description": "Retrieve the material ID for the material with the name \"Leather\"",
+            "results": [
+                {
+                    "id": 7
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM warehouse WHERE name = 'Main Warehouse';",
+            "description": "Retrieve the warehouse ID for the warehouse with the name \"Main Warehouse\"",
+            "results": [
+                {
+                    "id": 1
+                }
+            ]
+        },
+        {
+            "type": "Tool",
+            "results": {
+                "input": "Store 1000 units of \"Leather\" in the \"Main Warehouse\"\n[\"tool_store_materials, {'material_id': 7, 'quantity': 1000, 'warehouse_id': 1}, Store the materials in the specified warehouse\"]",
+                "output": "It seems there was an issue with storing the material. If you need further assistance, please let me know!"
+            }
+        }
+    ],
+    "response": "Sure thing! Let's take a look at what happened with your request to send 1000 units of Leather to the Main Warehouse. Here's a quick summary:\n\n| Material | Quantity | Warehouse | Status |\n|----------|----------|-----------|--------|\n| Leather  | 1000     | Main Warehouse | ❌ Issue encountered |\n\nIt seems there was a hiccup while trying to store the Leather in the Main Warehouse. If you need further assistance or want to try again, just let me know! I'm here to help. 😊",
+    "token_used": 7053
+}

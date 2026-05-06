@@ -1,0 +1,90 @@
+{
+  "ID": 34,
+  "q_ch": "Master Cutters当前已完成的裁剪任务有哪些？",
+  "q_en": "Which cutting tasks have been completed by Master Cutters?",
+  "sql": "SELECT cutting_tasks.* FROM cutting_tasks INNER JOIN working_group ON cutting_tasks.working_group_id = working_group.id WHERE working_group.name = 'Master Cutters' AND cutting_tasks.completed_number = cutting_tasks.planned_number;",
+  "thought": "First, we need to find the ID of the 'Master Cutters' working group. Then, we can use this ID to get completed cutting tasks from the cutting_tasks table.",
+  "total_tokens": "2787",
+  "rows": [
+    {
+      "id": "ct10",
+      "start_time": "2024年03月02日 00:00",
+      "end_time": "2024年03月29日 00:00",
+      "working_group_id": "wg3",
+      "order_product_id": "op10",
+      "planned_number": 100,
+      "completed_number": 100,
+      "is_started": 1
+    },
+    {
+      "id": "ct2",
+      "start_time": "2024年01月10日 00:00",
+      "end_time": "2024年02月02日 00:00",
+      "working_group_id": "wg3",
+      "order_product_id": "op2",
+      "planned_number": 240,
+      "completed_number": 240,
+      "is_started": 1
+    },
+    {
+      "id": "ct23",
+      "start_time": "2024年03月25日 00:00",
+      "end_time": "2024年04月19日 00:00",
+      "working_group_id": "wg3",
+      "order_product_id": "op23",
+      "planned_number": 110,
+      "completed_number": 110,
+      "is_started": 1
+    },
+    {
+      "id": "ct24",
+      "start_time": "2024年03月25日 00:00",
+      "end_time": "2024年04月23日 00:00",
+      "working_group_id": "wg3",
+      "order_product_id": "op24",
+      "planned_number": 105,
+      "completed_number": 105,
+      "is_started": 1
+    },
+    {
+      "id": "ct3",
+      "start_time": "2024年01月10日 00:00",
+      "end_time": "2024年01月19日 00:00",
+      "working_group_id": "wg3",
+      "order_product_id": "op3",
+      "planned_number": 150,
+      "completed_number": 150,
+      "is_started": 1
+    },
+    {
+      "id": "ct31",
+      "start_time": "2024年05月10日 00:00",
+      "end_time": "2024年05月26日 00:00",
+      "working_group_id": "wg3",
+      "order_product_id": "op31",
+      "planned_number": 260,
+      "completed_number": 260,
+      "is_started": 1
+    },
+    {
+      "id": "ct6",
+      "start_time": "2024年02月28日 00:00",
+      "end_time": "2024年03月20日 00:00",
+      "working_group_id": "wg3",
+      "order_product_id": "op6",
+      "planned_number": 95,
+      "completed_number": 95,
+      "is_started": 1
+    },
+    {
+      "id": "ct9",
+      "start_time": "2024年03月01日 00:00",
+      "end_time": "2024年03月06日 00:00",
+      "working_group_id": "wg3",
+      "order_product_id": "op9",
+      "planned_number": 80,
+      "completed_number": 80,
+      "is_started": 1
+    }
+  ]
+}

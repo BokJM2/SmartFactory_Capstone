@@ -1,0 +1,55 @@
+{
+    "ID": 42,
+    "q_ch": "对于PolyU在2024年1月提交的订单，将所有生产红色小码类型T-shirt的缝纫任务设置成开始状态。",
+    "q_en": "For orders submitted by PolyU in January 2024, set all sewing tasks for producing Red, M size type T-shirts to start status. ",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM customers WHERE customer_name = 'PolyU';",
+            "description": "Retrieve the customer ID for the customer with the name \"PolyU\"",
+            "results": [
+                {
+                    "id": 1
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM orders WHERE user_id = 1 AND YEAR(created_at) = 2024 AND MONTH(created_at) = 1;",
+            "description": "Retrieve the order IDs for orders submitted by the customer \"PolyU\" in January 2024",
+            "results": [
+                {
+                    "id": 1
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM working_group WHERE name = 'Skilled Sewers';",
+            "description": "Retrieve the working group ID for the group named \"Skilled Sewers\"",
+            "results": [
+                {
+                    "id": 7
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT p.id FROM products p JOIN products_types pt ON p.products_type_id = pt.id WHERE p.attributes = 'Red, M size' AND pt.description = 'T-shirt';",
+            "description": "Retrieve the product ID for the product with attributes \"Red, M size\" and type \"T-shirt\"",
+            "results": [
+                {
+                    "id": 1
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "UPDATE sewing_tasks SET status = 0 WHERE order_product_id IN (SELECT id FROM order_product WHERE order_id IN (1) AND product_id = 1) AND working_group_id = 7;",
+            "description": "Update the sewing tasks for the identified orders and products to set them to the start status",
+            "results": "update data successfully."
+        }
+    ],
+    "response": "Hey there! 😄\n\nBased on your query, here's the step-by-step process to achieve the desired outcome:\n\n1. Retrieve the customer ID for the customer with the name \"PolyU\".\n2. Retrieve the order IDs for orders submitted by the customer \"PolyU\" in January 2024.\n3. Retrieve the working group ID for the group named \"Skilled Sewers\".\n4. Retrieve the product ID for the product with attributes \"Red, M size\" and type \"T-shirt\".\n5. Update the sewing tasks for the identified orders and products to set them to the start status.\n\nIf you have any further questions or need assistance, feel free to ask! 😊",
+    "token_used": 8152
+}

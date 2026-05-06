@@ -1,0 +1,34 @@
+{
+    "ID": 26,
+    "q_ch": "Skilled Sewers使用了哪些原料？",
+    "q_en": "What raw materials are used by Skilled Sewers?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT DISTINCT m.name FROM sewing_tasks st JOIN working_group wg ON st.working_group_id = wg.id JOIN order_product op ON st.order_product_id = op.id JOIN product_material pm ON op.product_id = pm.product_id JOIN materials m ON pm.material_id = m.id WHERE wg.name = 'Skilled Sewers';",
+            "description": "To find the raw materials used by the working group named 'Skilled Sewers', we need to identify the sewing tasks associated with this working group, then find the order products related to these tasks, and finally determine the raw materials required for these products.\",",
+            "results": [
+                {
+                    "name": "Leather Pieces"
+                },
+                {
+                    "name": "Denim Fabric Pieces"
+                },
+                {
+                    "name": "Silk Pieces"
+                },
+                {
+                    "name": "Fabric Pieces"
+                },
+                {
+                    "name": "Wool Pieces"
+                },
+                {
+                    "name": "Synthetic Fiber Pieces"
+                }
+            ]
+        }
+    ],
+    "response": "Hey there! 😄 It looks like the \"Skilled Sewers\" working group uses a variety of raw materials for their tasks. Here's a handy table to show you what they work with:\n\n| Raw Material            |\n|-------------------------|\n| Leather Pieces          |\n| Denim Fabric Pieces     |\n| Silk Pieces             |\n| Fabric Pieces           |\n| Wool Pieces             |\n| Synthetic Fiber Pieces  |\n\nThese materials are essential for creating their amazing products! If you have any more questions, feel free to ask! 😊",
+    "token_used": 5537
+}

@@ -1,0 +1,39 @@
+{
+    "ID": 2,
+    "q_ch": "John 的订单全部生产完成了么？",
+    "q_en": "Have all of John's orders been completed?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM customers WHERE customer_name = 'John';",
+            "description": "Retrieve the customer ID for the customer with the name \"John\"",
+            "results": [
+                {
+                    "id": 2
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM orders WHERE user_id = 2;",
+            "description": "Retrieve the order IDs for all orders placed by the customer \"John\"",
+            "results": [
+                {
+                    "id": 2
+                },
+                {
+                    "id": 10
+                }
+            ]
+        },
+        {
+            "type": "Tool",
+            "results": {
+                "input": "Check if any of the orders have been completed\n['tool_find_order_details, {\"order_id\": 2}, Find the product details of an order']",
+                "output": "None of the orders have been completed yet."
+            }
+        }
+    ],
+    "response": "Hey there! 🌟\n\nBased on the data I found, it looks like none of the orders placed by customer John have been completed yet. 😔\n\nHere's a summary of the SQL queries I ran:\n\n| Customer ID | Order IDs |\n|-------------|-----------|\n|      2      |     2, 10     |\n\nFeel free to ask if you have any more questions! 😄",
+    "token_used": 7046
+}

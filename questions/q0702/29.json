@@ -1,0 +1,6 @@
+{
+    "ID": 29,
+    "q_ch": "对所有已经开始但是尚未完成的缝纫任务进行统计，剩余工作量最多的工作组是哪个？",
+    "q_en": "Which workgroup has the highest remaining workload for all sewing tasks that have been started but not yet completed?",
+    "gt": ""
+}

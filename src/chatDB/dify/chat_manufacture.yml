@@ -1,0 +1,191 @@
+app:
+  description: ''
+  icon: "\U0001F916"
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: chat manufacture
+workflow:
+  features:
+    file_upload:
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+    opening_statement: ''
+    retriever_resource:
+      enabled: false
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: tool
+      id: 1719857123829-source-1719857143779-target
+      source: '1719857123829'
+      sourceHandle: source
+      target: '1719857143779'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: tool
+        targetType: llm
+      id: 1719857143779-source-1719857160473-target
+      source: '1719857143779'
+      sourceHandle: source
+      target: '1719857160473'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: answer
+      id: 1719857160473-source-answer-target
+      source: '1719857160473'
+      sourceHandle: source
+      target: answer
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: "\u5F00\u59CB"
+        type: start
+        variables: []
+      height: 53
+      id: '1719857123829'
+      position:
+        x: 190
+        y: 255
+      positionAbsolute:
+        x: 190
+        y: 255
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: '{{#1719857160473.text#}}'
+        desc: ''
+        selected: false
+        title: "\u76F4\u63A5\u56DE\u590D"
+        type: answer
+        variables: []
+      height: 106
+      id: answer
+      position:
+        x: 1280
+        y: 282
+      positionAbsolute:
+        x: 1280
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        provider_id: eaecd21b-c662-4b46-978a-110b8fa1409c
+        provider_name: chatDB
+        provider_type: api
+        selected: false
+        title: chatDB
+        tool_configurations: {}
+        tool_label: chatDB
+        tool_name: chatDB
+        tool_parameters:
+          user_input:
+            type: mixed
+            value: '{{#sys.query#}}'
+        type: tool
+      height: 53
+      id: '1719857143779'
+      position:
+        x: 568
+        y: 255
+      positionAbsolute:
+        x: 568
+        y: 255
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        memory:
+          query_prompt_template: "<history>\n\u95EE\u9898\uFF1A{{#sys.query#}}\n\n\
+            sql\u6267\u884C\u7ED3\u679C\uFF1A{{#1719857143779.text#}}\n</history>"
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: true
+            size: 20
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-3.5-turbo-0125
+          provider: openai
+        prompt_template:
+        - id: 1a51b3ef-0541-4700-82be-de594794d34b
+          role: system
+          text: "# role\n\u4F60\u662FchatDB\u667A\u80FD\u52A9\u624B\uFF0C\u4F60\u80FD\
+            \u591F\u6839\u636E<sql-result> xml \u6807\u7B7E\u4E2Dsql\u8BED\u53E5\u7684\
+            \u6267\u884C\u7ED3\u679C\u56DE\u7B54\u7528\u6237\u95EE\u9898\u3002\n#\
+            \ sql-result\n<sql-result>\n{{#1719857143779.text#}}\n</sql-result>\n\
+            # \u56DE\u7B54\u8981\u6C42\n- \u4E0D\u8981\u63D0\u53CA\u4F60\u662F\u4ECE\
+            <sql-result>\u6807\u7B7E\u4E2D\u83B7\u53D6\u5230\u7684\u4FE1\u606F\n-\
+            \ \u4F7F\u7528markdown\u683C\u5F0F\u4F18\u5316\u4F60\u7684\u7B54\u6848\
+            \n- \u8BF7\u4F7F\u7528\u53CB\u597D\u6D3B\u6CFC\u7684\u8BED\u6C14\u56DE\
+            \u7B54\u7684\u95EE\u9898\uFF0C\u53EF\u4EE5\u9002\u5F53\u4F7F\u7528\u4E00\
+            \u4E9Bemoj\u8868\u60C5\u3002"
+        - id: 9873e310-e03d-4241-874c-1d54d2a1d34c
+          role: user
+          text: '{{#sys.query#}}'
+        selected: true
+        title: LLM
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 97
+      id: '1719857160473'
+      position:
+        x: 919
+        y: 247
+      positionAbsolute:
+        x: 919
+        y: 247
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    viewport:
+      x: -327.5
+      y: 361
+      zoom: 1

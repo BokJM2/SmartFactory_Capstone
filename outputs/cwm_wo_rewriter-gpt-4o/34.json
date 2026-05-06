@@ -1,0 +1,33 @@
+{
+    "ID": 34,
+    "q_ch": "Master Cutters当前已完成的裁剪任务有哪些？",
+    "q_en": "Which cutting tasks have been completed by Master Cutters?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM working_group WHERE name = 'Master Cutters';",
+            "description": "Retrieve the working group ID for the group with the name \"Master Cutters\"",
+            "results": [
+                {
+                    "id": 3
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT ct.id, ct.start_time, ct.end_time, op.product_id, op.number FROM cutting_tasks ct JOIN order_product op ON ct.order_product_id = op.id WHERE ct.working_group_id = '3' AND ct.status = 2;",
+            "description": "Retrieve the details of completed cutting tasks for the working group \"Master Cutters\"",
+            "results": [
+                {
+                    "id": 3,
+                    "start_time": "2024-01-10 00:00:00",
+                    "end_time": "2024-01-19 00:00:00",
+                    "product_id": 3,
+                    "number": 150
+                }
+            ]
+        }
+    ],
+    "response": "Hey there! 😄 Let's take a look at the cutting tasks completed by the \"Master Cutters\" team. Here's what I found:\n\n| Task ID | Start Time         | End Time           | Product ID | Number of Products |\n|---------|--------------------|--------------------|------------|--------------------|\n| 3       | January 10, 2024   | January 19, 2024   | 3          | 150                |\n\nThe \"Master Cutters\" have completed a task involving 150 units of product ID 3. Great job, team! 🎉 If you have any more questions, feel free to ask!",
+    "token_used": 7124
+}

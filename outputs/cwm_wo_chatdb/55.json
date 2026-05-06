@@ -1,0 +1,25 @@
+{
+  "ID": 55,
+  "q_ch": "所有订单中总共做的前三多的商品是什么？",
+  "q_en": "What are the top three products made in all orders in total?",
+  "sql": "SELECT p.id, p.attributes, SUM(op.number) AS total_quantity FROM order_product op JOIN products p ON op.product_id = p.id GROUP BY p.id, p.attributes ORDER BY total_quantity DESC LIMIT 3;",
+  "thought": "To find the top three products, we need to join the 'order_product' table with the 'products' table. We will group by the product IDs and sum the total quantities from the 'order_product' table. Then, we will sort the result in descending order and limit the result to the top three products.",
+  "total_tokens": "2454",
+  "rows": [
+    {
+      "id": "p7",
+      "attributes": "Purple, M size",
+      "total_quantity": null
+    },
+    {
+      "id": "p15",
+      "attributes": "Pink, M size",
+      "total_quantity": null
+    },
+    {
+      "id": "p27",
+      "attributes": "Yellow, S size",
+      "total_quantity": null
+    }
+  ]
+}

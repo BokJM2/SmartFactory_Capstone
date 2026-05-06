@@ -1,0 +1,215 @@
+{
+    "ID": 53,
+    "q_ch": "列出已开始但未完成的裁剪任务，并计算还有总共多少未完成。",
+    "q_en": "List the cutting tasks that have started but are not yet completed, and calculate the total number of unfinished tasks.",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id, working_group_id, order_product_id, planned_number, completed_number FROM cutting_tasks WHERE status = 1;",
+            "description": "Retrieve the cutting tasks that have started but are not yet completed",
+            "results": [
+                {
+                    "id": 2,
+                    "working_group_id": 3,
+                    "order_product_id": 2,
+                    "planned_number": 240,
+                    "completed_number": 240
+                },
+                {
+                    "id": 4,
+                    "working_group_id": 2,
+                    "order_product_id": 4,
+                    "planned_number": 220,
+                    "completed_number": 220
+                },
+                {
+                    "id": 5,
+                    "working_group_id": 2,
+                    "order_product_id": 5,
+                    "planned_number": 260,
+                    "completed_number": 260
+                },
+                {
+                    "id": 6,
+                    "working_group_id": 3,
+                    "order_product_id": 6,
+                    "planned_number": 95,
+                    "completed_number": 95
+                },
+                {
+                    "id": 7,
+                    "working_group_id": 2,
+                    "order_product_id": 7,
+                    "planned_number": 110,
+                    "completed_number": 110
+                },
+                {
+                    "id": 8,
+                    "working_group_id": 4,
+                    "order_product_id": 8,
+                    "planned_number": 50,
+                    "completed_number": 50
+                },
+                {
+                    "id": 9,
+                    "working_group_id": 3,
+                    "order_product_id": 9,
+                    "planned_number": 80,
+                    "completed_number": 80
+                },
+                {
+                    "id": 10,
+                    "working_group_id": 3,
+                    "order_product_id": 10,
+                    "planned_number": 100,
+                    "completed_number": 100
+                },
+                {
+                    "id": 11,
+                    "working_group_id": 4,
+                    "order_product_id": 11,
+                    "planned_number": 140,
+                    "completed_number": 140
+                },
+                {
+                    "id": 12,
+                    "working_group_id": 5,
+                    "order_product_id": 12,
+                    "planned_number": 150,
+                    "completed_number": 150
+                },
+                {
+                    "id": 13,
+                    "working_group_id": 2,
+                    "order_product_id": 13,
+                    "planned_number": 130,
+                    "completed_number": 130
+                },
+                {
+                    "id": 14,
+                    "working_group_id": 5,
+                    "order_product_id": 14,
+                    "planned_number": 120,
+                    "completed_number": 120
+                },
+                {
+                    "id": 15,
+                    "working_group_id": 2,
+                    "order_product_id": 15,
+                    "planned_number": 185,
+                    "completed_number": 185
+                },
+                {
+                    "id": 16,
+                    "working_group_id": 4,
+                    "order_product_id": 16,
+                    "planned_number": 200,
+                    "completed_number": 200
+                },
+                {
+                    "id": 17,
+                    "working_group_id": 2,
+                    "order_product_id": 17,
+                    "planned_number": 175,
+                    "completed_number": 175
+                },
+                {
+                    "id": 18,
+                    "working_group_id": 1,
+                    "order_product_id": 18,
+                    "planned_number": 200,
+                    "completed_number": 200
+                },
+                {
+                    "id": 19,
+                    "working_group_id": 4,
+                    "order_product_id": 19,
+                    "planned_number": 95,
+                    "completed_number": 95
+                },
+                {
+                    "id": 20,
+                    "working_group_id": 4,
+                    "order_product_id": 20,
+                    "planned_number": 90,
+                    "completed_number": 90
+                },
+                {
+                    "id": 21,
+                    "working_group_id": 4,
+                    "order_product_id": 21,
+                    "planned_number": 85,
+                    "completed_number": 85
+                },
+                {
+                    "id": 22,
+                    "working_group_id": 2,
+                    "order_product_id": 22,
+                    "planned_number": 115,
+                    "completed_number": 115
+                },
+                {
+                    "id": 23,
+                    "working_group_id": 3,
+                    "order_product_id": 23,
+                    "planned_number": 110,
+                    "completed_number": 110
+                },
+                {
+                    "id": 24,
+                    "working_group_id": 3,
+                    "order_product_id": 24,
+                    "planned_number": 105,
+                    "completed_number": 105
+                },
+                {
+                    "id": 25,
+                    "working_group_id": 2,
+                    "order_product_id": 25,
+                    "planned_number": 75,
+                    "completed_number": 75
+                },
+                {
+                    "id": 28,
+                    "working_group_id": 2,
+                    "order_product_id": 28,
+                    "planned_number": 210,
+                    "completed_number": 210
+                },
+                {
+                    "id": 30,
+                    "working_group_id": 1,
+                    "order_product_id": 30,
+                    "planned_number": 195,
+                    "completed_number": 195
+                },
+                {
+                    "id": 31,
+                    "working_group_id": 3,
+                    "order_product_id": 31,
+                    "planned_number": 260,
+                    "completed_number": 260
+                },
+                {
+                    "id": 32,
+                    "working_group_id": 2,
+                    "order_product_id": 32,
+                    "planned_number": 150,
+                    "completed_number": 120
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT COUNT(*) FROM cutting_tasks WHERE status = 1;",
+            "description": "Calculate the total number of unfinished cutting tasks",
+            "results": [
+                {
+                    "COUNT(*)": 27
+                }
+            ]
+        }
+    ],
+    "response": "Sure! Let's dive into the cutting tasks that have started but are not yet completed. Here's a summary of the tasks:\n\n| Task ID | Working Group ID | Order Product ID | Planned Number | Completed Number |\n|---------|------------------|------------------|----------------|------------------|\n| 32      | 2                | 32               | 150            | 120              |\n\nFrom the data, it looks like there is only one task that has started but is not yet completed. The total number of unfinished tasks is **27**. Keep up the great work! 😄",
+    "token_used": 7239
+}

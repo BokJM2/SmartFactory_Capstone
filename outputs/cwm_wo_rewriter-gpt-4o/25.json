@@ -1,0 +1,26 @@
+{
+    "ID": 25,
+    "q_ch": "对于Master Sewers 已经完成的所有缝纫任务，有哪些是在2024年2月1日之后创建的?",
+    "q_en": "For all sewing tasks completed by Master Sewers, which ones were created after February 1, 2024?",
+    "hint": "Don't ignore the time condition of February 1, 2024",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM working_group WHERE name = 'Master Sewers';",
+            "description": "Retrieve the working group ID for the group with the name \"Master Sewers\"",
+            "results": [
+                {
+                    "id": 2
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM sewing_tasks WHERE working_group_id = '2' AND status = 2 AND start_time > '2024-02-01';",
+            "description": "Retrieve the sewing tasks completed by the \"Master Sewers\" group that were created after February 1, 2024",
+            "results": "no results found."
+        }
+    ],
+    "response": "Hey there! 😄 It looks like I checked for all the sewing tasks completed by the \"Master Sewers\" group that were created after February 1, 2024, but unfortunately, there aren't any tasks that fit that criteria. If you have any other questions or need further assistance, feel free to ask! 🧵✨",
+    "token_used": 6917
+}

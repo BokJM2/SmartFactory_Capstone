@@ -1,0 +1,142 @@
+{
+    "ID": 35,
+    "q_ch": "对于所有Expert Cutters负责的且尚未完成的裁剪任务，共分配了哪些原料，按照裁剪任务进行整理？",
+    "q_en": "Which materials have been allocated for all cutting tasks that are assigned to Expert Cutters and have not been completed, organized by cutting task?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT cma.id AS allocation_id, cma.cutting_task_id, cma.warehouse_material_id, cma.allocated_num, cma.is_allocated\n     FROM cutting_material_allocation cma\n     JOIN cutting_tasks ct ON cma.cutting_task_id = ct.id\n     JOIN working_group wg ON ct.working_group_id = wg.id\n     WHERE wg.name = 'Expert Cutters' AND ct.status <> 2;",
+            "description": "To find the materials allocated for all cutting tasks assigned to 'Expert Cutters' that have not been completed, we need to join the necessary tables and filter the data based on the given conditions.",
+            "results": [
+                {
+                    "allocation_id": 8,
+                    "cutting_task_id": 8,
+                    "warehouse_material_id": 11,
+                    "allocated_num": 50,
+                    "is_allocated": 1
+                },
+                {
+                    "allocation_id": 11,
+                    "cutting_task_id": 11,
+                    "warehouse_material_id": 3,
+                    "allocated_num": 140,
+                    "is_allocated": 1
+                },
+                {
+                    "allocation_id": 12,
+                    "cutting_task_id": 11,
+                    "warehouse_material_id": 5,
+                    "allocated_num": 140,
+                    "is_allocated": 1
+                },
+                {
+                    "allocation_id": 21,
+                    "cutting_task_id": 16,
+                    "warehouse_material_id": 13,
+                    "allocated_num": 200,
+                    "is_allocated": 1
+                },
+                {
+                    "allocation_id": 22,
+                    "cutting_task_id": 16,
+                    "warehouse_material_id": 3,
+                    "allocated_num": 200,
+                    "is_allocated": 1
+                },
+                {
+                    "allocation_id": 23,
+                    "cutting_task_id": 16,
+                    "warehouse_material_id": 7,
+                    "allocated_num": 200,
+                    "is_allocated": 1
+                },
+                {
+                    "allocation_id": 28,
+                    "cutting_task_id": 19,
+                    "warehouse_material_id": 1,
+                    "allocated_num": 95,
+                    "is_allocated": 1
+                },
+                {
+                    "allocation_id": 29,
+                    "cutting_task_id": 19,
+                    "warehouse_material_id": 9,
+                    "allocated_num": 95,
+                    "is_allocated": 1
+                },
+                {
+                    "allocation_id": 30,
+                    "cutting_task_id": 20,
+                    "warehouse_material_id": 3,
+                    "allocated_num": 90,
+                    "is_allocated": 1
+                },
+                {
+                    "allocation_id": 31,
+                    "cutting_task_id": 20,
+                    "warehouse_material_id": 7,
+                    "allocated_num": 90,
+                    "is_allocated": 1
+                },
+                {
+                    "allocation_id": 32,
+                    "cutting_task_id": 21,
+                    "warehouse_material_id": 1,
+                    "allocated_num": 85,
+                    "is_allocated": 1
+                },
+                {
+                    "allocation_id": 33,
+                    "cutting_task_id": 21,
+                    "warehouse_material_id": 9,
+                    "allocated_num": 85,
+                    "is_allocated": 1
+                },
+                {
+                    "allocation_id": 40,
+                    "cutting_task_id": 26,
+                    "warehouse_material_id": 3,
+                    "allocated_num": 70,
+                    "is_allocated": 1
+                },
+                {
+                    "allocation_id": 41,
+                    "cutting_task_id": 27,
+                    "warehouse_material_id": 3,
+                    "allocated_num": 60,
+                    "is_allocated": 1
+                },
+                {
+                    "allocation_id": 42,
+                    "cutting_task_id": 27,
+                    "warehouse_material_id": 7,
+                    "allocated_num": 60,
+                    "is_allocated": 1
+                },
+                {
+                    "allocation_id": 43,
+                    "cutting_task_id": 27,
+                    "warehouse_material_id": 13,
+                    "allocated_num": 60,
+                    "is_allocated": 1
+                },
+                {
+                    "allocation_id": 53,
+                    "cutting_task_id": 34,
+                    "warehouse_material_id": 1,
+                    "allocated_num": 330,
+                    "is_allocated": 0
+                },
+                {
+                    "allocation_id": 54,
+                    "cutting_task_id": 34,
+                    "warehouse_material_id": 9,
+                    "allocated_num": 330,
+                    "is_allocated": 0
+                }
+            ]
+        }
+    ],
+    "response": "Sure! Here is the answer to your question:\n\n| Allocation ID | Cutting Task ID | Warehouse Material ID | Allocated Number | Is Allocated |\n|---------------|-----------------|-----------------------|------------------|--------------|\n| 8             | 8               | 11                    | 50               | 1            |\n| 11            | 11              | 3                     | 140              | 1            |\n| 12            | 11              | 5                     | 140              | 1            |\n| 21            | 16              | 13                    | 200              | 1            |\n| 22            | 16              | 3                     | 200              | 1            |\n| 23            | 16              | 7                     | 200              | 1            |\n| 28            | 19              | 1                     | 95               | 1            |\n| 29            | 19              | 9                     | 95               | 1            |\n| 30            | 20              | 3                     | 90               | 1            |\n| 31            | 20              | 7                     | 90               | 1            |\n| 32            | 21              | 1                     | 85               | 1            |\n| 33            | 21              | 9                     | 85               | 1            |\n| 40            | 26              | 3                     | 70               | 1            |\n| 41            | 27              | 3                     | 60               | 1            |\n| 42            | 27              | 7                     | 60               | 1            |\n| 43            | 27              | 13                    | 60               | 1            |\n| 53            | 34              | 1                     | 330              | 0            |\n| 54            | 34              | 9                     | 330              | 0            |\n\nI hope this helps! If you have any more questions, feel free to ask. 😄",
+    "token_used": 6908
+}

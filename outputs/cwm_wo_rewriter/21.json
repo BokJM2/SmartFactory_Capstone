@@ -1,0 +1,68 @@
+{
+  "ID": 21,
+  "q_ch": "列出Advanced Sewers在2024年4月到5月的工作任务。",
+  "q_en": "List the work tasks of Advanced Sewers from April to May 2024.",
+  "sqls": [
+    {
+      "command": [
+        "SELECT id FROM working_group WHERE name = 'Advanced Sewers';",
+        "SELECT id, start_time, end_time, order_product_id, planned_number, completed_number, is_started \n FROM sewing_tasks \n WHERE working_group_id = 'wg8' AND start_time BETWEEN '2024-04-01' AND '2024-05-31';"
+      ],
+      "Result of executing SQL": [
+        [
+          {
+            "id": "wg8"
+          }
+        ],
+        [
+          {
+            "id": "sw16",
+            "start_time": "2024年04月10日 00:00",
+            "end_time": "2024年05月07日 00:00",
+            "order_product_id": "op16",
+            "planned_number": 200,
+            "completed_number": 200,
+            "is_started": 1
+          },
+          {
+            "id": "sw20",
+            "start_time": "2024年04月15日 00:00",
+            "end_time": "2024年05月07日 00:00",
+            "order_product_id": "op20",
+            "planned_number": 90,
+            "completed_number": 90,
+            "is_started": 1
+          },
+          {
+            "id": "sw21",
+            "start_time": "2024年04月04日 00:00",
+            "end_time": "2024年04月12日 00:00",
+            "order_product_id": "op21",
+            "planned_number": 85,
+            "completed_number": 85,
+            "is_started": 1
+          },
+          {
+            "id": "sw22",
+            "start_time": "2024年04月09日 00:00",
+            "end_time": "2024年04月22日 00:00",
+            "order_product_id": "op22",
+            "planned_number": 115,
+            "completed_number": 115,
+            "is_started": 1
+          },
+          {
+            "id": "sw25",
+            "start_time": "2024年05月14日 00:00",
+            "end_time": "2024年06月03日 00:00",
+            "order_product_id": "op25",
+            "planned_number": 75,
+            "completed_number": 75,
+            "is_started": 1
+          }
+        ]
+      ]
+    }
+  ],
+  "total_tokens": 9928
+}

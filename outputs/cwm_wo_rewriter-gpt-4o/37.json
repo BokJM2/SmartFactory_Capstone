@@ -1,0 +1,137 @@
+{
+    "ID": 37,
+    "q_ch": "对所有结束时间在2024年7月前，且未完成的裁剪任务中，计划裁剪数量最多的任务是什么？",
+    "q_en": "What is the task with the highest planned quantity among all cutting tasks that have not been completed and have an end date before July 2024??",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id, planned_number FROM cutting_tasks WHERE status != 2 AND end_time < '2024-07-01';",
+            "description": "Retrieve all cutting tasks that have not been completed and have an end date before July 2024",
+            "results": [
+                {
+                    "id": 2,
+                    "planned_number": 240
+                },
+                {
+                    "id": 4,
+                    "planned_number": 220
+                },
+                {
+                    "id": 5,
+                    "planned_number": 260
+                },
+                {
+                    "id": 6,
+                    "planned_number": 95
+                },
+                {
+                    "id": 7,
+                    "planned_number": 110
+                },
+                {
+                    "id": 8,
+                    "planned_number": 50
+                },
+                {
+                    "id": 9,
+                    "planned_number": 80
+                },
+                {
+                    "id": 10,
+                    "planned_number": 100
+                },
+                {
+                    "id": 11,
+                    "planned_number": 140
+                },
+                {
+                    "id": 12,
+                    "planned_number": 150
+                },
+                {
+                    "id": 13,
+                    "planned_number": 130
+                },
+                {
+                    "id": 14,
+                    "planned_number": 120
+                },
+                {
+                    "id": 15,
+                    "planned_number": 185
+                },
+                {
+                    "id": 16,
+                    "planned_number": 200
+                },
+                {
+                    "id": 17,
+                    "planned_number": 175
+                },
+                {
+                    "id": 18,
+                    "planned_number": 200
+                },
+                {
+                    "id": 19,
+                    "planned_number": 95
+                },
+                {
+                    "id": 20,
+                    "planned_number": 90
+                },
+                {
+                    "id": 21,
+                    "planned_number": 85
+                },
+                {
+                    "id": 22,
+                    "planned_number": 115
+                },
+                {
+                    "id": 23,
+                    "planned_number": 110
+                },
+                {
+                    "id": 24,
+                    "planned_number": 105
+                },
+                {
+                    "id": 25,
+                    "planned_number": 75
+                },
+                {
+                    "id": 26,
+                    "planned_number": 70
+                },
+                {
+                    "id": 27,
+                    "planned_number": 60
+                },
+                {
+                    "id": 28,
+                    "planned_number": 210
+                },
+                {
+                    "id": 30,
+                    "planned_number": 195
+                },
+                {
+                    "id": 31,
+                    "planned_number": 260
+                },
+                {
+                    "id": 32,
+                    "planned_number": 150
+                }
+            ]
+        },
+        {
+            "type": "Thought",
+            "operation": "Compare the planned_number of all tasks obtained in Step1 and identify the task with the highest planned quantity.",
+            "results": "To identify the task with the highest planned quantity from the given data, we need to compare the `planned_number` of each task. Here are the tasks with their planned numbers:\n\n- Task ID 2: 240\n- Task ID 4: 220\n- Task ID 5: 260\n- Task ID 6: 95\n- Task ID 7: 110\n- Task ID 8: 50\n- Task ID 9: 80\n- Task ID 10: 100\n- Task ID 11: 140\n- Task ID 12: 150\n- Task ID 13: 130\n- Task ID 14: 120\n- Task ID 15: 185\n- Task ID 16: 200\n- Task ID 17: 175\n- Task ID 18: 200\n- Task ID 19: 95\n- Task ID 20: 90\n- Task ID 21: 85\n- Task ID 22: 115\n- Task ID 23: 110\n- Task ID 24: 105\n- Task ID 25: 75\n- Task ID 26: 70\n- Task ID 27: 60\n- Task ID 28: 210\n- Task ID 30: 195\n- Task ID 31: 260\n- Task ID 32: 150\n\nThe tasks with the highest planned quantity are Task ID 5 and Task ID 31, both with a planned number of 260."
+        }
+    ],
+    "response": "Hey there! 😄 Let's dive into the cutting tasks and find out which one has the highest planned quantity among those that haven't been completed and have an end date before July 2024.\n\nHere's what I found:\n\n| Task ID | Planned Quantity |\n|---------|------------------|\n| 5       | 260              |\n| 31      | 260              |\n\nBoth Task ID 5 and Task ID 31 have the highest planned quantity of 260. 🎉 If you have any more questions or need further assistance, feel free to ask!",
+    "token_used": 7857
+}

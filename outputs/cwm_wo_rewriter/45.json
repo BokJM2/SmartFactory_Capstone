@@ -1,0 +1,34 @@
+{
+  "ID": 45,
+  "q_ch": "主仓库出库Cotton Fabric100份。",
+  "q_en": "Please release 100 units of cotton fabric from the Main warehouse.",
+  "sqls": [
+    {
+      "command": [
+        "SELECT id FROM materials WHERE name = 'Cotton Fabric';",
+        "SELECT id FROM warehouse WHERE name = 'Main Warehouse';",
+        "SELECT left_number FROM warehouse_material WHERE warehouse_id = 'w1' AND material_id = 'm1';",
+        "UPDATE warehouse_material SET left_number = left_number - 100 WHERE warehouse_id = 'w1' AND material_id = 'm1';"
+      ],
+      "Result of executing SQL": [
+        [
+          {
+            "id": "m1"
+          }
+        ],
+        [
+          {
+            "id": "w1"
+          }
+        ],
+        [
+          {
+            "left_number": 3500
+          }
+        ],
+        "update data successfully."
+      ]
+    }
+  ],
+  "total_tokens": 4690
+}

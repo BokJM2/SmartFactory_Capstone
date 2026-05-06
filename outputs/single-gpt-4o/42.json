@@ -1,0 +1,15 @@
+{
+    "ID": 42,
+    "q_ch": "对于PolyU在2024年1月提交的订单，将所有生产红色小码类型T-shirt的缝纫任务设置成开始状态。",
+    "q_en": "For orders submitted by PolyU in January 2024, set all sewing tasks for producing Red, M size type T-shirts to start status. ",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "UPDATE sewing_tasks st JOIN order_product op ON st.order_product_id = op.id JOIN orders o ON op.order_id = o.id JOIN customers c ON o.user_id = c.id JOIN products p ON op.product_id = p.id JOIN products_types pt ON p.products_type_id = pt.id SET st.status = 1 WHERE c.customer_name = 'PolyU' AND o.created_at BETWEEN '2024-01-01' AND '2024-01-31' AND p.attributes = 'Red, M size' AND pt.description = 'T-shirt';",
+            "description": "Update the status of all sewing tasks for producing 'Red, M size' T-shirts ordered by PolyU in January 2024 to start status. First, find the order IDs for orders submitted by PolyU in January 2024, then find the order product IDs for 'Red, M size' T-shirts, and finally update the status of the corresponding sewing tasks to start status.",
+            "results": "create table successfully."
+        }
+    ],
+    "response": "Sure! Here's what we did for you:\n\nWe updated the status of all sewing tasks for producing 'Red, M size' T-shirts ordered by PolyU in January 2024 to the start status. 🎉\n\nHere's a quick summary of the process:\n\n| Task | Description |\n|------|-------------|\n| **Customer** | PolyU |\n| **Order Period** | January 2024 |\n| **Product** | T-shirt |\n| **Attributes** | Red, M size |\n| **Action** | Set sewing tasks to start status |\n\nIf you have any more questions or need further assistance, feel free to ask! 😊",
+    "token_used": 5929
+}

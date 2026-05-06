@@ -1,0 +1,51 @@
+{
+  "ID": 9,
+  "q_ch": "William 的缝纫任务进度如何？",
+  "q_en": "What is the progress of sewing tasks for William?",
+  "sqls": [
+    {
+      "command": [
+        "SELECT id FROM customers WHERE customer_name = 'William';",
+        "SELECT id FROM orders WHERE user_id = 'c8';",
+        "SELECT id FROM order_product WHERE order_id IN (SELECT id FROM orders WHERE user_id = 'c8');",
+        "SELECT SUM(st.planned_number) AS total_planned, SUM(st.completed_number) AS total_completed FROM sewing_tasks st WHERE st.order_product_id IN ('op28', 'op29', 'op30');",
+        "SELECT (total_completed / total_planned) * 100 AS sewing_progress FROM ( SELECT SUM(st.planned_number) AS total_planned, SUM(st.completed_number) AS total_completed FROM sewing_tasks st WHERE st.order_product_id IN (SELECT id FROM order_product WHERE order_id IN (SELECT id FROM orders WHERE user_id = 'c8')) ) AS task_totals;"
+      ],
+      "Result of executing SQL": [
+        [
+          {
+            "id": "c8"
+          }
+        ],
+        [
+          {
+            "id": "o8"
+          }
+        ],
+        [
+          {
+            "id": "op28"
+          },
+          {
+            "id": "op29"
+          },
+          {
+            "id": "op30"
+          }
+        ],
+        [
+          {
+            "total_planned": null,
+            "total_completed": null
+          }
+        ],
+        [
+          {
+            "sewing_progress": null
+          }
+        ]
+      ]
+    }
+  ],
+  "total_tokens": 6430
+}

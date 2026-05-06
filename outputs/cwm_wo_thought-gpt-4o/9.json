@@ -1,0 +1,70 @@
+{
+    "ID": 9,
+    "q_ch": "William 的缝纫任务进度如何？",
+    "q_en": "What is the progress of sewing tasks for William?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM customers WHERE customer_name = 'William';",
+            "description": "Retrieve the customer ID for the customer with the name \"William\"",
+            "results": [
+                {
+                    "id": 8
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM orders WHERE user_id = 8;",
+            "description": "Retrieve the order IDs for the customer \"William\"",
+            "results": [
+                {
+                    "id": 8
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT order_id, SUM(number) as total_quantity FROM order_product WHERE order_id IN (8) GROUP BY order_id;",
+            "description": "Retrieve the total quantity of products in each order for the customer \"William\"",
+            "results": [
+                {
+                    "order_id": 8,
+                    "total_quantity": "585"
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT st.order_product_id, SUM(st.completed_number) as completed_quantity FROM sewing_tasks st JOIN order_product op ON st.order_product_id = op.id WHERE op.order_id IN (8) GROUP BY st.order_product_id;",
+            "description": "Retrieve the total completed quantity of all sewing tasks for each order for the customer \"William\"",
+            "results": [
+                {
+                    "order_product_id": 28,
+                    "completed_quantity": "210"
+                },
+                {
+                    "order_product_id": 29,
+                    "completed_quantity": "180"
+                },
+                {
+                    "order_product_id": 30,
+                    "completed_quantity": "195"
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT op.order_id, (SUM(st.completed_number) / SUM(op.number)) * 100 as progress_percentage FROM sewing_tasks st JOIN order_product op ON st.order_product_id = op.id WHERE op.order_id IN (8) GROUP BY op.order_id;",
+            "description": "Calculate the progress of sewing tasks for each order for the customer \"William\"",
+            "results": [
+                {
+                    "order_id": 8,
+                    "progress_percentage": "100.0000"
+                }
+            ]
+        }
+    ],
+    "response": "Hello there! 😄 Let's take a look at the progress of sewing tasks for our customer, William. Here's a summary of the information:\n\n| Order ID | Total Quantity | Completed Quantity | Progress Percentage |\n|----------|----------------|--------------------|---------------------|\n| 8        | 585            | 585                | 100%                |\n\nGreat news! 🎉 All sewing tasks for William's order have been completed, reaching a perfect 100% progress. If you have any more questions or need further assistance, feel free to ask! 😊",
+    "token_used": 8177
+}

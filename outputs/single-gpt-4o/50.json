@@ -1,0 +1,15 @@
+{
+    "ID": 50,
+    "q_ch": "对于编号为33的裁剪任务，预计任务结束时间需要延迟至2024年7月31日",
+    "q_en": "The expected completion date for cutting task 33 needs to be extended to July 31, 2024.",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "UPDATE cutting_tasks SET end_time = '2024-07-31 23:59:59' WHERE id = 33;",
+            "description": "Update the end_time for cutting task with ID 33 to July 31, 2024.",
+            "results": "update data successfully."
+        }
+    ],
+    "response": "### Task Update Confirmation 🎉\n\nGreat news! The expected completion date for cutting task **33** has been successfully extended. Here are the details:\n\n| Task ID | New Completion Date       |\n|---------|---------------------------|\n| 33      | July 31, 2024, 23:59:59   |\n\nIf you have any more questions or need further assistance, feel free to ask! 😊",
+    "token_used": 4941
+}

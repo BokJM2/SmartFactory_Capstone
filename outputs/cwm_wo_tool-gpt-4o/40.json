@@ -1,0 +1,93 @@
+{
+    "ID": 40,
+    "q_ch": "订单产品是T恤的裁剪任务有哪些？",
+    "q_en": "Which cutting tasks are for products categorized as T-shirt?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM products WHERE products_type_id = (SELECT id FROM products_types WHERE description = 'T-shirt');",
+            "description": "Retrieve the product IDs for products categorized as 'T-shirt'",
+            "results": [
+                {
+                    "id": 1
+                },
+                {
+                    "id": 3
+                },
+                {
+                    "id": 11
+                },
+                {
+                    "id": 19
+                },
+                {
+                    "id": 27
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT * FROM cutting_tasks WHERE order_product_id IN (SELECT id FROM order_product WHERE product_id IN (1, 3, 11, 19, 27));",
+            "description": "Retrieve the cutting tasks for the products identified in Step1",
+            "results": [
+                {
+                    "id": 1,
+                    "start_time": "2024-01-10 00:00:00",
+                    "end_time": "2024-01-18 00:00:00",
+                    "working_group_id": 2,
+                    "order_product_id": 1,
+                    "produced_wip_id": 2,
+                    "planned_number": 100,
+                    "completed_number": 100,
+                    "status": 2
+                },
+                {
+                    "id": 3,
+                    "start_time": "2024-01-10 00:00:00",
+                    "end_time": "2024-01-19 00:00:00",
+                    "working_group_id": 3,
+                    "order_product_id": 3,
+                    "produced_wip_id": 2,
+                    "planned_number": 150,
+                    "completed_number": 150,
+                    "status": 2
+                },
+                {
+                    "id": 4,
+                    "start_time": "2024-01-10 00:00:00",
+                    "end_time": "2024-01-17 00:00:00",
+                    "working_group_id": 2,
+                    "order_product_id": 4,
+                    "produced_wip_id": 4,
+                    "planned_number": 220,
+                    "completed_number": 220,
+                    "status": 1
+                },
+                {
+                    "id": 2,
+                    "start_time": "2024-01-10 00:00:00",
+                    "end_time": "2024-02-02 00:00:00",
+                    "working_group_id": 3,
+                    "order_product_id": 2,
+                    "produced_wip_id": 10,
+                    "planned_number": 240,
+                    "completed_number": 240,
+                    "status": 1
+                },
+                {
+                    "id": 5,
+                    "start_time": "2024-01-10 00:00:00",
+                    "end_time": "2024-02-02 00:00:00",
+                    "working_group_id": 2,
+                    "order_product_id": 5,
+                    "produced_wip_id": 8,
+                    "planned_number": 260,
+                    "completed_number": 260,
+                    "status": 1
+                }
+            ]
+        }
+    ],
+    "response": "Sure thing! Let's dive into the cutting tasks for products categorized as \"T-shirt\". Here's what I found for you:\n\n| Task ID | Start Time          | End Time            | Working Group ID | Order Product ID | Produced WIP ID | Planned Number | Completed Number | Status |\n|---------|---------------------|---------------------|------------------|------------------|-----------------|----------------|------------------|--------|\n| 1       | 2024-01-10 00:00:00 | 2024-01-18 00:00:00 | 2                | 1                | 2               | 100            | 100              | 2      |\n| 3       | 2024-01-10 00:00:00 | 2024-01-19 00:00:00 | 3                | 3                | 2               | 150            | 150              | 2      |\n| 4       | 2024-01-10 00:00:00 | 2024-01-17 00:00:00 | 2                | 4                | 4               | 220            | 220              | 1      |\n| 2       | 2024-01-10 00:00:00 | 2024-02-02 00:00:00 | 3                | 2                | 10              | 240            | 240              | 1      |\n| 5       | 2024-01-10 00:00:00 | 2024-02-02 00:00:00 | 2                | 5                | 8               | 260            | 260              | 1      |\n\nThese tasks are all set for T-shirt products. If you have any more questions or need further details, feel free to ask! 😊",
+    "token_used": 7884
+}

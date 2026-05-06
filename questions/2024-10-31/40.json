@@ -1,0 +1,65 @@
+{
+    "ID": 40,
+    "q_ch": "订单产品是T恤的裁剪任务有哪些？",
+    "q_en": "Which cutting tasks are for products categorized as T-shirt?",
+    "gt": "Sure thing! Let's take a look at the cutting tasks for products categorized as \"T-shirt\". Here's what I found for you:\n\n| Task ID | Start Time          | End Time            | Working Group Name |\n|---------|---------------------|---------------------|--------------------|\n| 1       | 2024-01-10 00:00:00 | 2024-01-18 00:00:00 | Master Sewers      |\n| 3       | 2024-01-10 00:00:00 | 2024-01-19 00:00:00 | Master Cutters     |\n| 4       | 2024-01-10 00:00:00 | 2024-01-17 00:00:00 | Master Sewers      |\n| 2       | 2024-01-10 00:00:00 | 2024-02-02 00:00:00 | Master Cutters     |\n| 5       | 2024-01-10 00:00:00 | 2024-02-02 00:00:00 | Master Sewers      |\n\nThese tasks are all set for the \"T-shirt\" category. If you have any more questions or need further assistance, feel free to ask! 😄",
+    "steps": [
+        {
+            "sql": "SELECT id FROM products WHERE products_type_id = (SELECT id FROM products_types WHERE description = 'T-shirt');",
+            "description": "Retrieve the product IDs for products categorized as \"T-shirt\"",
+            "results": [
+                {
+                    "id": 1
+                },
+                {
+                    "id": 3
+                },
+                {
+                    "id": 11
+                },
+                {
+                    "id": 19
+                },
+                {
+                    "id": 27
+                }
+            ]
+        },
+        {
+            "sql": "SELECT ct.id, ct.start_time, ct.end_time, wg.name AS working_group_name FROM cutting_tasks ct JOIN order_product op ON ct.order_product_id = op.id JOIN working_group wg ON ct.working_group_id = wg.id WHERE op.product_id IN (1, 3, 11, 19, 27);",
+            "description": "Retrieve the cutting tasks for the retrieved product IDs",
+            "results": [
+                {
+                    "id": 1,
+                    "start_time": "2024-01-10 00:00:00",
+                    "end_time": "2024-01-18 00:00:00",
+                    "working_group_name": "Master Sewers"
+                },
+                {
+                    "id": 3,
+                    "start_time": "2024-01-10 00:00:00",
+                    "end_time": "2024-01-19 00:00:00",
+                    "working_group_name": "Master Cutters"
+                },
+                {
+                    "id": 4,
+                    "start_time": "2024-01-10 00:00:00",
+                    "end_time": "2024-01-17 00:00:00",
+                    "working_group_name": "Master Sewers"
+                },
+                {
+                    "id": 2,
+                    "start_time": "2024-01-10 00:00:00",
+                    "end_time": "2024-02-02 00:00:00",
+                    "working_group_name": "Master Cutters"
+                },
+                {
+                    "id": 5,
+                    "start_time": "2024-01-10 00:00:00",
+                    "end_time": "2024-02-02 00:00:00",
+                    "working_group_name": "Master Sewers"
+                }
+            ]
+        }
+    ]
+}

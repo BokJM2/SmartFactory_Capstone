@@ -1,0 +1,42 @@
+{
+    "ID": 33,
+    "q_ch": "分配给Precision Cutters的裁剪任务有哪些？",
+    "q_en": "What are the cutting tasks assigned to Precision Cutters?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM working_group WHERE name = 'Precision Cutters';",
+            "description": "Retrieve the working group ID for the working group with the name \"Precision Cutters\"",
+            "results": [
+                {
+                    "id": 1
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT ct.id, ct.start_time, ct.end_time, op.number, p.attributes, pt.description FROM cutting_tasks ct JOIN order_product op ON ct.order_product_id = op.id JOIN products p ON op.product_id = p.id JOIN products_types pt ON p.products_type_id = pt.id WHERE ct.working_group_id = '1';",
+            "description": "Retrieve the cutting tasks assigned to the working group \"Precision Cutters\"",
+            "results": [
+                {
+                    "id": 18,
+                    "start_time": "2024-03-11 00:00:00",
+                    "end_time": "2024-04-07 00:00:00",
+                    "number": 200,
+                    "attributes": "Brown, L size",
+                    "description": "Jacket"
+                },
+                {
+                    "id": 30,
+                    "start_time": "2024-04-19 00:00:00",
+                    "end_time": "2024-04-26 00:00:00",
+                    "number": 195,
+                    "attributes": "Red, L size",
+                    "description": "Shorts"
+                }
+            ]
+        }
+    ],
+    "response": "Hey there! 😄 Let's take a look at the cutting tasks assigned to the \"Precision Cutters\" working group. Here's what I found:\n\n| Task ID | Start Time          | End Time            | Order Number | Product Attributes | Product Description |\n|---------|---------------------|---------------------|--------------|--------------------|---------------------|\n| 18      | March 11, 2024      | April 7, 2024       | 200          | Brown, L size      | Jacket              |\n| 30      | April 19, 2024      | April 26, 2024      | 195          | Red, L size        | Shorts              |\n\nThese tasks are all set and ready to go! If you have any more questions or need further details, feel free to ask. 😊",
+    "token_used": 7088
+}

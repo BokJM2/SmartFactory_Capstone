@@ -1,0 +1,28 @@
+{
+    "ID": 8,
+    "q_ch": "Olivia的订单中使用了哪些原料？",
+    "q_en": "What materials were used in Olivia's order?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT wm.material_id, wm.total_number FROM warehouse_material wm JOIN cutting_material_allocation cma ON wm.id = cma.warehouse_material_id JOIN cutting_tasks ct ON cma.cutting_task_id = ct.id JOIN order_product op ON ct.order_product_id = op.id JOIN orders o ON op.order_id = o.id JOIN customers c ON o.user_id = c.id WHERE c.customer_name = 'Olivia' UNION SELECT wm.material_id, wm.total_number FROM warehouse_material wm JOIN sewing_material_allocation sma ON wm.id = sma.warehouse_material_id JOIN sewing_tasks st ON sma.sewing_task_id = st.id JOIN order_product op ON st.order_product_id = op.id JOIN orders o ON op.order_id = o.id JOIN customers c ON o.user_id = c.id WHERE c.customer_name = 'Olivia';",
+            "description": "To find out what materials were used in Olivia's order, we need to retrieve the material information from the warehouse_material table based on the order placed by Olivia. We will first find the order ID for Olivia's order, then fetch the material IDs and quantities allocated for that order from the cutting_material_allocation and sewing_material_allocation tables.\",",
+            "results": [
+                {
+                    "material_id": 3,
+                    "total_number": 4100
+                },
+                {
+                    "material_id": 7,
+                    "total_number": 2200
+                },
+                {
+                    "material_id": 13,
+                    "total_number": 1230
+                }
+            ]
+        }
+    ],
+    "response": "Sure! Here is the answer to your question:\n\n### Materials Used in Olivia's Order:\n| Material ID | Total Number |\n|-------------|--------------|\n| 3           | 4100         |\n| 7           | 2200         |\n| 13          | 1230         |\n\nFeel free to reach out if you have any more questions! 😄",
+    "token_used": 5650
+}

@@ -1,0 +1,46 @@
+{
+    "ID": 21,
+    "q_ch": "列出Advanced Sewers在2024年4月到5月的工作任务。",
+    "q_en": "List the work tasks of Advanced Sewers from April to May 2024.",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT 'cutting' AS task_type, id, start_time, end_time FROM cutting_tasks WHERE working_group_id = (SELECT id FROM working_group WHERE name = 'Advanced Sewers') AND start_time BETWEEN '2024-04-01' AND '2024-05-31' UNION SELECT 'sewing' AS task_type, id, start_time, end_time FROM sewing_tasks WHERE working_group_id = (SELECT id FROM working_group WHERE name = 'Advanced Sewers') AND start_time BETWEEN '2024-04-01' AND '2024-05-31';",
+            "description": "To list the work tasks of the working group named 'Advanced Sewers' from April to May 2024, we need to find the working group ID for 'Advanced Sewers' and then retrieve the tasks from both cutting_tasks and sewing_tasks tables that fall within the specified date range.",
+            "results": [
+                {
+                    "task_type": "sewing",
+                    "id": 16,
+                    "start_time": "2024-04-10 00:00:00",
+                    "end_time": "2024-05-07 00:00:00"
+                },
+                {
+                    "task_type": "sewing",
+                    "id": 20,
+                    "start_time": "2024-04-15 00:00:00",
+                    "end_time": "2024-05-07 00:00:00"
+                },
+                {
+                    "task_type": "sewing",
+                    "id": 21,
+                    "start_time": "2024-04-04 00:00:00",
+                    "end_time": "2024-04-12 00:00:00"
+                },
+                {
+                    "task_type": "sewing",
+                    "id": 22,
+                    "start_time": "2024-04-09 00:00:00",
+                    "end_time": "2024-04-22 00:00:00"
+                },
+                {
+                    "task_type": "sewing",
+                    "id": 25,
+                    "start_time": "2024-05-14 00:00:00",
+                    "end_time": "2024-06-03 00:00:00"
+                }
+            ]
+        }
+    ],
+    "response": "Sure thing! Here are the work tasks for the 'Advanced Sewers' group from April to May 2024. Let's take a look at what they've been up to! 🧵✂️\n\n| Task Type | Task ID | Start Time          | End Time            |\n|-----------|---------|---------------------|---------------------|\n| Sewing    | 16      | April 10, 2024      | May 7, 2024         |\n| Sewing    | 20      | April 15, 2024      | May 7, 2024         |\n| Sewing    | 21      | April 4, 2024       | April 12, 2024      |\n| Sewing    | 22      | April 9, 2024       | April 22, 2024      |\n| Sewing    | 25      | May 14, 2024        | June 3, 2024        |\n\nLooks like they've been busy with sewing tasks! If you have any more questions or need further details, feel free to ask. 😊",
+    "token_used": 6311
+}

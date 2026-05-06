@@ -1,0 +1,27 @@
+{
+    "ID": 43,
+    "q_ch": "向仓库Main Warehouse，入库Leather 1000份。",
+    "q_en": "Send 1000 Leathers to the Main Warehouse for storage.",
+    "gt": "Sure thing! Let's get those materials stored away safely. Here's what we need to do:\n\n| Material Name | Material ID | Warehouse Name | Warehouse ID | Quantity |\n|---------------|-------------|----------------|--------------|----------|\n| Leather       | 7           | Main Warehouse | 1            | 1000     |\n\nTo store 1000 units of Leather in the Main Warehouse, we'll insert a new entry with the material type ID and warehouse ID. This ensures that the existing records remain unchanged. 📦✨\n\nIf you have any more questions or need further assistance, feel free to ask! 😄",
+    "steps": [
+        {
+            "sql": "SELECT id FROM materials WHERE name = 'Leather';",
+            "description": "Retrieve the material ID for the material with the name \"Leather\"",
+            "results": [
+                {
+                    "id": 7
+                }
+            ]
+        },
+        {
+            "sql": "SELECT id FROM warehouse WHERE name = 'Main Warehouse';",
+            "description": "Retrieve the warehouse ID for the warehouse with the name \"Main Warehouse\"",
+            "results": [
+                {
+                    "id": 1
+                }
+            ]
+        },
+        "insert data successfully."
+    ]
+}

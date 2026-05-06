@@ -1,0 +1,6 @@
+{
+    "ID": 44,
+    "q_ch": "请将100件ID为15的产品入库到辅助仓库。",
+    "q_en": "Please store 100 units of product with ID=15 in the auxiliary warehouse.",
+    "gt": ""
+}

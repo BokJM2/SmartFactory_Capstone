@@ -1,0 +1,47 @@
+{
+    "ID": 41,
+    "q_ch": "我是香港理工大学，今天是2024年7月2日，请帮我创建一个订单，要50件红色, M码的T-shirt, 以及30件蓝色, XL码 的Sweater。",
+    "q_en": "I am from The Hong Kong Polytechnic University. Today is July 2, 2024. Please help me create an order for 50 red T-shirts in size M and 30 blue sweaters in size XL.",
+    "gt": "Sure thing! Let's get that order sorted out for you. Here's a summary of your order details:\n\n| Customer Name | Order Date  | Product Description | Attributes | Quantity |\n|---------------|-------------|---------------------|------------|----------|\n| PolyU         | July 2, 2024| T-shirt             | Red, M size| 50       |\n| PolyU         | July 2, 2024| Sweater             | Blue, XL size| 30     |\n\nYour order has been successfully created! 🎉 If you need any more assistance or have further questions, feel free to ask. 😊",
+    "steps": [
+        {
+            "sql": "SELECT id FROM customers WHERE customer_name = 'PolyU';",
+            "description": "Retrieve the customer ID for the customer with the name \"PolyU\"",
+            "results": [
+                {
+                    "id": 1
+                }
+            ]
+        },
+        "create table successfully.",
+        {
+            "sql": "SELECT id FROM orders WHERE user_id = '1' AND created_at = '2024-07-02';",
+            "description": "Retrieve the order ID for the newly created order",
+            "results": [
+                {
+                    "id": 13
+                }
+            ]
+        },
+        {
+            "sql": "SELECT p.id FROM products p JOIN products_types pt ON p.products_type_id = pt.id WHERE p.attributes = 'Red, M size' AND pt.description = 'T-shirt';",
+            "description": "Retrieve the product ID for the product with attributes \"Red, M size\" and type \"T-shirt\"",
+            "results": [
+                {
+                    "id": 1
+                }
+            ]
+        },
+        {
+            "sql": "SELECT p.id FROM products p JOIN products_types pt ON p.products_type_id = pt.id WHERE p.attributes = 'Blue, XL size' AND pt.description = 'Sweater';",
+            "description": "Retrieve the product ID for the product with attributes \"Blue, XL size\" and type \"Sweater\"",
+            "results": [
+                {
+                    "id": 17
+                }
+            ]
+        },
+        "insert data successfully.",
+        "insert data successfully."
+    ]
+}

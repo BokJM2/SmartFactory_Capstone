@@ -1,0 +1,67 @@
+{
+    "ID": 32,
+    "q_ch": "产品类型是Dress的缝纫任务有哪些？",
+    "q_en": "What are the sewing tasks for Dress's product type?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT p.id FROM products p JOIN products_types pt ON p.products_type_id = pt.id WHERE pt.description = 'Dress';",
+            "description": "Retrieve the product IDs for products of type \"Dress\"",
+            "results": [
+                {
+                    "id": 5
+                },
+                {
+                    "id": 13
+                },
+                {
+                    "id": 21
+                },
+                {
+                    "id": 29
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT st.id, st.start_time, st.end_time, st.planned_number, st.completed_number, st.status FROM sewing_tasks st JOIN order_product op ON st.order_product_id = op.id WHERE op.product_id IN (5, 13, 21, 29);",
+            "description": "Retrieve the sewing tasks for the products identified in Step1",
+            "results": [
+                {
+                    "id": 14,
+                    "start_time": "2024-03-18 00:00:00",
+                    "end_time": "2024-04-08 00:00:00",
+                    "planned_number": 120,
+                    "completed_number": 120,
+                    "status": 1
+                },
+                {
+                    "id": 13,
+                    "start_time": "2024-03-27 00:00:00",
+                    "end_time": "2024-04-06 00:00:00",
+                    "planned_number": 130,
+                    "completed_number": 120,
+                    "status": 1
+                },
+                {
+                    "id": 11,
+                    "start_time": "2024-03-21 00:00:00",
+                    "end_time": "2024-04-14 00:00:00",
+                    "planned_number": 140,
+                    "completed_number": 100,
+                    "status": 0
+                },
+                {
+                    "id": 12,
+                    "start_time": "2024-03-27 00:00:00",
+                    "end_time": "2024-04-12 00:00:00",
+                    "planned_number": 150,
+                    "completed_number": 120,
+                    "status": 1
+                }
+            ]
+        }
+    ],
+    "response": "Sure thing! Let's take a look at the sewing tasks for dresses. Here are the details:\n\n| Task ID | Start Time          | End Time            | Planned Number | Completed Number | Status     |\n|---------|---------------------|---------------------|----------------|------------------|------------|\n| 14      | 2024-03-18 00:00:00 | 2024-04-08 00:00:00 | 120            | 120              | Completed  |\n| 13      | 2024-03-27 00:00:00 | 2024-04-06 00:00:00 | 130            | 120              | Completed  |\n| 11      | 2024-03-21 00:00:00 | 2024-04-14 00:00:00 | 140            | 100              | In Progress|\n| 12      | 2024-03-27 00:00:00 | 2024-04-12 00:00:00 | 150            | 120              | Completed  |\n\nHere's a quick breakdown:\n- **Completed** tasks are those where the planned number matches the completed number. 🎉\n- **In Progress** tasks are still ongoing, with some work left to do. 🧵\n\nIf you have any more questions or need further details, feel free to ask! 😊",
+    "token_used": 7916
+}

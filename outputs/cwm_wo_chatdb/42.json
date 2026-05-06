@@ -1,0 +1,8 @@
+{
+  "ID": 42,
+  "q_ch": "对于PolyU在2024年1月提交的订单，将所有生产红色小码类型T-shirt的缝纫任务设置成开始状态。",
+  "q_en": "For orders submitted by PolyU in January 2024, set all sewing tasks for producing Red, M size type T-shirts to start status. ",
+  "sql": "SELECT id INTO @customer_id FROM customers WHERE customer_name='PolyU';SELECT id INTO @products_type_id FROM products_types WHERE description='T-shirt';SELECT id INTO @product_id FROM products WHERE products_type_id=@products_type_id AND attributes='Red, M size';SELECT id INTO @order_id FROM orders WHERE user_id=@customer_id AND created_at BETWEEN '2024-01-01' AND '2024-01-31';SELECT id INTO @order_product_id FROM order_product WHERE order_id=@order_id AND product_id=@product_id;UPDATE sewing_tasks SET is_started=TRUE WHERE order_product_id=@order_product_id;",
+  "thought": "To accomplish this task, we need to perform several steps: 1) Identify the customer ID for 'PolyU'. 2) Identify the relevant orders placed by this customer in January 2024. 3) Find the product type ID for 'T-shirt'. 4) Identify the products with attributes 'Red, M size' and the product type 'T-shirt'. 5) Identify order products that match these criteria. 6) Finally, update the sewing tasks related to these order products to set the `is_started` status to TRUE.",
+  "total_tokens": "3168"
+}

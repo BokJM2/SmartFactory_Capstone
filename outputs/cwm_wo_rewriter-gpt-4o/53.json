@@ -1,0 +1,269 @@
+{
+    "ID": 53,
+    "q_ch": "列出已开始但未完成的裁剪任务，并计算还有总共多少未完成。",
+    "q_en": "List the cutting tasks that have started but are not yet completed, and calculate the total number of unfinished tasks.",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id, start_time, end_time, working_group_id, order_product_id, planned_number, completed_number FROM cutting_tasks WHERE status = 1;",
+            "description": "Retrieve the cutting tasks that have started but are not yet completed",
+            "results": [
+                {
+                    "id": 2,
+                    "start_time": "2024-01-10 00:00:00",
+                    "end_time": "2024-02-02 00:00:00",
+                    "working_group_id": 3,
+                    "order_product_id": 2,
+                    "planned_number": 240,
+                    "completed_number": 240
+                },
+                {
+                    "id": 4,
+                    "start_time": "2024-01-10 00:00:00",
+                    "end_time": "2024-01-17 00:00:00",
+                    "working_group_id": 2,
+                    "order_product_id": 4,
+                    "planned_number": 220,
+                    "completed_number": 220
+                },
+                {
+                    "id": 5,
+                    "start_time": "2024-01-10 00:00:00",
+                    "end_time": "2024-02-02 00:00:00",
+                    "working_group_id": 2,
+                    "order_product_id": 5,
+                    "planned_number": 260,
+                    "completed_number": 260
+                },
+                {
+                    "id": 6,
+                    "start_time": "2024-02-28 00:00:00",
+                    "end_time": "2024-03-20 00:00:00",
+                    "working_group_id": 3,
+                    "order_product_id": 6,
+                    "planned_number": 95,
+                    "completed_number": 95
+                },
+                {
+                    "id": 7,
+                    "start_time": "2024-02-28 00:00:00",
+                    "end_time": "2024-03-06 00:00:00",
+                    "working_group_id": 2,
+                    "order_product_id": 7,
+                    "planned_number": 110,
+                    "completed_number": 110
+                },
+                {
+                    "id": 8,
+                    "start_time": "2024-02-28 00:00:00",
+                    "end_time": "2024-03-08 00:00:00",
+                    "working_group_id": 4,
+                    "order_product_id": 8,
+                    "planned_number": 50,
+                    "completed_number": 50
+                },
+                {
+                    "id": 9,
+                    "start_time": "2024-03-01 00:00:00",
+                    "end_time": "2024-03-06 00:00:00",
+                    "working_group_id": 3,
+                    "order_product_id": 9,
+                    "planned_number": 80,
+                    "completed_number": 80
+                },
+                {
+                    "id": 10,
+                    "start_time": "2024-03-02 00:00:00",
+                    "end_time": "2024-03-29 00:00:00",
+                    "working_group_id": 3,
+                    "order_product_id": 10,
+                    "planned_number": 100,
+                    "completed_number": 100
+                },
+                {
+                    "id": 11,
+                    "start_time": "2024-03-02 00:00:00",
+                    "end_time": "2024-03-21 00:00:00",
+                    "working_group_id": 4,
+                    "order_product_id": 11,
+                    "planned_number": 140,
+                    "completed_number": 140
+                },
+                {
+                    "id": 12,
+                    "start_time": "2024-03-02 00:00:00",
+                    "end_time": "2024-03-27 00:00:00",
+                    "working_group_id": 5,
+                    "order_product_id": 12,
+                    "planned_number": 150,
+                    "completed_number": 150
+                },
+                {
+                    "id": 13,
+                    "start_time": "2024-03-02 00:00:00",
+                    "end_time": "2024-03-27 00:00:00",
+                    "working_group_id": 2,
+                    "order_product_id": 13,
+                    "planned_number": 130,
+                    "completed_number": 130
+                },
+                {
+                    "id": 14,
+                    "start_time": "2024-03-02 00:00:00",
+                    "end_time": "2024-03-18 00:00:00",
+                    "working_group_id": 5,
+                    "order_product_id": 14,
+                    "planned_number": 120,
+                    "completed_number": 120
+                },
+                {
+                    "id": 15,
+                    "start_time": "2024-03-11 00:00:00",
+                    "end_time": "2024-03-26 00:00:00",
+                    "working_group_id": 2,
+                    "order_product_id": 15,
+                    "planned_number": 185,
+                    "completed_number": 185
+                },
+                {
+                    "id": 16,
+                    "start_time": "2024-03-11 00:00:00",
+                    "end_time": "2024-04-10 00:00:00",
+                    "working_group_id": 4,
+                    "order_product_id": 16,
+                    "planned_number": 200,
+                    "completed_number": 200
+                },
+                {
+                    "id": 17,
+                    "start_time": "2024-03-11 00:00:00",
+                    "end_time": "2024-03-25 00:00:00",
+                    "working_group_id": 2,
+                    "order_product_id": 17,
+                    "planned_number": 175,
+                    "completed_number": 175
+                },
+                {
+                    "id": 18,
+                    "start_time": "2024-03-11 00:00:00",
+                    "end_time": "2024-04-07 00:00:00",
+                    "working_group_id": 1,
+                    "order_product_id": 18,
+                    "planned_number": 200,
+                    "completed_number": 200
+                },
+                {
+                    "id": 19,
+                    "start_time": "2024-03-18 00:00:00",
+                    "end_time": "2024-04-12 00:00:00",
+                    "working_group_id": 4,
+                    "order_product_id": 19,
+                    "planned_number": 95,
+                    "completed_number": 95
+                },
+                {
+                    "id": 20,
+                    "start_time": "2024-03-18 00:00:00",
+                    "end_time": "2024-04-15 00:00:00",
+                    "working_group_id": 4,
+                    "order_product_id": 20,
+                    "planned_number": 90,
+                    "completed_number": 90
+                },
+                {
+                    "id": 21,
+                    "start_time": "2024-03-18 00:00:00",
+                    "end_time": "2024-04-04 00:00:00",
+                    "working_group_id": 4,
+                    "order_product_id": 21,
+                    "planned_number": 85,
+                    "completed_number": 85
+                },
+                {
+                    "id": 22,
+                    "start_time": "2024-03-25 00:00:00",
+                    "end_time": "2024-04-09 00:00:00",
+                    "working_group_id": 2,
+                    "order_product_id": 22,
+                    "planned_number": 115,
+                    "completed_number": 115
+                },
+                {
+                    "id": 23,
+                    "start_time": "2024-03-25 00:00:00",
+                    "end_time": "2024-04-19 00:00:00",
+                    "working_group_id": 3,
+                    "order_product_id": 23,
+                    "planned_number": 110,
+                    "completed_number": 110
+                },
+                {
+                    "id": 24,
+                    "start_time": "2024-03-25 00:00:00",
+                    "end_time": "2024-04-23 00:00:00",
+                    "working_group_id": 3,
+                    "order_product_id": 24,
+                    "planned_number": 105,
+                    "completed_number": 105
+                },
+                {
+                    "id": 25,
+                    "start_time": "2024-04-14 00:00:00",
+                    "end_time": "2024-05-14 00:00:00",
+                    "working_group_id": 2,
+                    "order_product_id": 25,
+                    "planned_number": 75,
+                    "completed_number": 75
+                },
+                {
+                    "id": 28,
+                    "start_time": "2024-04-19 00:00:00",
+                    "end_time": "2024-05-12 00:00:00",
+                    "working_group_id": 2,
+                    "order_product_id": 28,
+                    "planned_number": 210,
+                    "completed_number": 210
+                },
+                {
+                    "id": 30,
+                    "start_time": "2024-04-19 00:00:00",
+                    "end_time": "2024-04-26 00:00:00",
+                    "working_group_id": 1,
+                    "order_product_id": 30,
+                    "planned_number": 195,
+                    "completed_number": 195
+                },
+                {
+                    "id": 31,
+                    "start_time": "2024-05-10 00:00:00",
+                    "end_time": "2024-05-26 00:00:00",
+                    "working_group_id": 3,
+                    "order_product_id": 31,
+                    "planned_number": 260,
+                    "completed_number": 260
+                },
+                {
+                    "id": 32,
+                    "start_time": "2024-06-01 00:00:00",
+                    "end_time": "2024-06-17 00:00:00",
+                    "working_group_id": 2,
+                    "order_product_id": 32,
+                    "planned_number": 150,
+                    "completed_number": 120
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT COUNT(*) FROM cutting_tasks WHERE status = 1;",
+            "description": "Calculate the total number of unfinished cutting tasks",
+            "results": [
+                {
+                    "COUNT(*)": 27
+                }
+            ]
+        }
+    ],
+    "response": "Sure thing! Let's dive into the cutting tasks that have started but aren't finished yet. Here's a neat table for you:\n\n| Task ID | Start Time          | End Time            | Working Group ID | Order Product ID | Planned Number | Completed Number |\n|---------|---------------------|---------------------|------------------|------------------|----------------|------------------|\n| 32      | 2024-06-01 00:00:00 | 2024-06-17 00:00:00 | 2                | 32               | 150            | 120              |\n\nAnd guess what? The total number of unfinished tasks is **27**! 🎉\n\nIf you have any more questions or need further details, feel free to ask! 😊",
+    "token_used": 8536
+}

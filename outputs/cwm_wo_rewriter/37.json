@@ -1,0 +1,36 @@
+{
+  "ID": 37,
+  "q_ch": "对所有结束时间在2024年7月前，且未完成的裁剪任务中，计划裁剪数量最多的任务是什么？",
+  "q_en": "What is the task with the highest planned quantity among all cutting tasks that have not been completed and have an end date before July 2024??",
+  "sqls": [
+    {
+      "command": [
+        "SELECT id, planned_number FROM cutting_tasks WHERE completed_number < planned_number AND end_time < '2024-07-01';",
+        "SELECT id, planned_number FROM cutting_tasks WHERE completed_number < planned_number AND end_time < '2024-07-01' ORDER BY planned_number DESC LIMIT 1;"
+      ],
+      "Result of executing SQL": [
+        [
+          {
+            "id": "ct15",
+            "planned_number": 185
+          },
+          {
+            "id": "ct30",
+            "planned_number": 195
+          },
+          {
+            "id": "ct32",
+            "planned_number": 150
+          }
+        ],
+        [
+          {
+            "id": "ct30",
+            "planned_number": 195
+          }
+        ]
+      ]
+    }
+  ],
+  "total_tokens": 15003
+}

@@ -1,0 +1,32 @@
+
+### 1. 学习业务逻辑
+数据库ER图：https://github.com/y18810919727/LLM_garment_MES/blob/main/doc/garment.png
+数据库建表：https://github.com/y18810919727/LLM_garment_MES/blob/main/doc/garment.sql
+
+### 2. 数据集仿真
+  参考https://github.com/huchenxucs/ChatDB/tree/main/csvs，设计garment MES的仿真数据
+要求：
+1. 全英文
+2. 用户个数>5, 订单数>8, 服装种类>5，裁缝组和缝纫组数量各>3，原料种类大于>5。平均每个缝纫/裁剪组要排>4个任务。
+3. 数据合理
+
+### 3. 问答任务仿真
+
+参考：https://github.com/huchenxucs/ChatDB/blob/main/sql_examples.py
+设计50个问题
+
+要求：
+1. 内容以查为主，带有少量的修改，带有极少量的增加，不需要删的问题。
+2. 50个问题中，有10个问题，设计为带有信息偏差的问题。
+
+比如，数据库中是PolyTechnique University, 问题中问的是PolyU。
+
+
+### 4. 模型回答准确度评估
+
+分别对GPT-3.5-turbo，GPT-4o进行评估，评估50个问题的回答准确度。准确度需要进行单项统计：
+
+- 问题回答错误的个数
+- 问题逻辑理解错误个数
+- sql语法错误个数
+- 由于信息偏差导致的错误个数

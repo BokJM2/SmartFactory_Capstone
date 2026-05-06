@@ -1,0 +1,56 @@
+{
+    "ID": 32,
+    "q_ch": "产品类型是Dress的缝纫任务有哪些？",
+    "q_en": "What are the sewing tasks for Dress's product type?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT st.* FROM sewing_tasks st JOIN order_product op ON st.order_product_id = op.id JOIN products p ON op.product_id = p.id JOIN products_types pt ON p.products_type_id = pt.id WHERE pt.description = 'Dress';",
+            "description": "To retrieve the sewing tasks for the product type with description 'Dress', we need to first find the product type ID for 'Dress', then query the sewing tasks associated with that product type ID.",
+            "results": [
+                {
+                    "id": 14,
+                    "start_time": "2024-03-18 00:00:00",
+                    "end_time": "2024-04-08 00:00:00",
+                    "working_group_id": 2,
+                    "order_product_id": 14,
+                    "planned_number": 120,
+                    "completed_number": 120,
+                    "status": 1
+                },
+                {
+                    "id": 13,
+                    "start_time": "2024-03-27 00:00:00",
+                    "end_time": "2024-04-06 00:00:00",
+                    "working_group_id": 2,
+                    "order_product_id": 13,
+                    "planned_number": 130,
+                    "completed_number": 120,
+                    "status": 1
+                },
+                {
+                    "id": 11,
+                    "start_time": "2024-03-21 00:00:00",
+                    "end_time": "2024-04-14 00:00:00",
+                    "working_group_id": 9,
+                    "order_product_id": 11,
+                    "planned_number": 140,
+                    "completed_number": 100,
+                    "status": 0
+                },
+                {
+                    "id": 12,
+                    "start_time": "2024-03-27 00:00:00",
+                    "end_time": "2024-04-12 00:00:00",
+                    "working_group_id": 2,
+                    "order_product_id": 12,
+                    "planned_number": 150,
+                    "completed_number": 120,
+                    "status": 1
+                }
+            ]
+        }
+    ],
+    "response": "### Sewing Tasks for Dress Product Type:\n\n| Task ID | Start Time | End Time | Working Group ID | Planned Number | Completed Number | Status |\n|---------|------------|----------|------------------|----------------|------------------|--------|\n| 14      | 2024-03-18 | 2024-04-08 | 2                | 120            | 120              | 1      |\n| 13      | 2024-03-27 | 2024-04-06 | 2                | 130            | 120              | 1      |\n| 11      | 2024-03-21 | 2024-04-14 | 9                | 140            | 100              | 0      |\n| 12      | 2024-03-27 | 2024-04-12 | 2                | 150            | 120              | 1      |\n\nFeel free to reach out if you need more information or assistance! 😄",
+    "token_used": 6111
+}

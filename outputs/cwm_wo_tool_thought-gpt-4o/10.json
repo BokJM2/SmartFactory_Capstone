@@ -1,0 +1,99 @@
+{
+    "ID": 10,
+    "q_ch": "对于Michael下的SweaterAndShorts的订单，还有哪些产品没有制造完成，列出未完成产品的类型及属性描述和数量？",
+    "q_en": "For Michael's SweaterAndShorts order, which other products have not been manufactured yet? Please list the types, attributes and quantities of unfinished products.",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM customers WHERE customer_name = 'Michael';",
+            "description": "Retrieve the customer ID for the customer with the name \"Michael\"",
+            "results": [
+                {
+                    "id": 6
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM orders WHERE order_name = 'Michael_SweaterAndShorts' AND user_id = '6';",
+            "description": "Retrieve the order ID for the order with the name \"Michael_SweaterAndShorts\" and customer ID from Step1",
+            "results": [
+                {
+                    "id": 6
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT product_id, number FROM order_product WHERE order_id = '6';",
+            "description": "Retrieve the product IDs and quantities for the order products associated with the order ID from Step2",
+            "results": [
+                {
+                    "product_id": 25,
+                    "number": 115
+                },
+                {
+                    "product_id": 8,
+                    "number": 110
+                },
+                {
+                    "product_id": 16,
+                    "number": 105
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT op.product_id, SUM(st.completed_number) AS completed_quantity FROM order_product op JOIN sewing_tasks st ON op.id = st.order_product_id WHERE op.order_id = '6' GROUP BY op.product_id;",
+            "description": "Retrieve the completed quantities for each product in the order by joining with sewing tasks",
+            "results": [
+                {
+                    "product_id": 8,
+                    "completed_quantity": "80"
+                },
+                {
+                    "product_id": 16,
+                    "completed_quantity": "105"
+                },
+                {
+                    "product_id": 25,
+                    "completed_quantity": "60"
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT op.product_id, op.number - IFNULL(st.completed_quantity, 0) AS unfinished_quantity FROM (SELECT product_id, number FROM order_product WHERE order_id = '6') op LEFT JOIN (SELECT op.product_id, SUM(st.completed_number) AS completed_quantity FROM order_product op JOIN sewing_tasks st ON op.id = st.order_product_id WHERE op.order_id = '6' GROUP BY op.product_id) st ON op.product_id = st.product_id WHERE op.number > IFNULL(st.completed_quantity, 0);",
+            "description": "Identify products that have not been fully manufactured by comparing the ordered quantity with the completed quantity",
+            "results": [
+                {
+                    "product_id": 25,
+                    "unfinished_quantity": "55"
+                },
+                {
+                    "product_id": 8,
+                    "unfinished_quantity": "30"
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT pt.description AS product_type, p.attributes, up.unfinished_quantity FROM products p JOIN products_types pt ON p.products_type_id = pt.id JOIN (SELECT op.product_id, op.number - IFNULL(st.completed_quantity, 0) AS unfinished_quantity FROM (SELECT product_id, number FROM order_product WHERE order_id = '6') op LEFT JOIN (SELECT op.product_id, SUM(st.completed_number) AS completed_quantity FROM order_product op JOIN sewing_tasks st ON op.id = st.order_product_id WHERE op.order_id = '6' GROUP BY op.product_id) st ON op.product_id = st.product_id WHERE op.number > IFNULL(st.completed_quantity, 0)) up ON p.id = up.product_id;",
+            "description": "Retrieve the types and attributes of the unfinished products from Step5",
+            "results": [
+                {
+                    "product_type": "Sweater",
+                    "attributes": "Blue, S size",
+                    "unfinished_quantity": "55"
+                },
+                {
+                    "product_type": "Shorts",
+                    "attributes": "Silver, S size",
+                    "unfinished_quantity": "30"
+                }
+            ]
+        }
+    ],
+    "response": "Sure thing! Let's take a look at the unfinished products for the order \"Michael_SweaterAndShorts\" placed by Michael. Here are the details of the products that are still in the making:\n\n| Product Type | Attributes       | Unfinished Quantity |\n|--------------|------------------|---------------------|\n| Sweater      | Blue, S size     | 55                  |\n| Shorts       | Silver, S size   | 30                  |\n\nIt looks like there are some sweaters and shorts that still need to be completed. Hang tight, and they'll be ready soon! 😄",
+    "token_used": 9738
+}

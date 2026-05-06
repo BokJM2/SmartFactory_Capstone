@@ -1,0 +1,36 @@
+{
+    "ID": 24,
+    "q_ch": "Elite Sewers 在2024年6月30日前分配的缝纫任务有哪些？",
+    "q_en": "What sewing tasks will Elite Sewers be assigned before June 30, 2024?",
+    "hint": "应查找Elite Sewers所有任务中start_time < 2024-6-30的任务",
+    "gt": "Sure thing! Let's take a look at the sewing tasks assigned to the \"Elite Sewers\" group that are scheduled to start before June 30, 2024. Here's what I found:\n\n| Task ID | Start Time       | End Time         | Planned Number | Completed Number | Status |\n|---------|------------------|------------------|----------------|------------------|--------|\n| 31      | May 26, 2024     | June 4, 2024     | 260            | 260              | 1      |\n\nIt looks like the \"Elite Sewers\" have a task starting on May 26, 2024, and it's already completed! 🎉 If you have any more questions or need further details, feel free to ask! 😊",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM working_group WHERE name = 'Elite Sewers';",
+            "description": "Retrieve the working group ID for the group with the name \"Elite Sewers\"",
+            "results": [
+                {
+                    "id": 10
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT * FROM sewing_tasks WHERE working_group_id = '10' AND start_time < '2024-06-30';",
+            "description": "Retrieve the sewing tasks assigned to the working group \"Elite Sewers\" with a start time before June 30, 2024",
+            "results": [
+                {
+                    "id": 31,
+                    "start_time": "2024-05-26 00:00:00",
+                    "end_time": "2024-06-04 00:00:00",
+                    "working_group_id": 10,
+                    "order_product_id": 31,
+                    "planned_number": 260,
+                    "completed_number": 260,
+                    "status": 1
+                }
+            ]
+        }
+    ]
+}

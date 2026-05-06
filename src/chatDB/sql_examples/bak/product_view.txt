@@ -1,0 +1,7 @@
+USER INPUT: List all products and the styles they include.
+
+ANSWER:
+```
+Step1: Retrieve each product's ID, attributes, and corresponding product type description
+SQL `SELECT p.id, p.attributes, pt.description FROM products p JOIN products_types pt ON p.products_type_id = pt.id;`
+```

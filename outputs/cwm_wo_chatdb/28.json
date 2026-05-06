@@ -1,0 +1,13 @@
+{
+  "ID": 28,
+  "q_ch": "香港理工大学 1月份下的订单的缝纫任务全部完成了么？",
+  "q_en": "Have all the sewing tasks for the orders placed by the Hong Kong Polytechnic University in January been completed?",
+  "sql": "SELECT COUNT(*) = 0 FROM sewing_tasks WHERE order_product_id IN (SELECT op.id FROM order_product op JOIN orders o ON op.order_id = o.id WHERE o.user_id = (SELECT id FROM customers WHERE customer_name = 'PolyU') AND o.created_at BETWEEN '2023-01-01' AND '2023-01-31') AND completed_number < planned_number;",
+  "thought": "To determine if all sewing tasks for the orders placed by 'PolyU' in January have been completed, we need to follow these steps: 1) Identify the customer ID for 'PolyU'. 2) Find the orders placed by this customer in January. 3) Retrieve the corresponding order products. 4) Check the completion status of the sewing tasks related to these order products.",
+  "total_tokens": "2932",
+  "rows": [
+    {
+      "COUNT(*) = 0": 1
+    }
+  ]
+}

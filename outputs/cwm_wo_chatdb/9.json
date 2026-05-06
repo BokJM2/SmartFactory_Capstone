@@ -1,0 +1,42 @@
+{
+  "ID": 9,
+  "q_ch": "William 的缝纫任务进度如何？",
+  "q_en": "What is the progress of sewing tasks for William?",
+  "sql": "SELECT c.customer_name, o.order_name, st.id AS sewing_task_id, st.start_time, st.end_time, st.planned_number, st.completed_number, st.is_started FROM customers c JOIN orders o ON c.id = o.user_id JOIN order_product op ON o.id = op.order_id JOIN sewing_tasks st ON op.id = st.order_product_id WHERE c.customer_name = 'William';",
+  "thought": "To find the progress of sewing tasks for orders placed by William, we need to filter tasks related to his orders. We will join the customers, orders, order_product, and sewing_tasks tables, and retrieve relevant fields.",
+  "completion_tokens": "137",
+  "prompt_tokens": "1843",
+  "total_tokens": "2854",
+  "rows": [
+    {
+      "customer_name": "William",
+      "order_name": "William_Skirt_Sweater_Shorts",
+      "sewing_task_id": "sw28",
+      "start_time": "2024年05月12日 00:00",
+      "end_time": "2024年05月28日 00:00",
+      "planned_number": 210,
+      "completed_number": 210,
+      "is_started": 1
+    },
+    {
+      "customer_name": "William",
+      "order_name": "William_Skirt_Sweater_Shorts",
+      "sewing_task_id": "sw29",
+      "start_time": "2024年05月11日 00:00",
+      "end_time": "2024年05月19日 00:00",
+      "planned_number": 180,
+      "completed_number": 180,
+      "is_started": 1
+    },
+    {
+      "customer_name": "William",
+      "order_name": "William_Skirt_Sweater_Shorts",
+      "sewing_task_id": "sw30",
+      "start_time": "2024年04月26日 00:00",
+      "end_time": "2024年05月15日 00:00",
+      "planned_number": 195,
+      "completed_number": 195,
+      "is_started": 1
+    }
+  ]
+}

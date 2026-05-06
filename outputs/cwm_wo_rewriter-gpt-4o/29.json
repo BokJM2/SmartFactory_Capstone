@@ -1,0 +1,68 @@
+{
+    "ID": 29,
+    "q_ch": "对所有已经开始但是尚未完成的缝纫任务进行统计，剩余工作量最多的工作组是哪个？",
+    "q_en": "Which workgroup has the highest remaining workload for all sewing tasks that have been started but not yet completed?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id, name FROM working_group WHERE type = 'sew';",
+            "description": "Retrieve the working group ID and name for all sewing groups",
+            "results": [
+                {
+                    "id": 2,
+                    "name": "Master Sewers"
+                },
+                {
+                    "id": 7,
+                    "name": "Skilled Sewers"
+                },
+                {
+                    "id": 8,
+                    "name": "Advanced Sewers"
+                },
+                {
+                    "id": 9,
+                    "name": "Premier Sewers"
+                },
+                {
+                    "id": 10,
+                    "name": "Elite Sewers"
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT working_group_id, SUM(planned_number - completed_number) AS remaining_workload FROM sewing_tasks WHERE status = 1 GROUP BY working_group_id;",
+            "description": "Calculate the remaining workload for each sewing group by summing the difference between planned numbers and completed numbers for tasks that have been started but not yet completed",
+            "results": [
+                {
+                    "working_group_id": 2,
+                    "remaining_workload": "40"
+                },
+                {
+                    "working_group_id": 7,
+                    "remaining_workload": "0"
+                },
+                {
+                    "working_group_id": 8,
+                    "remaining_workload": "0"
+                },
+                {
+                    "working_group_id": 9,
+                    "remaining_workload": "0"
+                },
+                {
+                    "working_group_id": 10,
+                    "remaining_workload": "0"
+                }
+            ]
+        },
+        {
+            "type": "Thought",
+            "operation": "Compare the remaining workload of all sewing groups obtained in Step2 and identify the group with the highest remaining workload.",
+            "results": "To identify the sewing group with the highest remaining workload, we need to compare the remaining workloads obtained in Step 2. Here are the remaining workloads for each group:\n\n- Master Sewers (ID: 2): 40\n- Skilled Sewers (ID: 7): 0\n- Advanced Sewers (ID: 8): 0\n- Premier Sewers (ID: 9): 0\n- Elite Sewers (ID: 10): 0\n\nThe group with the highest remaining workload is \"Master Sewers\" with a remaining workload of 40."
+        }
+    ],
+    "response": "Hey there! 😄 Let's dive into the sewing world and find out which workgroup is leading the pack in terms of remaining workload for tasks that have been started but not yet completed. Here's what we found:\n\n| Workgroup Name   | Remaining Workload |\n|------------------|--------------------|\n| Master Sewers    | 40                 |\n| Skilled Sewers   | 0                  |\n| Advanced Sewers  | 0                  |\n| Premier Sewers   | 0                  |\n| Elite Sewers     | 0                  |\n\n🎉 The \"Master Sewers\" are at the top with a remaining workload of 40! Keep up the great work, Master Sewers! 🧵✨",
+    "token_used": 7232
+}

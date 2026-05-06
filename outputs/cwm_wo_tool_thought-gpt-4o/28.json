@@ -1,0 +1,83 @@
+{
+    "ID": 28,
+    "q_ch": "香港理工大学 1月份下的订单的缝纫任务全部完成了么？",
+    "q_en": "Have all the sewing tasks for the orders placed by the Hong Kong Polytechnic University in January been completed?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM customers WHERE customer_name = 'PolyU';",
+            "description": "Retrieve the customer ID for the customer with the name \"PolyU\"",
+            "results": [
+                {
+                    "id": 1
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM orders WHERE user_id = '1' AND created_at BETWEEN '2024-01-01' AND '2024-01-31';",
+            "description": "Retrieve the order IDs for orders placed by the customer \"PolyU\" in January",
+            "results": [
+                {
+                    "id": 1
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM order_product WHERE order_id IN (1);",
+            "description": "Retrieve the order product IDs for the orders placed by \"PolyU\" in January",
+            "results": [
+                {
+                    "id": 1
+                },
+                {
+                    "id": 2
+                },
+                {
+                    "id": 3
+                },
+                {
+                    "id": 4
+                },
+                {
+                    "id": 5
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT status FROM sewing_tasks WHERE order_product_id IN (1, 2, 3, 4, 5);",
+            "description": "Check the status of sewing tasks for the retrieved order products",
+            "results": [
+                {
+                    "status": 2
+                },
+                {
+                    "status": 1
+                },
+                {
+                    "status": 1
+                },
+                {
+                    "status": 1
+                },
+                {
+                    "status": 1
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT COUNT(*) FROM sewing_tasks WHERE order_product_id IN (1, 2, 3, 4, 5) AND status != 2;",
+            "description": "Determine if all sewing tasks are completed (status = 2)",
+            "results": [
+                {
+                    "COUNT(*)": 4
+                }
+            ]
+        }
+    ],
+    "response": "Hello there! 😄 Let's dive into the details of the sewing tasks for the orders placed by PolyU in January.\n\nHere's a summary of the sewing task statuses:\n\n| Order Product ID | Sewing Task Status |\n|------------------|--------------------|\n| 1                | Completed (2)      |\n| 2                | In Progress (1)    |\n| 3                | In Progress (1)    |\n| 4                | In Progress (1)    |\n| 5                | In Progress (1)    |\n\nFrom the table, we can see that not all sewing tasks have been completed. Only one task is marked as completed, while the others are still in progress. So, it looks like there's still some work to be done! 🧵✂️\n\nIf you have any more questions or need further assistance, feel free to ask! 😊",
+    "token_used": 7833
+}

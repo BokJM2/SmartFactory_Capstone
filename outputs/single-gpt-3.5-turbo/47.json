@@ -1,0 +1,20 @@
+{
+    "ID": 47,
+    "q_ch": "为香港理工大学最新的订单的所有产品创建裁剪任务，任务期为2024年6月30日到2024年7月12日，负责的裁剪团队为Expert Cutters。返回全部裁剪任务编号。",
+    "q_en": "Create cutting tasks for all products in the latest order from Hong Kong Polytechnic University. The task period is from June 30, 2024, to July 12, 2024, with the responsible cutting team being Expert Cutters. Return the IDs of generated cutting task.",
+    "hint": "When invoking the tool tool_find_order_details to retrieve the product details of the latest order, you need to obtain the order_product_id (the primary key of this record, marked as id in the SQL result), product_id (the product's ID), and number (the quantity needed for the product). Next, for all products, use the tool tool_get_wip_materials with the given product_id to determine the required WIP material IDs and quantities. Multiply the quantity of WIP by the quantity of the product to get the total WIP needed. Finally, when inserting into the cutting_tasks table, you need to provide the order_product_id, product_id, and planned_number.",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "INSERT INTO cutting_tasks (start_time, end_time, working_group_id, order_product_id, produced_wip_id, planned_number, completed_number, status) SELECT '2024-06-30', '2024-07-12', wg.id, op.id, op.product_id, 0, 0, 0 FROM order_product op JOIN orders o ON op.order_id = o.id JOIN customers c ON o.user_id = c.id JOIN working_group wg ON wg.name = 'Expert Cutters' WHERE c.customer_name = 'PolyU' ORDER BY o.created_at DESC LIMIT 1; SELECT LAST_INSERT_ID();",
+            "description": "To create cutting tasks for all products in the latest order from 'PolyU' with the specified task period and responsible cutting team, we need to first find the latest order ID for the customer 'PolyU', then insert cutting tasks for each product in that order with the given task period and working group. Finally, we will return the IDs of the generated cutting tasks.",
+            "results": [
+                {
+                    "auto_increment_id": null
+                }
+            ]
+        }
+    ],
+    "response": "### Cutting Tasks Creation Result\n\n| Generated Cutting Task ID |\n|---------------------------|\n| No cutting tasks created  |\n\nHey there! 😄 Unfortunately, no cutting tasks were generated based on the criteria you provided. If you have any other questions or need further assistance, feel free to ask!",
+    "token_used": 5949
+}

@@ -1,0 +1,38 @@
+{
+    "ID": 33,
+    "q_ch": "分配给Precision Cutters的裁剪任务有哪些？",
+    "q_en": "What are the cutting tasks assigned to Precision Cutters?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT ct.* FROM cutting_tasks ct JOIN working_group wg ON ct.working_group_id = wg.id WHERE wg.name = 'Precision Cutters';",
+            "description": "Retrieve the cutting tasks assigned to the working group named 'Precision Cutters' by joining the cutting_tasks table with the working_group table using the working_group_id.",
+            "results": [
+                {
+                    "id": 18,
+                    "start_time": "2024-03-11 00:00:00",
+                    "end_time": "2024-04-07 00:00:00",
+                    "working_group_id": 1,
+                    "order_product_id": 18,
+                    "produced_wip_id": 10,
+                    "planned_number": 200,
+                    "completed_number": 200,
+                    "status": 1
+                },
+                {
+                    "id": 30,
+                    "start_time": "2024-04-19 00:00:00",
+                    "end_time": "2024-04-26 00:00:00",
+                    "working_group_id": 1,
+                    "order_product_id": 30,
+                    "produced_wip_id": 10,
+                    "planned_number": 195,
+                    "completed_number": 195,
+                    "status": 1
+                }
+            ]
+        }
+    ],
+    "response": "Sure thing! Here are the cutting tasks assigned to the \"Precision Cutters\" working group:\n\n| Task ID | Start Time          | End Time            | Planned Number | Completed Number | Status |\n|---------|---------------------|---------------------|----------------|------------------|--------|\n| 18      | March 11, 2024      | April 7, 2024       | 200            | 200              | Completed ✅ |\n| 30      | April 19, 2024      | April 26, 2024      | 195            | 195              | Completed ✅ |\n\nLooks like the \"Precision Cutters\" have been busy and efficient! Keep up the great work! 😄",
+    "token_used": 5761
+}

@@ -1,0 +1,22 @@
+{
+  "ID": 28,
+  "q_ch": "香港理工大学 1月份下的订单的缝纫任务全部完成了么？",
+  "q_en": "Have all the sewing tasks for the orders placed by the Hong Kong Polytechnic University in January been completed?",
+  "sqls": [
+    {
+      "command": [
+        "SELECT id FROM customers WHERE customer_name = 'Hong Kong Polytechnic University';",
+        "SELECT COUNT(*) FROM sewing_tasks WHERE order_product_id IN (SELECT id FROM order_product WHERE order_id IN (SELECT id FROM orders WHERE user_id = '' AND created_at BETWEEN '2024-01-01' AND '2024-01-31')) AND completed_number < planned_number;"
+      ],
+      "Result of executing SQL": [
+        "no results found.",
+        [
+          {
+            "COUNT(*)": 0
+          }
+        ]
+      ]
+    }
+  ],
+  "total_tokens": 12322
+}

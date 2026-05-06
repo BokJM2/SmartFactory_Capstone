@@ -1,0 +1,95 @@
+{
+    "ID": 54,
+    "q_ch": "列出所有缝纫组的进度百分比。",
+    "q_en": "List the progress percentage of all sewing groups",
+    "gt": "Sure thing! Let's take a look at the progress percentages for all the sewing groups. Here's a handy table for you:\n\n| Sewing Group      | Progress Percentage |\n|-------------------|---------------------|\n| Master Sewers     | 97.4441%            |\n| Skilled Sewers    | 97.2222%            |\n| Advanced Sewers   | 81.9588%            |\n| Premier Sewers    | 74.6667%            |\n| Elite Sewers      | 44.0678%            |\n\nKeep up the great work, sewing teams! 🎉🧵",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id, name FROM working_group WHERE type = 'sew';",
+            "description": "Retrieve the IDs and names of all sewing groups",
+            "results": [
+                {
+                    "id": 2,
+                    "name": "Master Sewers"
+                },
+                {
+                    "id": 7,
+                    "name": "Skilled Sewers"
+                },
+                {
+                    "id": 8,
+                    "name": "Advanced Sewers"
+                },
+                {
+                    "id": 9,
+                    "name": "Premier Sewers"
+                },
+                {
+                    "id": 10,
+                    "name": "Elite Sewers"
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT working_group_id, SUM(completed_number) / SUM(planned_number) * 100 AS progress_percentage FROM sewing_tasks WHERE working_group_id = '2' GROUP BY working_group_id;",
+            "description": "For each sewing group, calculate the progress percentage by dividing the total completed number by the total planned number of sewing tasks",
+            "results": [
+                {
+                    "working_group_id": 2,
+                    "progress_percentage": "97.4441"
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT working_group_id, SUM(completed_number) / SUM(planned_number) * 100 AS progress_percentage FROM sewing_tasks WHERE working_group_id = '7' GROUP BY working_group_id;",
+            "description": "For each sewing group, calculate the progress percentage by dividing the total completed number by the total planned number of sewing tasks",
+            "results": [
+                {
+                    "working_group_id": 7,
+                    "progress_percentage": "97.2222"
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT working_group_id, SUM(completed_number) / SUM(planned_number) * 100 AS progress_percentage FROM sewing_tasks WHERE working_group_id = '8' GROUP BY working_group_id;",
+            "description": "For each sewing group, calculate the progress percentage by dividing the total completed number by the total planned number of sewing tasks",
+            "results": [
+                {
+                    "working_group_id": 8,
+                    "progress_percentage": "81.9588"
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT working_group_id, SUM(completed_number) / SUM(planned_number) * 100 AS progress_percentage FROM sewing_tasks WHERE working_group_id = '9' GROUP BY working_group_id;",
+            "description": "For each sewing group, calculate the progress percentage by dividing the total completed number by the total planned number of sewing tasks",
+            "results": [
+                {
+                    "working_group_id": 9,
+                    "progress_percentage": "74.6667"
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT working_group_id, SUM(completed_number) / SUM(planned_number) * 100 AS progress_percentage FROM sewing_tasks WHERE working_group_id = '10' GROUP BY working_group_id;",
+            "description": "For each sewing group, calculate the progress percentage by dividing the total completed number by the total planned number of sewing tasks",
+            "results": [
+                {
+                    "working_group_id": 10,
+                    "progress_percentage": "44.0678"
+                }
+            ]
+        },
+        {
+            "type": "Thought",
+            "operation": "For each sewing group, use the results from Step1 and Step2 to map the group ID to its name and display the progress percentage.",
+            "results": "To achieve the objective of mapping each sewing group ID to its name and displaying the progress percentage, we can combine the results from Step 1 and Step 2 as follows:\n\n1. **Step 1 Results**: Retrieve the IDs and names of all sewing groups.\n   - ID: 2, Name: Master Sewers\n   - ID: 7, Name: Skilled Sewers\n   - ID: 8, Name: Advanced Sewers\n   - ID: 9, Name: Premier Sewers\n   - ID: 10, Name: Elite Sewers\n\n2. **Step 2 Results**: Calculate the progress percentage for each sewing group.\n   - Group ID: 2, Progress Percentage: 97.4441%\n   - Group ID: 7, Progress Percentage: 97.2222%\n   - Group ID: 8, Progress Percentage: 81.9588%\n   - Group ID: 9, Progress Percentage: 74.6667%\n   - Group ID: 10, Progress Percentage: 44.0678%\n\n**Mapped Results**:\n- Master Sewers: 97.4441%\n- Skilled Sewers: 97.2222%\n- Advanced Sewers: 81.9588%\n- Premier Sewers: 74.6667%\n- Elite Sewers: 44.0678%"
+        }
+    ]
+}

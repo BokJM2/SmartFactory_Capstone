@@ -1,0 +1,49 @@
+{
+    "ID": 8,
+    "q_ch": "Olivia的订单中使用了哪些原料？",
+    "q_en": "What materials were used in Olivia's order?",
+    "gt": "Sure! Let's dive into Olivia's order and see what materials were used. Here's a breakdown of the original materials for each product in her order:\n\n| **Product ID** | **WIP Material ID** | **Original Material ID** | **Quantity** |\n|----------------|---------------------|--------------------------|--------------|\n| 18             | 10                  | 9                        | 0.6          |\n|                |                     | 1                        | 0.35         |\n|                |                     | 13                       | 0.8          |\n|                | 6                   | 5                        | 0.75         |\n|                |                     | 1                        | 0.4          |\n|                | 2                   | 1                        | 0.4          |\n|                |                     | 11                       | 0.65         |\n|                |                     | 3                        | 0.2          |\n| 17             | 4                   | 3                        | 0.5          |\n|                |                     | 14                       | 0.15         |\n|                |                     | 13                       | 0.3          |\n|                | 12                  | 11                       | 0.7          |\n|                |                     | 1                        | 0.5          |\n| 10             | 8                   | 7                        | 1.0          |\n|                |                     | 9                        | 0.2          |\n|                |                     | 5                        | 0.1          |\n\nI hope this helps you understand what materials were used in Olivia's order! If you have any more questions, feel free to ask. 😊",
+    "steps": [
+        {
+            "sql": "SELECT id FROM customers WHERE customer_name = 'Olivia';",
+            "description": "Retrieve the customer ID for the customer with the name \"Olivia\"",
+            "results": [
+                {
+                    "id": 7
+                }
+            ]
+        },
+        {
+            "sql": "SELECT id FROM orders WHERE user_id = '7';",
+            "description": "Retrieve the order IDs for the customer \"Olivia\"",
+            "results": [
+                {
+                    "id": 7
+                }
+            ]
+        },
+        {
+            "sql": "SELECT product_id FROM order_product WHERE order_id IN (7);",
+            "description": "Retrieve the product IDs for each order of the customer \"Olivia\"",
+            "results": [
+                {
+                    "product_id": 18
+                },
+                {
+                    "product_id": 17
+                },
+                {
+                    "product_id": 10
+                }
+            ]
+        },
+        {
+            "input": "Retrieve the work-in-progress material IDs for each product\n[\"tool_get_wip_materials, {'product_id': 18}, Get the required work-in-progress materials for a product\", \"tool_get_wip_materials, {'product_id': 17}, Get the required work-in-progress materials for a product\", \"tool_get_wip_materials, {'product_id': 10}, Get the required work-in-progress materials for a product\"]",
+            "output": "Here are the work-in-progress material IDs for each product:\n\n- **Product ID 18:**\n  - Material ID: 10, Quantity: 4\n  - Material ID: 6, Quantity: 1\n  - Material ID: 2, Quantity: 3\n\n- **Product ID 17:**\n  - Material ID: 4, Quantity: 2\n  - Material ID: 12, Quantity: 3\n\n- **Product ID 10:**\n  - Material ID: 8, Quantity: 3\n  - Material ID: 12, Quantity: 1\n  - Material ID: 6, Quantity: 5"
+        },
+        {
+            "input": "Retrieve the original materials for each work-in-progress material\n[\"tool_get_original_materials, {'wip_id': 10}, Get the original materials for a work-in-progress material\", \"tool_get_original_materials, {'wip_id': 6}, Get the original materials for a work-in-progress material\", \"tool_get_original_materials, {'wip_id': 2}, Get the original materials for a work-in-progress material\", \"tool_get_original_materials, {'wip_id': 4}, Get the original materials for a work-in-progress material\", \"tool_get_original_materials, {'wip_id': 12}, Get the original materials for a work-in-progress material\", \"tool_get_original_materials, {'wip_id': 8}, Get the original materials for a work-in-progress material\"]",
+            "output": "Here are the original materials for each work-in-progress material:\n\n1. **WIP Material ID 10:**\n   - Original Material ID 9, Quantity: 0.6\n   - Original Material ID 1, Quantity: 0.35\n   - Original Material ID 13, Quantity: 0.8\n\n2. **WIP Material ID 6:**\n   - Original Material ID 5, Quantity: 0.75\n   - Original Material ID 1, Quantity: 0.4\n\n3. **WIP Material ID 2:**\n   - Original Material ID 1, Quantity: 0.4\n   - Original Material ID 11, Quantity: 0.65\n   - Original Material ID 3, Quantity: 0.2\n\n4. **WIP Material ID 4:**\n   - Original Material ID 3, Quantity: 0.5\n   - Original Material ID 14, Quantity: 0.15\n   - Original Material ID 13, Quantity: 0.3\n\n5. **WIP Material ID 12:**\n   - Original Material ID 11, Quantity: 0.7\n   - Original Material ID 1, Quantity: 0.5\n\n6. **WIP Material ID 8:**\n   - Original Material ID 7, Quantity: 1.0\n   - Original Material ID 9, Quantity: 0.2\n   - Original Material ID 5, Quantity: 0.1"
+        }
+    ]
+}

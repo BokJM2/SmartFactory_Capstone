@@ -1,0 +1,91 @@
+{
+    "ID": 13,
+    "q_ch": "在我们的所有仓库中，库存不为0的原材料有哪些，整理成{类型：剩余数量}的形式。",
+    "q_en": "What are the raw materials with non zero inventory in all of our warehouses, organized in the form of 'Type: Remaining Quantity'?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT wm.material_id, m.name, wm.left_number FROM warehouse_material wm JOIN materials m ON wm.material_id = m.id WHERE wm.left_number > 0;",
+            "description": "Retrieve the IDs and names of all materials with non-zero inventory in the warehouses",
+            "results": [
+                {
+                    "material_id": 1,
+                    "name": "Cotton Fabric",
+                    "left_number": 3500
+                },
+                {
+                    "material_id": 2,
+                    "name": "Fabric Pieces",
+                    "left_number": 3200
+                },
+                {
+                    "material_id": 3,
+                    "name": "Wool",
+                    "left_number": 4100
+                },
+                {
+                    "material_id": 4,
+                    "name": "Wool Pieces",
+                    "left_number": 3070
+                },
+                {
+                    "material_id": 5,
+                    "name": "Silk",
+                    "left_number": 1100
+                },
+                {
+                    "material_id": 6,
+                    "name": "Silk Pieces",
+                    "left_number": 5400
+                },
+                {
+                    "material_id": 7,
+                    "name": "Leather",
+                    "left_number": 2200
+                },
+                {
+                    "material_id": 8,
+                    "name": "Leather Pieces",
+                    "left_number": 880
+                },
+                {
+                    "material_id": 9,
+                    "name": "Synthetic Fiber",
+                    "left_number": 2300
+                },
+                {
+                    "material_id": 10,
+                    "name": "Synthetic Fiber Pieces",
+                    "left_number": 390
+                },
+                {
+                    "material_id": 11,
+                    "name": "Denim Fabric",
+                    "left_number": 4500
+                },
+                {
+                    "material_id": 12,
+                    "name": "Denim Fabric Pieces",
+                    "left_number": 2230
+                },
+                {
+                    "material_id": 13,
+                    "name": "Down",
+                    "left_number": 1230
+                },
+                {
+                    "material_id": 14,
+                    "name": "Down Pieces",
+                    "left_number": 2420
+                }
+            ]
+        },
+        {
+            "type": "Thought",
+            "operation": "Replace the material IDs with their corresponding names to display the materials in a more readable format.",
+            "results": "The materials in a more readable format are:\n1. Cotton Fabric\n2. Fabric Pieces\n3. Wool\n4. Wool Pieces\n5. Silk\n6. Silk Pieces\n7. Leather\n8. Leather Pieces\n9. Synthetic Fiber\n10. Synthetic Fiber Pieces\n11. Denim Fabric\n12. Denim Fabric Pieces\n13. Down\n14. Down Pieces"
+        }
+    ],
+    "response": "Certainly! Here is the answer to your question:\n\n| Type                  | Remaining Quantity |\n|-----------------------|--------------------|\n| Cotton Fabric         | 3500               |\n| Fabric Pieces         | 3200               |\n| Wool                  | 4100               |\n| Wool Pieces           | 3070               |\n| Silk                  | 1100               |\n| Silk Pieces           | 5400               |\n| Leather               | 2200               |\n| Leather Pieces        | 880                |\n| Synthetic Fiber       | 2300               |\n| Synthetic Fiber Pieces| 390                |\n| Denim Fabric          | 4500               |\n| Denim Fabric Pieces   | 2230               |\n| Down                  | 1230               |\n| Down Pieces           | 2420               |\n\nI hope this helps! If you have any more questions, feel free to ask. 😄",
+    "token_used": 7313
+}

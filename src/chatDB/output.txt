@@ -1,0 +1,67 @@
+为了满足用户的需求，我们需要进行以下步骤：
+
+1. 从`recall_knowledge.py`中导入`retrive_standard_entity_names`函数。
+2. 修改`rewrite_query.py`中的`generate_standard_entity_mapping`函数，使用`retrive_standard_entity_names`函数来召回标准命名实体，而不是使用`standard_entity_names`。
+
+下面是相应的*SEARCH/REPLACE* blocks：
+
+```python
+##File: D:\合作\香港理工\ChatDB\rewrite_query.py
+<<<<<<< SEARCH
+from chatgpt import create_chat_completion
+=======
+from chatgpt import create_chat_completion
+from recall_knowledge import retrive_standard_entity_names
+>>>>>>> REPLACE
+```
+
+```python
+##File: D:\合作\香港理工\ChatDB\rewrite_query.py
+<<<<<<< SEARCH
+standard_entity_names = {
+    "customers.customer_name": [
+        "PolyU", "John", "Emily", "James", "Sophia", "Michael", "Olivia", "William"
+    ],
+    "orders.order_name": [
+        "PolyU_Tshirt", "John_Jacket", "Emily_Pants", "James_Skirt", "John_Pants", "Emily_Dress",
+        "James_WinterOrder", "Sophia_SkirtAndJacket", "Michael_SweaterAndShorts", "Olivia_WinterOrder",
+        "William_Skirt_Sweater_Shorts", "PolyU_Skirt"
+    ],
+    "products_types.description": [
+        "Electronics", "T-shirt", "Pants", "Dress", "Jacket", "Skirt", "Shorts", "Sweater", "Coat"
+    ],
+    "products.attributes": [
+        "Black, S size", "Black, XL size", "Black, 34 size", "Blue, 30 size", "Blue, XL size",
+        "Blue, 35 size", "Blue, S size", "Blue, L size", "Brown, S size", "Brown, 34 size",
+        "Brown, L size", "Gold, L size", "Green, M size", "Green, XL size", "Grey, XL size",
+        "Grey, 29 size", "Grey, L size", "Pink, M size", "Pink, S size", "Purple, S size",
+        "Purple, M size", "Red, M size", "Red, L size", "Silver, S size", "White, L size",
+        "White, XL size", "Yellow, L size", "Yellow, S size"
+    ],
+    "materials.name": [
+        "Cotton Fabric", "Synthetic Fiber Pieces", "Denim Fabric", "Denim Fabric Pieces",
+        "Down", "Down Pieces", "Fabric Pieces", "Wool", "Wool Pieces", "Silk", "Silk Pieces",
+        "Leather", "Leather Pieces", "Synthetic Fiber"
+    ],
+    "warehouse.name": [
+        "Main Warehouse", "Auxiliary warehouse"
+    ],
+    "working_group.name": [
+        "Precision Cutters", "Elite Sewers", "Master Sewers", "Master Cutters", "Expert Cutters",
+        "Professional Cutters", "Advanced Cutters", "Skilled Sewers", "Advanced Sewers", "Premier Sewers"
+    ]
+}
+=======
+>>>>>>> REPLACE
+```
+
+```python
+##File: D:\合作\香港理工\ChatDB\rewrite_query.py
+<<<<<<< SEARCH
+                possible_standard_names = ", ".join(standard_entity_names.get(entity_type, []))
+=======
+                possible_standard_names = ", ".join(retrive_standard_entity_names(entity_type, entity_name))
+>>>>>>> REPLACE
+```
+
+这样，我们就完成了重构`generate_standard_entity_mapping`函数，使其使用`retrive_standard_entity_names`函数来召回标准命名实体。

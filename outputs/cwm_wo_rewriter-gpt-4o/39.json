@@ -1,0 +1,106 @@
+{
+    "ID": 39,
+    "q_ch": "使用 Leather 的裁剪任务有哪些？",
+    "q_en": "Which cutting tasks use Leather?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM materials WHERE name = 'Leather';",
+            "description": "Retrieve the material ID for the material with the name \"Leather\"",
+            "results": [
+                {
+                    "id": 7
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT wip_id FROM wip_material WHERE origin_material_id = '7';",
+            "description": "Retrieve the WIP material IDs that require the material \"Leather\"",
+            "results": [
+                {
+                    "wip_id": 8
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM cutting_tasks WHERE produced_wip_id IN ('8');",
+            "description": "Retrieve the cutting task IDs that produce the WIP materials using \"Leather\"",
+            "results": [
+                {
+                    "id": 5
+                },
+                {
+                    "id": 11
+                },
+                {
+                    "id": 16
+                },
+                {
+                    "id": 24
+                },
+                {
+                    "id": 27
+                },
+                {
+                    "id": 31
+                },
+                {
+                    "id": 32
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT ct.id, ct.start_time, ct.end_time, wg.name AS working_group_name FROM cutting_tasks ct JOIN working_group wg ON ct.working_group_id = wg.id WHERE ct.id IN ('5', '11', '16', '24', '27', '31', '32');",
+            "description": "Retrieve the details of cutting tasks that use \"Leather\"",
+            "results": [
+                {
+                    "id": 5,
+                    "start_time": "2024-01-10 00:00:00",
+                    "end_time": "2024-02-02 00:00:00",
+                    "working_group_name": "Master Sewers"
+                },
+                {
+                    "id": 32,
+                    "start_time": "2024-06-01 00:00:00",
+                    "end_time": "2024-06-17 00:00:00",
+                    "working_group_name": "Master Sewers"
+                },
+                {
+                    "id": 24,
+                    "start_time": "2024-03-25 00:00:00",
+                    "end_time": "2024-04-23 00:00:00",
+                    "working_group_name": "Master Cutters"
+                },
+                {
+                    "id": 31,
+                    "start_time": "2024-05-10 00:00:00",
+                    "end_time": "2024-05-26 00:00:00",
+                    "working_group_name": "Master Cutters"
+                },
+                {
+                    "id": 11,
+                    "start_time": "2024-03-02 00:00:00",
+                    "end_time": "2024-03-21 00:00:00",
+                    "working_group_name": "Expert Cutters"
+                },
+                {
+                    "id": 16,
+                    "start_time": "2024-03-11 00:00:00",
+                    "end_time": "2024-04-10 00:00:00",
+                    "working_group_name": "Expert Cutters"
+                },
+                {
+                    "id": 27,
+                    "start_time": "2024-04-14 00:00:00",
+                    "end_time": "2024-05-04 00:00:00",
+                    "working_group_name": "Expert Cutters"
+                }
+            ]
+        }
+    ],
+    "response": "Sure thing! Let's dive into the cutting tasks that use leather. Here's a detailed breakdown of the tasks, including their timeframes and the working groups involved:\n\n| Task ID | Start Time          | End Time            | Working Group     |\n|---------|---------------------|---------------------|-------------------|\n| 5       | January 10, 2024    | February 2, 2024    | Master Sewers     |\n| 11      | March 2, 2024       | March 21, 2024      | Expert Cutters    |\n| 16      | March 11, 2024      | April 10, 2024      | Expert Cutters    |\n| 24      | March 25, 2024      | April 23, 2024      | Master Cutters    |\n| 27      | April 14, 2024      | May 4, 2024         | Expert Cutters    |\n| 31      | May 10, 2024        | May 26, 2024        | Master Cutters    |\n| 32      | June 1, 2024        | June 17, 2024       | Master Sewers     |\n\nThese tasks are all set to use leather, and they're being handled by some of the best teams around! If you have any more questions or need further details, feel free to ask. 😊",
+    "token_used": 8668
+}

@@ -1,0 +1,30 @@
+{
+  "ID": 27,
+  "q_ch": "我是Advanced Sewers，我尚未完成的任务有哪些，对应的顾客都是谁？",
+  "q_en": "I am Advanced Sewers. What are the tasks I have not yet completed?",
+  "sql": "SELECT st.* FROM sewing_tasks st JOIN working_group wg ON st.working_group_id = wg.id WHERE wg.name = 'Advanced Sewers' AND st.completed_number < st.planned_number;",
+  "thought": "To find the tasks that haven't been completed by the 'Advanced Sewers' working group, first, we need to get the working group ID from the 'working_group' table. Then, based on this ID, we will filter the sewing tasks from the 'sewing_tasks' table where 'completed_number' is less than 'planned_number'.",
+  "total_tokens": "2836",
+  "rows": [
+    {
+      "id": "sw33",
+      "start_time": "2024年07月17日 00:00",
+      "end_time": "2024年08月03日 00:00",
+      "working_group_id": "wg8",
+      "order_product_id": "op33",
+      "planned_number": 120,
+      "completed_number": 0,
+      "is_started": 0
+    },
+    {
+      "id": "sw7",
+      "start_time": "2024年03月06日 00:00",
+      "end_time": "2024年03月22日 00:00",
+      "working_group_id": "wg8",
+      "order_product_id": "op7",
+      "planned_number": 110,
+      "completed_number": 100,
+      "is_started": 1
+    }
+  ]
+}

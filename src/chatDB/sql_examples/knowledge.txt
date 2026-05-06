@@ -1,0 +1,13 @@
+## Definition of the progress of an order
+The total completed quantity of all sewing tasks corresponding to the products in an order, divided by the total quantity of products in an order.
+
+## Hint of creating cutting tasks
+If cutting tasks are not created using tools, it is necessary to retrieve the types and quantities of wip materials required for producing a product. Then, calculate the total demand for each type of wip material and create the cutting tasks accordingly.
+
+## Rules for Importing New Materials and Products to the Warehouse
+For each supply operation, you should use the 'INSERT' command to create a new record, rather than the 'UPDATE' command.
+
+## Requirement
+When you are asked to create a new order, the default order name is "Order" + the current date and time. For example, if the current date and time is 2021-07-01 12:00:00, the default order name is "Order20210701120000".
+
+

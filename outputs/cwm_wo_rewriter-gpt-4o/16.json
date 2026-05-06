@@ -1,0 +1,44 @@
+{
+    "ID": 16,
+    "q_ch": "2024年5月1日后才开始的裁剪任务有哪些？",
+    "q_en": "What are the cutting tasks that will only start after May 1, 2024?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT ct.id, ct.start_time, ct.end_time, wg.name AS working_group_name, op.id AS order_product_id FROM cutting_tasks ct JOIN working_group wg ON ct.working_group_id = wg.id JOIN order_product op ON ct.order_product_id = op.id WHERE ct.start_time > '2024-05-01';",
+            "description": "Retrieve the cutting tasks that have a start time after May 1, 2024",
+            "results": [
+                {
+                    "id": 32,
+                    "start_time": "2024-06-01 00:00:00",
+                    "end_time": "2024-06-17 00:00:00",
+                    "working_group_name": "Master Sewers",
+                    "order_product_id": 32
+                },
+                {
+                    "id": 31,
+                    "start_time": "2024-05-10 00:00:00",
+                    "end_time": "2024-05-26 00:00:00",
+                    "working_group_name": "Master Cutters",
+                    "order_product_id": 31
+                },
+                {
+                    "id": 33,
+                    "start_time": "2024-06-25 00:00:00",
+                    "end_time": "2024-07-17 00:00:00",
+                    "working_group_name": "Master Cutters",
+                    "order_product_id": 33
+                },
+                {
+                    "id": 34,
+                    "start_time": "2024-06-30 00:00:00",
+                    "end_time": "2024-07-10 00:00:00",
+                    "working_group_name": "Expert Cutters",
+                    "order_product_id": 34
+                }
+            ]
+        }
+    ],
+    "response": "Sure thing! Here are the cutting tasks that will start after May 1, 2024. Let's take a look at the details:\n\n| Task ID | Start Time       | End Time         | Working Group Name | Order Product ID |\n|---------|------------------|------------------|--------------------|------------------|\n| 32      | June 1, 2024     | June 17, 2024    | Master Sewers      | 32               |\n| 31      | May 10, 2024     | May 26, 2024     | Master Cutters     | 31               |\n| 33      | June 25, 2024    | July 17, 2024    | Master Cutters     | 33               |\n| 34      | June 30, 2024    | July 10, 2024    | Expert Cutters     | 34               |\n\nThese tasks are all set to kick off after May 1, 2024. If you have any more questions or need further details, feel free to ask! 😊",
+    "token_used": 6862
+}

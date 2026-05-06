@@ -1,0 +1,88 @@
+{
+    "ID": 14,
+    "q_ch": "剩余库存最多的原料是什么？",
+    "q_en": "What is the material with the highest remaining inventory?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id, name FROM materials;",
+            "description": "Retrieve the material ID and name for all materials",
+            "results": [
+                {
+                    "id": 1,
+                    "name": "Cotton Fabric"
+                },
+                {
+                    "id": 2,
+                    "name": "Fabric Pieces"
+                },
+                {
+                    "id": 3,
+                    "name": "Wool"
+                },
+                {
+                    "id": 4,
+                    "name": "Wool Pieces"
+                },
+                {
+                    "id": 5,
+                    "name": "Silk"
+                },
+                {
+                    "id": 6,
+                    "name": "Silk Pieces"
+                },
+                {
+                    "id": 7,
+                    "name": "Leather"
+                },
+                {
+                    "id": 8,
+                    "name": "Leather Pieces"
+                },
+                {
+                    "id": 9,
+                    "name": "Synthetic Fiber"
+                },
+                {
+                    "id": 10,
+                    "name": "Synthetic Fiber Pieces"
+                },
+                {
+                    "id": 11,
+                    "name": "Denim Fabric"
+                },
+                {
+                    "id": 12,
+                    "name": "Denim Fabric Pieces"
+                },
+                {
+                    "id": 13,
+                    "name": "Down"
+                },
+                {
+                    "id": 14,
+                    "name": "Down Pieces"
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT material_id, MAX(left_number) AS max_remaining FROM warehouse_material GROUP BY material_id ORDER BY max_remaining DESC LIMIT 1;",
+            "description": "Find the material with the highest remaining inventory",
+            "results": [
+                {
+                    "material_id": 6,
+                    "max_remaining": 5400
+                }
+            ]
+        },
+        {
+            "type": "Thought",
+            "operation": "Use the material ID obtained in Step2 to find the corresponding material name from the results of Step1.",
+            "results": "To achieve the objective, we need to use the material ID obtained in Step 2 to find the corresponding material name from the results of Step 1.\n\nFrom Step 2, the material ID with the highest remaining inventory is 6.\n\nNow, we will look for the material name corresponding to the material ID 6 in the results of Step 1:\n\n- From the results of Step 1, the entry with `id: 6` is `{'id': 6, 'name': 'Silk Pieces'}`.\n\nTherefore, the material name corresponding to the material ID 6 is \"Silk Pieces\"."
+        }
+    ],
+    "response": "Sure thing! Based on the data I have, the material with the highest remaining inventory is **Silk Pieces**. 🎉\n\nHere's a quick summary in table format for clarity:\n\n| Material ID | Material Name | Max Remaining Inventory |\n|-------------|---------------|-------------------------|\n| 6           | Silk Pieces   | 5400                    |\n\nIf you have any more questions or need further assistance, feel free to ask! 😊",
+    "token_used": 7004
+}

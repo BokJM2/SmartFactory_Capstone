@@ -1,0 +1,19 @@
+{
+    "ID": 15,
+    "q_ch": "剩余库存最少的原料是什么？",
+    "q_en": "What is the material with the lowest remaining inventory?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT SUM(left_number) AS total_number_of_products FROM warehouse_product;",
+            "description": "To find the total number of products in the warehouse, we need to sum up the 'left_number' column from the 'warehouse_product' table.",
+            "results": [
+                {
+                    "total_number_of_products": "0"
+                }
+            ]
+        }
+    ],
+    "response": "Sure! Here is the answer to the user's question:\n\n| Material with Lowest Remaining Inventory |\n|-----------------------------------------|\n| No products are currently in stock.     |\n\nFeel free to ask if you have any more questions! 😄",
+    "token_used": 4846
+}

@@ -1,0 +1,13 @@
+{
+  "ID": 7,
+  "q_ch": "顾客PolyU 下的订单总数是多少？",
+  "q_en": "How many orders are there in total under PolyU?",
+  "sql": "SELECT COUNT(*) AS total_orders FROM orders INNER JOIN customers ON orders.user_id = customers.id WHERE customers.customer_name = 'PolyU';",
+  "thought": "To find out the total number of orders for the customer 'PolyU', we need to join the 'customers' table with the 'orders' table using the customer's ID. Then, filter by the customer name 'PolyU', and count the number of matching orders.",
+  "total_tokens": "2782",
+  "rows": [
+    {
+      "total_orders": 2
+    }
+  ]
+}

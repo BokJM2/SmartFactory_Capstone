@@ -1,0 +1,35 @@
+{
+  "ID": 4,
+  "q_ch": "James 的订单包含哪些产品？",
+  "q_en": "What products are included in James's order?",
+  "sql": "SELECT p.id AS product_id, p.attributes, pt.description AS product_type FROM customers c JOIN orders o ON c.id = o.user_id JOIN order_product op ON o.id = op.order_id JOIN products p ON op.product_id = p.id JOIN products_types pt ON p.products_type_id = pt.id WHERE c.customer_name = 'James';",
+  "thought": "To find the products included in James's order, we need to link the customers table to the orders table using the customer's ID, then link the orders table to the order_product table using the order ID, and finally link the order_product table to the products table using the product ID. We will filter the customer by the name 'James' and select the relevant product details.",
+  "total_tokens": "2832",
+  "rows": [
+    {
+      "product_id": "p7",
+      "attributes": "Purple, M size",
+      "product_type": "Skirt"
+    },
+    {
+      "product_id": "p22",
+      "attributes": "Brown, S size",
+      "product_type": "Jacket"
+    },
+    {
+      "product_id": "p26",
+      "attributes": "Red, M size",
+      "product_type": "Coat"
+    },
+    {
+      "product_id": "p14",
+      "attributes": "Yellow, L size",
+      "product_type": "Jacket"
+    },
+    {
+      "product_id": "p6",
+      "attributes": "Brown, L size",
+      "product_type": "Jacket"
+    }
+  ]
+}

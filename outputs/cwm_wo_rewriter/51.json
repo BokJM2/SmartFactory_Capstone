@@ -1,0 +1,24 @@
+{
+  "ID": 51,
+  "q_ch": "未完成的订单中，哪个订单完成的进度最快？",
+  "q_en": "Which order has the fastest completion progress among the unfinished orders?",
+  "sqls": [
+    {
+      "command": [
+        "SELECT o.id, o.order_name, \n        COALESCE(SUM(ct.completed_number) / NULLIF(SUM(ct.planned_number), 0), 0) AS cutting_progress,\n        COALESCE(SUM(st.completed_number) / NULLIF(SUM(st.planned_number), 0), 0) AS sewing_progress,\n        (COALESCE(SUM(ct.completed_number) / NULLIF(SUM(ct.planned_number), 0), 0) + COALESCE(SUM(st.completed_number) / NULLIF(SUM(st.planned_number), 0), 0)) / 2 AS total_progress\n FROM orders o\n LEFT JOIN order_product op ON o.id = op.order_id\n LEFT JOIN cutting_tasks ct ON op.id = ct.order_product_id\n LEFT JOIN sewing_tasks st ON op.id = st.order_product_id\n WHERE ct.completed_number < ct.planned_number OR st.completed_number < st.planned_number\n GROUP BY o.id, o.order_name\n ORDER BY total_progress DESC\n LIMIT 1;"
+      ],
+      "Result of executing SQL": [
+        [
+          {
+            "id": "o8",
+            "order_name": "William_Skirt_Sweater_Shorts",
+            "cutting_progress": null,
+            "sewing_progress": null,
+            "total_progress": null
+          }
+        ]
+      ]
+    }
+  ],
+  "total_tokens": 2766
+}

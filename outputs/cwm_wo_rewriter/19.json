@@ -1,0 +1,84 @@
+{
+  "ID": 19,
+  "q_ch": "使用 Silk 的缝纫任务有哪些？",
+  "q_en": "Which sewing tasks use Silk?",
+  "sqls": [
+    {
+      "command": [
+        "SELECT id FROM materials WHERE name = 'Silk';",
+        "SELECT id FROM warehouse_material WHERE material_id = 'm5';",
+        "SELECT sewing_task_id FROM sewing_material_allocation WHERE warehouse_material_id IN (SELECT id FROM warehouse_material WHERE material_id = 'm5');",
+        "SELECT st.id, st.start_time, st.end_time, st.working_group_id, st.order_product_id, st.planned_number, st.completed_number, st.is_started FROM sewing_tasks st WHERE st.id IN (SELECT sewing_task_id FROM sewing_material_allocation WHERE warehouse_material_id IN (SELECT id FROM warehouse_material WHERE material_id = 'm5'));"
+      ],
+      "Result of executing SQL": [
+        [
+          {
+            "id": "m5"
+          }
+        ],
+        [
+          {
+            "id": "wm5"
+          }
+        ],
+        [
+          {
+            "sewing_task_id": "sw11"
+          },
+          {
+            "sewing_task_id": "sw12"
+          },
+          {
+            "sewing_task_id": "sw13"
+          },
+          {
+            "sewing_task_id": "sw14"
+          }
+        ],
+        [
+          {
+            "id": "sw11",
+            "start_time": "2024年03月21日 00:00",
+            "end_time": "2024年04月14日 00:00",
+            "working_group_id": "wg9",
+            "order_product_id": "op11",
+            "planned_number": 140,
+            "completed_number": 140,
+            "is_started": 1
+          },
+          {
+            "id": "sw12",
+            "start_time": "2024年03月27日 00:00",
+            "end_time": "2024年04月12日 00:00",
+            "working_group_id": "wg2",
+            "order_product_id": "op12",
+            "planned_number": 150,
+            "completed_number": 150,
+            "is_started": 1
+          },
+          {
+            "id": "sw13",
+            "start_time": "2024年03月27日 00:00",
+            "end_time": "2024年04月06日 00:00",
+            "working_group_id": "wg2",
+            "order_product_id": "op13",
+            "planned_number": 130,
+            "completed_number": 130,
+            "is_started": 1
+          },
+          {
+            "id": "sw14",
+            "start_time": "2024年03月18日 00:00",
+            "end_time": "2024年04月08日 00:00",
+            "working_group_id": "wg2",
+            "order_product_id": "op14",
+            "planned_number": 120,
+            "completed_number": 120,
+            "is_started": 1
+          }
+        ]
+      ]
+    }
+  ],
+  "total_tokens": 9734
+}

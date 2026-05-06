@@ -1,0 +1,14 @@
+{
+  "ID": 23,
+  "q_ch": "主仓库和辅助仓库中，哪个仓库的Cotton Fabric更多？",
+  "q_en": "Which warehouse has more Cotton Fabric between the main and auxiliary warehouses?",
+  "sql": "SELECT w.name, wm.left_number FROM warehouse w JOIN warehouse_material wm ON w.id = wm.warehouse_id JOIN materials m ON wm.material_id = m.id WHERE w.name IN ('Main Warehouse', 'Auxiliary warehouse') AND m.name = 'Cotton Fabric';",
+  "thought": "To determine which warehouse has more 'Cotton Fabric', we need to join the 'warehouse', 'warehouse_material', and 'materials' tables. We'll filter by the warehouse names 'Main Warehouse' and 'Auxiliary warehouse', and material name 'Cotton Fabric'. Then, we will compare the sums of 'left_number' for 'Cotton Fabric' in each warehouse.",
+  "total_tokens": "2968",
+  "rows": [
+    {
+      "name": "Main Warehouse",
+      "left_number": 3400
+    }
+  ]
+}

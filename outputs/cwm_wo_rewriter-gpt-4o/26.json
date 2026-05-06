@@ -1,0 +1,149 @@
+{
+    "ID": 26,
+    "q_ch": "Skilled Sewers使用了哪些原料？",
+    "q_en": "What raw materials are used by Skilled Sewers?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM working_group WHERE name = 'Skilled Sewers';",
+            "description": "Retrieve the working group ID for the group with the name \"Skilled Sewers\"",
+            "results": [
+                {
+                    "id": 7
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM sewing_tasks WHERE working_group_id = 7;",
+            "description": "Retrieve the sewing task IDs associated with the \"Skilled Sewers\" working group",
+            "results": [
+                {
+                    "id": 8
+                },
+                {
+                    "id": 17
+                },
+                {
+                    "id": 18
+                },
+                {
+                    "id": 19
+                },
+                {
+                    "id": 23
+                },
+                {
+                    "id": 27
+                },
+                {
+                    "id": 28
+                },
+                {
+                    "id": 29
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT order_product_id FROM sewing_tasks WHERE id IN (8, 17, 18, 19, 23, 27, 28, 29);",
+            "description": "Retrieve the order product IDs associated with the sewing tasks from Step2",
+            "results": [
+                {
+                    "order_product_id": 8
+                },
+                {
+                    "order_product_id": 17
+                },
+                {
+                    "order_product_id": 18
+                },
+                {
+                    "order_product_id": 19
+                },
+                {
+                    "order_product_id": 23
+                },
+                {
+                    "order_product_id": 27
+                },
+                {
+                    "order_product_id": 28
+                },
+                {
+                    "order_product_id": 29
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT product_id FROM order_product WHERE id IN (8, 17, 18, 19, 23, 27, 28, 29);",
+            "description": "Retrieve the product IDs associated with the order products from Step3",
+            "results": [
+                {
+                    "product_id": 2
+                },
+                {
+                    "product_id": 6
+                },
+                {
+                    "product_id": 7
+                },
+                {
+                    "product_id": 8
+                },
+                {
+                    "product_id": 9
+                },
+                {
+                    "product_id": 10
+                },
+                {
+                    "product_id": 14
+                },
+                {
+                    "product_id": 23
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT DISTINCT m.id, m.name FROM product_material pm JOIN materials m ON pm.material_id = m.id WHERE pm.product_id IN (2, 6, 7, 8, 9, 10, 14, 23);",
+            "description": "Retrieve the material IDs and names used by the products from Step4",
+            "results": [
+                {
+                    "id": 8,
+                    "name": "Leather Pieces"
+                },
+                {
+                    "id": 12,
+                    "name": "Denim Fabric Pieces"
+                },
+                {
+                    "id": 6,
+                    "name": "Silk Pieces"
+                },
+                {
+                    "id": 2,
+                    "name": "Fabric Pieces"
+                },
+                {
+                    "id": 4,
+                    "name": "Wool Pieces"
+                },
+                {
+                    "id": 10,
+                    "name": "Synthetic Fiber Pieces"
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT id, name FROM materials WHERE id IN (8, 12, 6, 2, 4, 10) AND type = 'origin';",
+            "description": "Filter the materials to only include raw materials",
+            "results": "no results found."
+        }
+    ],
+    "response": "Hello there! 😄 It looks like the \"Skilled Sewers\" working group is quite busy, but when it comes to raw materials, we hit a little snag. Unfortunately, there are no raw materials listed for the products they work on. \n\nIf you have any more questions or need further assistance, feel free to ask! 😊",
+    "token_used": 9637
+}

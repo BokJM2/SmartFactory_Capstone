@@ -1,0 +1,54 @@
+{
+  "ID": 6,
+  "q_ch": "顾客理大2024年1月的订单包含哪些产品？",
+  "q_en": "What products are included in PolyU's January 2024 orders?",
+  "sqls": [
+    {
+      "command": [
+        "SELECT id FROM customers WHERE customer_name = 'PolyU';",
+        "SELECT id FROM orders WHERE user_id = 'c1' AND created_at BETWEEN '2024-01-01' AND '2024-01-31';",
+        "SELECT op.order_id, p.attributes, pt.description FROM order_product op JOIN products p ON op.product_id = p.id JOIN products_types pt ON p.products_type_id = pt.id WHERE op.order_id IN (SELECT id FROM orders WHERE user_id = 'c1' AND created_at BETWEEN '2024-01-01' AND '2024-01-31');"
+      ],
+      "Result of executing SQL": [
+        [
+          {
+            "id": "c1"
+          }
+        ],
+        [
+          {
+            "id": "o1"
+          }
+        ],
+        [
+          {
+            "order_id": "o1",
+            "attributes": "Red, M size",
+            "description": "T-shirt"
+          },
+          {
+            "order_id": "o1",
+            "attributes": "Green, M size",
+            "description": "T-shirt"
+          },
+          {
+            "order_id": "o1",
+            "attributes": "Blue, L size",
+            "description": "T-shirt"
+          },
+          {
+            "order_id": "o1",
+            "attributes": "White, XL size",
+            "description": "T-shirt"
+          },
+          {
+            "order_id": "o1",
+            "attributes": "Yellow, S size",
+            "description": "T-shirt"
+          }
+        ]
+      ]
+    }
+  ],
+  "total_tokens": 4738
+}

@@ -1,0 +1,122 @@
+{
+    "ID": 13,
+    "q_ch": "在我们的所有仓库中，库存不为0的原材料有哪些，整理成{类型：剩余数量}的形式。",
+    "q_en": "What are the raw materials with non zero inventory in all of our warehouses, organized in the form of 'Type: Remaining Quantity'?",
+    "gt": "Sure thing! Here's a list of raw materials with non-zero inventory in all of our warehouses, organized in a neat table for you. 😊\n\n| Material Type      | Remaining Quantity |\n|--------------------|--------------------|\n| Cotton Fabric      | 3500               |\n| Wool               | 4100               |\n| Silk               | 1100               |\n| Leather            | 2200               |\n| Synthetic Fiber    | 2300               |\n| Denim Fabric       | 4500               |\n| Down               | 1230               |\n| Down Pieces        | 2420               |\n\nIf you have any more questions or need further assistance, feel free to ask! 😄",
+    "steps": [
+        {
+            "sql": "SELECT id, name FROM materials WHERE type = 'origin';",
+            "description": "Retrieve the IDs and names of all original materials",
+            "results": [
+                {
+                    "id": 1,
+                    "name": "Cotton Fabric"
+                },
+                {
+                    "id": 3,
+                    "name": "Wool"
+                },
+                {
+                    "id": 5,
+                    "name": "Silk"
+                },
+                {
+                    "id": 7,
+                    "name": "Leather"
+                },
+                {
+                    "id": 9,
+                    "name": "Synthetic Fiber"
+                },
+                {
+                    "id": 11,
+                    "name": "Denim Fabric"
+                },
+                {
+                    "id": 13,
+                    "name": "Down"
+                },
+                {
+                    "id": 14,
+                    "name": "Down Pieces"
+                }
+            ]
+        },
+        {
+            "sql": "SELECT wm.material_id, SUM(wm.left_number) as remaining_quantity FROM warehouse_material wm JOIN materials m ON wm.material_id = m.id WHERE m.type = 'origin' GROUP BY wm.material_id HAVING remaining_quantity > 0;",
+            "description": "Retrieve the remaining quantity of each original material in all warehouses",
+            "results": [
+                {
+                    "material_id": 1,
+                    "remaining_quantity": "3500"
+                },
+                {
+                    "material_id": 3,
+                    "remaining_quantity": "4100"
+                },
+                {
+                    "material_id": 5,
+                    "remaining_quantity": "1100"
+                },
+                {
+                    "material_id": 7,
+                    "remaining_quantity": "2200"
+                },
+                {
+                    "material_id": 9,
+                    "remaining_quantity": "2300"
+                },
+                {
+                    "material_id": 11,
+                    "remaining_quantity": "4500"
+                },
+                {
+                    "material_id": 13,
+                    "remaining_quantity": "1230"
+                },
+                {
+                    "material_id": 14,
+                    "remaining_quantity": "2420"
+                }
+            ]
+        },
+        {
+            "sql": "SELECT m.name, remaining_quantity FROM (SELECT wm.material_id, SUM(wm.left_number) as remaining_quantity FROM warehouse_material wm JOIN materials m ON wm.material_id = m.id WHERE m.type = 'origin' GROUP BY wm.material_id HAVING remaining_quantity > 0) as subquery JOIN materials m ON subquery.material_id = m.id;",
+            "description": "Combine the material names with their remaining quantities",
+            "results": [
+                {
+                    "name": "Cotton Fabric",
+                    "remaining_quantity": "3500"
+                },
+                {
+                    "name": "Wool",
+                    "remaining_quantity": "4100"
+                },
+                {
+                    "name": "Silk",
+                    "remaining_quantity": "1100"
+                },
+                {
+                    "name": "Leather",
+                    "remaining_quantity": "2200"
+                },
+                {
+                    "name": "Synthetic Fiber",
+                    "remaining_quantity": "2300"
+                },
+                {
+                    "name": "Denim Fabric",
+                    "remaining_quantity": "4500"
+                },
+                {
+                    "name": "Down",
+                    "remaining_quantity": "1230"
+                },
+                {
+                    "name": "Down Pieces",
+                    "remaining_quantity": "2420"
+                }
+            ]
+        }
+    ]
+}

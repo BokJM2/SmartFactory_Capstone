@@ -1,0 +1,75 @@
+{
+  "ID": 54,
+  "q_ch": "列出所有缝纫组的进度百分比。",
+  "q_en": "List the progress percentage of all sewing groups",
+  "sqls": [
+    {
+      "command": [
+        "SELECT wg.id AS working_group_id, wg.name AS working_group_name, \n        SUM(st.planned_number) AS total_planned, \n        SUM(st.completed_number) AS total_completed\n FROM working_group wg\n JOIN sewing_tasks st ON wg.id = st.working_group_id\n GROUP BY wg.id, wg.name;",
+        "SELECT working_group_id, working_group_name, \n        (total_completed / NULLIF(total_planned, 0)) * 100 AS progress_percentage\n FROM (\n   SELECT wg.id AS working_group_id, wg.name AS working_group_name, \n          SUM(st.planned_number) AS total_planned, \n          SUM(st.completed_number) AS total_completed\n   FROM working_group wg\n   JOIN sewing_tasks st ON wg.id = st.working_group_id\n   GROUP BY wg.id, wg.name\n ) AS sewing_group_progress;"
+      ],
+      "Result of executing SQL": [
+        [
+          {
+            "working_group_id": "wg10",
+            "working_group_name": "Elite Sewers",
+            "total_planned": null,
+            "total_completed": null
+          },
+          {
+            "working_group_id": "wg2",
+            "working_group_name": "Master Sewers",
+            "total_planned": null,
+            "total_completed": null
+          },
+          {
+            "working_group_id": "wg7",
+            "working_group_name": "Skilled Sewers",
+            "total_planned": null,
+            "total_completed": null
+          },
+          {
+            "working_group_id": "wg8",
+            "working_group_name": "Advanced Sewers",
+            "total_planned": null,
+            "total_completed": null
+          },
+          {
+            "working_group_id": "wg9",
+            "working_group_name": "Premier Sewers",
+            "total_planned": null,
+            "total_completed": null
+          }
+        ],
+        [
+          {
+            "working_group_id": "wg10",
+            "working_group_name": "Elite Sewers",
+            "progress_percentage": null
+          },
+          {
+            "working_group_id": "wg2",
+            "working_group_name": "Master Sewers",
+            "progress_percentage": null
+          },
+          {
+            "working_group_id": "wg7",
+            "working_group_name": "Skilled Sewers",
+            "progress_percentage": null
+          },
+          {
+            "working_group_id": "wg8",
+            "working_group_name": "Advanced Sewers",
+            "progress_percentage": null
+          },
+          {
+            "working_group_id": "wg9",
+            "working_group_name": "Premier Sewers",
+            "progress_percentage": null
+          }
+        ]
+      ]
+    }
+  ],
+  "total_tokens": 4309
+}

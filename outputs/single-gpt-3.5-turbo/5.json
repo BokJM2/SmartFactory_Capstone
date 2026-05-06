@@ -1,0 +1,19 @@
+{
+    "ID": 5,
+    "q_ch": "Sophia的订单创建时间是什么时候？",
+    "q_en": "When was Sophia's order created?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT created_at FROM orders WHERE user_id = (SELECT id FROM customers WHERE customer_name = 'Sophia');",
+            "description": "To find out when Sophia's order was created, we need to query the orders table based on the customer's name 'Sophia'.",
+            "results": [
+                {
+                    "created_at": "2024-03-18 00:00:00"
+                }
+            ]
+        }
+    ],
+    "response": "Sure! Here is the optimized answer for the user question \"When was Sophia's order created?\":\n\n| created_at           |\n|----------------------|\n| 2024-03-18 00:00:00  |\n\nFeel free to ask if you have any more questions! 😄",
+    "token_used": 5240
+}

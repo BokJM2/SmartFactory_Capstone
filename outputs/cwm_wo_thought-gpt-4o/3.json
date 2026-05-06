@@ -1,0 +1,100 @@
+{
+    "ID": 3,
+    "q_ch": "Emily订购的Dress订单生产进度如何？用百分比来表示。",
+    "q_en": "What is the production progress of the Dress ordered by Emily? Please represent it in percentage.",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM customers WHERE customer_name = 'Emily';",
+            "description": "Retrieve the customer ID for the customer with the name \"Emily\"",
+            "results": [
+                {
+                    "id": 3
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM orders WHERE user_id = 3;",
+            "description": "Retrieve the order IDs for orders placed by the customer \"Emily\"",
+            "results": [
+                {
+                    "id": 3
+                },
+                {
+                    "id": 11
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT p.id FROM products p JOIN products_types pt ON p.products_type_id = pt.id WHERE pt.description = 'Dress';",
+            "description": "Retrieve the product IDs for products of type \"Dress\"",
+            "results": [
+                {
+                    "id": 5
+                },
+                {
+                    "id": 13
+                },
+                {
+                    "id": 21
+                },
+                {
+                    "id": 29
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT op.id FROM order_product op WHERE op.order_id IN (3, 11) AND op.product_id IN (5, 13, 21, 29);",
+            "description": "Retrieve the order product IDs for the \"Dress\" products ordered by \"Emily\"",
+            "results": [
+                {
+                    "id": 11
+                },
+                {
+                    "id": 12
+                },
+                {
+                    "id": 13
+                },
+                {
+                    "id": 14
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT SUM(op.number) FROM order_product op WHERE op.id IN (11, 12, 13, 14);",
+            "description": "Retrieve the total quantity of \"Dress\" products ordered by \"Emily\"",
+            "results": [
+                {
+                    "SUM(op.number)": "540"
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT SUM(st.completed_number) FROM sewing_tasks st WHERE st.order_product_id IN (11, 12, 13, 14);",
+            "description": "Retrieve the total completed quantity of sewing tasks for the \"Dress\" products ordered by \"Emily\"",
+            "results": [
+                {
+                    "SUM(st.completed_number)": "460"
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT (SUM(st.completed_number) / SUM(op.number)) * 100 AS production_progress FROM sewing_tasks st JOIN order_product op ON st.order_product_id = op.id WHERE op.id IN (11, 12, 13, 14);",
+            "description": "Calculate the production progress percentage",
+            "results": [
+                {
+                    "production_progress": "85.1852"
+                }
+            ]
+        }
+    ],
+    "response": "Hello there! 😄 Let's take a look at the production progress for the \"Dress\" products ordered by Emily. Here's a breakdown of the progress in percentage:\n\n| Product Type | Customer | Production Progress (%) |\n|--------------|----------|-------------------------|\n| Dress        | Emily    | 85.19%                  |\n\nEmily's dresses are coming along nicely, with a production progress of 85.19%! 🎉 Keep an eye out for the final touches! If you have any more questions, feel free to ask! 😊",
+    "token_used": 9241
+}

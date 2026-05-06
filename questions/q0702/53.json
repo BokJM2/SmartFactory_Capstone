@@ -1,0 +1,6 @@
+{
+  "ID": 53,
+  "q_ch": "列出已开始但未完成的裁剪任务，并计算还有总共多少未完成。",
+  "q_en": "List the cutting tasks that have started but are not yet completed, and calculate the total number of unfinished tasks.",
+  "gt": ""
+}

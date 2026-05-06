@@ -1,0 +1,52 @@
+{
+    "ID": 16,
+    "q_ch": "2024年5月1日后才开始的裁剪任务有哪些？",
+    "q_en": "What are the cutting tasks that will only start after May 1, 2024?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT ct.id, ct.start_time, ct.end_time, wg.name AS working_group_name, op.id AS order_product_id, p.attributes AS product_attributes, pt.description AS product_type FROM cutting_tasks ct JOIN working_group wg ON ct.working_group_id = wg.id JOIN order_product op ON ct.order_product_id = op.id JOIN products p ON op.product_id = p.id JOIN products_types pt ON p.products_type_id = pt.id WHERE ct.start_time > '2024-05-01';",
+            "description": "Retrieve cutting tasks that have a start time after May 1, 2024",
+            "results": [
+                {
+                    "id": 32,
+                    "start_time": "2024-06-01 00:00:00",
+                    "end_time": "2024-06-17 00:00:00",
+                    "working_group_name": "Master Sewers",
+                    "order_product_id": 32,
+                    "product_attributes": "Black, XL size",
+                    "product_type": "Jacket"
+                },
+                {
+                    "id": 31,
+                    "start_time": "2024-05-10 00:00:00",
+                    "end_time": "2024-05-26 00:00:00",
+                    "working_group_name": "Master Cutters",
+                    "order_product_id": 31,
+                    "product_attributes": "Pink, M size",
+                    "product_type": "Skirt"
+                },
+                {
+                    "id": 33,
+                    "start_time": "2024-06-25 00:00:00",
+                    "end_time": "2024-07-17 00:00:00",
+                    "working_group_name": "Master Cutters",
+                    "order_product_id": 33,
+                    "product_attributes": "Grey, 29 size",
+                    "product_type": "Pants"
+                },
+                {
+                    "id": 34,
+                    "start_time": "2024-06-30 00:00:00",
+                    "end_time": "2024-07-10 00:00:00",
+                    "working_group_name": "Expert Cutters",
+                    "order_product_id": 34,
+                    "product_attributes": "Purple, M size",
+                    "product_type": "Skirt"
+                }
+            ]
+        }
+    ],
+    "response": "Sure thing! Here are the cutting tasks that will start after May 1, 2024. Let's take a look at the details:\n\n| Task ID | Start Time       | End Time         | Working Group     | Order Product ID | Product Attributes | Product Type |\n|---------|------------------|------------------|-------------------|------------------|--------------------|--------------|\n| 32      | June 1, 2024     | June 17, 2024    | Master Sewers     | 32               | Black, XL size     | Jacket       |\n| 31      | May 10, 2024     | May 26, 2024     | Master Cutters    | 31               | Pink, M size       | Skirt        |\n| 33      | June 25, 2024    | July 17, 2024    | Master Cutters    | 33               | Grey, 29 size      | Pants        |\n| 34      | June 30, 2024    | July 10, 2024    | Expert Cutters    | 34               | Purple, M size     | Skirt        |\n\nThese tasks are all set to start after the date you mentioned. If you have any more questions or need further details, feel free to ask! 😊",
+    "token_used": 6968
+}

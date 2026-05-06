@@ -1,0 +1,22 @@
+{
+  "ID": 25,
+  "q_ch": "对于Master Sewers 已经完成的所有缝纫任务，有哪些是在2024年2月1日之后创建的?",
+  "q_en": "For all sewing tasks completed by Master Sewers, which ones were created after February 1, 2024?",
+  "sqls": [
+    {
+      "command": [
+        "SELECT id FROM working_group WHERE name = 'Master Sewers';",
+        "SELECT id, start_time, end_time, order_product_id, planned_number, completed_number, is_started FROM sewing_tasks WHERE working_group_id = 'wg2' AND created_at > '2024-02-01' AND completed_number = planned_number;"
+      ],
+      "Result of executing SQL": [
+        [
+          {
+            "id": "wg2"
+          }
+        ],
+        null
+      ]
+    }
+  ],
+  "total_tokens": 11143
+}

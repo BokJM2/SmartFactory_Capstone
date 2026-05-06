@@ -1,0 +1,6 @@
+{
+    "ID": 6,
+    "q_ch": "顾客理大2024年1月的订单包含哪些产品？",
+    "q_en": "What products are included in PolyU's January 2024 orders?",
+    "gt": "SELECT pt.description, p.attributes FROM orders o JOIN customers c ON o.user_id = c.id JOIN order_product op ON o.id = op.order_id JOIN products p ON op.product_id = p.id JOIN products_types pt ON p.products_type_id = pt.id WHERE c.customer_name = 'PolyU' AND o.created_at >= '2024-01-01' AND o.created_at < '2024-02-01';"
+}

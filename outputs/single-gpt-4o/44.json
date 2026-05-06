@@ -1,0 +1,15 @@
+{
+    "ID": 44,
+    "q_ch": "请将100件ID为15的产品入库到辅助仓库。",
+    "q_en": "Please store 100 units of product with ID=15 in the auxiliary warehouse.",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "UPDATE warehouse_product SET left_number = left_number + 100 WHERE product_id = 15 AND warehouse_id = (SELECT id FROM warehouse WHERE name = 'Auxiliary warehouse');",
+            "description": "To store 100 units of product with ID=15 in the 'Auxiliary warehouse', we need to update the 'left_number' in the 'warehouse_product' table for the specified warehouse and product.",
+            "results": "update data successfully."
+        }
+    ],
+    "response": "Sure thing! 🎉 We've successfully updated the inventory to store 100 units of the product with ID=15 in the 'Auxiliary warehouse'. Here's a quick summary of the update:\n\n| Product ID | Warehouse Name      | Units Added |\n|------------|---------------------|-------------|\n| 15         | Auxiliary warehouse | 100         |\n\nEverything is set! If you have any more questions or need further assistance, feel free to ask. 😊",
+    "token_used": 5368
+}

@@ -1,0 +1,92 @@
+{
+  "ID": 25,
+  "q_ch": "对于Master Sewers 已经完成的所有缝纫任务，有哪些是在2024年2月1日之后创建的?",
+  "q_en": "For all sewing tasks completed by Master Sewers, which ones were created after February 1, 2024?",
+  "sql": "SELECT st.* FROM sewing_tasks st JOIN working_group wg ON st.working_group_id = wg.id WHERE wg.name = 'Master Sewers' AND st.start_time > '2024-02-01 00:00:00' AND st.completed_number >= st.planned_number;",
+  "thought": "To find all sewing tasks completed by the working group named 'Master Sewers' which were created after February 1, 2024, we need to join the `sewing_tasks` table with the `working_group` table on the `working_group_id` field. We will then filter the results based on the working group's name and the task's start time, additionally ensuring that only completed tasks are included.",
+  "completion_tokens": "157",
+  "prompt_tokens": "1856",
+  "total_tokens": "2900",
+  "rows": [
+    {
+      "id": "sw10",
+      "start_time": "2024年03月29日 00:00",
+      "end_time": "2024年04月09日 00:00",
+      "working_group_id": "wg2",
+      "order_product_id": "op10",
+      "planned_number": 100,
+      "completed_number": 100,
+      "is_started": 1
+    },
+    {
+      "id": "sw12",
+      "start_time": "2024年03月27日 00:00",
+      "end_time": "2024年04月12日 00:00",
+      "working_group_id": "wg2",
+      "order_product_id": "op12",
+      "planned_number": 150,
+      "completed_number": 150,
+      "is_started": 1
+    },
+    {
+      "id": "sw13",
+      "start_time": "2024年03月27日 00:00",
+      "end_time": "2024年04月06日 00:00",
+      "working_group_id": "wg2",
+      "order_product_id": "op13",
+      "planned_number": 130,
+      "completed_number": 130,
+      "is_started": 1
+    },
+    {
+      "id": "sw14",
+      "start_time": "2024年03月18日 00:00",
+      "end_time": "2024年04月08日 00:00",
+      "working_group_id": "wg2",
+      "order_product_id": "op14",
+      "planned_number": 120,
+      "completed_number": 120,
+      "is_started": 1
+    },
+    {
+      "id": "sw15",
+      "start_time": "2024年03月26日 00:00",
+      "end_time": "2024年04月09日 00:00",
+      "working_group_id": "wg2",
+      "order_product_id": "op15",
+      "planned_number": 185,
+      "completed_number": 185,
+      "is_started": 1
+    },
+    {
+      "id": "sw24",
+      "start_time": "2024年04月23日 00:00",
+      "end_time": "2024年05月20日 00:00",
+      "working_group_id": "wg2",
+      "order_product_id": "op24",
+      "planned_number": 105,
+      "completed_number": 105,
+      "is_started": 1
+    },
+    {
+      "id": "sw30",
+      "start_time": "2024年04月26日 00:00",
+      "end_time": "2024年05月15日 00:00",
+      "working_group_id": "wg2",
+      "order_product_id": "op30",
+      "planned_number": 195,
+      "completed_number": 195,
+      "is_started": 1
+    },
+    {
+      "id": "sw5",
+      "start_time": "2024年02月02日 00:00",
+      "end_time": "2024年02月25日 00:00",
+      "working_group_id": "wg2",
+      "order_product_id": "op5",
+      "planned_number": 260,
+      "completed_number": 260,
+      "is_started": 1
+    }
+  ]
+}

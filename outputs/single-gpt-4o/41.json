@@ -1,0 +1,19 @@
+{
+    "ID": 41,
+    "q_ch": "我是香港理工大学，今天是2024年7月2日，请帮我创建一个订单，要50件红色, M码的T-shirt, 以及30件蓝色, XL码 的Sweater。",
+    "q_en": "I am from The Hong Kong Polytechnic University. Today is July 2, 2024. Please help me create an order for 50 red T-shirts in size M and 30 blue sweaters in size XL.",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "INSERT INTO orders (user_id, order_name, created_at) VALUES ((SELECT id FROM customers WHERE customer_name = 'PolyU'), 'Order for July 2, 2024', '2024-07-02'); INSERT INTO order_product (order_id, product_id, number) VALUES ((SELECT id FROM orders WHERE order_name = 'Order for July 2, 2024'), (SELECT p.id FROM products p JOIN products_types pt ON p.products_type_id = pt.id WHERE p.attributes = 'Red, M size' AND pt.description = 'T-shirt'), 50), ((SELECT id FROM orders WHERE order_name = 'Order for July 2, 2024'), (SELECT p.id FROM products p JOIN products_types pt ON p.products_type_id = pt.id WHERE p.attributes = 'Blue, XL size' AND pt.description = 'Sweater'), 30);",
+            "description": "Insert a new order for the customer 'PolyU' with the specified products and quantities. First, find the customer ID for 'PolyU', then find the product IDs for 'Red, M size' T-shirt and 'Blue, XL size' Sweater, and finally insert the order and order products.",
+            "results": [
+                {
+                    "auto_increment_id": 35
+                }
+            ]
+        }
+    ],
+    "response": "Sure thing! 🎉 Your order has been successfully created. Here's a summary of your order details:\n\n| **Customer** | **Order Date** | **Product**          | **Attributes** | **Quantity** |\n|--------------|----------------|----------------------|----------------|--------------|\n| PolyU        | July 2, 2024   | T-shirt              | Red, M size    | 50           |\n| PolyU        | July 2, 2024   | Sweater             | Blue, XL size  | 30           |\n\nIf you need any more assistance or have further questions, feel free to ask! 😊",
+    "token_used": 6361
+}

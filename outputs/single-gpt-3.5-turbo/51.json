@@ -1,0 +1,15 @@
+{
+    "ID": 51,
+    "q_ch": "未完成的订单中，哪个订单完成的进度最快？",
+    "q_en": "Which order has the fastest completion progress among the unfinished orders?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT op.order_id, ROUND(SUM(op.completed_number) / SUM(op.planned_number) * 100, 2) AS progress_percentage FROM cutting_tasks ct JOIN order_product op ON ct.order_product_id = op.id WHERE ct.status != 2 GROUP BY op.order_id ORDER BY progress_percentage DESC LIMIT 1;",
+            "description": "To find the order with the fastest completion progress among the unfinished orders, we need to calculate the progress percentage for each order and then identify the order with the highest progress percentage among the orders that are not completed yet.",
+            "results": "(1054, \"Unknown column 'op.completed_number' in 'field list'\")"
+        }
+    ],
+    "response": "I'm sorry, but I encountered an error while trying to retrieve the information you requested. 😔\n\nIf you have any other questions or need assistance with something else, feel free to ask! 😄",
+    "token_used": 5484
+}

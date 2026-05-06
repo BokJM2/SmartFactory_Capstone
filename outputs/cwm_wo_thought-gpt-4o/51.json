@@ -1,0 +1,72 @@
+{
+    "ID": 51,
+    "q_ch": "未完成的订单中，哪个订单完成的进度最快？",
+    "q_en": "Which order has the fastest completion progress among the unfinished orders?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id, order_name FROM orders WHERE id IN (SELECT order_id FROM order_product WHERE id IN (SELECT order_product_id FROM sewing_tasks WHERE status != 2));",
+            "description": "Retrieve all unfinished orders",
+            "results": [
+                {
+                    "id": 1,
+                    "order_name": "PolyU_Tshirt"
+                },
+                {
+                    "id": 2,
+                    "order_name": "John_Pants"
+                },
+                {
+                    "id": 3,
+                    "order_name": "Emily_Dress"
+                },
+                {
+                    "id": 4,
+                    "order_name": "James_WinterOrder"
+                },
+                {
+                    "id": 5,
+                    "order_name": "Sophia_SkirtAndJacket"
+                },
+                {
+                    "id": 6,
+                    "order_name": "Michael_SweaterAndShorts"
+                },
+                {
+                    "id": 7,
+                    "order_name": "Olivia_WinterOrder"
+                },
+                {
+                    "id": 8,
+                    "order_name": "William_Skirt_Sweater_Shorts"
+                },
+                {
+                    "id": 9,
+                    "order_name": "PolyU_Skirt"
+                },
+                {
+                    "id": 10,
+                    "order_name": "John_Jacket"
+                },
+                {
+                    "id": 11,
+                    "order_name": "Emily_Pants"
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT o.id, o.order_name, SUM(st.completed_number) / SUM(op.number) AS completion_progress FROM orders o JOIN order_product op ON o.id = op.order_id JOIN sewing_tasks st ON op.id = st.order_product_id WHERE st.status != 2 GROUP BY o.id ORDER BY completion_progress DESC LIMIT 1;",
+            "description": "Calculate the completion progress for each unfinished order",
+            "results": [
+                {
+                    "id": 4,
+                    "order_name": "James_WinterOrder",
+                    "completion_progress": "1.0000"
+                }
+            ]
+        }
+    ],
+    "response": "Hey there! 😄 Based on the data I have, the order with the fastest completion progress among the unfinished orders is **James_WinterOrder**. Here's a quick look at the details:\n\n| Order ID | Order Name       | Completion Progress |\n|----------|------------------|---------------------|\n| 4        | James_WinterOrder | 100%                |\n\nLooks like James is all set for winter! 🧥❄️ If you have any more questions, feel free to ask!",
+    "token_used": 6181
+}

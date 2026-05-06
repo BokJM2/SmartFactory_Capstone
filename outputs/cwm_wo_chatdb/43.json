@@ -1,0 +1,8 @@
+{
+  "ID": 43,
+  "q_ch": "向仓库Main Warehouse，入库Leather 1000份。",
+  "q_en": "Send 1000 Leathers to the Main Warehouse for storage.",
+  "sql": "SELECT id FROM materials WHERE name = 'Leather';SELECT id FROM warehouse WHERE name = 'Main Warehouse';SELECT id, left_number FROM warehouse_material WHERE warehouse_id = '<warehouse_id>' AND material_id = '<material_id>';UPDATE warehouse_material SET left_number = left_number + 1000 WHERE id = '<warehouse_material_id>';INSERT INTO warehouse_material (id, warehouse_id, material_id, left_number) VALUES (UUID(), '<warehouse_id>', '<material_id>', 1000);",
+  "thought": "To send 1000 materials named 'Leather' to the 'Main Warehouse', I need to find the IDs for both the material and the warehouse. Then, I will check if there is already an entry for this material in the specified warehouse. If there is, I will update the left_number. If not, I will create a new record in the warehouse_material table.",
+  "total_tokens": "2960"
+}

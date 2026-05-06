@@ -1,0 +1,19 @@
+{
+    "ID": 15,
+    "q_ch": "剩余库存最少的原料是什么？",
+    "q_en": "What is the material with the lowest remaining inventory?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT m.name FROM warehouse_material wm JOIN materials m ON wm.material_id = m.id ORDER BY wm.left_number ASC LIMIT 1;",
+            "description": "To find the material with the lowest remaining inventory, we need to query the `warehouse_material` table and order the results by the `left_number` column in ascending order, then select the top result.",
+            "results": [
+                {
+                    "name": "Silk"
+                }
+            ]
+        }
+    ],
+    "response": "Sure thing! Based on the latest inventory check, the material with the lowest remaining inventory is **Silk**. 🧵✨\n\nHere's a quick summary for you:\n\n| Material with Lowest Inventory |\n|-------------------------------|\n| Silk                          |\n\nIf you have any more questions or need further assistance, feel free to ask! 😊",
+    "token_used": 4854
+}

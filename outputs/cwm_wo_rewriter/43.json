@@ -1,0 +1,36 @@
+{
+  "ID": 43,
+  "q_ch": "向仓库Main Warehouse，入库Leather 1000份。",
+  "q_en": "Send 1000 Leathers to the Main Warehouse for storage.",
+  "sqls": [
+    {
+      "command": [
+        "SELECT id FROM materials WHERE name = 'Leather';",
+        "SELECT id FROM warehouse WHERE name = 'Main Warehouse';",
+        "SELECT id FROM warehouse_material WHERE warehouse_id = 'w1' AND material_id = 'm7';",
+        "UPDATE warehouse_material SET left_number = left_number + 1000 WHERE id = 'wm7';",
+        "INSERT INTO warehouse_material (id, warehouse_id, material_id, left_number) VALUES (UUID(), 'w1', 'm7', 1000);"
+      ],
+      "Result of executing SQL": [
+        [
+          {
+            "id": "m7"
+          }
+        ],
+        [
+          {
+            "id": "w1"
+          }
+        ],
+        [
+          {
+            "id": "wm7"
+          }
+        ],
+        "update data successfully.",
+        "insert data successfully."
+      ]
+    }
+  ],
+  "total_tokens": 4183
+}

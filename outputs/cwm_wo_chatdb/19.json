@@ -1,0 +1,50 @@
+{
+  "ID": 19,
+  "q_ch": "使用 Silk 的缝纫任务有哪些？",
+  "q_en": "Which sewing tasks use Silk?",
+  "sql": "SELECT st.* FROM sewing_tasks st JOIN sewing_material_allocation sma ON st.id = sma.sewing_task_id JOIN warehouse_material wm ON sma.warehouse_material_id = wm.id JOIN materials m ON wm.material_id = m.id WHERE m.name = 'Silk';",
+  "thought": "To find which sewing tasks make use of the material named 'Silk', we need to join the sewing_material_allocation table with the warehouse_material table to get the material details, then join the materials table to filter by the material name 'Silk', and finally, we fetch the sewing task details.",
+  "total_tokens": "2970",
+  "rows": [
+    {
+      "id": "sw11",
+      "start_time": "2024年03月21日 00:00",
+      "end_time": "2024年04月14日 00:00",
+      "working_group_id": "wg9",
+      "order_product_id": "op11",
+      "planned_number": 140,
+      "completed_number": 140,
+      "is_started": 1
+    },
+    {
+      "id": "sw12",
+      "start_time": "2024年03月27日 00:00",
+      "end_time": "2024年04月12日 00:00",
+      "working_group_id": "wg2",
+      "order_product_id": "op12",
+      "planned_number": 150,
+      "completed_number": 150,
+      "is_started": 1
+    },
+    {
+      "id": "sw13",
+      "start_time": "2024年03月27日 00:00",
+      "end_time": "2024年04月06日 00:00",
+      "working_group_id": "wg2",
+      "order_product_id": "op13",
+      "planned_number": 130,
+      "completed_number": 130,
+      "is_started": 1
+    },
+    {
+      "id": "sw14",
+      "start_time": "2024年03月18日 00:00",
+      "end_time": "2024年04月08日 00:00",
+      "working_group_id": "wg2",
+      "order_product_id": "op14",
+      "planned_number": 120,
+      "completed_number": 120,
+      "is_started": 1
+    }
+  ]
+}

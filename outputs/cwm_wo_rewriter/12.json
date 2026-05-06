@@ -1,0 +1,307 @@
+{
+  "ID": 12,
+  "q_ch": "2024年5月31日前完成的缝纫任务有哪些？",
+  "q_en": "What sewing tasks will be completed before May 31, 2024?",
+  "sqls": [
+    {
+      "command": [
+        "SELECT id, start_time, end_time, working_group_id, order_product_id, planned_number, completed_number, is_started \n FROM sewing_tasks \n WHERE end_time < '2024-05-31';"
+      ],
+      "Result of executing SQL": [
+        [
+          {
+            "id": "sw1",
+            "start_time": "2024年01月18日 00:00",
+            "end_time": "2024年02月07日 00:00",
+            "working_group_id": "wg2",
+            "order_product_id": "op1",
+            "planned_number": 100,
+            "completed_number": 100,
+            "is_started": 1
+          },
+          {
+            "id": "sw10",
+            "start_time": "2024年03月29日 00:00",
+            "end_time": "2024年04月09日 00:00",
+            "working_group_id": "wg2",
+            "order_product_id": "op10",
+            "planned_number": 100,
+            "completed_number": 100,
+            "is_started": 1
+          },
+          {
+            "id": "sw11",
+            "start_time": "2024年03月21日 00:00",
+            "end_time": "2024年04月14日 00:00",
+            "working_group_id": "wg9",
+            "order_product_id": "op11",
+            "planned_number": 140,
+            "completed_number": 140,
+            "is_started": 1
+          },
+          {
+            "id": "sw12",
+            "start_time": "2024年03月27日 00:00",
+            "end_time": "2024年04月12日 00:00",
+            "working_group_id": "wg2",
+            "order_product_id": "op12",
+            "planned_number": 150,
+            "completed_number": 150,
+            "is_started": 1
+          },
+          {
+            "id": "sw13",
+            "start_time": "2024年03月27日 00:00",
+            "end_time": "2024年04月06日 00:00",
+            "working_group_id": "wg2",
+            "order_product_id": "op13",
+            "planned_number": 130,
+            "completed_number": 130,
+            "is_started": 1
+          },
+          {
+            "id": "sw14",
+            "start_time": "2024年03月18日 00:00",
+            "end_time": "2024年04月08日 00:00",
+            "working_group_id": "wg2",
+            "order_product_id": "op14",
+            "planned_number": 120,
+            "completed_number": 120,
+            "is_started": 1
+          },
+          {
+            "id": "sw15",
+            "start_time": "2024年03月26日 00:00",
+            "end_time": "2024年04月09日 00:00",
+            "working_group_id": "wg2",
+            "order_product_id": "op15",
+            "planned_number": 185,
+            "completed_number": 185,
+            "is_started": 1
+          },
+          {
+            "id": "sw16",
+            "start_time": "2024年04月10日 00:00",
+            "end_time": "2024年05月07日 00:00",
+            "working_group_id": "wg8",
+            "order_product_id": "op16",
+            "planned_number": 200,
+            "completed_number": 200,
+            "is_started": 1
+          },
+          {
+            "id": "sw17",
+            "start_time": "2024年03月25日 00:00",
+            "end_time": "2024年04月22日 00:00",
+            "working_group_id": "wg7",
+            "order_product_id": "op17",
+            "planned_number": 175,
+            "completed_number": 175,
+            "is_started": 1
+          },
+          {
+            "id": "sw18",
+            "start_time": "2024年04月07日 00:00",
+            "end_time": "2024年04月21日 00:00",
+            "working_group_id": "wg7",
+            "order_product_id": "op18",
+            "planned_number": 200,
+            "completed_number": 200,
+            "is_started": 1
+          },
+          {
+            "id": "sw19",
+            "start_time": "2024年04月12日 00:00",
+            "end_time": "2024年04月23日 00:00",
+            "working_group_id": "wg7",
+            "order_product_id": "op19",
+            "planned_number": 95,
+            "completed_number": 95,
+            "is_started": 1
+          },
+          {
+            "id": "sw2",
+            "start_time": "2024年02月02日 00:00",
+            "end_time": "2024年02月15日 00:00",
+            "working_group_id": "wg9",
+            "order_product_id": "op2",
+            "planned_number": 240,
+            "completed_number": 240,
+            "is_started": 1
+          },
+          {
+            "id": "sw20",
+            "start_time": "2024年04月15日 00:00",
+            "end_time": "2024年05月07日 00:00",
+            "working_group_id": "wg8",
+            "order_product_id": "op20",
+            "planned_number": 90,
+            "completed_number": 90,
+            "is_started": 1
+          },
+          {
+            "id": "sw21",
+            "start_time": "2024年04月04日 00:00",
+            "end_time": "2024年04月12日 00:00",
+            "working_group_id": "wg8",
+            "order_product_id": "op21",
+            "planned_number": 85,
+            "completed_number": 85,
+            "is_started": 1
+          },
+          {
+            "id": "sw22",
+            "start_time": "2024年04月09日 00:00",
+            "end_time": "2024年04月22日 00:00",
+            "working_group_id": "wg8",
+            "order_product_id": "op22",
+            "planned_number": 115,
+            "completed_number": 115,
+            "is_started": 1
+          },
+          {
+            "id": "sw23",
+            "start_time": "2024年04月19日 00:00",
+            "end_time": "2024年05月01日 00:00",
+            "working_group_id": "wg7",
+            "order_product_id": "op23",
+            "planned_number": 110,
+            "completed_number": 110,
+            "is_started": 1
+          },
+          {
+            "id": "sw24",
+            "start_time": "2024年04月23日 00:00",
+            "end_time": "2024年05月20日 00:00",
+            "working_group_id": "wg2",
+            "order_product_id": "op24",
+            "planned_number": 105,
+            "completed_number": 105,
+            "is_started": 1
+          },
+          {
+            "id": "sw26",
+            "start_time": "2024年05月04日 00:00",
+            "end_time": "2024年05月15日 00:00",
+            "working_group_id": "wg9",
+            "order_product_id": "op26",
+            "planned_number": 70,
+            "completed_number": 70,
+            "is_started": 1
+          },
+          {
+            "id": "sw27",
+            "start_time": "2024年05月04日 00:00",
+            "end_time": "2024年05月15日 00:00",
+            "working_group_id": "wg7",
+            "order_product_id": "op27",
+            "planned_number": 60,
+            "completed_number": 60,
+            "is_started": 1
+          },
+          {
+            "id": "sw28",
+            "start_time": "2024年05月12日 00:00",
+            "end_time": "2024年05月28日 00:00",
+            "working_group_id": "wg7",
+            "order_product_id": "op28",
+            "planned_number": 210,
+            "completed_number": 210,
+            "is_started": 1
+          },
+          {
+            "id": "sw29",
+            "start_time": "2024年05月11日 00:00",
+            "end_time": "2024年05月19日 00:00",
+            "working_group_id": "wg7",
+            "order_product_id": "op29",
+            "planned_number": 180,
+            "completed_number": 180,
+            "is_started": 1
+          },
+          {
+            "id": "sw3",
+            "start_time": "2024年01月19日 00:00",
+            "end_time": "2024年02月08日 00:00",
+            "working_group_id": "wg9",
+            "order_product_id": "op3",
+            "planned_number": 150,
+            "completed_number": 150,
+            "is_started": 1
+          },
+          {
+            "id": "sw30",
+            "start_time": "2024年04月26日 00:00",
+            "end_time": "2024年05月15日 00:00",
+            "working_group_id": "wg2",
+            "order_product_id": "op30",
+            "planned_number": 195,
+            "completed_number": 195,
+            "is_started": 1
+          },
+          {
+            "id": "sw4",
+            "start_time": "2024年01月17日 00:00",
+            "end_time": "2024年01月30日 00:00",
+            "working_group_id": "wg2",
+            "order_product_id": "op4",
+            "planned_number": 220,
+            "completed_number": 200,
+            "is_started": 1
+          },
+          {
+            "id": "sw5",
+            "start_time": "2024年02月02日 00:00",
+            "end_time": "2024年02月25日 00:00",
+            "working_group_id": "wg2",
+            "order_product_id": "op5",
+            "planned_number": 260,
+            "completed_number": 260,
+            "is_started": 1
+          },
+          {
+            "id": "sw6",
+            "start_time": "2024年03月20日 00:00",
+            "end_time": "2024年04月07日 00:00",
+            "working_group_id": "wg8",
+            "order_product_id": "op6",
+            "planned_number": 95,
+            "completed_number": 95,
+            "is_started": 1
+          },
+          {
+            "id": "sw7",
+            "start_time": "2024年03月06日 00:00",
+            "end_time": "2024年03月22日 00:00",
+            "working_group_id": "wg8",
+            "order_product_id": "op7",
+            "planned_number": 110,
+            "completed_number": 100,
+            "is_started": 1
+          },
+          {
+            "id": "sw8",
+            "start_time": "2024年03月08日 00:00",
+            "end_time": "2024年04月05日 00:00",
+            "working_group_id": "wg7",
+            "order_product_id": "op8",
+            "planned_number": 50,
+            "completed_number": 50,
+            "is_started": 1
+          },
+          {
+            "id": "sw9",
+            "start_time": "2024年03月06日 00:00",
+            "end_time": "2024年03月20日 00:00",
+            "working_group_id": "wg8",
+            "order_product_id": "op9",
+            "planned_number": 80,
+            "completed_number": 80,
+            "is_started": 1
+          }
+        ]
+      ]
+    }
+  ],
+  "total_tokens": 7027
+}

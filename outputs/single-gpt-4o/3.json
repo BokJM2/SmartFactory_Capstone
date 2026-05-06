@@ -1,0 +1,19 @@
+{
+    "ID": 3,
+    "q_ch": "Emily订购的Dress订单生产进度如何？用百分比来表示。",
+    "q_en": "What is the production progress of the Dress ordered by Emily? Please represent it in percentage.",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT ROUND(SUM(ct.completed_number) / SUM(ct.planned_number) * 100, 2) AS progress_percentage FROM cutting_tasks ct JOIN order_product op ON ct.order_product_id = op.id JOIN orders o ON op.order_id = o.id JOIN customers c ON o.user_id = c.id JOIN products p ON op.product_id = p.id JOIN products_types pt ON p.products_type_id = pt.id WHERE c.customer_name = 'Emily' AND pt.description = 'Dress';",
+            "description": "To calculate the production progress of the Dress ordered by Emily, we need to determine the total planned number of Dress production, the total completed number of Dress production, and then calculate the progress percentage. We will first find the order_id for the Dress ordered by Emily, then calculate the sum of planned number and completed number of Dress production, and finally calculate the progress percentage.",
+            "results": [
+                {
+                    "progress_percentage": "100.00"
+                }
+            ]
+        }
+    ],
+    "response": "Sure thing! Let's take a look at the production progress for the Dress ordered by Emily. 🎉\n\n| Product Type | Customer | Production Progress (%) |\n|--------------|----------|-------------------------|\n| Dress        | Emily    | 100.00%                 |\n\nGreat news! The production of the Dress ordered by Emily is fully completed at 100%! 🥳",
+    "token_used": 5617
+}

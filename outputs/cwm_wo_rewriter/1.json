@@ -1,0 +1,33 @@
+{
+  "ID": 1,
+  "q_ch": "PolyU的订单有哪些？",
+  "q_en": "What are the orders for PolyU?",
+  "sqls": [
+    {
+      "command": [
+        "SELECT id FROM customers WHERE customer_name = 'PolyU';",
+        "SELECT id, order_name, created_at FROM orders WHERE user_id = 'c1';"
+      ],
+      "Result of executing SQL": [
+        [
+          {
+            "id": "c1"
+          }
+        ],
+        [
+          {
+            "id": "o1",
+            "order_name": "PolyU_Tshirt",
+            "created_at": "2024年01月10日 00:00"
+          },
+          {
+            "id": "o9",
+            "order_name": "PolyU_Skirt",
+            "created_at": "2024年05月10日 00:00"
+          }
+        ]
+      ]
+    }
+  ],
+  "total_tokens": 2724
+}

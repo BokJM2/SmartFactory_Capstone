@@ -1,0 +1,38 @@
+{
+    "ID": 1,
+    "q_ch": "PolyU的订单有哪些？",
+    "q_en": "What are the orders for PolyU?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM customers WHERE customer_name = 'PolyU';",
+            "description": "Retrieve the customer ID for the customer with the name \"PolyU\"",
+            "results": [
+                {
+                    "id": 1
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT * FROM orders WHERE user_id = 1;",
+            "description": "Retrieve all orders for the customer \"PolyU\"",
+            "results": [
+                {
+                    "id": 1,
+                    "user_id": 1,
+                    "order_name": "PolyU_Tshirt",
+                    "created_at": "2024-01-10 00:00:00"
+                },
+                {
+                    "id": 9,
+                    "user_id": 1,
+                    "order_name": "PolyU_Skirt",
+                    "created_at": "2024-05-10 00:00:00"
+                }
+            ]
+        }
+    ],
+    "response": "Hey there! 😄 It looks like you're curious about the orders for our customer, PolyU. Here's what I found:\n\n| Order ID | Order Name   | Created At          |\n|----------|--------------|---------------------|\n| 1        | PolyU_Tshirt | January 10, 2024    |\n| 9        | PolyU_Skirt  | May 10, 2024        |\n\nPolyU has placed a couple of stylish orders! If you have any more questions, feel free to ask. 😊",
+    "token_used": 6539
+}

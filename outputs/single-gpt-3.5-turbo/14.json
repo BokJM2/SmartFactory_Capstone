@@ -1,0 +1,15 @@
+{
+    "ID": 14,
+    "q_ch": "剩余库存最多的原料是什么？",
+    "q_en": "What is the material with the highest remaining inventory?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT material_id, MAX(left_number) AS highest_remaining_inventory FROM warehouse_material ORDER BY left_number DESC LIMIT 1;",
+            "description": "To find the material with the highest remaining inventory, we can sort the warehouse_material table in descending order based on the left_number column and select the top 1 record.",
+            "results": "(1140, \"In aggregated query without GROUP BY, expression #1 of SELECT list contains nonaggregated column 'fashion.warehouse_material.material_id'; this is incompatible with sql_mode=only_full_group_by\")"
+        }
+    ],
+    "response": "I'm sorry, but I couldn't retrieve the information about the material with the highest remaining inventory at the moment. Let me try again or provide you with some other assistance. 😅",
+    "token_used": 4826
+}

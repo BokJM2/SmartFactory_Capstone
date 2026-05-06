@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: fashion-mysql
+    restart: unless-stopped  # 设置自动重启
+    privileged: true  # 赋予特权
+    ports:
+      - "41970:3306"  # 将容器的3306端口映射到主机的3306端口
+    environment:
+      MYSQL_ROOT_PASSWORD: "Fashion!@#"  # 设置 root 密码
+    volumes:
+      - ./create_fashion_database.sql:/docker-entrypoint-initdb.d/init-db.sql
+      - ./charset_and_collation.cnf:/etc/mysql/conf.d/my_custom.cnf

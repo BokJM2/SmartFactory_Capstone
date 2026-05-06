@@ -1,0 +1,41 @@
+{
+  "ID": 33,
+  "q_ch": "分配给Precision Cutters的裁剪任务有哪些？",
+  "q_en": "What are the cutting tasks assigned to Precision Cutters?",
+  "sqls": [
+    {
+      "command": [
+        "SELECT id FROM working_group WHERE name = 'Precision Cutters';",
+        "SELECT id, start_time, end_time, order_product_id, planned_number, completed_number, is_started \n FROM cutting_tasks \n WHERE working_group_id = 'wg1';"
+      ],
+      "Result of executing SQL": [
+        [
+          {
+            "id": "wg1"
+          }
+        ],
+        [
+          {
+            "id": "ct18",
+            "start_time": "2024年03月11日 00:00",
+            "end_time": "2024年04月07日 00:00",
+            "order_product_id": "op18",
+            "planned_number": 200,
+            "completed_number": 200,
+            "is_started": 1
+          },
+          {
+            "id": "ct30",
+            "start_time": "2024年04月19日 00:00",
+            "end_time": "2024年04月26日 00:00",
+            "order_product_id": "op30",
+            "planned_number": 195,
+            "completed_number": 180,
+            "is_started": 1
+          }
+        ]
+      ]
+    }
+  ],
+  "total_tokens": 13841
+}

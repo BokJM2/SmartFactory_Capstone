@@ -1,0 +1,43 @@
+{
+    "ID": 17,
+    "q_ch": "2024年6月1日后的缝纫任务有哪些？",
+    "q_en": "What are the sewing tasks after June 1, 2024?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT st.id, st.start_time, st.end_time, wg.name AS working_group_name, op.number AS order_product_quantity, p.attributes AS product_attributes, pt.description AS product_type_description FROM sewing_tasks st JOIN working_group wg ON st.working_group_id = wg.id JOIN order_product op ON st.order_product_id = op.id JOIN products p ON op.product_id = p.id JOIN products_types pt ON p.products_type_id = pt.id WHERE st.start_time > '2024-06-01';",
+            "description": "Retrieve sewing tasks that started after June 1, 2024, including working group names and order product details",
+            "results": [
+                {
+                    "id": 33,
+                    "start_time": "2024-07-17 00:00:00",
+                    "end_time": "2024-08-03 00:00:00",
+                    "working_group_name": "Advanced Sewers",
+                    "order_product_quantity": 120,
+                    "product_attributes": "Grey, 29 size",
+                    "product_type_description": "Pants"
+                },
+                {
+                    "id": 32,
+                    "start_time": "2024-06-17 00:00:00",
+                    "end_time": "2024-07-14 00:00:00",
+                    "working_group_name": "Premier Sewers",
+                    "order_product_quantity": 150,
+                    "product_attributes": "Black, XL size",
+                    "product_type_description": "Jacket"
+                },
+                {
+                    "id": 34,
+                    "start_time": "2024-07-10 00:00:00",
+                    "end_time": "2024-07-20 00:00:00",
+                    "working_group_name": "Elite Sewers",
+                    "order_product_quantity": 330,
+                    "product_attributes": "Purple, M size",
+                    "product_type_description": "Skirt"
+                }
+            ]
+        }
+    ],
+    "response": "Sure thing! Here are the sewing tasks that started after June 1, 2024. Let's take a look at the details:\n\n| Task ID | Start Time       | End Time         | Working Group     | Order Quantity | Product Attributes | Product Type Description |\n|---------|------------------|------------------|-------------------|----------------|--------------------|--------------------------|\n| 33      | July 17, 2024    | August 3, 2024   | Advanced Sewers   | 120            | Grey, 29 size      | Pants                    |\n| 32      | June 17, 2024    | July 14, 2024    | Premier Sewers    | 150            | Black, XL size     | Jacket                   |\n| 34      | July 10, 2024    | July 20, 2024    | Elite Sewers      | 330            | Purple, M size     | Skirt                    |\n\nThese tasks are being handled by some of our top sewing groups, ensuring quality and precision! 🧵✨ If you have any more questions, feel free to ask! 😄",
+    "token_used": 6740
+}

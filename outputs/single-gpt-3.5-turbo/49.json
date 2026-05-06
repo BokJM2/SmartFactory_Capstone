@@ -1,0 +1,16 @@
+{
+    "ID": 49,
+    "q_ch": "对于编号为34的缝纫任务，所有的工作量我都已完成，请更新已完成数量。",
+    "q_en": "I have completed all the workload for the sewing task with ID 34. Please update the completed quantity.",
+    "hint": "To avoid the simultaneous occurrence of update and select in the same SQL statement, a step-by-step query can be used to organize the select query results into a fixed update statement",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "UPDATE products SET attributes = 'Brown' WHERE id IN (SELECT product_id FROM order_product WHERE order_id IN (SELECT id FROM orders WHERE user_id = (SELECT id FROM customers WHERE customer_name = 'PolyU_Skirt'))) AND attributes = 'Brown';",
+            "description": "To update the products with attributes 'Brown' that are associated with the working group named 'PolyU_Skirt', we need to set the attributes to 'Brown' for the specified products.",
+            "results": "update data successfully."
+        }
+    ],
+    "response": "I have updated all the products with attributes 'Brown' associated with the working group named 'PolyU_Skirt'. 😄\n\nHere is the summary of the update:\n| Description                                                                                           | Results               |\n|-------------------------------------------------------------------------------------------------------|-----------------------|\n| To update the products with attributes 'Brown' that are associated with the working group named 'PolyU_Skirt', we need to set the attributes to 'Brown' for the specified products. | update data successfully. |\n\nIf you have any more questions or need further assistance, feel free to ask! 😊",
+    "token_used": 5572
+}

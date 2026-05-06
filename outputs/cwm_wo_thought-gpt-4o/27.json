@@ -1,0 +1,82 @@
+{
+    "ID": 27,
+    "q_ch": "我是Advanced Sewers，我尚未完成的任务有哪些，对应的顾客都是谁？",
+    "q_en": "I am Advanced Sewers. What are the tasks I have not yet completed?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM working_group WHERE name = 'Advanced Sewers';",
+            "description": "Retrieve the working group ID for the working group with the name \"Advanced Sewers\"",
+            "results": [
+                {
+                    "id": 8
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT st.id, st.start_time, st.end_time, op.product_id, op.number FROM sewing_tasks st JOIN order_product op ON st.order_product_id = op.id WHERE st.working_group_id = '8' AND st.status != 2;",
+            "description": "Retrieve the sewing tasks that are not yet completed for the working group \"Advanced Sewers\"",
+            "results": [
+                {
+                    "id": 6,
+                    "start_time": "2024-03-20 00:00:00",
+                    "end_time": "2024-04-07 00:00:00",
+                    "product_id": 12,
+                    "number": 95
+                },
+                {
+                    "id": 7,
+                    "start_time": "2024-03-06 00:00:00",
+                    "end_time": "2024-03-22 00:00:00",
+                    "product_id": 28,
+                    "number": 110
+                },
+                {
+                    "id": 9,
+                    "start_time": "2024-03-06 00:00:00",
+                    "end_time": "2024-03-20 00:00:00",
+                    "product_id": 4,
+                    "number": 80
+                },
+                {
+                    "id": 20,
+                    "start_time": "2024-04-15 00:00:00",
+                    "end_time": "2024-05-07 00:00:00",
+                    "product_id": 30,
+                    "number": 90
+                },
+                {
+                    "id": 21,
+                    "start_time": "2024-04-04 00:00:00",
+                    "end_time": "2024-04-12 00:00:00",
+                    "product_id": 15,
+                    "number": 85
+                },
+                {
+                    "id": 22,
+                    "start_time": "2024-04-09 00:00:00",
+                    "end_time": "2024-04-22 00:00:00",
+                    "product_id": 25,
+                    "number": 115
+                },
+                {
+                    "id": 25,
+                    "start_time": "2024-05-14 00:00:00",
+                    "end_time": "2024-06-03 00:00:00",
+                    "product_id": 18,
+                    "number": 75
+                },
+                {
+                    "id": 33,
+                    "start_time": "2024-07-17 00:00:00",
+                    "end_time": "2024-08-03 00:00:00",
+                    "product_id": 20,
+                    "number": 120
+                }
+            ]
+        }
+    ],
+    "response": "Hello there! 😄 It looks like you're part of the \"Advanced Sewers\" working group, and you're curious about the tasks that are still on your to-do list. Here's a handy table with all the details of the tasks you haven't completed yet:\n\n| Task ID | Start Time          | End Time            | Product ID | Quantity |\n|---------|---------------------|---------------------|------------|----------|\n| 6       | 2024-03-20 00:00:00 | 2024-04-07 00:00:00 | 12         | 95       |\n| 7       | 2024-03-06 00:00:00 | 2024-03-22 00:00:00 | 28         | 110      |\n| 9       | 2024-03-06 00:00:00 | 2024-03-20 00:00:00 | 4          | 80       |\n| 20      | 2024-04-15 00:00:00 | 2024-05-07 00:00:00 | 30         | 90       |\n| 21      | 2024-04-04 00:00:00 | 2024-04-12 00:00:00 | 15         | 85       |\n| 22      | 2024-04-09 00:00:00 | 2024-04-22 00:00:00 | 25         | 115      |\n| 25      | 2024-05-14 00:00:00 | 2024-06-03 00:00:00 | 18         | 75       |\n| 33      | 2024-07-17 00:00:00 | 2024-08-03 00:00:00 | 20         | 120      |\n\nKeep up the great work, and let me know if there's anything else I can help you with! 🚀",
+    "token_used": 8182
+}

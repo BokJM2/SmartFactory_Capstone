@@ -1,0 +1,154 @@
+{
+  "ID": 52,
+  "q_ch": "列出2024年6月的订单使用的原料和数量？并整理成{原料：剩余数量}的形式。",
+  "q_en": "List the raw materials and quantities used for orders in June 2024? And organize it into the form of {raw materials: remaining quantity}.",
+  "sqls": [
+    {
+      "command": [
+        "SELECT op.id \n FROM order_product op \n JOIN orders o ON op.order_id = o.id \n WHERE o.created_at BETWEEN '2024-06-01' AND '2024-06-30';",
+        "SELECT m.name, SUM(cma.allocated_num) AS total_allocated\n FROM cutting_material_allocation cma\n JOIN warehouse_material wm ON cma.warehouse_material_id = wm.id\n JOIN materials m ON wm.material_id = m.id\n WHERE cma.cutting_task_id IN (SELECT id FROM cutting_tasks WHERE order_product_id IN (SELECT op.id \n FROM order_product op \n JOIN orders o ON op.order_id = o.id \n WHERE o.created_at BETWEEN '2024-06-01' AND '2024-06-30'))\n GROUP BY m.name;",
+        "SELECT m.name, SUM(sma.allocated_num) AS total_allocated\n FROM sewing_material_allocation sma\n JOIN warehouse_material wm ON sma.warehouse_material_id = wm.id\n JOIN materials m ON wm.material_id = m.id\n WHERE sma.sewing_task_id IN (SELECT id FROM sewing_tasks WHERE order_product_id IN (SELECT op.id \n FROM order_product op \n JOIN orders o ON op.order_id = o.id \n WHERE o.created_at BETWEEN '2024-06-01' AND '2024-06-30'))\n GROUP BY m.name;",
+        "SELECT name, SUM(total_allocated) AS total_allocated\n FROM (\n   SELECT m.name, SUM(cma.allocated_num) AS total_allocated\n   FROM cutting_material_allocation cma\n   JOIN warehouse_material wm ON cma.warehouse_material_id = wm.id\n   JOIN materials m ON wm.material_id = m.id\n   WHERE cma.cutting_task_id IN (SELECT id FROM cutting_tasks WHERE order_product_id IN (SELECT op.id \n   FROM order_product op \n   JOIN orders o ON op.order_id = o.id \n   WHERE o.created_at BETWEEN '2024-06-01' AND '2024-06-30'))\n   GROUP BY m.name\n   UNION ALL\n   SELECT m.name, SUM(sma.allocated_num) AS total_allocated\n   FROM sewing_material_allocation sma\n   JOIN warehouse_material wm ON sma.warehouse_material_id = wm.id\n   JOIN materials m ON wm.material_id = m.id\n   WHERE sma.sewing_task_id IN (SELECT id FROM sewing_tasks WHERE order_product_id IN (SELECT op.id \n   FROM order_product op \n   JOIN orders o ON op.order_id = o.id \n   WHERE o.created_at BETWEEN '2024-06-01' AND '2024-06-30'))\n   GROUP BY m.name\n ) AS combined\n GROUP BY name;",
+        "SELECT m.name, wm.left_number\n FROM warehouse_material wm\n JOIN materials m ON wm.material_id = m.id;"
+      ],
+      "Result of executing SQL": [
+        [
+          {
+            "id": "op32"
+          },
+          {
+            "id": "op33"
+          },
+          {
+            "id": "op34"
+          }
+        ],
+        [
+          {
+            "name": "Cotton Fabric",
+            "total_allocated": null
+          },
+          {
+            "name": "Denim Fabric",
+            "total_allocated": null
+          },
+          {
+            "name": "Leather",
+            "total_allocated": null
+          },
+          {
+            "name": "Synthetic Fiber",
+            "total_allocated": null
+          },
+          {
+            "name": "Wool",
+            "total_allocated": null
+          }
+        ],
+        [
+          {
+            "name": "Cotton Fabric",
+            "total_allocated": null
+          },
+          {
+            "name": "Denim Fabric",
+            "total_allocated": null
+          },
+          {
+            "name": "Leather",
+            "total_allocated": null
+          },
+          {
+            "name": "Synthetic Fiber",
+            "total_allocated": null
+          },
+          {
+            "name": "Wool",
+            "total_allocated": null
+          }
+        ],
+        [
+          {
+            "name": "Cotton Fabric",
+            "total_allocated": null
+          },
+          {
+            "name": "Denim Fabric",
+            "total_allocated": null
+          },
+          {
+            "name": "Leather",
+            "total_allocated": null
+          },
+          {
+            "name": "Synthetic Fiber",
+            "total_allocated": null
+          },
+          {
+            "name": "Wool",
+            "total_allocated": null
+          }
+        ],
+        [
+          {
+            "name": "Cotton Fabric",
+            "left_number": 3500
+          },
+          {
+            "name": "Synthetic Fiber Pieces",
+            "left_number": 1500
+          },
+          {
+            "name": "Denim Fabric",
+            "left_number": 4500
+          },
+          {
+            "name": "Denim Fabric Pieces",
+            "left_number": 3180
+          },
+          {
+            "name": "Down",
+            "left_number": 1230
+          },
+          {
+            "name": "Down Pieces",
+            "left_number": 2420
+          },
+          {
+            "name": "Fabric Pieces",
+            "left_number": 3200
+          },
+          {
+            "name": "Wool",
+            "left_number": 4100
+          },
+          {
+            "name": "Wool Pieces",
+            "left_number": 3550
+          },
+          {
+            "name": "Silk",
+            "left_number": 1100
+          },
+          {
+            "name": "Silk Pieces",
+            "left_number": 5400
+          },
+          {
+            "name": "Leather",
+            "left_number": 2200
+          },
+          {
+            "name": "Leather Pieces",
+            "left_number": 1300
+          },
+          {
+            "name": "Synthetic Fiber",
+            "left_number": 0
+          }
+        ]
+      ]
+    }
+  ],
+  "total_tokens": 3638
+}

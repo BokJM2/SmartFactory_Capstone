@@ -1,0 +1,33 @@
+{
+    "ID": 4,
+    "q_ch": "James 的订单包含哪些产品？",
+    "q_en": "What products are included in James's order?",
+    "gt": "Sure! Here are the products included in James's orders:\n\n| **Order ID** | **Product** | **Attributes** | **Quantity** |\n|--------------|-------------|----------------|--------------|\n| 4            | Jacket      | Brown, S size  | 185          |\n| 4            | Coat        | Red, M size    | 200          |\n| 4            | Jacket      | Yellow, L size | 175          |\n| 4            | Jacket      | Brown, L size  | 200          |\n| 12           | Skirt       | Purple, M size | 330          |\n\nJames has quite a stylish collection! 😄 If you have any more questions, feel free to ask!",
+    "steps": [
+        {
+            "sql": "SELECT id FROM customers WHERE customer_name = 'James';",
+            "description": "Retrieve the customer ID for the customer with the name \"James\"",
+            "results": [
+                {
+                    "id": 4
+                }
+            ]
+        },
+        {
+            "sql": "SELECT id FROM orders WHERE user_id = '4';",
+            "description": "Retrieve the order IDs for the customer \"James\"",
+            "results": [
+                {
+                    "id": 4
+                },
+                {
+                    "id": 12
+                }
+            ]
+        },
+        {
+            "input": "Retrieve the product details for each order associated with the customer \"James\"\n[\"tool_find_order_details, {'order_id': 4}, Find the product details of an order\", \"tool_find_order_details, {'order_id': 12}, Find the product details of an order\"]",
+            "output": "Here are the product details for each order associated with the customer \"James\":\n\n**Order ID: 4**\n- Product: Jacket\n  - Attributes: Brown, S size\n  - Quantity: 185\n- Product: Coat\n  - Attributes: Red, M size\n  - Quantity: 200\n- Product: Jacket\n  - Attributes: Yellow, L size\n  - Quantity: 175\n- Product: Jacket\n  - Attributes: Brown, L size\n  - Quantity: 200\n\n**Order ID: 12**\n- Product: Skirt\n  - Attributes: Purple, M size\n  - Quantity: 330"
+        }
+    ]
+}

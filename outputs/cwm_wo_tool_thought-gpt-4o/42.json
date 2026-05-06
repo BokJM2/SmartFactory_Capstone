@@ -1,0 +1,55 @@
+{
+    "ID": 42,
+    "q_ch": "对于PolyU在2024年1月提交的订单，将所有生产红色小码类型T-shirt的缝纫任务设置成开始状态。",
+    "q_en": "For orders submitted by PolyU in January 2024, set all sewing tasks for producing Red, M size type T-shirts to start status. ",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM customers WHERE customer_name = 'PolyU';",
+            "description": "Retrieve the customer ID for the customer with the name \"PolyU\"",
+            "results": [
+                {
+                    "id": 1
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM orders WHERE user_id = '1' AND created_at BETWEEN '2024-01-01' AND '2024-01-31';",
+            "description": "Retrieve the order IDs for orders submitted by the customer \"PolyU\" in January 2024",
+            "results": [
+                {
+                    "id": 1
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT p.id FROM products p JOIN products_types pt ON p.products_type_id = pt.id WHERE p.attributes = 'Red, M size' AND pt.description = 'T-shirt';",
+            "description": "Retrieve the product ID for the product with attributes \"Red, M size\" and type \"T-shirt\"",
+            "results": [
+                {
+                    "id": 1
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM order_product WHERE order_id IN (1) AND product_id = '1';",
+            "description": "Retrieve the order product IDs for the specified orders and product",
+            "results": [
+                {
+                    "id": 1
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "UPDATE sewing_tasks SET status = 1 WHERE order_product_id IN (1);",
+            "description": "Update the status of all sewing tasks for the specified order products to start status (1)",
+            "results": "update data successfully."
+        }
+    ],
+    "response": "Hey there! 😄\n\nI've got some great news for you! We've successfully updated the status of all sewing tasks to \"start\" for the orders placed by PolyU in January 2024, specifically for the Red, M size T-shirts. 🎉\n\nHere's a quick summary of what was done:\n\n| Task | Status |\n|------|--------|\n| Sewing tasks for Red, M size T-shirts | Updated to start status |\n\nIf you have any more questions or need further assistance, feel free to ask! 😊",
+    "token_used": 7487
+}

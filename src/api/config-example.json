@@ -1,0 +1,9 @@
+{
+    "openai_api_key": "sk-xxx",
+    "openai_base_url": "https://api.openai.com/v1",
+    "mysql_host": "localhost",
+    "mysql_port": 3306,
+    "mysql_user": "root",
+    "mysql_password": "123456",
+    "mysql_database": "test"
+}

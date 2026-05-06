@@ -1,0 +1,60 @@
+{
+    "ID": 16,
+    "q_ch": "2024年5月1日后才开始的裁剪任务有哪些？",
+    "q_en": "What are the cutting tasks that will only start after May 1, 2024?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT * FROM cutting_tasks WHERE start_time > '2024-05-01';",
+            "description": "To find the cutting tasks that will only start after May 1, 2024, we need to filter the cutting_tasks table for tasks with a start_time greater than May 1, 2024.",
+            "results": [
+                {
+                    "id": 31,
+                    "start_time": "2024-05-10 00:00:00",
+                    "end_time": "2024-05-26 00:00:00",
+                    "working_group_id": 3,
+                    "order_product_id": 31,
+                    "produced_wip_id": 8,
+                    "planned_number": 260,
+                    "completed_number": 260,
+                    "status": 1
+                },
+                {
+                    "id": 32,
+                    "start_time": "2024-06-01 00:00:00",
+                    "end_time": "2024-06-17 00:00:00",
+                    "working_group_id": 2,
+                    "order_product_id": 32,
+                    "produced_wip_id": 8,
+                    "planned_number": 150,
+                    "completed_number": 120,
+                    "status": 1
+                },
+                {
+                    "id": 33,
+                    "start_time": "2024-06-25 00:00:00",
+                    "end_time": "2024-07-17 00:00:00",
+                    "working_group_id": 3,
+                    "order_product_id": 33,
+                    "produced_wip_id": 10,
+                    "planned_number": 120,
+                    "completed_number": 0,
+                    "status": 0
+                },
+                {
+                    "id": 34,
+                    "start_time": "2024-06-30 00:00:00",
+                    "end_time": "2024-07-10 00:00:00",
+                    "working_group_id": 4,
+                    "order_product_id": 34,
+                    "produced_wip_id": 2,
+                    "planned_number": 330,
+                    "completed_number": 0,
+                    "status": 0
+                }
+            ]
+        }
+    ],
+    "response": "Sure thing! Here are the cutting tasks that will only start after May 1, 2024:\n\n| Task ID | Start Time          | End Time            | Working Group ID | Order Product ID | Produced WIP ID | Planned Number | Completed Number | Status |\n|---------|---------------------|---------------------|------------------|------------------|-----------------|----------------|------------------|--------|\n| 31      | May 10, 2024        | May 26, 2024        | 3                | 31               | 8               | 260            | 260              | 1      |\n| 32      | June 1, 2024        | June 17, 2024       | 2                | 32               | 8               | 150            | 120              | 1      |\n| 33      | June 25, 2024       | July 17, 2024       | 3                | 33               | 10              | 120            | 0                | 0      |\n| 34      | June 30, 2024       | July 10, 2024       | 4                | 34               | 2               | 330            | 0                | 0      |\n\nThese tasks are all set to start after the specified date. If you have any more questions or need further details, feel free to ask! 😊",
+    "token_used": 6089
+}

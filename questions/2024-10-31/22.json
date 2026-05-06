@@ -1,0 +1,44 @@
+{
+    "ID": 22,
+    "q_ch": "我们现在有哪些缝纫组，哪些裁剪组？",
+    "q_en": "What sewing groups and cutting groups do we have now?",
+    "gt": "Sure thing! Here are the sewing and cutting groups we currently have:\n\n| Group Type     | Group Name         |\n|----------------|--------------------|\n| Cutting Group  | Precision Cutters  |\n| Sewing Group   | Master Sewers      |\n| Cutting Group  | Master Cutters     |\n| Cutting Group  | Expert Cutters     |\n| Cutting Group  | Professional Cutters|\n| Cutting Group  | Advanced Cutters   |\n| Sewing Group   | Skilled Sewers     |\n| Sewing Group   | Advanced Sewers    |\n| Sewing Group   | Premier Sewers     |\n| Sewing Group   | Elite Sewers       |\n\nLooks like we have a fantastic lineup of groups! If you need more details, feel free to ask. 😊",
+    "steps": [
+        {
+            "sql": "SELECT name FROM working_group WHERE type IN ('sew', 'cut');",
+            "description": "Retrieve the names of all sewing and cutting groups",
+            "results": [
+                {
+                    "name": "Precision Cutters"
+                },
+                {
+                    "name": "Master Sewers"
+                },
+                {
+                    "name": "Master Cutters"
+                },
+                {
+                    "name": "Expert Cutters"
+                },
+                {
+                    "name": "Professional Cutters"
+                },
+                {
+                    "name": "Advanced Cutters"
+                },
+                {
+                    "name": "Skilled Sewers"
+                },
+                {
+                    "name": "Advanced Sewers"
+                },
+                {
+                    "name": "Premier Sewers"
+                },
+                {
+                    "name": "Elite Sewers"
+                }
+            ]
+        }
+    ]
+}

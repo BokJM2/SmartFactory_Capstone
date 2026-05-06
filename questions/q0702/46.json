@@ -1,0 +1,6 @@
+{
+    "ID": 46,
+    "q_ch": "对于编号为19的裁剪任务，分配裁剪物料，物料来源：Main Warehouse, 布料类别：Cotton Fabric，数量：30米。",
+    "q_en": "For cutting task with ID=19, allocate cutting materials from the Main Warehouse, with the material type being Cotton Fabric and a quantity of 30 meters.",
+    "gt": ""
+}

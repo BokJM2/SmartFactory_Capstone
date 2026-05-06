@@ -1,0 +1,86 @@
+{
+    "ID": 3,
+    "q_ch": "Emily订购的Dress订单生产进度如何？用百分比来表示。",
+    "q_en": "What is the production progress of the Dress ordered by Emily? Please represent it in percentage.",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM customers WHERE customer_name = 'Emily';",
+            "description": "Retrieve the customer ID for the customer with the name \"Emily\"",
+            "results": [
+                {
+                    "id": 3
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM orders WHERE user_id = '3';",
+            "description": "Retrieve the order IDs for orders placed by the customer \"Emily\"",
+            "results": [
+                {
+                    "id": 3
+                },
+                {
+                    "id": 11
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT p.id FROM products p JOIN products_types pt ON p.products_type_id = pt.id WHERE pt.description = 'Dress';",
+            "description": "Retrieve the product IDs for products of type \"Dress\"",
+            "results": [
+                {
+                    "id": 5
+                },
+                {
+                    "id": 13
+                },
+                {
+                    "id": 21
+                },
+                {
+                    "id": 29
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT op.id FROM order_product op WHERE op.order_id IN (3, 11) AND op.product_id IN (5, 13, 21, 29);",
+            "description": "Retrieve the order product IDs for the products of type \"Dress\" in orders placed by \"Emily\"",
+            "results": [
+                {
+                    "id": 11
+                },
+                {
+                    "id": 12
+                },
+                {
+                    "id": 13
+                },
+                {
+                    "id": 14
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT SUM(st.planned_number) AS total_planned, SUM(st.completed_number) AS total_completed FROM sewing_tasks st WHERE st.order_product_id IN (11, 12, 13, 14);",
+            "description": "Calculate the total planned number and completed number for sewing tasks related to the order products",
+            "results": [
+                {
+                    "total_planned": "540",
+                    "total_completed": "460"
+                }
+            ]
+        },
+        {
+            "type": "Thought",
+            "operation": "Calculate the production progress by dividing the total completed number by the total planned number and multiplying by 100 to get the percentage.",
+            "results": "To calculate the production progress, we need to use the total planned number and the total completed number from the context provided. The relevant data is:\n\n- Total planned number: 540\n- Total completed number: 460\n\nThe formula to calculate the production progress percentage is:\n\n\\[ \\text{Production Progress} = \\left( \\frac{\\text{Total Completed Number}}{\\text{Total Planned Number}} \\right) \\times 100 \\]\n\nSubstituting the given values:\n\n\\[ \\text{Production Progress} = \\left( \\frac{460}{540} \\right) \\times 100 \\]\n\n\\[ \\text{Production Progress} = 0.85185 \\times 100 \\]\n\n\\[ \\text{Production Progress} = 85.185\\% \\]\n\nTherefore, the production progress is approximately 85.19%."
+        }
+    ],
+    "response": "Hey there! 😄 Let's take a look at the production progress for the dresses ordered by Emily. Here's what we found:\n\n| **Metric**            | **Value**   |\n|-----------------------|-------------|\n| Total Planned Number  | 540         |\n| Total Completed Number| 460         |\n| **Production Progress** | **85.19%** |\n\nSo, the production progress for Emily's dress order is approximately **85.19%**. Keep up the great work! 🎉",
+    "token_used": 9128
+}

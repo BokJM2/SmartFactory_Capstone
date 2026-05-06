@@ -1,0 +1,26 @@
+{
+    "ID": 31,
+    "q_ch": "Premier Sewers的缝纫任务有哪些？",
+    "q_en": "What are the sewing tasks of Premier Sewers?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM working_group WHERE name = 'Premier Sewers' AND type = 'sew';",
+            "description": "Retrieve the working group ID for the working group named 'Premier Sewers'",
+            "results": [
+                {
+                    "id": 9
+                }
+            ]
+        },
+        {
+            "type": "Tool",
+            "results": {
+                "input": "Retrieve the sewing tasks for the working group 'Premier Sewers'\n['tool_allocate_task_order, {\"working_group_id\": 9, \"task_type\": \"sew\"}, Allocate the sewing tasks for the working group']",
+                "output": "I have retrieved the sewing tasks for the working group 'Premier Sewers'. The order name associated with these tasks is 'None'."
+            }
+        }
+    ],
+    "response": "Sure! Here is the answer to your question:\n\n| Task Type | Order Name |\n|-----------|------------|\n| Sew       | None       |\n\nI have retrieved the sewing tasks for the working group 'Premier Sewers'. The order name associated with these tasks is 'None'. 😄",
+    "token_used": 6764
+}

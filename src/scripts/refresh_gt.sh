@@ -1,0 +1,4 @@
+python test/generate_gt.py --prompt_add "Please note that 'January 2024' refers to a time period, not an order name. You should find the orders within this specific time frame." --q_id 6
+python test/generate_gt.py --q_id 43 --prompt_add "New materials entering the inventory cannot update the existing records. Instead, a new entry must be inserted, specifying the material type ID and warehouse ID."
+python test/generate_gt.py --q_id 52 --prompt_add "计算材料消耗时，需要同时考虑生产产品的数量，产品所需半成品材料的数量，半成品所需原材料的数量，三者是乘积的关系"
+python test/generate_gt.py --q_id 3 --prompt_add "The progress of an order is defined as the percentage of completing the sewing task."

@@ -1,0 +1,114 @@
+{
+    "ID": 3,
+    "q_ch": "Emily订购的Dress订单生产进度如何？用百分比来表示。",
+    "q_en": "What is the production progress of the Dress ordered by Emily? Please represent it in percentage.",
+    "gt": "Hey there! 😄 Let's take a look at the production progress for the dresses ordered by Emily. Here's a breakdown of the progress in percentage for each sewing task:\n\n| Sewing Task ID | Planned Number | Completed Number | Progress Percentage |\n|----------------|----------------|------------------|---------------------|\n| 11             | 140            | 100              | 71.43%              |\n| 12             | 150            | 120              | 80.00%              |\n| 13             | 130            | 120              | 92.31%              |\n| 14             | 120            | 120              | 100.00%             |\n\nIt looks like the sewing tasks are coming along nicely, with some already completed! 🎉 Keep up the great work! If you have any more questions, feel free to ask! 😊",
+    "steps": [
+        {
+            "sql": "SELECT id FROM customers WHERE customer_name = 'Emily';",
+            "description": "Retrieve the customer ID for the customer with the name \"Emily\"",
+            "results": [
+                {
+                    "id": 3
+                }
+            ]
+        },
+        {
+            "sql": "SELECT id FROM orders WHERE user_id = '3';",
+            "description": "Retrieve the order IDs for the customer \"Emily\"",
+            "results": [
+                {
+                    "id": 3
+                },
+                {
+                    "id": 11
+                }
+            ]
+        },
+        {
+            "sql": "SELECT id FROM products_types WHERE description = 'Dress';",
+            "description": "Retrieve the product type ID for the product type \"Dress\"",
+            "results": [
+                {
+                    "id": 3
+                }
+            ]
+        },
+        {
+            "sql": "SELECT id FROM products WHERE products_type_id = '3';",
+            "description": "Retrieve the product IDs for products of type \"Dress\"",
+            "results": [
+                {
+                    "id": 5
+                },
+                {
+                    "id": 13
+                },
+                {
+                    "id": 21
+                },
+                {
+                    "id": 29
+                }
+            ]
+        },
+        {
+            "sql": "SELECT id FROM order_product WHERE order_id IN (3, 11) AND product_id IN (5, 13, 21, 29);",
+            "description": "Retrieve the order_product IDs for the orders by \"Emily\" that include products of type \"Dress\"",
+            "results": [
+                {
+                    "id": 11
+                },
+                {
+                    "id": 12
+                },
+                {
+                    "id": 13
+                },
+                {
+                    "id": 14
+                }
+            ]
+        },
+        {
+            "sql": "SELECT planned_number, completed_number FROM sewing_tasks WHERE order_product_id IN (11, 12, 13, 14);",
+            "description": "Retrieve the sewing task details for the relevant order_product IDs",
+            "results": [
+                {
+                    "planned_number": 140,
+                    "completed_number": 100
+                },
+                {
+                    "planned_number": 150,
+                    "completed_number": 120
+                },
+                {
+                    "planned_number": 130,
+                    "completed_number": 120
+                },
+                {
+                    "planned_number": 120,
+                    "completed_number": 120
+                }
+            ]
+        },
+        {
+            "sql": "SELECT (completed_number / planned_number) * 100 AS progress_percentage FROM sewing_tasks WHERE order_product_id IN (11, 12, 13, 14);",
+            "description": "Calculate the production progress percentage for each sewing task",
+            "results": [
+                {
+                    "progress_percentage": "71.4286"
+                },
+                {
+                    "progress_percentage": "80.0000"
+                },
+                {
+                    "progress_percentage": "92.3077"
+                },
+                {
+                    "progress_percentage": "100.0000"
+                }
+            ]
+        }
+    ]
+}

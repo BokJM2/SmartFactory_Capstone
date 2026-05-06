@@ -1,0 +1,46 @@
+{
+    "ID": 40,
+    "q_ch": "订单产品是T恤的裁剪任务有哪些？",
+    "q_en": "Which cutting tasks are for products categorized as T-shirt?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT ct.id, ct.start_time, ct.end_time, ct.status FROM cutting_tasks ct JOIN order_product op ON ct.order_product_id = op.id JOIN products p ON op.product_id = p.id JOIN products_types pt ON p.products_type_id = pt.id WHERE pt.description = 'T-shirt';",
+            "description": "To find the cutting tasks for products categorized as 'T-shirt', we need to join the cutting_tasks table with the order_product, products, and products_types tables to filter the tasks based on the product type description.",
+            "results": [
+                {
+                    "id": 1,
+                    "start_time": "2024-01-10 00:00:00",
+                    "end_time": "2024-01-18 00:00:00",
+                    "status": 2
+                },
+                {
+                    "id": 3,
+                    "start_time": "2024-01-10 00:00:00",
+                    "end_time": "2024-01-19 00:00:00",
+                    "status": 2
+                },
+                {
+                    "id": 4,
+                    "start_time": "2024-01-10 00:00:00",
+                    "end_time": "2024-01-17 00:00:00",
+                    "status": 1
+                },
+                {
+                    "id": 2,
+                    "start_time": "2024-01-10 00:00:00",
+                    "end_time": "2024-02-02 00:00:00",
+                    "status": 1
+                },
+                {
+                    "id": 5,
+                    "start_time": "2024-01-10 00:00:00",
+                    "end_time": "2024-02-02 00:00:00",
+                    "status": 1
+                }
+            ]
+        }
+    ],
+    "response": "Sure thing! Let's take a look at the cutting tasks for products categorized as \"T-shirt\". Here's what I found:\n\n| Task ID | Start Time          | End Time            | Status |\n|---------|---------------------|---------------------|--------|\n| 1       | January 10, 2024    | January 18, 2024    | 2      |\n| 3       | January 10, 2024    | January 19, 2024    | 2      |\n| 4       | January 10, 2024    | January 17, 2024    | 1      |\n| 2       | January 10, 2024    | February 2, 2024    | 1      |\n| 5       | January 10, 2024    | February 2, 2024    | 1      |\n\nThe status numbers might represent different stages of the task, so make sure to check what they mean in your system. If you have any more questions or need further assistance, feel free to ask! 😄",
+    "token_used": 5992
+}

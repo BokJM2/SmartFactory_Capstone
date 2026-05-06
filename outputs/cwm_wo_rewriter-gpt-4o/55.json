@@ -1,0 +1,163 @@
+{
+    "ID": 55,
+    "q_ch": "所有订单中总共做的前三多的商品是什么？",
+    "q_en": "What are the top three products made in all orders in total?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT op.product_id, SUM(op.number) AS total_quantity FROM order_product op GROUP BY op.product_id;",
+            "description": "Retrieve the total quantity of each product made in all orders",
+            "results": [
+                {
+                    "product_id": 1,
+                    "total_quantity": "150"
+                },
+                {
+                    "product_id": 2,
+                    "total_quantity": "50"
+                },
+                {
+                    "product_id": 3,
+                    "total_quantity": "150"
+                },
+                {
+                    "product_id": 4,
+                    "total_quantity": "80"
+                },
+                {
+                    "product_id": 5,
+                    "total_quantity": "120"
+                },
+                {
+                    "product_id": 6,
+                    "total_quantity": "200"
+                },
+                {
+                    "product_id": 7,
+                    "total_quantity": "540"
+                },
+                {
+                    "product_id": 8,
+                    "total_quantity": "110"
+                },
+                {
+                    "product_id": 9,
+                    "total_quantity": "180"
+                },
+                {
+                    "product_id": 10,
+                    "total_quantity": "60"
+                },
+                {
+                    "product_id": 11,
+                    "total_quantity": "220"
+                },
+                {
+                    "product_id": 12,
+                    "total_quantity": "95"
+                },
+                {
+                    "product_id": 13,
+                    "total_quantity": "130"
+                },
+                {
+                    "product_id": 14,
+                    "total_quantity": "175"
+                },
+                {
+                    "product_id": 15,
+                    "total_quantity": "345"
+                },
+                {
+                    "product_id": 16,
+                    "total_quantity": "105"
+                },
+                {
+                    "product_id": 17,
+                    "total_quantity": "100"
+                },
+                {
+                    "product_id": 18,
+                    "total_quantity": "75"
+                },
+                {
+                    "product_id": 19,
+                    "total_quantity": "240"
+                },
+                {
+                    "product_id": 20,
+                    "total_quantity": "220"
+                },
+                {
+                    "product_id": 21,
+                    "total_quantity": "140"
+                },
+                {
+                    "product_id": 22,
+                    "total_quantity": "185"
+                },
+                {
+                    "product_id": 23,
+                    "total_quantity": "95"
+                },
+                {
+                    "product_id": 24,
+                    "total_quantity": "195"
+                },
+                {
+                    "product_id": 25,
+                    "total_quantity": "115"
+                },
+                {
+                    "product_id": 26,
+                    "total_quantity": "200"
+                },
+                {
+                    "product_id": 27,
+                    "total_quantity": "260"
+                },
+                {
+                    "product_id": 28,
+                    "total_quantity": "110"
+                },
+                {
+                    "product_id": 29,
+                    "total_quantity": "150"
+                },
+                {
+                    "product_id": 30,
+                    "total_quantity": "240"
+                }
+            ]
+        },
+        {
+            "type": "Thought",
+            "operation": "Sort the products by total quantity in descending order and select the top three.",
+            "results": "To achieve the objective of sorting the products by total quantity in descending order and selecting the top three, we can follow these steps:\n\n1. Extract the product data from the context.\n2. Sort the products based on the 'total_quantity' in descending order.\n3. Select the top three products from the sorted list.\n\nHere is the sorted list of products by total quantity in descending order:\n\n1. Product ID: 7, Total Quantity: 540\n2. Product ID: 15, Total Quantity: 345\n3. Product ID: 19, Total Quantity: 240\n4. Product ID: 30, Total Quantity: 240\n5. Product ID: 27, Total Quantity: 260\n6. Product ID: 11, Total Quantity: 220\n7. Product ID: 20, Total Quantity: 220\n8. Product ID: 6, Total Quantity: 200\n9. Product ID: 26, Total Quantity: 200\n10. Product ID: 24, Total Quantity: 195\n11. Product ID: 22, Total Quantity: 185\n12. Product ID: 9, Total Quantity: 180\n13. Product ID: 14, Total Quantity: 175\n14. Product ID: 1, Total Quantity: 150\n15. Product ID: 3, Total Quantity: 150\n16. Product ID: 29, Total Quantity: 150\n17. Product ID: 21, Total Quantity: 140\n18. Product ID: 13, Total Quantity: 130\n19. Product ID: 5, Total Quantity: 120\n20. Product ID: 25, Total Quantity: 115\n21. Product ID: 8, Total Quantity: 110\n22. Product ID: 28, Total Quantity: 110\n23. Product ID: 16, Total Quantity: 105\n24. Product ID: 17, Total Quantity: 100\n25. Product ID: 12, Total Quantity: 95\n26. Product ID: 23, Total Quantity: 95\n27. Product ID: 4, Total Quantity: 80\n28. Product ID: 18, Total Quantity: 75\n29. Product ID: 10, Total Quantity: 60\n30. Product ID: 2, Total Quantity: 50\n\nThe top three products by total quantity are:\n\n1. Product ID: 7, Total Quantity: 540\n2. Product ID: 15, Total Quantity: 345\n3. Product ID: 19, Total Quantity: 240"
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT p.id, p.attributes, pt.description FROM products p JOIN products_types pt ON p.products_type_id = pt.id WHERE p.id IN (7, 15, 19);",
+            "description": "Retrieve the product details, including attributes and type description, for the top three products",
+            "results": [
+                {
+                    "id": 7,
+                    "attributes": "Purple, M size",
+                    "description": "Skirt"
+                },
+                {
+                    "id": 15,
+                    "attributes": "Pink, M size",
+                    "description": "Skirt"
+                },
+                {
+                    "id": 19,
+                    "attributes": "Green, M size",
+                    "description": "T-shirt"
+                }
+            ]
+        }
+    ],
+    "response": "Sure thing! Let's dive into the top three products made in all orders. Here's a neat table for you:\n\n| Product ID | Attributes     | Description | Total Quantity |\n|------------|----------------|-------------|----------------|\n| 7          | Purple, M size | Skirt       | 540            |\n| 15         | Pink, M size   | Skirt       | 345            |\n| 19         | Green, M size  | T-shirt     | 240            |\n\nThese are the top three products based on the total quantity made in all orders. Skirts seem to be quite popular! 😄",
+    "token_used": 9987
+}

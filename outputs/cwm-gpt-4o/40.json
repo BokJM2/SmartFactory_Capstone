@@ -1,0 +1,83 @@
+{
+    "ID": 40,
+    "q_ch": "订单产品是T恤的裁剪任务有哪些？",
+    "q_en": "Which cutting tasks are for products categorized as T-shirt?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM products WHERE products_type_id = (SELECT id FROM products_types WHERE description = 'T-shirt');",
+            "description": "Retrieve the product IDs for products categorized as 'T-shirt'",
+            "results": [
+                {
+                    "id": 1
+                },
+                {
+                    "id": 3
+                },
+                {
+                    "id": 11
+                },
+                {
+                    "id": 19
+                },
+                {
+                    "id": 27
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT ct.id, ct.start_time, ct.end_time, ct.working_group_id, ct.planned_number, ct.completed_number, ct.status FROM cutting_tasks ct JOIN order_product op ON ct.order_product_id = op.id WHERE op.product_id IN (1, 3, 11, 19, 27);",
+            "description": "Retrieve the cutting tasks for the identified product IDs",
+            "results": [
+                {
+                    "id": 1,
+                    "start_time": "2024-01-10 00:00:00",
+                    "end_time": "2024-01-18 00:00:00",
+                    "working_group_id": 2,
+                    "planned_number": 100,
+                    "completed_number": 100,
+                    "status": 2
+                },
+                {
+                    "id": 3,
+                    "start_time": "2024-01-10 00:00:00",
+                    "end_time": "2024-01-19 00:00:00",
+                    "working_group_id": 3,
+                    "planned_number": 150,
+                    "completed_number": 150,
+                    "status": 2
+                },
+                {
+                    "id": 4,
+                    "start_time": "2024-01-10 00:00:00",
+                    "end_time": "2024-01-17 00:00:00",
+                    "working_group_id": 2,
+                    "planned_number": 220,
+                    "completed_number": 220,
+                    "status": 1
+                },
+                {
+                    "id": 2,
+                    "start_time": "2024-01-10 00:00:00",
+                    "end_time": "2024-02-02 00:00:00",
+                    "working_group_id": 3,
+                    "planned_number": 240,
+                    "completed_number": 240,
+                    "status": 1
+                },
+                {
+                    "id": 5,
+                    "start_time": "2024-01-10 00:00:00",
+                    "end_time": "2024-02-02 00:00:00",
+                    "working_group_id": 2,
+                    "planned_number": 260,
+                    "completed_number": 260,
+                    "status": 1
+                }
+            ]
+        }
+    ],
+    "response": "Sure thing! Here are the cutting tasks for products categorized as \"T-shirt\" 😄:\n\n| Task ID | Start Time          | End Time            | Working Group ID | Planned Number | Completed Number | Status |\n|---------|---------------------|---------------------|------------------|----------------|------------------|--------|\n| 1       | 2024-01-10 00:00:00 | 2024-01-18 00:00:00 | 2                | 100            | 100              | 2      |\n| 3       | 2024-01-10 00:00:00 | 2024-01-19 00:00:00 | 3                | 150            | 150              | 2      |\n| 4       | 2024-01-10 00:00:00 | 2024-01-17 00:00:00 | 2                | 220            | 220              | 1      |\n| 2       | 2024-01-10 00:00:00 | 2024-02-02 00:00:00 | 3                | 240            | 240              | 1      |\n| 5       | 2024-01-10 00:00:00 | 2024-02-02 00:00:00 | 2                | 260            | 260              | 1      |\n\nFeel free to ask if you need more details! 😊",
+    "token_used": 8249
+}

@@ -1,0 +1,27 @@
+{
+    "ID": 37,
+    "q_ch": "对所有结束时间在2024年7月前，且未完成的裁剪任务中，计划裁剪数量最多的任务是什么？",
+    "q_en": "What is the task with the highest planned quantity among all cutting tasks that have not been completed and have an end date before July 2024??",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT * FROM cutting_tasks WHERE working_group_id IN (SELECT id FROM working_group WHERE name = 'Expert Cutters') AND status != 2 AND end_time < '2024-07-01' ORDER BY planned_number DESC LIMIT 1;",
+            "description": "To find the task with the highest planned quantity among all 'Expert Cutters' working groups that have not been completed and have an end date before July 2024, we need to select the task with the maximum planned quantity from cutting tasks that meet the specified conditions.",
+            "results": [
+                {
+                    "id": 16,
+                    "start_time": "2024-03-11 00:00:00",
+                    "end_time": "2024-04-10 00:00:00",
+                    "working_group_id": 4,
+                    "order_product_id": 16,
+                    "produced_wip_id": 8,
+                    "planned_number": 200,
+                    "completed_number": 200,
+                    "status": 1
+                }
+            ]
+        }
+    ],
+    "response": "I'm glad you asked! 🌟\n\nBased on the data I found, the task with the highest planned quantity among all 'Expert Cutters' working groups that have not been completed and have an end date before July 2024 is Task ID 16. Here are the details:\n\n| Task ID | Start Time | End Time | Planned Quantity | Completed Quantity |\n|---------|------------|----------|------------------|--------------------|\n|   16    | 2024-03-11 | 2024-04-10 |       200        |        200         |\n\nIt seems like Task ID 16 had a planned quantity of 200 and all of it was completed! Great job to the 'Expert Cutters' team! 🎉\n\nIf you have any more questions or need further assistance, feel free to ask! 😊",
+    "token_used": 5808
+}

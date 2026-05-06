@@ -1,0 +1,68 @@
+{
+    "ID": 54,
+    "q_ch": "列出所有缝纫组的进度百分比。",
+    "q_en": "List the progress percentage of all sewing groups",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id, name FROM working_group WHERE type = 'sew';",
+            "description": "Retrieve the working group ID and name for all sewing groups",
+            "results": [
+                {
+                    "id": 2,
+                    "name": "Master Sewers"
+                },
+                {
+                    "id": 7,
+                    "name": "Skilled Sewers"
+                },
+                {
+                    "id": 8,
+                    "name": "Advanced Sewers"
+                },
+                {
+                    "id": 9,
+                    "name": "Premier Sewers"
+                },
+                {
+                    "id": 10,
+                    "name": "Elite Sewers"
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT working_group_id, SUM(completed_number) / SUM(planned_number) * 100 AS progress_percentage FROM sewing_tasks GROUP BY working_group_id;",
+            "description": "Calculate the progress for each sewing group by summing the completed numbers and dividing by the planned numbers",
+            "results": [
+                {
+                    "working_group_id": 2,
+                    "progress_percentage": "97.4441"
+                },
+                {
+                    "working_group_id": 7,
+                    "progress_percentage": "97.2222"
+                },
+                {
+                    "working_group_id": 8,
+                    "progress_percentage": "81.9588"
+                },
+                {
+                    "working_group_id": 9,
+                    "progress_percentage": "74.6667"
+                },
+                {
+                    "working_group_id": 10,
+                    "progress_percentage": "100.0000"
+                }
+            ]
+        },
+        {
+            "type": "Thought",
+            "operation": "Join the results from Step1 and Step2 on the working group ID to get the name and progress percentage of each sewing group.",
+            "results": "To achieve the objective of joining the results from Step 1 and Step 2 on the working group ID to get the name and progress percentage of each sewing group, we need to combine the data from both steps based on the working group ID.\n\nHere are the results from Step 1 and Step 2:\n\n**Step 1 Results:**\n- Working Group ID: 2, Name: Master Sewers\n- Working Group ID: 7, Name: Skilled Sewers\n- Working Group ID: 8, Name: Advanced Sewers\n- Working Group ID: 9, Name: Premier Sewers\n- Working Group ID: 10, Name: Elite Sewers\n\n**Step 2 Results:**\n- Working Group ID: 2, Progress Percentage: 97.4441%\n- Working Group ID: 7, Progress Percentage: 97.2222%\n- Working Group ID: 8, Progress Percentage: 81.9588%\n- Working Group ID: 9, Progress Percentage: 74.6667%\n- Working Group ID: 10, Progress Percentage: 100.0000%\n\nBy joining these results on the working group ID, we get:\n\n1. Name: Master Sewers, Progress Percentage: 97.4441%\n2. Name: Skilled Sewers, Progress Percentage: 97.2222%\n3. Name: Advanced Sewers, Progress Percentage: 81.9588%\n4. Name: Premier Sewers, Progress Percentage: 74.6667%\n5. Name: Elite Sewers, Progress Percentage: 100.0000%\n\nThis provides the name and progress percentage for each sewing group."
+        }
+    ],
+    "response": "Sure thing! Here's the progress percentage for each of the sewing groups. Let's see how they're doing! 🧵✨\n\n| Sewing Group Name   | Progress Percentage |\n|---------------------|---------------------|\n| Master Sewers       | 97.4441%            |\n| Skilled Sewers      | 97.2222%            |\n| Advanced Sewers     | 81.9588%            |\n| Premier Sewers      | 74.6667%            |\n| Elite Sewers        | 100.0000%           |\n\nLooks like the Elite Sewers are leading the pack with a perfect score! Keep up the great work, everyone! 🎉👏",
+    "token_used": 7642
+}

@@ -1,0 +1,109 @@
+{
+  "ID": 40,
+  "q_ch": "订单产品是T恤的裁剪任务有哪些？",
+  "q_en": "Which cutting tasks are for products categorized as T-shirt?",
+  "sqls": [
+    {
+      "command": [
+        "SELECT id FROM products_types WHERE description = 'T-shirt';",
+        "SELECT id FROM products WHERE products_type_id = 'pt1';",
+        "SELECT id FROM order_product WHERE product_id IN (SELECT id FROM products WHERE products_type_id = 'pt1');",
+        "SELECT id, start_time, end_time, working_group_id, order_product_id, planned_number, completed_number, is_started FROM cutting_tasks WHERE order_product_id IN (SELECT id FROM order_product WHERE product_id IN (SELECT id FROM products WHERE products_type_id = 'pt1'));"
+      ],
+      "Result of executing SQL": [
+        [
+          {
+            "id": "pt1"
+          }
+        ],
+        [
+          {
+            "id": "p1"
+          },
+          {
+            "id": "p11"
+          },
+          {
+            "id": "p19"
+          },
+          {
+            "id": "p27"
+          },
+          {
+            "id": "p3"
+          }
+        ],
+        [
+          {
+            "id": "op1"
+          },
+          {
+            "id": "op4"
+          },
+          {
+            "id": "op2"
+          },
+          {
+            "id": "op5"
+          },
+          {
+            "id": "op3"
+          }
+        ],
+        [
+          {
+            "id": "ct1",
+            "start_time": "2024年01月10日 00:00",
+            "end_time": "2024年01月18日 00:00",
+            "working_group_id": "wg6",
+            "order_product_id": "op1",
+            "planned_number": 100,
+            "completed_number": 100,
+            "is_started": 1
+          },
+          {
+            "id": "ct4",
+            "start_time": "2024年01月10日 00:00",
+            "end_time": "2024年01月17日 00:00",
+            "working_group_id": "wg6",
+            "order_product_id": "op4",
+            "planned_number": 220,
+            "completed_number": 220,
+            "is_started": 1
+          },
+          {
+            "id": "ct2",
+            "start_time": "2024年01月10日 00:00",
+            "end_time": "2024年02月02日 00:00",
+            "working_group_id": "wg3",
+            "order_product_id": "op2",
+            "planned_number": 240,
+            "completed_number": 240,
+            "is_started": 1
+          },
+          {
+            "id": "ct5",
+            "start_time": "2024年01月10日 00:00",
+            "end_time": "2024年02月02日 00:00",
+            "working_group_id": "wg6",
+            "order_product_id": "op5",
+            "planned_number": 260,
+            "completed_number": 260,
+            "is_started": 1
+          },
+          {
+            "id": "ct3",
+            "start_time": "2024年01月10日 00:00",
+            "end_time": "2024年01月19日 00:00",
+            "working_group_id": "wg3",
+            "order_product_id": "op3",
+            "planned_number": 150,
+            "completed_number": 150,
+            "is_started": 1
+          }
+        ]
+      ]
+    }
+  ],
+  "total_tokens": 16817
+}

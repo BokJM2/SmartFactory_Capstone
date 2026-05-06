@@ -1,0 +1,30 @@
+{
+  "ID": 52,
+  "q_ch": "列出2024年6月的订单使用的原料和数量？并整理成{原料：剩余数量}的形式。",
+  "q_en": "List the raw materials and quantities used for orders in June 2024? And organize it into the form of {raw materials: remaining quantity}.",
+  "sql": "SELECT materials.name, SUM(cutting_material_allocation.allocated_num + sewing_material_allocation.allocated_num) AS remaining_quantity FROM orders JOIN order_product ON orders.id = order_product.order_id JOIN cutting_tasks ON order_product.id = cutting_tasks.order_product_id JOIN sewing_tasks ON order_product.id = sewing_tasks.order_product_id JOIN cutting_material_allocation ON cutting_tasks.id = cutting_material_allocation.cutting_task_id JOIN sewing_material_allocation ON sewing_tasks.id = sewing_material_allocation.sewing_task_id JOIN warehouse_material ON cutting_material_allocation.warehouse_material_id = warehouse_material.id OR sewing_material_allocation.warehouse_material_id = warehouse_material.id JOIN materials ON warehouse_material.material_id = materials.id WHERE DATE(orders.created_at) BETWEEN '2024-06-01' AND '2024-06-30' GROUP BY materials.name;",
+  "thought": "To achieve this goal, we need to determine which raw materials were used in June 2024 for the orders. We'll join the tables related to orders, order products, cutting tasks, sewing tasks, and the material allocation tables to get the allocated material quantities for each task. Then, filter based on the date range for June 2024 and finally group and sum up the quantities for each material.",
+  "total_tokens": "2624",
+  "rows": [
+    {
+      "name": "Cotton Fabric",
+      "remaining_quantity": null
+    },
+    {
+      "name": "Denim Fabric",
+      "remaining_quantity": null
+    },
+    {
+      "name": "Leather",
+      "remaining_quantity": null
+    },
+    {
+      "name": "Synthetic Fiber",
+      "remaining_quantity": null
+    },
+    {
+      "name": "Wool",
+      "remaining_quantity": null
+    }
+  ]
+}

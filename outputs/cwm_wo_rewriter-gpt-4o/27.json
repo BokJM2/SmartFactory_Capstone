@@ -1,0 +1,82 @@
+{
+    "ID": 27,
+    "q_ch": "我是Advanced Sewers，我尚未完成的任务有哪些，对应的顾客都是谁？",
+    "q_en": "I am Advanced Sewers. What are the tasks I have not yet completed?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM working_group WHERE name = 'Advanced Sewers';",
+            "description": "Retrieve the working group ID for the group with the name \"Advanced Sewers\"",
+            "results": [
+                {
+                    "id": 8
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT id, order_product_id, planned_number, completed_number, status FROM sewing_tasks WHERE working_group_id = '8' AND status != 2;",
+            "description": "Retrieve the sewing tasks that are not yet completed for the working group \"Advanced Sewers\"",
+            "results": [
+                {
+                    "id": 6,
+                    "order_product_id": 6,
+                    "planned_number": 95,
+                    "completed_number": 95,
+                    "status": 1
+                },
+                {
+                    "id": 7,
+                    "order_product_id": 7,
+                    "planned_number": 110,
+                    "completed_number": 110,
+                    "status": 1
+                },
+                {
+                    "id": 9,
+                    "order_product_id": 9,
+                    "planned_number": 80,
+                    "completed_number": 80,
+                    "status": 1
+                },
+                {
+                    "id": 20,
+                    "order_product_id": 20,
+                    "planned_number": 90,
+                    "completed_number": 90,
+                    "status": 1
+                },
+                {
+                    "id": 21,
+                    "order_product_id": 21,
+                    "planned_number": 85,
+                    "completed_number": 85,
+                    "status": 1
+                },
+                {
+                    "id": 22,
+                    "order_product_id": 22,
+                    "planned_number": 115,
+                    "completed_number": 60,
+                    "status": 0
+                },
+                {
+                    "id": 25,
+                    "order_product_id": 25,
+                    "planned_number": 75,
+                    "completed_number": 75,
+                    "status": 0
+                },
+                {
+                    "id": 33,
+                    "order_product_id": 33,
+                    "planned_number": 120,
+                    "completed_number": 0,
+                    "status": 0
+                }
+            ]
+        }
+    ],
+    "response": "Hello there! 😄 It looks like you're part of the \"Advanced Sewers\" working group and you're curious about the tasks that are still on your to-do list. Let's take a look at what needs your attention:\n\n| Task ID | Order Product ID | Planned Number | Completed Number | Status       |\n|---------|------------------|----------------|------------------|--------------|\n| 22      | 22               | 115            | 60               | In Progress  |\n| 25      | 25               | 75             | 75               | Not Started  |\n| 33      | 33               | 120            | 0                | Not Started  |\n\nHere's a quick breakdown:\n- **Task 22** is in progress, with some work already done. Keep it up! 🚀\n- **Tasks 25 and 33** haven't been started yet, so they might need a bit of your magic touch! ✨\n\nIf you have any more questions or need further assistance, feel free to ask! 😊",
+    "token_used": 7429
+}

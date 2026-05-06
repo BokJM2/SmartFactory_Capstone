@@ -1,0 +1,47 @@
+{
+    "ID": 2,
+    "q_ch": "John 的订单全部生产完成了么？",
+    "q_en": "Have all of John's orders been completed?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM customers WHERE customer_name = 'John';",
+            "description": "Retrieve the customer ID for the customer with the name \"John\"",
+            "results": [
+                {
+                    "id": 2
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM orders WHERE user_id = 2;",
+            "description": "Retrieve all order IDs for the customer \"John\"",
+            "results": [
+                {
+                    "id": 2
+                },
+                {
+                    "id": 10
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT o.id, CASE WHEN SUM(st.completed_number) = SUM(op.number) THEN 'Completed' ELSE 'Not Completed' END AS order_status FROM orders o JOIN order_product op ON o.id = op.order_id JOIN sewing_tasks st ON op.id = st.order_product_id WHERE o.user_id = 2 GROUP BY o.id;",
+            "description": "Check the status of all sewing tasks for each order to determine if they are completed",
+            "results": [
+                {
+                    "id": 2,
+                    "order_status": "Completed"
+                },
+                {
+                    "id": 10,
+                    "order_status": "Not Completed"
+                }
+            ]
+        }
+    ],
+    "response": "Hey there! 😄 Let's take a look at John's orders and see if they've all been completed. Here's what I found:\n\n| Order ID | Status       |\n|----------|--------------|\n| 2        | Completed    |\n| 10       | Not Completed|\n\nSo, it seems like not all of John's orders have been completed. Order ID 2 is all set, but Order ID 10 still needs some work. If you have any more questions, feel free to ask! 😊",
+    "token_used": 7024
+}

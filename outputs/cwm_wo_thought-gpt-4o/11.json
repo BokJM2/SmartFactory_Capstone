@@ -1,0 +1,166 @@
+{
+    "ID": 11,
+    "q_ch": "2024年4月30日前完成的裁剪任务有哪些？",
+    "q_en": "What cutting tasks will be completed before April 30, 2024?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT ct.id, ct.end_time, wg.name AS working_group_name, op.id AS order_product_id FROM cutting_tasks ct JOIN working_group wg ON ct.working_group_id = wg.id JOIN order_product op ON ct.order_product_id = op.id WHERE ct.end_time < '2024-04-30';",
+            "description": "Retrieve cutting tasks that will be completed before April 30, 2024",
+            "results": [
+                {
+                    "id": 18,
+                    "end_time": "2024-04-07 00:00:00",
+                    "working_group_name": "Precision Cutters",
+                    "order_product_id": 18
+                },
+                {
+                    "id": 30,
+                    "end_time": "2024-04-26 00:00:00",
+                    "working_group_name": "Precision Cutters",
+                    "order_product_id": 30
+                },
+                {
+                    "id": 1,
+                    "end_time": "2024-01-18 00:00:00",
+                    "working_group_name": "Master Sewers",
+                    "order_product_id": 1
+                },
+                {
+                    "id": 4,
+                    "end_time": "2024-01-17 00:00:00",
+                    "working_group_name": "Master Sewers",
+                    "order_product_id": 4
+                },
+                {
+                    "id": 5,
+                    "end_time": "2024-02-02 00:00:00",
+                    "working_group_name": "Master Sewers",
+                    "order_product_id": 5
+                },
+                {
+                    "id": 7,
+                    "end_time": "2024-03-06 00:00:00",
+                    "working_group_name": "Master Sewers",
+                    "order_product_id": 7
+                },
+                {
+                    "id": 13,
+                    "end_time": "2024-03-27 00:00:00",
+                    "working_group_name": "Master Sewers",
+                    "order_product_id": 13
+                },
+                {
+                    "id": 15,
+                    "end_time": "2024-03-26 00:00:00",
+                    "working_group_name": "Master Sewers",
+                    "order_product_id": 15
+                },
+                {
+                    "id": 17,
+                    "end_time": "2024-03-25 00:00:00",
+                    "working_group_name": "Master Sewers",
+                    "order_product_id": 17
+                },
+                {
+                    "id": 22,
+                    "end_time": "2024-04-09 00:00:00",
+                    "working_group_name": "Master Sewers",
+                    "order_product_id": 22
+                },
+                {
+                    "id": 2,
+                    "end_time": "2024-02-02 00:00:00",
+                    "working_group_name": "Master Cutters",
+                    "order_product_id": 2
+                },
+                {
+                    "id": 3,
+                    "end_time": "2024-01-19 00:00:00",
+                    "working_group_name": "Master Cutters",
+                    "order_product_id": 3
+                },
+                {
+                    "id": 6,
+                    "end_time": "2024-03-20 00:00:00",
+                    "working_group_name": "Master Cutters",
+                    "order_product_id": 6
+                },
+                {
+                    "id": 9,
+                    "end_time": "2024-03-06 00:00:00",
+                    "working_group_name": "Master Cutters",
+                    "order_product_id": 9
+                },
+                {
+                    "id": 10,
+                    "end_time": "2024-03-29 00:00:00",
+                    "working_group_name": "Master Cutters",
+                    "order_product_id": 10
+                },
+                {
+                    "id": 23,
+                    "end_time": "2024-04-19 00:00:00",
+                    "working_group_name": "Master Cutters",
+                    "order_product_id": 23
+                },
+                {
+                    "id": 24,
+                    "end_time": "2024-04-23 00:00:00",
+                    "working_group_name": "Master Cutters",
+                    "order_product_id": 24
+                },
+                {
+                    "id": 8,
+                    "end_time": "2024-03-08 00:00:00",
+                    "working_group_name": "Expert Cutters",
+                    "order_product_id": 8
+                },
+                {
+                    "id": 11,
+                    "end_time": "2024-03-21 00:00:00",
+                    "working_group_name": "Expert Cutters",
+                    "order_product_id": 11
+                },
+                {
+                    "id": 16,
+                    "end_time": "2024-04-10 00:00:00",
+                    "working_group_name": "Expert Cutters",
+                    "order_product_id": 16
+                },
+                {
+                    "id": 19,
+                    "end_time": "2024-04-12 00:00:00",
+                    "working_group_name": "Expert Cutters",
+                    "order_product_id": 19
+                },
+                {
+                    "id": 20,
+                    "end_time": "2024-04-15 00:00:00",
+                    "working_group_name": "Expert Cutters",
+                    "order_product_id": 20
+                },
+                {
+                    "id": 21,
+                    "end_time": "2024-04-04 00:00:00",
+                    "working_group_name": "Expert Cutters",
+                    "order_product_id": 21
+                },
+                {
+                    "id": 12,
+                    "end_time": "2024-03-27 00:00:00",
+                    "working_group_name": "Professional Cutters",
+                    "order_product_id": 12
+                },
+                {
+                    "id": 14,
+                    "end_time": "2024-03-18 00:00:00",
+                    "working_group_name": "Professional Cutters",
+                    "order_product_id": 14
+                }
+            ]
+        }
+    ],
+    "response": "Sure! Here are the cutting tasks that will be completed before April 30, 2024. I've organized them into a neat table for you. 😊\n\n| Task ID | End Time          | Working Group Name  | Order Product ID |\n|---------|-------------------|---------------------|------------------|\n| 18      | April 7, 2024     | Precision Cutters   | 18               |\n| 30      | April 26, 2024    | Precision Cutters   | 30               |\n| 1       | January 18, 2024  | Master Sewers       | 1                |\n| 4       | January 17, 2024  | Master Sewers       | 4                |\n| 5       | February 2, 2024  | Master Sewers       | 5                |\n| 7       | March 6, 2024     | Master Sewers       | 7                |\n| 13      | March 27, 2024    | Master Sewers       | 13               |\n| 15      | March 26, 2024    | Master Sewers       | 15               |\n| 17      | March 25, 2024    | Master Sewers       | 17               |\n| 22      | April 9, 2024     | Master Sewers       | 22               |\n| 2       | February 2, 2024  | Master Cutters      | 2                |\n| 3       | January 19, 2024  | Master Cutters      | 3                |\n| 6       | March 20, 2024    | Master Cutters      | 6                |\n| 9       | March 6, 2024     | Master Cutters      | 9                |\n| 10      | March 29, 2024    | Master Cutters      | 10               |\n| 23      | April 19, 2024    | Master Cutters      | 23               |\n| 24      | April 23, 2024    | Master Cutters      | 24               |\n| 8       | March 8, 2024     | Expert Cutters      | 8                |\n| 11      | March 21, 2024    | Expert Cutters      | 11               |\n| 16      | April 10, 2024    | Expert Cutters      | 16               |\n| 19      | April 12, 2024    | Expert Cutters      | 19               |\n| 20      | April 15, 2024    | Expert Cutters      | 20               |\n| 21      | April 4, 2024     | Expert Cutters      | 21               |\n| 12      | March 27, 2024    | Professional Cutters| 12               |\n| 14      | March 18, 2024    | Professional Cutters| 14               |\n\nIf you have any more questions or need further assistance, feel free to ask! 😄",
+    "token_used": 8510
+}

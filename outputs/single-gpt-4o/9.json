@@ -1,0 +1,19 @@
+{
+    "ID": 9,
+    "q_ch": "William 的缝纫任务进度如何？",
+    "q_en": "What is the progress of sewing tasks for William?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT SUM(st.completed_number) / SUM(st.planned_number) * 100 AS progress_percentage FROM sewing_tasks st JOIN order_product op ON st.order_product_id = op.id JOIN orders o ON op.order_id = o.id JOIN customers c ON o.user_id = c.id WHERE c.customer_name = 'William';",
+            "description": "To calculate the progress of sewing tasks for the customer William, we need to find the order IDs associated with William, then find the order product IDs related to those orders, and finally calculate the sum of planned and completed numbers for sewing tasks related to those order products. We will then calculate the progress percentage.",
+            "results": [
+                {
+                    "progress_percentage": "100.0000"
+                }
+            ]
+        }
+    ],
+    "response": "Hey there! 😄\n\nI've got some great news about the progress of sewing tasks for our customer, William. Here's a quick look at the progress:\n\n| Customer Name | Progress Percentage |\n|---------------|---------------------|\n| William       | 100%                |\n\nIt looks like all the sewing tasks for William are completed! 🎉 If you have any more questions or need further assistance, feel free to ask!",
+    "token_used": 5408
+}

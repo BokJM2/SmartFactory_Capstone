@@ -1,0 +1,19 @@
+{
+    "ID": 7,
+    "q_ch": "顾客PolyU 下的订单总数是多少？",
+    "q_en": "How many orders are there in total under PolyU?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT COUNT(*) FROM orders o JOIN customers c ON o.user_id = c.id WHERE c.customer_name = 'PolyU';",
+            "description": "Count the total number of orders placed by the customer with the name 'PolyU'.",
+            "results": [
+                {
+                    "COUNT(*)": 2
+                }
+            ]
+        }
+    ],
+    "response": "Hey there! 😄\n\nI've got the information you need about the orders placed by the customer named \"PolyU\". Here's a quick summary:\n\n| Customer Name | Total Orders |\n|---------------|--------------|\n| PolyU         | 2            |\n\nSo, there are a total of **2 orders** under the customer name \"PolyU\". If you have any more questions, feel free to ask! 📊✨",
+    "token_used": 5259
+}

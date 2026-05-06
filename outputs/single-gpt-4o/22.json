@@ -1,0 +1,56 @@
+{
+    "ID": 22,
+    "q_ch": "我们现在有哪些缝纫组，哪些裁剪组？",
+    "q_en": "What sewing groups and cutting groups do we have now?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT name, type FROM working_group WHERE type IN ('sew', 'cut');",
+            "description": "Retrieve the names and types of all working groups that are either sewing or cutting groups.",
+            "results": [
+                {
+                    "name": "Precision Cutters",
+                    "type": "cut"
+                },
+                {
+                    "name": "Master Sewers",
+                    "type": "sew"
+                },
+                {
+                    "name": "Master Cutters",
+                    "type": "cut"
+                },
+                {
+                    "name": "Expert Cutters",
+                    "type": "cut"
+                },
+                {
+                    "name": "Professional Cutters",
+                    "type": "cut"
+                },
+                {
+                    "name": "Advanced Cutters",
+                    "type": "cut"
+                },
+                {
+                    "name": "Skilled Sewers",
+                    "type": "sew"
+                },
+                {
+                    "name": "Advanced Sewers",
+                    "type": "sew"
+                },
+                {
+                    "name": "Premier Sewers",
+                    "type": "sew"
+                },
+                {
+                    "name": "Elite Sewers",
+                    "type": "sew"
+                }
+            ]
+        }
+    ],
+    "response": "Sure thing! Here's a list of the sewing and cutting groups we currently have:\n\n| Group Name          | Type  |\n|---------------------|-------|\n| Precision Cutters   | Cut   |\n| Master Sewers       | Sew   |\n| Master Cutters      | Cut   |\n| Expert Cutters      | Cut   |\n| Professional Cutters| Cut   |\n| Advanced Cutters    | Cut   |\n| Skilled Sewers      | Sew   |\n| Advanced Sewers     | Sew   |\n| Premier Sewers      | Sew   |\n| Elite Sewers        | Sew   |\n\nLooks like we have a great mix of talented groups! 🧵✂️ If you have any more questions, feel free to ask! 😄",
+    "token_used": 5162
+}

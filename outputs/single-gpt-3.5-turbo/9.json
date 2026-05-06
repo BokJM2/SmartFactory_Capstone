@@ -1,0 +1,21 @@
+{
+    "ID": 9,
+    "q_ch": "William 的缝纫任务进度如何？",
+    "q_en": "What is the progress of sewing tasks for William?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT SUM(st.planned_number) AS total_planned, SUM(st.completed_number) AS total_completed, ROUND(SUM(st.completed_number) / SUM(st.planned_number) * 100, 2) AS progress_percentage FROM sewing_tasks st JOIN order_product op ON st.order_product_id = op.id JOIN orders o ON op.order_id = o.id JOIN customers c ON o.user_id = c.id JOIN working_group wg ON st.working_group_id = wg.id WHERE wg.name = 'Skilled Sewers' AND c.customer_name = 'William';",
+            "description": "To determine the progress of 'Skilled Sewers' for 'William', we need to calculate the total planned number and completed number of sewing tasks for the specified working group and customer. We will join the sewing_tasks table with the order_product and customers tables to filter based on the working group and customer names.",
+            "results": [
+                {
+                    "total_planned": "390",
+                    "total_completed": "390",
+                    "progress_percentage": "100.00"
+                }
+            ]
+        }
+    ],
+    "response": "### Progress of 'Skilled Sewers' for 'William'\n\n| Total Planned | Total Completed | Progress Percentage |\n|---------------|-----------------|--------------------|\n| 390           | 390             | 100.00%            |\n\nGreat news! The progress of 'Skilled Sewers' for 'William' is at 100.00% completion. 🎉 Keep up the fantastic work! If you have any more questions or need further assistance, feel free to ask! 😄",
+    "token_used": 5629
+}

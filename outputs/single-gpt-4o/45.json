@@ -1,0 +1,15 @@
+{
+    "ID": 45,
+    "q_ch": "主仓库出库Cotton Fabric100份。",
+    "q_en": "Please release 100 units of cotton fabric from the Main warehouse.",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "UPDATE warehouse_material wm JOIN materials m ON wm.material_id = m.id JOIN warehouse w ON wm.warehouse_id = w.id SET wm.left_number = wm.left_number - 100 WHERE m.name = 'Cotton Fabric' AND w.name = 'Main Warehouse';",
+            "description": "Update the left_number of the 'Cotton Fabric' material in the 'Main Warehouse' by reducing it by 100 units.",
+            "results": "update data successfully."
+        }
+    ],
+    "response": "### Release Confirmation\n\nGreat news! 🎉 We've successfully updated the inventory. Here's a quick summary of the action taken:\n\n| Material       | Warehouse      | Units Released |\n|----------------|----------------|----------------|\n| Cotton Fabric  | Main Warehouse | 100            |\n\nThe 'Cotton Fabric' stock in the 'Main Warehouse' has been reduced by 100 units. If there's anything else you need, feel free to ask! 😊",
+    "token_used": 5418
+}

@@ -1,0 +1,11 @@
+USER INPUT: Retrieve all orders and item details for the Customer PolyU
+ANSWER:
+```
+Step1: Retrieve the customer ID for the customer with the name "PolyU"
+
+Execute:
+SQL `SELECT id FROM customers WHERE customer_name = 'PolyU';`
+
+Step2: Retrieve the details of products for each order, including product attributes and type description
+Tool `tool_find_order_details, {'order_id': <order_id>}, Find the product details of an order`
+```

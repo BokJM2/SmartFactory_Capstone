@@ -1,0 +1,14 @@
+{
+  "ID": 51,
+  "q_ch": "未完成的订单中，哪个订单完成的进度最快？",
+  "q_en": "Which order has the fastest completion progress among the unfinished orders?",
+  "sql": "SELECT op.order_id, SUM(ct.completed_number + st.completed_number) / SUM(ct.planned_number + st.planned_number) AS completion_progress FROM order_product AS op LEFT JOIN cutting_tasks AS ct ON op.id = ct.order_product_id LEFT JOIN sewing_tasks AS st ON op.id = st.order_product_id WHERE ct.is_started = TRUE OR st.is_started = TRUE GROUP BY op.order_id ORDER BY completion_progress DESC LIMIT 1;",
+  "thought": "To determine which unfinished order has the fastest completion progress, we need to consider the sum of 'completed_number' for both cutting and sewing tasks and compare it to the 'planned_number'. The progress can be calculated as (SUM(completed_number) / SUM(planned_number)). We need to focus on orders with unfinished tasks by checking the 'is_started' field to see if they are in progress.",
+  "total_tokens": "2508",
+  "rows": [
+    {
+      "order_id": "o5",
+      "completion_progress": null
+    }
+  ]
+}

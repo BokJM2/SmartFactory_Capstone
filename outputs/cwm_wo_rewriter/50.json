@@ -1,0 +1,16 @@
+{
+  "ID": 50,
+  "q_ch": "对于编号为ct33的裁剪任务，预计任务结束时间需要延迟至2024年7月31日",
+  "q_en": "The expected completion date for cutting task ct33 needs to be extended to July 31, 2024.",
+  "sqls": [
+    {
+      "command": [
+        "UPDATE cutting_tasks SET end_time = '2024-07-31 23:59:59' WHERE id = 'ct33';"
+      ],
+      "Result of executing SQL": [
+        "update data successfully."
+      ]
+    }
+  ],
+  "total_tokens": 6168
+}

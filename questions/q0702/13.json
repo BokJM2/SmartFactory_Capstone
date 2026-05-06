@@ -1,0 +1,6 @@
+{
+    "ID": 13,
+    "q_ch": "在我们的所有仓库中，库存不为0的原材料有哪些，整理成{类型：剩余数量}的形式。",
+    "q_en": "What are the raw materials with non zero inventory in all of our warehouses, organized in the form of 'Type: Remaining Quantity'?",
+    "gt": ""
+}

@@ -1,0 +1,91 @@
+{
+    "ID": 14,
+    "q_ch": "剩余库存最多的原料是什么？",
+    "q_en": "What is the material with the highest remaining inventory?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT wm.material_id, m.name, wm.left_number FROM warehouse_material wm JOIN materials m ON wm.material_id = m.id;",
+            "description": "Retrieve the material ID and name along with the remaining inventory quantity for all materials",
+            "results": [
+                {
+                    "material_id": 1,
+                    "name": "Cotton Fabric",
+                    "left_number": 3500
+                },
+                {
+                    "material_id": 2,
+                    "name": "Fabric Pieces",
+                    "left_number": 3200
+                },
+                {
+                    "material_id": 3,
+                    "name": "Wool",
+                    "left_number": 4100
+                },
+                {
+                    "material_id": 4,
+                    "name": "Wool Pieces",
+                    "left_number": 3550
+                },
+                {
+                    "material_id": 5,
+                    "name": "Silk",
+                    "left_number": 1100
+                },
+                {
+                    "material_id": 6,
+                    "name": "Silk Pieces",
+                    "left_number": 5400
+                },
+                {
+                    "material_id": 7,
+                    "name": "Leather",
+                    "left_number": 2200
+                },
+                {
+                    "material_id": 8,
+                    "name": "Leather Pieces",
+                    "left_number": 1300
+                },
+                {
+                    "material_id": 9,
+                    "name": "Synthetic Fiber",
+                    "left_number": 2300
+                },
+                {
+                    "material_id": 10,
+                    "name": "Synthetic Fiber Pieces",
+                    "left_number": 1500
+                },
+                {
+                    "material_id": 11,
+                    "name": "Denim Fabric",
+                    "left_number": 4500
+                },
+                {
+                    "material_id": 12,
+                    "name": "Denim Fabric Pieces",
+                    "left_number": 3180
+                },
+                {
+                    "material_id": 13,
+                    "name": "Down",
+                    "left_number": 1230
+                },
+                {
+                    "material_id": 14,
+                    "name": "Down Pieces",
+                    "left_number": 2420
+                }
+            ]
+        },
+        {
+            "type": "Thought",
+            "operation": "Compare the remaining inventory quantities obtained in Step1 and identify the material with the highest quantity.",
+            "results": "To identify the material with the highest remaining inventory quantity from the provided data, we need to compare the 'left_number' values for each material. Here are the quantities:\n\n- Cotton Fabric: 3500\n- Fabric Pieces: 3200\n- Wool: 4100\n- Wool Pieces: 3550\n- Silk: 1100\n- Silk Pieces: 5400\n- Leather: 2200\n- Leather Pieces: 1300\n- Synthetic Fiber: 2300\n- Synthetic Fiber Pieces: 1500\n- Denim Fabric: 4500\n- Denim Fabric Pieces: 3180\n- Down: 1230\n- Down Pieces: 2420\n\nThe material with the highest quantity is \"Silk Pieces\" with a quantity of 5400."
+        }
+    ],
+    "response": "Sure thing! Let's dive into the inventory details. Based on the latest data, here's a summary of the materials and their remaining quantities:\n\n| Material             | Remaining Inventory |\n|----------------------|---------------------|\n| Cotton Fabric        | 3,500               |\n| Fabric Pieces        | 3,200               |\n| Wool                 | 4,100               |\n| Wool Pieces          | 3,550               |\n| Silk                 | 1,100               |\n| **Silk Pieces**      | **5,400**           |\n| Leather              | 2,200               |\n| Leather Pieces       | 1,300               |\n| Synthetic Fiber      | 2,300               |\n| Synthetic Fiber Pieces | 1,500             |\n| Denim Fabric         | 4,500               |\n| Denim Fabric Pieces  | 3,180               |\n| Down                 | 1,230               |\n| Down Pieces          | 2,420               |\n\n🎉 The material with the highest remaining inventory is **Silk Pieces** with a quantity of 5,400! If you have any more questions or need further assistance, feel free to ask! 😊",
+    "token_used": 7154
+}

@@ -1,0 +1,29 @@
+{
+    "ID": 44,
+    "q_ch": "请将100件ID为15的产品入库到辅助仓库。",
+    "q_en": "Please store 100 units of product with ID=15 in the auxiliary warehouse.",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM warehouse WHERE name = 'Auxiliary warehouse';",
+            "description": "Retrieve the warehouse ID for the warehouse with the name \"Auxiliary warehouse\"",
+            "results": [
+                {
+                    "id": 2
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "INSERT INTO warehouse_product (warehouse_id, product_id, left_number) VALUES ('2', 15, 100);",
+            "description": "Store 100 units of the product with ID=15 in the \"Auxiliary warehouse\"",
+            "results": [
+                {
+                    "auto_increment_id": 3
+                }
+            ]
+        }
+    ],
+    "response": "Sure thing! We've successfully stored 100 units of the product with ID=15 in the \"Auxiliary warehouse\". 🎉 Here's a quick summary of the operation:\n\n| Action                                      | Details                          |\n|---------------------------------------------|----------------------------------|\n| **Warehouse Name**                          | Auxiliary warehouse              |\n| **Warehouse ID**                            | 2                                |\n| **Product ID**                              | 15                               |\n| **Quantity Stored**                         | 100 units                        |\n| **Operation ID**                            | 3 (auto-generated)               |\n\nIf you have any more tasks or questions, feel free to ask! 😊",
+    "token_used": 6911
+}

@@ -1,0 +1,8 @@
+{
+  "ID": 41,
+  "q_ch": "我是香港理工大学，今天是2024年7月2日，请帮我创建一个订单，要50件红色, M码的T-shirt, 以及30件蓝色, XL码 的Sweater。",
+  "q_en": "I am from The Hong Kong Polytechnic University. Today is July 2, 2024. Please help me create an order for 50 red T-shirts in size M and 30 blue sweaters in size XL.",
+  "sql": "SELECT id INTO @customer_id FROM customers WHERE customer_name = 'PolyU';INSERT INTO orders (id, user_id, order_name, created_at) VALUES (UUID(), @customer_id, 'Order for PolyU', '2024-07-02 00:00:00');SET @order_id = LAST_INSERT_ID();SELECT id INTO @tshirt_type_id FROM products_types WHERE description = 'T-shirt';SELECT id INTO @sweater_type_id FROM products_types WHERE description = 'Sweater';SELECT id INTO @tshirt_product_id FROM products WHERE products_type_id = @tshirt_type_id AND attributes = 'Red, M size';SELECT id INTO @sweater_product_id FROM products WHERE products_type_id = @sweater_type_id AND attributes = 'Blue, XL size';INSERT INTO order_product (id, order_id, product_id, number) VALUES (UUID(), @order_id, @tshirt_product_id, 50);INSERT INTO order_product (id, order_id, product_id, number) VALUES (UUID(), @order_id, @sweater_product_id, 30);",
+  "thought": "First, find the customer ID for 'PolyU'. Then fetch the product types ID for 'T-shirt' and 'Sweater' and corresponding product IDs for the specific attributes. Finally, create the new order with these products and quantities.",
+  "total_tokens": "3383"
+}

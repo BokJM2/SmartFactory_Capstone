@@ -1,0 +1,32 @@
+{
+  "ID": 29,
+  "q_ch": "对所有已经开始但是尚未完成的缝纫任务进行统计，剩余工作量最多的工作组是哪个？",
+  "q_en": "Which workgroup has the highest remaining workload for all sewing tasks that have been started but not yet completed?",
+  "sqls": [
+    {
+      "command": [
+        "SELECT working_group_id, SUM(planned_number - completed_number) AS remaining_workload\n FROM sewing_tasks\n WHERE is_started = TRUE AND completed_number < planned_number\n GROUP BY working_group_id;",
+        "SELECT wg.name, st.remaining_workload\n FROM (\n   SELECT working_group_id, SUM(planned_number - completed_number) AS remaining_workload\n   FROM sewing_tasks\n   WHERE is_started = TRUE AND completed_number < planned_number\n   GROUP BY working_group_id\n   ORDER BY remaining_workload DESC\n   LIMIT 1\n ) st\n JOIN working_group wg ON st.working_group_id = wg.id;"
+      ],
+      "Result of executing SQL": [
+        [
+          {
+            "working_group_id": "wg2",
+            "remaining_workload": null
+          },
+          {
+            "working_group_id": "wg8",
+            "remaining_workload": null
+          }
+        ],
+        [
+          {
+            "name": "Master Sewers",
+            "remaining_workload": null
+          }
+        ]
+      ]
+    }
+  ],
+  "total_tokens": 12327
+}

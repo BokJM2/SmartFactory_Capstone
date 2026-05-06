@@ -1,0 +1,32 @@
+{
+  "ID": 10,
+  "q_ch": "对于Michael下的SweaterAndShorts的订单，还有哪些产品没有制造完成，列出未完成产品的类型和数量？",
+  "q_en": "For Michael's SweaterAndShorts order, which other products have not been manufactured yet? Please list the types and quantities of unfinished products.",
+  "sqls": [
+    {
+      "command": [
+        "SELECT id FROM customers WHERE customer_name = 'Michael';",
+        "SELECT id FROM orders WHERE order_name = 'SweaterAndShorts' AND user_id = 'c6';",
+        "SELECT id, product_id, number FROM order_product WHERE order_id = 'c6';",
+        "SELECT order_product_id, SUM(completed_number) AS total_completed_cutting\n FROM cutting_tasks\n WHERE order_product_id IN (SELECT id FROM order_product WHERE order_id = 'c6')\n GROUP BY order_product_id;",
+        "SELECT order_product_id, SUM(completed_number) AS total_completed_sewing\n FROM sewing_tasks\n WHERE order_product_id IN (SELECT id FROM order_product WHERE order_id = 'c6')\n GROUP BY order_product_id;",
+        "SELECT op.id AS order_product_id, op.product_id, op.number AS total_ordered, \n        COALESCE(ct.total_completed_cutting, 0) + COALESCE(st.total_completed_sewing, 0) AS total_completed\n FROM order_product op\n LEFT JOIN (\n   SELECT order_product_id, SUM(completed_number) AS total_completed_cutting\n   FROM cutting_tasks\n   WHERE order_product_id IN (SELECT id FROM order_product WHERE order_id = 'c6')\n   GROUP BY order_product_id\n ) ct ON op.id = ct.order_product_id\n LEFT JOIN (\n   SELECT order_product_id, SUM(completed_number) AS total_completed_sewing\n   FROM sewing_tasks\n   WHERE order_product_id IN (SELECT id FROM order_product WHERE order_id = 'c6')\n   GROUP BY order_product_id\n ) st ON op.id = st.order_product_id\n WHERE op.order_id = 'c6';",
+        "SELECT pt.description, (op.total_ordered - op.total_completed) AS unfinished_quantity\n FROM (\n   SELECT op.id AS order_product_id, op.product_id, op.number AS total_ordered, \n          COALESCE(ct.total_completed_cutting, 0) + COALESCE(st.total_completed_sewing, 0) AS total_completed\n   FROM order_product op\n   LEFT JOIN (\n     SELECT order_product_id, SUM(completed_number) AS total_completed_cutting\n     FROM cutting_tasks\n     WHERE order_product_id IN (SELECT id FROM order_product WHERE order_id = 'c6')\n     GROUP BY order_product_id\n   ) ct ON op.id = ct.order_product_id\n   LEFT JOIN (\n     SELECT order_product_id, SUM(completed_number) AS total_completed_sewing\n     FROM sewing_tasks\n     WHERE order_product_id IN (SELECT id FROM order_product WHERE order_id = 'c6')\n     GROUP BY order_product_id\n   ) st ON op.id = st.order_product_id\n   WHERE op.order_id = 'c6'\n ) op\n JOIN products p ON op.product_id = p.id\n JOIN products_types pt ON p.products_type_id = pt.id\n WHERE (op.total_ordered - op.total_completed) > 0;"
+      ],
+      "Result of executing SQL": [
+        [
+          {
+            "id": "c6"
+          }
+        ],
+        "no results found.",
+        "no results found.",
+        "no results found.",
+        "no results found.",
+        "no results found.",
+        "no results found."
+      ]
+    }
+  ],
+  "total_tokens": 8405
+}

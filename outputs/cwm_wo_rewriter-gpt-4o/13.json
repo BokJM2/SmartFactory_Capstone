@@ -1,0 +1,92 @@
+{
+    "ID": 13,
+    "q_ch": "在我们的所有仓库中，库存不为0的原材料有哪些，整理成{类型：剩余数量}的形式。",
+    "q_en": "What are the raw materials with non zero inventory in all of our warehouses, organized in the form of 'Type: Remaining Quantity'?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT m.id, m.name FROM materials m JOIN warehouse_material wm ON m.id = wm.material_id WHERE m.type = 'origin' AND wm.left_number > 0;",
+            "description": "Retrieve the material ID and name for all raw materials with non-zero inventory",
+            "results": [
+                {
+                    "id": 1,
+                    "name": "Cotton Fabric"
+                },
+                {
+                    "id": 3,
+                    "name": "Wool"
+                },
+                {
+                    "id": 5,
+                    "name": "Silk"
+                },
+                {
+                    "id": 7,
+                    "name": "Leather"
+                },
+                {
+                    "id": 9,
+                    "name": "Synthetic Fiber"
+                },
+                {
+                    "id": 11,
+                    "name": "Denim Fabric"
+                },
+                {
+                    "id": 13,
+                    "name": "Down"
+                },
+                {
+                    "id": 14,
+                    "name": "Down Pieces"
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT wm.material_id, SUM(wm.left_number) AS remaining_quantity FROM warehouse_material wm JOIN materials m ON wm.material_id = m.id WHERE m.type = 'origin' AND wm.left_number > 0 GROUP BY wm.material_id;",
+            "description": "Retrieve the remaining quantity for each raw material in all warehouses",
+            "results": [
+                {
+                    "material_id": 1,
+                    "remaining_quantity": "3500"
+                },
+                {
+                    "material_id": 3,
+                    "remaining_quantity": "4100"
+                },
+                {
+                    "material_id": 5,
+                    "remaining_quantity": "1100"
+                },
+                {
+                    "material_id": 7,
+                    "remaining_quantity": "2200"
+                },
+                {
+                    "material_id": 9,
+                    "remaining_quantity": "2300"
+                },
+                {
+                    "material_id": 11,
+                    "remaining_quantity": "4500"
+                },
+                {
+                    "material_id": 13,
+                    "remaining_quantity": "1230"
+                },
+                {
+                    "material_id": 14,
+                    "remaining_quantity": "2420"
+                }
+            ]
+        },
+        {
+            "type": "Thought",
+            "operation": "Combine the material names obtained in Step1 with their corresponding remaining quantities from Step2 to present the information in the desired format.",
+            "results": "To achieve the objective, we need to combine the material names from Step 1 with their corresponding remaining quantities from Step 2. Here is the combined information in the desired format:\n\n1. Cotton Fabric: 3500\n2. Wool: 4100\n3. Silk: 1100\n4. Leather: 2200\n5. Synthetic Fiber: 2300\n6. Denim Fabric: 4500\n7. Down: 1230\n8. Down Pieces: 2420"
+        }
+    ],
+    "response": "Sure thing! Let's take a look at the raw materials with non-zero inventory in all of our warehouses. Here's the organized list in the format 'Type: Remaining Quantity':\n\n| Material Type       | Remaining Quantity |\n|---------------------|--------------------|\n| Cotton Fabric       | 3500               |\n| Wool                | 4100               |\n| Silk                | 1100               |\n| Leather             | 2200               |\n| Synthetic Fiber     | 2300               |\n| Denim Fabric        | 4500               |\n| Down                | 1230               |\n| Down Pieces         | 2420               |\n\nIsn't it great to see all these materials well-stocked? 😄 If you have any more questions, feel free to ask!",
+    "token_used": 7538
+}

@@ -1,0 +1,107 @@
+{
+    "ID": 25,
+    "q_ch": "对于Master Sewers 已经完成的所有缝纫任务，有哪些是在2024年2月1日之后创建的?",
+    "q_en": "For all sewing tasks completed by Master Sewers, which ones were created after February 1, 2024?",
+    "hint": "Don't ignore the time condition of February 1, 2024",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT st.* FROM sewing_tasks st JOIN working_group wg ON st.working_group_id = wg.id WHERE wg.name = 'Master Sewers' AND st.end_time > '2024-02-01';",
+            "description": "To find all sewing tasks completed by the 'Master Sewers' working group that were created after February 1, 2024, we need to join the sewing_tasks table with the working_group table and apply the necessary filters.",
+            "results": [
+                {
+                    "id": 1,
+                    "start_time": "2024-01-18 00:00:00",
+                    "end_time": "2024-02-07 00:00:00",
+                    "working_group_id": 2,
+                    "order_product_id": 1,
+                    "planned_number": 100,
+                    "completed_number": 100,
+                    "status": 2
+                },
+                {
+                    "id": 5,
+                    "start_time": "2024-02-02 00:00:00",
+                    "end_time": "2024-02-25 00:00:00",
+                    "working_group_id": 2,
+                    "order_product_id": 5,
+                    "planned_number": 260,
+                    "completed_number": 260,
+                    "status": 1
+                },
+                {
+                    "id": 10,
+                    "start_time": "2024-03-29 00:00:00",
+                    "end_time": "2024-04-09 00:00:00",
+                    "working_group_id": 2,
+                    "order_product_id": 10,
+                    "planned_number": 100,
+                    "completed_number": 100,
+                    "status": 0
+                },
+                {
+                    "id": 12,
+                    "start_time": "2024-03-27 00:00:00",
+                    "end_time": "2024-04-12 00:00:00",
+                    "working_group_id": 2,
+                    "order_product_id": 12,
+                    "planned_number": 150,
+                    "completed_number": 120,
+                    "status": 1
+                },
+                {
+                    "id": 13,
+                    "start_time": "2024-03-27 00:00:00",
+                    "end_time": "2024-04-06 00:00:00",
+                    "working_group_id": 2,
+                    "order_product_id": 13,
+                    "planned_number": 130,
+                    "completed_number": 120,
+                    "status": 1
+                },
+                {
+                    "id": 14,
+                    "start_time": "2024-03-18 00:00:00",
+                    "end_time": "2024-04-08 00:00:00",
+                    "working_group_id": 2,
+                    "order_product_id": 14,
+                    "planned_number": 120,
+                    "completed_number": 120,
+                    "status": 1
+                },
+                {
+                    "id": 15,
+                    "start_time": "2024-03-26 00:00:00",
+                    "end_time": "2024-04-09 00:00:00",
+                    "working_group_id": 2,
+                    "order_product_id": 15,
+                    "planned_number": 185,
+                    "completed_number": 185,
+                    "status": 1
+                },
+                {
+                    "id": 24,
+                    "start_time": "2024-04-23 00:00:00",
+                    "end_time": "2024-05-20 00:00:00",
+                    "working_group_id": 2,
+                    "order_product_id": 24,
+                    "planned_number": 105,
+                    "completed_number": 105,
+                    "status": 0
+                },
+                {
+                    "id": 30,
+                    "start_time": "2024-04-26 00:00:00",
+                    "end_time": "2024-05-15 00:00:00",
+                    "working_group_id": 2,
+                    "order_product_id": 30,
+                    "planned_number": 195,
+                    "completed_number": 195,
+                    "status": 1
+                }
+            ]
+        }
+    ],
+    "response": "### Answer:\nHere are the sewing tasks completed by the 'Master Sewers' working group that were created after February 1, 2024:\n\n| Task ID | Start Time | End Time | Order Product ID | Planned Number | Completed Number | Status |\n|---------|------------|----------|------------------|----------------|------------------|--------|\n| 5       | 2024-02-02 | 2024-02-25 | 5                | 260            | 260              | 1      |\n| 10      | 2024-03-29 | 2024-04-09 | 10               | 100            | 100              | 0      |\n| 12      | 2024-03-27 | 2024-04-12 | 12               | 150            | 120              | 1      |\n| 13      | 2024-03-27 | 2024-04-06 | 13               | 130            | 120              | 1      |\n| 14      | 2024-03-18 | 2024-04-08 | 14               | 120            | 120              | 1      |\n| 15      | 2024-03-26 | 2024-04-09 | 15               | 185            | 185              | 1      |\n| 24      | 2024-04-23 | 2024-05-20 | 24               | 105            | 105              | 0      |\n| 30      | 2024-04-26 | 2024-05-15 | 30               | 195            | 195              | 1      |\n\nFeel free to ask if you need more information! 😄",
+    "token_used": 6804
+}

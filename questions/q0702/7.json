@@ -1,0 +1,6 @@
+{
+    "ID": 7,
+    "q_ch": "顾客PolyU 下的订单总数是多少？",
+    "q_en": "How many orders are there in total under PolyU?",
+    "gt": "SELECT COUNT(*) FROM orders o JOIN customers c ON o.user_id = c.id WHERE c.customer_name = 'PolyU';"
+}

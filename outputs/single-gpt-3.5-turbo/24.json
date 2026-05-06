@@ -1,0 +1,16 @@
+{
+    "ID": 24,
+    "q_ch": "Elite Sewers 在2024年6月30日前分配的缝纫任务有哪些？",
+    "q_en": "What sewing tasks will Elite Sewers be assigned before June 30, 2024?",
+    "hint": "应查找Elite Sewers所有任务中start_time < 2024-6-30的任务",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT st.* FROM sewing_tasks st JOIN order_product op ON st.order_product_id = op.id JOIN orders o ON op.order_id = o.id JOIN customers c ON o.user_id = c.id WHERE c.customer_name = 'Elite Sewers' AND st.end_time < '2024-06-30';",
+            "description": "To find the sewing tasks that customers with the name 'Elite Sewers' will be assigned before June 30, 2024, we need to retrieve the sewing tasks based on the customer name and the end time before the specified date.",
+            "results": "no results found."
+        }
+    ],
+    "response": "Certainly! Let me provide you with the answer to your question:\n\n### Sewing Tasks Assigned to Elite Sewers Before June 30, 2024\n\n| Task ID | Task Description | Deadline |\n|---------|------------------|----------|\n| No tasks found for Elite Sewers before June 30, 2024 | 😔 | N/A |\n\nIt seems that there are currently no sewing tasks assigned to Elite Sewers before June 30, 2024. If you have any more questions or need further assistance, feel free to ask! 😄",
+    "token_used": 5519
+}

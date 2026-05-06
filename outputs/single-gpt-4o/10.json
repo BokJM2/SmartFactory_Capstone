@@ -1,0 +1,15 @@
+{
+    "ID": 10,
+    "q_ch": "对于Michael下的SweaterAndShorts的订单，还有哪些产品没有制造完成，列出未完成产品的类型及属性描述和数量？",
+    "q_en": "For Michael's SweaterAndShorts order, which other products have not been manufactured yet? Please list the types, attributes and quantities of unfinished products.",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT pt.description AS product_type, p.attributes, (op.number - COALESCE(ct.completed_number, 0) - COALESCE(st.completed_number, 0)) AS unfinished_quantity FROM orders o JOIN customers c ON o.user_id = c.id JOIN order_product op ON o.id = op.order_id JOIN products p ON op.product_id = p.id JOIN products_types pt ON p.products_type_id = pt.id LEFT JOIN (SELECT order_product_id, SUM(completed_number) AS completed_number FROM cutting_tasks GROUP BY order_product_id) ct ON op.id = ct.order_product_id LEFT JOIN (SELECT order_product_id, SUM(completed_number) AS completed_number FROM sewing_tasks GROUP BY order_product_id) st ON op.id = st.order_product_id WHERE c.customer_name = 'Michael' AND o.order_name = 'Michael_SweaterAndShorts' AND (op.number - COALESCE(ct.completed_number, 0) - COALESCE(st.completed_number, 0)) > 0;",
+            "description": "To find the types, attributes, and quantities of unfinished products for the order with customer name 'Michael' and order name 'Michael_SweaterAndShorts', we need to identify the order_id, then find the products associated with this order that have not been fully manufactured by checking the difference between the planned and completed numbers in the order_product table.",
+            "results": "no results found."
+        }
+    ],
+    "response": "It looks like there are no unfinished products for the order placed by Michael with the name \"Michael_SweaterAndShorts\". 🎉 Everything seems to be on track and fully manufactured! If you have any more questions or need further assistance, feel free to ask. 😊",
+    "token_used": 5927
+}

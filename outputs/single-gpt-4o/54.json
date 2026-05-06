@@ -1,0 +1,36 @@
+{
+    "ID": 54,
+    "q_ch": "列出所有缝纫组的进度百分比。",
+    "q_en": "List the progress percentage of all sewing groups",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT wg.name AS working_group_name, ROUND(SUM(st.completed_number) / SUM(st.planned_number) * 100, 2) AS progress_percentage FROM sewing_tasks st JOIN working_group wg ON st.working_group_id = wg.id WHERE wg.type = 'sew' GROUP BY wg.id;",
+            "description": "To list the progress percentage of all sewing groups, we need to calculate the total planned number and total completed number of sewing tasks for each working group, and then calculate the progress percentage for each group.",
+            "results": [
+                {
+                    "working_group_name": "Master Sewers",
+                    "progress_percentage": "97.44"
+                },
+                {
+                    "working_group_name": "Skilled Sewers",
+                    "progress_percentage": "97.22"
+                },
+                {
+                    "working_group_name": "Advanced Sewers",
+                    "progress_percentage": "81.96"
+                },
+                {
+                    "working_group_name": "Premier Sewers",
+                    "progress_percentage": "74.67"
+                },
+                {
+                    "working_group_name": "Elite Sewers",
+                    "progress_percentage": "100.00"
+                }
+            ]
+        }
+    ],
+    "response": "Sure thing! Here's the progress percentage for all the sewing groups, neatly organized for you:\n\n| Sewing Group Name   | Progress Percentage |\n|---------------------|---------------------|\n| Master Sewers       | 97.44%              |\n| Skilled Sewers      | 97.22%              |\n| Advanced Sewers     | 81.96%              |\n| Premier Sewers      | 74.67%              |\n| Elite Sewers        | 100.00%             |\n\nLooks like the Elite Sewers are leading the pack with a perfect score! 🎉 Keep up the great work, everyone! 😄",
+    "token_used": 5197
+}

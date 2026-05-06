@@ -1,0 +1,21 @@
+{
+    "ID": 23,
+    "q_ch": "主仓库和辅助仓库中，哪个仓库的Cotton Fabric更多？",
+    "q_en": "Which warehouse has more Cotton Fabric between the main and auxiliary warehouses?",
+    "hint": "应该统计主仓库和辅助仓库的Cotton Fabric当前剩余的数量总和进行比较",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT w.name AS warehouse_name, SUM(wm.total_number) AS total_cotton_fabric FROM warehouse_material wm JOIN warehouse w ON wm.warehouse_id = w.id JOIN materials m ON wm.material_id = m.id WHERE m.name = 'Cotton Fabric' AND w.name IN ('Main Warehouse', 'Auxiliary warehouse') GROUP BY w.name ORDER BY total_cotton_fabric DESC LIMIT 1;",
+            "description": "To find out which warehouse has more 'Cotton Fabric' between 'Main Warehouse' and 'Auxiliary warehouse', we need to compare the total number of 'Cotton Fabric' in each warehouse. We will first retrieve the material_id for 'Cotton Fabric', then calculate the total number of 'Cotton Fabric' in each warehouse, and finally compare the totals to determine which warehouse has more.",
+            "results": [
+                {
+                    "warehouse_name": "Main Warehouse",
+                    "total_cotton_fabric": "3500"
+                }
+            ]
+        }
+    ],
+    "response": "Based on the SQL query results, the Main Warehouse has more Cotton Fabric with a total of 3500 units! 🎉\n\n| Warehouse Name  | Total Cotton Fabric |\n|-----------------|---------------------|\n| Main Warehouse  | 3500                |\n\nIf you have any more questions or need further assistance, feel free to ask! 😄",
+    "token_used": 5589
+}

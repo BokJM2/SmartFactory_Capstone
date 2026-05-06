@@ -1,0 +1,9 @@
+{
+  "ID": 49,
+  "q_ch": "对于编号为sw34的缝纫任务，所有的工作量我都已完成，请更新已完成数量。",
+  "q_en": "I have completed all the workload for the sewing task with number sw34. Please update the completed quantity.",
+  "sql": "UPDATE sewing_tasks SET completed_number = planned_number WHERE id = 'sw34';",
+  "thought": "To update the completed quantity for the sewing task with ID 'sw34', I need to set the 'completed_number' column to match the 'planned_number' column for that task.",
+  "total_tokens": "2412",
+  "rows": []
+}

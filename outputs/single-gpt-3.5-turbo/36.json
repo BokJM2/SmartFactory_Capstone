@@ -1,0 +1,15 @@
+{
+    "ID": 36,
+    "q_ch": "顾客是PolyU 的裁剪任务有哪些？",
+    "q_en": "What are the cutting tasks for customers who are PolyU?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT wg.name FROM working_group wg JOIN cutting_tasks ct ON wg.id = ct.working_group_id JOIN order_product op ON ct.order_product_id = op.id JOIN orders o ON op.order_id = o.id JOIN customers c ON o.user_id = c.id WHERE wg.name = 'Expert Cutters' AND c.customer_name = 'PolyU';",
+            "description": "To find the working groups named 'Expert Cutters' for customers with the name 'PolyU', we need to query the working_group table and join it with the customers table based on the customer ID and then filter the results based on the specified conditions.",
+            "results": "no results found."
+        }
+    ],
+    "response": "Hey there! 🌟\n\nBased on your question, here is the information you requested:\n\n| Working Group Name |\n|--------------------|\n| No results found.  |\n\nIf you have any more questions or need further assistance, feel free to ask! 😄",
+    "token_used": 5414
+}

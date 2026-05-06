@@ -1,0 +1,146 @@
+{
+    "ID": 35,
+    "q_ch": "对于所有Expert Cutters负责的且尚未完成的裁剪任务，共分配了哪些原料，按照裁剪任务进行整理？",
+    "q_en": "Which materials have been allocated for all cutting tasks that are assigned to Expert Cutters and have not been completed, organized by cutting task?",
+    "gt": "Sure thing! Let's dive into the materials allocated for the cutting tasks assigned to the \"Expert Cutters\" group that haven't been completed yet. Here's a neat table to show you the details:\n\n| Cutting Task ID | Material Name       |\n|-----------------|---------------------|\n| 8               | Denim Fabric        |\n| 11              | Wool, Silk          |\n| 16              | Wool, Leather, Down |\n| 19              | Cotton Fabric, Synthetic Fiber |\n| 20              | Wool, Leather       |\n| 21              | Cotton Fabric, Synthetic Fiber |\n| 26              | Wool                |\n| 27              | Wool, Leather, Down |\n| 34              | Cotton Fabric, Synthetic Fiber |\n\nI hope this helps! If you have any more questions or need further assistance, feel free to ask. 😊",
+    "steps": [
+        {
+            "sql": "SELECT id FROM working_group WHERE name = 'Expert Cutters';",
+            "description": "Retrieve the working group ID for the working group with the name \"Expert Cutters\"",
+            "results": [
+                {
+                    "id": 4
+                }
+            ]
+        },
+        {
+            "sql": "SELECT id FROM cutting_tasks WHERE working_group_id = '4' AND status != 2;",
+            "description": "Retrieve the cutting task IDs for tasks assigned to \"Expert Cutters\" that have not been completed",
+            "results": [
+                {
+                    "id": 8
+                },
+                {
+                    "id": 11
+                },
+                {
+                    "id": 16
+                },
+                {
+                    "id": 19
+                },
+                {
+                    "id": 20
+                },
+                {
+                    "id": 21
+                },
+                {
+                    "id": 26
+                },
+                {
+                    "id": 27
+                },
+                {
+                    "id": 34
+                }
+            ]
+        },
+        {
+            "sql": "SELECT cma.cutting_task_id, wm.material_id, m.name FROM cutting_material_allocation cma JOIN warehouse_material wm ON cma.warehouse_material_id = wm.id JOIN materials m ON wm.material_id = m.id WHERE cma.cutting_task_id IN (8, 11, 16, 19, 20, 21, 26, 27, 34);",
+            "description": "Retrieve the allocated materials for each cutting task",
+            "results": [
+                {
+                    "cutting_task_id": 19,
+                    "material_id": 1,
+                    "name": "Cotton Fabric"
+                },
+                {
+                    "cutting_task_id": 21,
+                    "material_id": 1,
+                    "name": "Cotton Fabric"
+                },
+                {
+                    "cutting_task_id": 34,
+                    "material_id": 1,
+                    "name": "Cotton Fabric"
+                },
+                {
+                    "cutting_task_id": 11,
+                    "material_id": 3,
+                    "name": "Wool"
+                },
+                {
+                    "cutting_task_id": 16,
+                    "material_id": 3,
+                    "name": "Wool"
+                },
+                {
+                    "cutting_task_id": 20,
+                    "material_id": 3,
+                    "name": "Wool"
+                },
+                {
+                    "cutting_task_id": 26,
+                    "material_id": 3,
+                    "name": "Wool"
+                },
+                {
+                    "cutting_task_id": 27,
+                    "material_id": 3,
+                    "name": "Wool"
+                },
+                {
+                    "cutting_task_id": 11,
+                    "material_id": 5,
+                    "name": "Silk"
+                },
+                {
+                    "cutting_task_id": 16,
+                    "material_id": 7,
+                    "name": "Leather"
+                },
+                {
+                    "cutting_task_id": 20,
+                    "material_id": 7,
+                    "name": "Leather"
+                },
+                {
+                    "cutting_task_id": 27,
+                    "material_id": 7,
+                    "name": "Leather"
+                },
+                {
+                    "cutting_task_id": 19,
+                    "material_id": 9,
+                    "name": "Synthetic Fiber"
+                },
+                {
+                    "cutting_task_id": 21,
+                    "material_id": 9,
+                    "name": "Synthetic Fiber"
+                },
+                {
+                    "cutting_task_id": 34,
+                    "material_id": 9,
+                    "name": "Synthetic Fiber"
+                },
+                {
+                    "cutting_task_id": 8,
+                    "material_id": 11,
+                    "name": "Denim Fabric"
+                },
+                {
+                    "cutting_task_id": 16,
+                    "material_id": 13,
+                    "name": "Down"
+                },
+                {
+                    "cutting_task_id": 27,
+                    "material_id": 13,
+                    "name": "Down"
+                }
+            ]
+        }
+    ]
+}

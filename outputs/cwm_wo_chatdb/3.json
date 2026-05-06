@@ -1,0 +1,13 @@
+{
+  "ID": 3,
+  "q_ch": "Emily订购的Dress订单生产进度如何？用百分比来表示。",
+  "q_en": "What is the production progress of the Dress ordered by Emily? Please represent it in percentage.",
+  "sql": "SELECT (SUM(ct.completed_number) + SUM(st.completed_number)) * 100 / SUM(op.number) AS production_progress FROM customers c JOIN orders o ON c.id = o.user_id JOIN order_product op ON o.id = op.order_id JOIN products p ON op.product_id = p.id JOIN products_types pt ON p.products_type_id = pt.id LEFT JOIN cutting_tasks ct ON op.id = ct.order_product_id LEFT JOIN sewing_tasks st ON op.id = st.order_product_id WHERE c.customer_name = 'Emily' AND pt.description = 'Dress';",
+  "thought": "To determine the production progress of dresses ordered by Emily, we need to follow these steps: \n1. Retrieve the customer ID for 'Emily'.\n 2. Get the orders placed by this customer.\n 3. Fetch the products ordered that are of type 'Dress'.\n 4. Calculate the total quantity ordered.\n 5. Sum up the completed units from both cutting and sewing tasks.\n 6. Calculate the production progress percentage.",
+  "total_tokens": "2977",
+  "rows": [
+    {
+      "production_progress": null
+    }
+  ]
+}

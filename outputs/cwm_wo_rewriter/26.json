@@ -1,0 +1,107 @@
+{
+  "ID": 26,
+  "q_ch": "Skilled Sewers使用了哪些原料？",
+  "q_en": "What raw materials are used by Skilled Sewers?",
+  "sqls": [
+    {
+      "command": [
+        "SELECT id FROM working_group WHERE name = 'Skilled Sewers';",
+        "SELECT id FROM sewing_tasks WHERE working_group_id = 'wg7';",
+        "SELECT DISTINCT warehouse_material_id FROM sewing_material_allocation WHERE sewing_task_id IN (SELECT id FROM sewing_tasks WHERE working_group_id = 'wg7');",
+        "SELECT m.id, m.name, m.unit, m.type FROM materials m WHERE m.id IN (SELECT material_id FROM warehouse_material WHERE id IN (SELECT DISTINCT warehouse_material_id FROM sewing_material_allocation WHERE sewing_task_id IN (SELECT id FROM sewing_tasks WHERE working_group_id = 'wg7')));"
+      ],
+      "Result of executing SQL": [
+        [
+          {
+            "id": "wg7"
+          }
+        ],
+        [
+          {
+            "id": "sw17"
+          },
+          {
+            "id": "sw18"
+          },
+          {
+            "id": "sw19"
+          },
+          {
+            "id": "sw23"
+          },
+          {
+            "id": "sw27"
+          },
+          {
+            "id": "sw28"
+          },
+          {
+            "id": "sw29"
+          },
+          {
+            "id": "sw8"
+          }
+        ],
+        [
+          {
+            "warehouse_material_id": "wm3"
+          },
+          {
+            "warehouse_material_id": "wm7"
+          },
+          {
+            "warehouse_material_id": "wm1"
+          },
+          {
+            "warehouse_material_id": "wm9"
+          },
+          {
+            "warehouse_material_id": "wm11"
+          },
+          {
+            "warehouse_material_id": "wm13"
+          }
+        ],
+        [
+          {
+            "id": "m1",
+            "name": "Cotton Fabric",
+            "unit": "meters",
+            "type": "origin"
+          },
+          {
+            "id": "m11",
+            "name": "Denim Fabric",
+            "unit": "meters",
+            "type": "origin"
+          },
+          {
+            "id": "m13",
+            "name": "Down",
+            "unit": "kilograms",
+            "type": "origin"
+          },
+          {
+            "id": "m3",
+            "name": "Wool",
+            "unit": "kilograms",
+            "type": "origin"
+          },
+          {
+            "id": "m7",
+            "name": "Leather",
+            "unit": "meters",
+            "type": "origin"
+          },
+          {
+            "id": "m9",
+            "name": "Synthetic Fiber",
+            "unit": "kilograms",
+            "type": "origin"
+          }
+        ]
+      ]
+    }
+  ],
+  "total_tokens": 12018
+}

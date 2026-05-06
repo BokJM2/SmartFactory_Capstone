@@ -1,0 +1,28 @@
+{
+    "ID": 55,
+    "q_ch": "所有订单中总共做的前三多的商品是什么？",
+    "q_en": "What are the top three products made in all orders in total?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT pt.description AS product_type, COUNT(*) AS total_count FROM products p JOIN products_types pt ON p.products_type_id = pt.id JOIN order_product op ON p.id = op.product_id GROUP BY pt.description ORDER BY total_count DESC LIMIT 3;",
+            "description": "To find the top three products made in all orders in total, we need to count the occurrences of each product type and then rank them based on the total count in descending order. Finally, we will limit the results to the top three product types.",
+            "results": [
+                {
+                    "product_type": "Pants",
+                    "total_count": 6
+                },
+                {
+                    "product_type": "T-shirt",
+                    "total_count": 5
+                },
+                {
+                    "product_type": "Jacket",
+                    "total_count": 5
+                }
+            ]
+        }
+    ],
+    "response": "Certainly! Here are the top three products made in all orders in total:\n\n| Product Type | Total Count |\n|--------------|-------------|\n| Pants        | 6           |\n| T-shirt      | 5           |\n| Jacket       | 5           |\n\nThese are the top three products based on the total count in descending order. If you have any more questions or need further assistance, feel free to ask! 😄",
+    "token_used": 5561
+}

@@ -1,0 +1,35 @@
+{
+    "ID": 45,
+    "q_ch": "主仓库出库Cotton Fabric100份。",
+    "q_en": "Please release 100 units of cotton fabric from the Main warehouse.",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM materials WHERE name = 'Cotton Fabric';",
+            "description": "Retrieve the material ID for the material with the name \"Cotton Fabric\"",
+            "results": [
+                {
+                    "id": 1
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM warehouse WHERE name = 'Main Warehouse';",
+            "description": "Retrieve the warehouse ID for the warehouse with the name \"Main Warehouse\"",
+            "results": [
+                {
+                    "id": 1
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "UPDATE warehouse_material SET left_number = left_number - 100 WHERE material_id = 1 AND warehouse_id = 1;",
+            "description": "Update the remaining material inventory quantity by releasing 100 units of \"Cotton Fabric\" from the \"Main Warehouse\"",
+            "results": "update data successfully."
+        }
+    ],
+    "response": "Sure thing! Here's the update on your request:\n\n| Material        | Warehouse      | Action Taken                          | Status                  |\n|-----------------|----------------|---------------------------------------|-------------------------|\n| Cotton Fabric   | Main Warehouse | Released 100 units                    | Update successful! 🎉   |\n\nThe 100 units of Cotton Fabric have been successfully released from the Main Warehouse. If there's anything else you need, feel free to ask! 😊",
+    "token_used": 7004
+}

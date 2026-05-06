@@ -1,0 +1,23 @@
+USER INPUT: Find the cutting and sewing groups with the fastest task completion progress.
+
+ANSWER:
+```
+Step1: Retrieve the working group ID and name for all cutting groups
+SQL `SELECT id, name FROM working_group WHERE type = 'cut';`
+
+Step2: Calculate the progress for each cutting group by summing the completed numbers and dividing by the planned numbers
+SQL `SELECT working_group_id, SUM(completed_number) / SUM(planned_number) AS progress FROM cutting_tasks GROUP BY working_group_id;`
+
+Step3: Retrieve the working group ID and name for all sewing groups
+SQL `SELECT id, name FROM working_group WHERE type = 'sew';`
+
+Step4: Calculate the progress for each sewing group by summing the completed numbers and dividing by the planned numbers
+SQL `SELECT working_group_id, SUM(completed_number) / SUM(planned_number) AS progress FROM sewing_tasks GROUP BY working_group_id;`
+
+Step5: Identify the cutting group with the highest progress
+Thought `Compare the progress of all cutting groups obtained in Step2 and identify the group with the highest progress.`
+
+Step6: Identify the sewing group with the highest progress
+Thought `Compare the progress of all sewing groups obtained in Step4 and identify the group with the highest progress.`
+
+```

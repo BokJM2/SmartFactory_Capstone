@@ -1,0 +1,27 @@
+{
+    "ID": 14,
+    "q_ch": "剩余库存最多的原料是什么？",
+    "q_en": "What is the material with the highest remaining inventory?",
+    "gt": "Sure thing! Based on the data I have, the material with the highest remaining inventory is **Silk Pieces**. Here's a quick summary for you:\n\n| Material ID | Material Name | Total Remaining Inventory |\n|-------------|---------------|---------------------------|\n| 6           | Silk Pieces   | 5,400                     |\n\nIsn't it amazing how much Silk Pieces we have left? 😄 If you have any more questions, feel free to ask!",
+    "steps": [
+        {
+            "sql": "SELECT material_id, SUM(left_number) as total_left FROM warehouse_material GROUP BY material_id ORDER BY total_left DESC LIMIT 1;",
+            "description": "Retrieve the material ID and the remaining inventory quantity for each material",
+            "results": [
+                {
+                    "material_id": 6,
+                    "total_left": "5400"
+                }
+            ]
+        },
+        {
+            "sql": "SELECT name FROM materials WHERE id = '6';",
+            "description": "Retrieve the name of the material with the highest remaining inventory",
+            "results": [
+                {
+                    "name": "Silk Pieces"
+                }
+            ]
+        }
+    ]
+}

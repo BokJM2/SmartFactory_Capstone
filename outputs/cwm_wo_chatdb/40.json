@@ -1,0 +1,60 @@
+{
+  "ID": 40,
+  "q_ch": "订单产品是T恤的裁剪任务有哪些？",
+  "q_en": "Which cutting tasks are for products categorized as T-shirt?",
+  "sql": "SELECT cutting_tasks.* FROM cutting_tasks JOIN order_product ON cutting_tasks.order_product_id = order_product.id JOIN products ON order_product.product_id = products.id JOIN products_types ON products.products_type_id = products_types.id WHERE products_types.description = 'T-shirt';",
+  "thought": "To find the cutting tasks for products categorized as 'T-shirt', we need to join the `cutting_tasks` table with the `order_product`, `products`, and `products_types` tables. This way, we can filter the results based on `products_types.description` being 'T-shirt'.",
+  "total_tokens": "2814",
+  "rows": [
+    {
+      "id": "ct1",
+      "start_time": "2024年01月10日 00:00",
+      "end_time": "2024年01月18日 00:00",
+      "working_group_id": "wg6",
+      "order_product_id": "op1",
+      "planned_number": 100,
+      "completed_number": 100,
+      "is_started": 1
+    },
+    {
+      "id": "ct4",
+      "start_time": "2024年01月10日 00:00",
+      "end_time": "2024年01月17日 00:00",
+      "working_group_id": "wg6",
+      "order_product_id": "op4",
+      "planned_number": 220,
+      "completed_number": 220,
+      "is_started": 1
+    },
+    {
+      "id": "ct2",
+      "start_time": "2024年01月10日 00:00",
+      "end_time": "2024年02月02日 00:00",
+      "working_group_id": "wg3",
+      "order_product_id": "op2",
+      "planned_number": 240,
+      "completed_number": 240,
+      "is_started": 1
+    },
+    {
+      "id": "ct5",
+      "start_time": "2024年01月10日 00:00",
+      "end_time": "2024年02月02日 00:00",
+      "working_group_id": "wg6",
+      "order_product_id": "op5",
+      "planned_number": 260,
+      "completed_number": 260,
+      "is_started": 1
+    },
+    {
+      "id": "ct3",
+      "start_time": "2024年01月10日 00:00",
+      "end_time": "2024年01月19日 00:00",
+      "working_group_id": "wg3",
+      "order_product_id": "op3",
+      "planned_number": 150,
+      "completed_number": 150,
+      "is_started": 1
+    }
+  ]
+}

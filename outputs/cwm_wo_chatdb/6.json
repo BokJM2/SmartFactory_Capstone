@@ -1,0 +1,9 @@
+{
+  "ID": 6,
+  "q_ch": "顾客理大2024年1月的订单包含哪些产品？",
+  "q_en": "What products are included in PolyU's January 2024 orders?",
+  "sql": "SELECT p.id AS product_id, p.attributes AS product_attributes FROM customers c JOIN orders o ON c.id = o.user_id JOIN order_product op ON o.id = op.order_id JOIN products p ON op.product_id = p.id WHERE c.customer_name = 'PolyU' AND o.order_name = 'James_WinterOrder';",
+  "thought": "To retrieve the products included in a specific order by a specific customer, we need to perform a series of joins between the customers, orders, order_product, and products tables. This will help us fetch the relevant product information for the given customer and order.",
+  "total_tokens": "2934",
+  "rows": []
+}

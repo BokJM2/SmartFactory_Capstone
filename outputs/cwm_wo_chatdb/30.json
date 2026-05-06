@@ -1,0 +1,34 @@
+{
+  "ID": 30,
+  "q_ch": "Skilled Sewers 在2024年6月前完成了多少个缝纫任务，这些缝纫任务都做了什么类型的产品？",
+  "q_en": "How many sewing tasks did Skilled Sewers complete before June 2024, and what types of products were produced for these sewing tasks?",
+  "sql": "SELECT COUNT(st.id) AS sewing_tasks_completed, pt.description FROM sewing_tasks st JOIN working_group wg ON st.working_group_id = wg.id JOIN order_product op ON st.order_product_id = op.id JOIN products p ON op.product_id = p.id JOIN products_types pt ON p.products_type_id = pt.id WHERE wg.name = 'Skilled Sewers' AND st.completed_number > 0 AND st.end_time < '2024-06-01' GROUP BY pt.description;",
+  "thought": "To find the number of sewing tasks completed by the working group named 'Skilled Sewers' before June 2024, and the types of products produced for these tasks, we need to follow these steps: 1. Select the working group where `working_group.name = 'Skilled Sewers'` to get the working group ID. 2. Join `sewing_tasks` with the working group ID and filter the tasks where `completed_number > 0` and `end_time < '2024-06-01'`. 3. Join the filtered sewing tasks with `order_product` and then `products` to get the product type IDs. 4. Join the resulting product types with `products_types` to get the product type descriptions. 5. Count the number of sewing tasks and group by product type descriptions.",
+  "total_tokens": "3082",
+  "rows": [
+    {
+      "sewing_tasks_completed": 1,
+      "description": "Coat"
+    },
+    {
+      "sewing_tasks_completed": 2,
+      "description": "Jacket"
+    },
+    {
+      "sewing_tasks_completed": 1,
+      "description": "Pants"
+    },
+    {
+      "sewing_tasks_completed": 1,
+      "description": "Shorts"
+    },
+    {
+      "sewing_tasks_completed": 2,
+      "description": "Skirt"
+    },
+    {
+      "sewing_tasks_completed": 1,
+      "description": "Sweater"
+    }
+  ]
+}

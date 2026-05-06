@@ -1,0 +1,35 @@
+{
+  "ID": 55,
+  "q_ch": "所有订单中总共做的前三多的商品是什么？",
+  "q_en": "What are the top three products made in all orders in total?",
+  "sqls": [
+    {
+      "command": [
+        "SELECT p.id, p.attributes, pt.description, SUM(op.number) AS total_made\n FROM order_product op\n JOIN products p ON op.product_id = p.id\n JOIN products_types pt ON p.products_type_id = pt.id\n GROUP BY p.id, p.attributes, pt.description\n ORDER BY total_made DESC\n LIMIT 3;"
+      ],
+      "Result of executing SQL": [
+        [
+          {
+            "id": "p7",
+            "attributes": "Purple, M size",
+            "description": "Skirt",
+            "total_made": null
+          },
+          {
+            "id": "p15",
+            "attributes": "Pink, M size",
+            "description": "Skirt",
+            "total_made": null
+          },
+          {
+            "id": "p27",
+            "attributes": "Yellow, S size",
+            "description": "T-shirt",
+            "total_made": null
+          }
+        ]
+      ]
+    }
+  ],
+  "total_tokens": 4578
+}

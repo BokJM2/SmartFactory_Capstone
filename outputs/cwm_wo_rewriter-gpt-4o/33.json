@@ -1,0 +1,48 @@
+{
+    "ID": 33,
+    "q_ch": "分配给Precision Cutters的裁剪任务有哪些？",
+    "q_en": "What are the cutting tasks assigned to Precision Cutters?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM working_group WHERE name = 'Precision Cutters';",
+            "description": "Retrieve the working group ID for the group with the name \"Precision Cutters\"",
+            "results": [
+                {
+                    "id": 1
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT * FROM cutting_tasks WHERE working_group_id = '1';",
+            "description": "Retrieve the cutting tasks assigned to the working group \"Precision Cutters\"",
+            "results": [
+                {
+                    "id": 18,
+                    "start_time": "2024-03-11 00:00:00",
+                    "end_time": "2024-04-07 00:00:00",
+                    "working_group_id": 1,
+                    "order_product_id": 18,
+                    "produced_wip_id": 10,
+                    "planned_number": 200,
+                    "completed_number": 200,
+                    "status": 1
+                },
+                {
+                    "id": 30,
+                    "start_time": "2024-04-19 00:00:00",
+                    "end_time": "2024-04-26 00:00:00",
+                    "working_group_id": 1,
+                    "order_product_id": 30,
+                    "produced_wip_id": 10,
+                    "planned_number": 195,
+                    "completed_number": 195,
+                    "status": 1
+                }
+            ]
+        }
+    ],
+    "response": "Hello there! 😄 Let's take a look at the cutting tasks assigned to the \"Precision Cutters\" working group. Here's what I found:\n\n| Task ID | Start Time          | End Time            | Order Product ID | Produced WIP ID | Planned Number | Completed Number | Status |\n|---------|---------------------|---------------------|------------------|----------------|----------------|------------------|--------|\n| 18      | 2024-03-11 00:00:00 | 2024-04-07 00:00:00 | 18               | 10             | 200            | 200              | 1      |\n| 30      | 2024-04-19 00:00:00 | 2024-04-26 00:00:00 | 30               | 10             | 195            | 195              | 1      |\n\nThese tasks are all set and completed! If you have any more questions or need further details, feel free to ask! 😊",
+    "token_used": 7386
+}

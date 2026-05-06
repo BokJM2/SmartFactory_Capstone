@@ -1,0 +1,61 @@
+{
+    "ID": 23,
+    "q_ch": "主仓库和辅助仓库中，哪个仓库的Cotton Fabric更多？",
+    "q_en": "Which warehouse has more Cotton Fabric between the main and auxiliary warehouses?",
+    "hint": "应该统计主仓库和辅助仓库的Cotton Fabric当前剩余的数量总和进行比较",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM materials WHERE name = 'Cotton Fabric';",
+            "description": "Retrieve the material ID for the material with the name \"Cotton Fabric\"",
+            "results": [
+                {
+                    "id": 1
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM warehouse WHERE name = 'Main Warehouse';",
+            "description": "Retrieve the warehouse ID for the warehouse with the name \"Main Warehouse\"",
+            "results": [
+                {
+                    "id": 1
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM warehouse WHERE name = 'Auxiliary warehouse';",
+            "description": "Retrieve the warehouse ID for the warehouse with the name \"Auxiliary warehouse\"",
+            "results": [
+                {
+                    "id": 2
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT left_number FROM warehouse_material WHERE material_id = 1 AND warehouse_id = 1;",
+            "description": "Retrieve the remaining quantity of \"Cotton Fabric\" in the \"Main Warehouse\"",
+            "results": [
+                {
+                    "left_number": 3500
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT left_number FROM warehouse_material WHERE material_id = 1 AND warehouse_id = 2;",
+            "description": "Retrieve the remaining quantity of \"Cotton Fabric\" in the \"Auxiliary warehouse\"",
+            "results": "no results found."
+        },
+        {
+            "type": "Thought",
+            "operation": "Compare the results from Step4 and Step5 to determine which warehouse has more \"Cotton Fabric\".",
+            "results": "To determine which warehouse has more \"Cotton Fabric,\" we need to compare the results from Step 4 and Step 5.\n\n- Step 4: The \"Main Warehouse\" has 3,500 units of \"Cotton Fabric.\"\n- Step 5: The \"Auxiliary Warehouse\" has no results found, which implies it has 0 units of \"Cotton Fabric.\"\n\nComparing these quantities, the \"Main Warehouse\" has more \"Cotton Fabric\" than the \"Auxiliary Warehouse.\""
+        }
+    ],
+    "response": "Sure thing! Let's see which warehouse has more \"Cotton Fabric\" between the \"Main Warehouse\" and the \"Auxiliary Warehouse\". Here's what we found:\n\n| Warehouse          | Cotton Fabric Quantity |\n|--------------------|------------------------|\n| Main Warehouse     | 3,500 units            |\n| Auxiliary Warehouse| 0 units                |\n\n🎉 The \"Main Warehouse\" has more \"Cotton Fabric\" with a total of 3,500 units, while the \"Auxiliary Warehouse\" doesn't have any. So, the \"Main Warehouse\" is the winner here! 🏆",
+    "token_used": 8408
+}

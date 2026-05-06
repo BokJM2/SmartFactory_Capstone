@@ -1,0 +1,15 @@
+{
+    "ID": 2,
+    "q_ch": "John 的订单全部生产完成了么？",
+    "q_en": "Have all of John's orders been completed?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT COUNT(*) AS total_orders, SUM(CASE WHEN ot.status = 2 THEN 1 ELSE 0 END) AS completed_orders FROM orders ot JOIN customers c ON ot.user_id = c.id WHERE c.customer_name = 'John';",
+            "description": "To check if John's orders have been completed, we need to count the number of orders placed by John and check how many of them have a completed status.",
+            "results": "(1054, \"Unknown column 'ot.status' in 'field list'\")"
+        }
+    ],
+    "response": "Hey there! 😄\n\nBased on the data available, it seems like there was an issue with the SQL query execution. Unfortunately, we couldn't retrieve the information about John's completed orders at the moment. \n\nFeel free to ask any other questions you may have, and I'll do my best to assist you!",
+    "token_used": 5256
+}

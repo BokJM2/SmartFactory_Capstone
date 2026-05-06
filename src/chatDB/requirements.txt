@@ -1,0 +1,16 @@
+# python 3.10.4
+-i https://pypi.mirrors.ustc.edu.cn/simple/
+colorama==0.4.6
+# openai==0.27.2
+openai==1.35.12
+python-dotenv==1.0.0
+tiktoken==0.4.0
+prettytable==3.7.0
+PyMySQL==1.0.3
+langchain==0.0.162
+SQLAlchemy==1.4.39
+pandas==2.0.2
+numpy
+fastapi==0.111.0
+uvicorn==0.30.1
+llama-index==0.10.53

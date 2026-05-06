@@ -1,0 +1,95 @@
+{
+    "ID": 3,
+    "q_ch": "Emily订购的Dress订单生产进度如何？用百分比来表示。",
+    "q_en": "What is the production progress of the Dress ordered by Emily? Please represent it in percentage.",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM customers WHERE customer_name = 'Emily';",
+            "description": "Retrieve the customer ID for the customer with the name \"Emily\"",
+            "results": [
+                {
+                    "id": 3
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM orders WHERE user_id = 3;",
+            "description": "Retrieve the order IDs for orders placed by the customer \"Emily\"",
+            "results": [
+                {
+                    "id": 3
+                },
+                {
+                    "id": 11
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT p.id FROM products p JOIN products_types pt ON p.products_type_id = pt.id WHERE pt.description = 'Dress';",
+            "description": "Retrieve the product IDs for products of type \"Dress\"",
+            "results": [
+                {
+                    "id": 5
+                },
+                {
+                    "id": 13
+                },
+                {
+                    "id": 21
+                },
+                {
+                    "id": 29
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT op.id FROM order_product op WHERE op.order_id IN (3, 11) AND op.product_id IN (5, 13, 21, 29);",
+            "description": "Retrieve the order product IDs for the products of type \"Dress\" ordered by \"Emily\"",
+            "results": [
+                {
+                    "id": 11
+                },
+                {
+                    "id": 12
+                },
+                {
+                    "id": 13
+                },
+                {
+                    "id": 14
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT SUM(st.completed_number) FROM sewing_tasks st WHERE st.order_product_id IN (11, 12, 13, 14);",
+            "description": "Calculate the total completed quantity of sewing tasks for the products of type \"Dress\" ordered by \"Emily\"",
+            "results": [
+                {
+                    "SUM(st.completed_number)": "460"
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT SUM(op.number) FROM order_product op WHERE op.id IN (11, 12, 13, 14);",
+            "description": "Calculate the total quantity of products of type \"Dress\" ordered by \"Emily\"",
+            "results": [
+                {
+                    "SUM(op.number)": "540"
+                }
+            ]
+        },
+        {
+            "type": "Thought",
+            "operation": "Divide the total completed quantity obtained in Step5 by the total quantity obtained in Step6, and multiply by 100 to get the progress in percentage.",
+            "results": "To achieve the objective, we need to divide the total completed quantity obtained in Step 5 by the total quantity obtained in Step 6, and then multiply by 100 to get the progress in percentage.\n\nFrom the context:\n\n- Step 5 provides the total completed quantity: 460\n- Step 6 provides the total quantity: 540\n\nNow, perform the calculation:\n\n\\[ \\text{Progress (\\%)} = \\left( \\frac{460}{540} \\right) \\times 100 \\]\n\n\\[ \\text{Progress (\\%)} = 0.85185 \\times 100 \\]\n\n\\[ \\text{Progress (\\%)} = 85.185 \\]\n\nTherefore, the progress is approximately 85.19%."
+        }
+    ],
+    "response": "Sure thing! Let's take a look at the production progress for the dresses ordered by Emily. 🎉\n\nBased on the data, here's a quick summary:\n\n| **Description** | **Value** |\n|-----------------|-----------|\n| Total Completed Quantity | 460 |\n| Total Ordered Quantity | 540 |\n| **Production Progress** | **85.19%** |\n\nSo, the production progress for the dresses ordered by Emily is approximately **85.19%**. Keep up the great work! 👗✨",
+    "token_used": 9717
+}

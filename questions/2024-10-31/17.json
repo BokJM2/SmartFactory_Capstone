@@ -1,0 +1,35 @@
+{
+    "ID": 17,
+    "q_ch": "2024年6月1日后的缝纫任务有哪些？",
+    "q_en": "What are the sewing tasks after June 1, 2024?",
+    "gt": "Sure thing! Here are the sewing tasks scheduled after June 1, 2024:\n\n| Task ID | Start Time          | End Time            | Working Group Name | Order Product ID |\n|---------|---------------------|---------------------|--------------------|------------------|\n| 33      | July 17, 2024       | August 3, 2024      | Advanced Sewers    | 33               |\n| 32      | June 17, 2024       | July 14, 2024       | Premier Sewers     | 32               |\n| 34      | July 10, 2024       | July 20, 2024       | Elite Sewers       | 34               |\n\nLooks like there's a lot of stitching action happening! 🧵✨ If you have any more questions, feel free to ask! 😄",
+    "steps": [
+        {
+            "sql": "SELECT st.id, st.start_time, st.end_time, wg.name AS working_group_name, op.id AS order_product_id FROM sewing_tasks st JOIN working_group wg ON st.working_group_id = wg.id JOIN order_product op ON st.order_product_id = op.id WHERE st.start_time > '2024-06-01';",
+            "description": "Retrieve the sewing tasks that have a start time after June 1, 2024",
+            "results": [
+                {
+                    "id": 33,
+                    "start_time": "2024-07-17 00:00:00",
+                    "end_time": "2024-08-03 00:00:00",
+                    "working_group_name": "Advanced Sewers",
+                    "order_product_id": 33
+                },
+                {
+                    "id": 32,
+                    "start_time": "2024-06-17 00:00:00",
+                    "end_time": "2024-07-14 00:00:00",
+                    "working_group_name": "Premier Sewers",
+                    "order_product_id": 32
+                },
+                {
+                    "id": 34,
+                    "start_time": "2024-07-10 00:00:00",
+                    "end_time": "2024-07-20 00:00:00",
+                    "working_group_name": "Elite Sewers",
+                    "order_product_id": 34
+                }
+            ]
+        }
+    ]
+}

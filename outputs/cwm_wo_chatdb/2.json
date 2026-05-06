@@ -1,0 +1,8 @@
+{
+  "ID": 2,
+  "q_ch": "John 的订单全部生产完成了么？",
+  "q_en": "Have all of John's orders been completed?",
+  "sql": "SELECT NOT EXISTS (SELECT cp.id FROM customers c JOIN orders o ON c.id = o.user_id JOIN order_product op ON o.id = op.order_id LEFT JOIN cutting_tasks ct ON op.id = ct.order_product_id LEFT JOIN sewing_tasks st ON op.id = st.order_product_id WHERE c.customer_name = 'John' AND ((ct.planned_number <> ct.completed_number) OR (st.planned_number <> st.completed_number)));",
+  "thought": "To determine if all orders from the customer named 'John' have been completed, we will need to cross-reference several tables. First, locate the customer ID for 'John' from the `customers` table. Then, retrieve all order IDs related to this customer from the `orders` table. Finally, we check if all associated products in these orders have their cutting and sewing tasks fully completed by ensuring the planned numbers match the completed numbers.",
+  "total_tokens": "2861"
+}

@@ -1,0 +1,26 @@
+{
+  "ID": 7,
+  "q_ch": "顾客PolyU 下的订单总数是多少？",
+  "q_en": "How many orders are there in total under PolyU?",
+  "sqls": [
+    {
+      "command": [
+        "SELECT id FROM customers WHERE customer_name = 'PolyU';",
+        "SELECT COUNT(*) FROM orders WHERE user_id = 'c1';"
+      ],
+      "Result of executing SQL": [
+        [
+          {
+            "id": "c1"
+          }
+        ],
+        [
+          {
+            "COUNT(*)": 2
+          }
+        ]
+      ]
+    }
+  ],
+  "total_tokens": 4676
+}

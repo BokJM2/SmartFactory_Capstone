@@ -1,0 +1,36 @@
+{
+  "ID": 42,
+  "q_ch": "对于PolyU在2024年1月提交的订单，将所有生产红色小码类型T-shirt的缝纫任务设置成开始状态。",
+  "q_en": "For orders submitted by PolyU in January 2024, set all sewing tasks for producing Red, M size type T-shirts to start status. ",
+  "sqls": [
+    {
+      "command": [
+        "SELECT id FROM customers WHERE customer_name = 'PolyU';",
+        "SELECT id FROM orders WHERE user_id = 'c1' AND created_at BETWEEN '2024-01-01' AND '2024-01-31';",
+        "SELECT p.id FROM products p JOIN products_types pt ON p.products_type_id = pt.id WHERE p.attributes = 'Red, M size' AND pt.description = 'T-shirt';",
+        "SELECT id FROM order_product WHERE order_id IN ('c1', 'o1', 'p1') AND product_id = '<product_id>';",
+        "UPDATE sewing_tasks SET is_started = TRUE WHERE order_product_id IN ('c1', 'o1', 'p1');"
+      ],
+      "Result of executing SQL": [
+        [
+          {
+            "id": "c1"
+          }
+        ],
+        [
+          {
+            "id": "o1"
+          }
+        ],
+        [
+          {
+            "id": "p1"
+          }
+        ],
+        "no results found.",
+        "update data successfully."
+      ]
+    }
+  ],
+  "total_tokens": 3272
+}

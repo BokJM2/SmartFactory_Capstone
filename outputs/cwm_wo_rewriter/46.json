@@ -1,0 +1,42 @@
+{
+  "ID": 46,
+  "q_ch": "对于编号为cm19的裁剪任务，分配裁剪物料，物料来源：Main Warehouse, 布料类别：Cotton Fabric，数量：30米。",
+  "q_en": "For cutting task cm19, allocate cutting materials from the Main Warehouse, with the material type being Cotton Fabric and a quantity of 30 meters.",
+  "sqls": [
+    {
+      "command": [
+        "SELECT id FROM materials WHERE name = 'Cotton Fabric';",
+        "SELECT id FROM warehouse WHERE name = 'Main Warehouse';",
+        "SELECT id FROM warehouse_material WHERE warehouse_id = 'w1' AND material_id = 'm1';",
+        "SELECT left_number FROM warehouse_material WHERE id = 'wm1';",
+        "UPDATE warehouse_material SET left_number = left_number - 30 WHERE id = 'wm1';",
+        "INSERT INTO cutting_material_allocation (id, warehouse_material_id, cutting_task_id, allocated_num, is_allocated) VALUES (UUID(), 'wm1', 'cm19', 30, TRUE);"
+      ],
+      "Result of executing SQL": [
+        [
+          {
+            "id": "m1"
+          }
+        ],
+        [
+          {
+            "id": "w1"
+          }
+        ],
+        [
+          {
+            "id": "wm1"
+          }
+        ],
+        [
+          {
+            "left_number": 3400
+          }
+        ],
+        "update data successfully.",
+        null
+      ]
+    }
+  ],
+  "total_tokens": 5482
+}

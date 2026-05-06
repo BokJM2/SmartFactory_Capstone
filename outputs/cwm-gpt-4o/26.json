@@ -1,0 +1,198 @@
+{
+    "ID": 26,
+    "q_ch": "Skilled Sewers使用了哪些原料？",
+    "q_en": "What raw materials are used by Skilled Sewers?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM working_group WHERE name = 'Skilled Sewers';",
+            "description": "Retrieve the working group ID for the group with the name \"Skilled Sewers\"",
+            "results": [
+                {
+                    "id": 7
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM sewing_tasks WHERE working_group_id = '7';",
+            "description": "Retrieve the sewing task IDs associated with the working group \"Skilled Sewers\"",
+            "results": [
+                {
+                    "id": 8
+                },
+                {
+                    "id": 17
+                },
+                {
+                    "id": 18
+                },
+                {
+                    "id": 19
+                },
+                {
+                    "id": 23
+                },
+                {
+                    "id": 27
+                },
+                {
+                    "id": 28
+                },
+                {
+                    "id": 29
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT order_product_id FROM sewing_tasks WHERE id IN (8, 17, 18, 19, 23, 27, 28, 29);",
+            "description": "Retrieve the order product IDs associated with the sewing tasks",
+            "results": [
+                {
+                    "order_product_id": 8
+                },
+                {
+                    "order_product_id": 17
+                },
+                {
+                    "order_product_id": 18
+                },
+                {
+                    "order_product_id": 19
+                },
+                {
+                    "order_product_id": 23
+                },
+                {
+                    "order_product_id": 27
+                },
+                {
+                    "order_product_id": 28
+                },
+                {
+                    "order_product_id": 29
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT product_id FROM order_product WHERE id IN (8, 17, 18, 19, 23, 27, 28, 29);",
+            "description": "Retrieve the product IDs associated with the order products",
+            "results": [
+                {
+                    "product_id": 2
+                },
+                {
+                    "product_id": 6
+                },
+                {
+                    "product_id": 7
+                },
+                {
+                    "product_id": 8
+                },
+                {
+                    "product_id": 9
+                },
+                {
+                    "product_id": 10
+                },
+                {
+                    "product_id": 14
+                },
+                {
+                    "product_id": 23
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT material_id FROM product_material WHERE product_id IN (2, 6, 7, 8, 9, 10, 14, 23);",
+            "description": "Retrieve the material IDs used by the products",
+            "results": [
+                {
+                    "material_id": 8
+                },
+                {
+                    "material_id": 12
+                },
+                {
+                    "material_id": 6
+                },
+                {
+                    "material_id": 2
+                },
+                {
+                    "material_id": 4
+                },
+                {
+                    "material_id": 6
+                },
+                {
+                    "material_id": 6
+                },
+                {
+                    "material_id": 4
+                },
+                {
+                    "material_id": 4
+                },
+                {
+                    "material_id": 2
+                },
+                {
+                    "material_id": 6
+                },
+                {
+                    "material_id": 8
+                },
+                {
+                    "material_id": 12
+                },
+                {
+                    "material_id": 6
+                },
+                {
+                    "material_id": 2
+                },
+                {
+                    "material_id": 4
+                },
+                {
+                    "material_id": 12
+                },
+                {
+                    "material_id": 10
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT name FROM materials WHERE id IN (8, 12, 6, 2, 4, 10);",
+            "description": "Retrieve the names of the raw materials",
+            "results": [
+                {
+                    "name": "Fabric Pieces"
+                },
+                {
+                    "name": "Wool Pieces"
+                },
+                {
+                    "name": "Silk Pieces"
+                },
+                {
+                    "name": "Leather Pieces"
+                },
+                {
+                    "name": "Synthetic Fiber Pieces"
+                },
+                {
+                    "name": "Denim Fabric Pieces"
+                }
+            ]
+        }
+    ],
+    "response": "Hello there! 😄 Let's take a look at the raw materials used by the \"Skilled Sewers\" working group. Here's a handy table for you:\n\n| Material Name            |\n|--------------------------|\n| Fabric Pieces            |\n| Wool Pieces              |\n| Silk Pieces              |\n| Leather Pieces           |\n| Synthetic Fiber Pieces   |\n| Denim Fabric Pieces      |\n\nThese are the materials that the talented \"Skilled Sewers\" team works with. If you have any more questions, feel free to ask! 😊",
+    "token_used": 9697
+}

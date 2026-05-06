@@ -1,0 +1,24 @@
+{
+    "ID": 13,
+    "q_ch": "在我们的所有仓库中，库存不为0的原材料有哪些，整理成{类型：剩余数量}的形式。",
+    "q_en": "What are the raw materials with non zero inventory in all of our warehouses, organized in the form of 'Type: Remaining Quantity'?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT m.type AS Type, SUM(wm.left_number) AS 'Remaining Quantity' FROM warehouse_material wm JOIN materials m ON wm.material_id = m.id GROUP BY m.type HAVING SUM(wm.left_number) > 0;",
+            "description": "To find the raw materials with non-zero inventory in all warehouses, we need to select the material type and the remaining quantity from the warehouse_material table, then group the results by material type and sum the remaining quantities across all warehouses. Finally, we filter the results to only include materials with a total remaining quantity greater than 0.",
+            "results": [
+                {
+                    "Type": "wip",
+                    "Remaining Quantity": "18130"
+                },
+                {
+                    "Type": "origin",
+                    "Remaining Quantity": "21350"
+                }
+            ]
+        }
+    ],
+    "response": "Sure! Here is the answer to your question:\n\n| Type   | Remaining Quantity |\n|--------|---------------------|\n| wip    | 18130               |\n| origin | 21350               |\n\nThese are the raw materials with non-zero inventory in all of our warehouses. If you have any more questions, feel free to ask! 😄",
+    "token_used": 5030
+}

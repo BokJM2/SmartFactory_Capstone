@@ -1,0 +1,91 @@
+{
+  "ID": 3,
+  "q_ch": "Emily订购的Dress订单生产进度如何？用百分比来表示。",
+  "q_en": "What is the production progress of the Dress ordered by Emily? Please represent it in percentage.",
+  "sqls": [
+    {
+      "command": [
+        "SELECT id FROM orders WHERE order_name = 'Emily';",
+        "SELECT p.id FROM products p JOIN products_types pt ON p.products_type_id = pt.id WHERE pt.description = 'Dress';",
+        "SELECT id, number FROM order_product WHERE order_id = 'p13' AND product_id = 'p21';",
+        "SELECT id, number FROM order_product WHERE order_id = 'p21' AND product_id = 'p29';",
+        "SELECT id, number FROM order_product WHERE order_id = 'p29' AND product_id = 'p5';",
+        "SELECT SUM(completed_number) FROM cutting_tasks WHERE order_product_id = 'p13';",
+        "SELECT SUM(completed_number) FROM cutting_tasks WHERE order_product_id = 'p21';",
+        "SELECT SUM(completed_number) FROM cutting_tasks WHERE order_product_id = 'p29';",
+        "SELECT SUM(completed_number) FROM cutting_tasks WHERE order_product_id = 'p5';",
+        "SELECT SUM(completed_number) FROM sewing_tasks WHERE order_product_id = 'p13';",
+        "SELECT SUM(completed_number) FROM sewing_tasks WHERE order_product_id = 'p21';",
+        "SELECT SUM(completed_number) FROM sewing_tasks WHERE order_product_id = 'p29';",
+        "SELECT SUM(completed_number) FROM sewing_tasks WHERE order_product_id = 'p5';",
+        "SELECT ((0 + 0) / (4 * 2)) * 100 AS production_progress;"
+      ],
+      "Result of executing SQL": [
+        "no results found.",
+        [
+          {
+            "id": "p13"
+          },
+          {
+            "id": "p21"
+          },
+          {
+            "id": "p29"
+          },
+          {
+            "id": "p5"
+          }
+        ],
+        "no results found.",
+        "no results found.",
+        "no results found.",
+        [
+          {
+            "SUM(completed_number)": null
+          }
+        ],
+        [
+          {
+            "SUM(completed_number)": null
+          }
+        ],
+        [
+          {
+            "SUM(completed_number)": null
+          }
+        ],
+        [
+          {
+            "SUM(completed_number)": null
+          }
+        ],
+        [
+          {
+            "SUM(completed_number)": null
+          }
+        ],
+        [
+          {
+            "SUM(completed_number)": null
+          }
+        ],
+        [
+          {
+            "SUM(completed_number)": null
+          }
+        ],
+        [
+          {
+            "SUM(completed_number)": null
+          }
+        ],
+        [
+          {
+            "production_progress": null
+          }
+        ]
+      ]
+    }
+  ],
+  "total_tokens": 4379
+}

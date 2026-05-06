@@ -1,0 +1,25 @@
+{
+  "ID": 13,
+  "q_ch": "在我们的所有仓库中，库存不为0的原材料有哪些，整理成{类型：剩余数量}的形式。",
+  "q_en": "What are the raw materials with non zero inventory in all of our warehouses, organized in the form of 'Type: Remaining Quantity'?",
+  "sqls": [
+    {
+      "command": [
+        "SELECT m.type, SUM(wm.left_number) AS remaining_quantity\n FROM warehouse_material wm\n JOIN materials m ON wm.material_id = m.id\n WHERE wm.left_number > 0\n GROUP BY m.type;"
+      ],
+      "Result of executing SQL": [
+        [
+          {
+            "type": "wip",
+            "remaining_quantity": null
+          },
+          {
+            "type": "origin",
+            "remaining_quantity": null
+          }
+        ]
+      ]
+    }
+  ],
+  "total_tokens": 7283
+}

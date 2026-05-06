@@ -1,0 +1,66 @@
+{
+    "ID": 30,
+    "q_ch": "Skilled Sewers 在2024年6月前完成了多少个缝纫任务，这些缝纫任务都做了什么类型的产品？",
+    "q_en": "How many sewing tasks did Skilled Sewers complete before June 2024, and what types of products were produced for these sewing tasks?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM working_group WHERE name = 'Skilled Sewers';",
+            "description": "Retrieve the working group ID for the group named \"Skilled Sewers\"",
+            "results": [
+                {
+                    "id": 7
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT id, order_product_id FROM sewing_tasks WHERE working_group_id = '7' AND status = 2 AND end_time < '2024-06-01';",
+            "description": "Retrieve the sewing tasks completed by the \"Skilled Sewers\" group before June 2024",
+            "results": [
+                {
+                    "id": 17,
+                    "order_product_id": 17
+                },
+                {
+                    "id": 18,
+                    "order_product_id": 18
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT order_product_id, planned_number FROM sewing_tasks WHERE id IN (17, 18);",
+            "description": "Retrieve the product IDs and quantities for the completed sewing tasks",
+            "results": [
+                {
+                    "order_product_id": 17,
+                    "planned_number": 175
+                },
+                {
+                    "order_product_id": 18,
+                    "planned_number": 200
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT p.id, pt.description, p.attributes FROM products p JOIN products_types pt ON p.products_type_id = pt.id WHERE p.id IN (SELECT product_id FROM order_product WHERE id IN (17, 18));",
+            "description": "Retrieve the product types and attributes for the products produced in these sewing tasks",
+            "results": [
+                {
+                    "id": 14,
+                    "description": "Jacket",
+                    "attributes": "Yellow, L size"
+                },
+                {
+                    "id": 6,
+                    "description": "Jacket",
+                    "attributes": "Brown, L size"
+                }
+            ]
+        }
+    ],
+    "response": "Hello there! 😄 Let's dive into the details of the sewing tasks completed by the \"Skilled Sewers\" group before June 2024. Here's what I found:\n\n| Sewing Task ID | Product Type | Attributes       | Quantity |\n|----------------|--------------|------------------|----------|\n| 17             | Jacket       | Yellow, L size   | 175      |\n| 18             | Jacket       | Brown, L size    | 200      |\n\nThe \"Skilled Sewers\" completed a total of 2 sewing tasks, producing jackets in different colors and sizes. Keep up the great work, Skilled Sewers! 🧵✨",
+    "token_used": 8234
+}

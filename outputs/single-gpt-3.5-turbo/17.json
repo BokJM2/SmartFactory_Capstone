@@ -1,0 +1,15 @@
+{
+    "ID": 17,
+    "q_ch": "2024年6月1日后的缝纫任务有哪些？",
+    "q_en": "What are the sewing tasks after June 1, 2024?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT * FROM sewing_tasks WHERE DATE(start_time) = '2024-06-01';",
+            "description": "To find the sewing tasks scheduled for June 1, 2024, we need to query the sewing tasks table based on the specified date.",
+            "results": "no results found."
+        }
+    ],
+    "response": "Sure! Here is the response to the user's question:\n\n---\n\n### Sewing Tasks for June 1, 2024\n\n| Task Name | Description | Start Time | End Time |\n|-----------|-------------|------------|----------|\n| No tasks found for this date 😔 | - | - | - |\n\n---\n\nFeel free to ask if you have any more questions! 😄",
+    "token_used": 5287
+}

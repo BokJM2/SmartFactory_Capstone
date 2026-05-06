@@ -1,0 +1,21 @@
+{
+    "ID": 34,
+    "q_ch": "Master Cutters当前已完成的裁剪任务有哪些？",
+    "q_en": "Which cutting tasks have been completed by Master Cutters?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT ct.id, ct.start_time, ct.end_time FROM cutting_tasks ct JOIN working_group wg ON ct.working_group_id = wg.id WHERE wg.name = 'Master Cutters' AND ct.status = 2;",
+            "description": "To find the completed cutting tasks by the working group named 'Master Cutters', we need to join the cutting_tasks table with the working_group table to filter tasks by the working group name and check for completed status.",
+            "results": [
+                {
+                    "id": 3,
+                    "start_time": "2024-01-10 00:00:00",
+                    "end_time": "2024-01-19 00:00:00"
+                }
+            ]
+        }
+    ],
+    "response": "Hey there! 😄 Let's take a look at the cutting tasks completed by the \"Master Cutters\" team. Here's what I found:\n\n| Task ID | Start Time          | End Time            |\n|---------|---------------------|---------------------|\n| 3       | January 10, 2024    | January 19, 2024    |\n\nIt seems like they completed a task that started on January 10, 2024, and wrapped up on January 19, 2024. Great job, Master Cutters! 🎉 If you have any more questions, feel free to ask!",
+    "token_used": 5522
+}

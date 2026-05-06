@@ -1,0 +1,65 @@
+{
+    "ID": 9,
+    "q_ch": "William 的缝纫任务进度如何？",
+    "q_en": "What is the progress of sewing tasks for William?",
+    "gt": "Hello there! 😄 Let's take a look at the progress of sewing tasks for our customer, William. Here's a summary of the tasks:\n\n| Task ID | Planned Number | Completed Number | Status       |\n|---------|----------------|------------------|--------------|\n| 28      | 210            | 210              | Completed ✅ |\n| 29      | 180            | 180              | Completed ✅ |\n| 30      | 195            | 195              | Completed ✅ |\n\nAll of William's sewing tasks are completed! 🎉 If you have any more questions or need further assistance, feel free to ask!",
+    "steps": [
+        {
+            "sql": "SELECT id FROM customers WHERE customer_name = 'William';",
+            "description": "Retrieve the customer ID for the customer with the name \"William\"",
+            "results": [
+                {
+                    "id": 8
+                }
+            ]
+        },
+        {
+            "sql": "SELECT id FROM orders WHERE user_id = '8';",
+            "description": "Retrieve the order IDs for the customer \"William\"",
+            "results": [
+                {
+                    "id": 8
+                }
+            ]
+        },
+        {
+            "sql": "SELECT id FROM order_product WHERE order_id IN (8);",
+            "description": "Retrieve the order_product IDs for the orders of customer \"William\"",
+            "results": [
+                {
+                    "id": 28
+                },
+                {
+                    "id": 29
+                },
+                {
+                    "id": 30
+                }
+            ]
+        },
+        {
+            "sql": "SELECT st.id, st.planned_number, st.completed_number, st.status FROM sewing_tasks st WHERE st.order_product_id IN (28, 29, 30);",
+            "description": "Retrieve the sewing tasks and their progress for the order products of customer \"William\"",
+            "results": [
+                {
+                    "id": 28,
+                    "planned_number": 210,
+                    "completed_number": 210,
+                    "status": 1
+                },
+                {
+                    "id": 29,
+                    "planned_number": 180,
+                    "completed_number": 180,
+                    "status": 1
+                },
+                {
+                    "id": 30,
+                    "planned_number": 195,
+                    "completed_number": 195,
+                    "status": 1
+                }
+            ]
+        }
+    ]
+}

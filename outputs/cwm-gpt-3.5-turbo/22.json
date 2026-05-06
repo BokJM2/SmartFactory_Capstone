@@ -1,0 +1,29 @@
+{
+    "ID": 22,
+    "q_ch": "我们现在有哪些缝纫组，哪些裁剪组？",
+    "q_en": "What sewing groups and cutting groups do we have now?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id, name FROM working_group WHERE name IN ('Elite Sewers', 'Expert Cutters');",
+            "description": "Retrieve the working group ID for the working groups named 'Elite Sewers' and 'Expert Cutters'",
+            "results": [
+                {
+                    "id": 4,
+                    "name": "Expert Cutters"
+                },
+                {
+                    "id": 10,
+                    "name": "Elite Sewers"
+                }
+            ]
+        },
+        {
+            "type": "Thought",
+            "operation": "Replace the working group IDs with their corresponding names for better readability.",
+            "results": "The working group IDs are:\n- ID 4 corresponds to the working group named 'Expert Cutters'\n- ID 10 corresponds to the working group named 'Elite Sewers'"
+        }
+    ],
+    "response": "Hey there! 😄\n\nHere are the working groups we have now:\n\n| ID  | Name           |\n|-----|----------------|\n| 4   | Expert Cutters |\n| 10  | Elite Sewers   |\n\nFeel free to reach out if you have any more questions!",
+    "token_used": 6769
+}

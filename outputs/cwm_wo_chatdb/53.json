@@ -1,0 +1,8 @@
+{
+  "ID": 53,
+  "q_ch": "列出已开始但未完成的裁剪任务，并计算还有总共多少未完成。",
+  "q_en": "List the cutting tasks that have started but are not yet completed, and calculate the total number of unfinished tasks.",
+  "sql": "SELECT * FROM cutting_tasks WHERE is_started = TRUE AND completed_number < planned_number;SELECT COUNT(*) AS total_unfinished_tasks FROM cutting_tasks WHERE is_started = TRUE AND completed_number < planned_number;",
+  "thought": "To list the cutting tasks that have started but are not yet completed, we need to select from the `cutting_tasks` table where `is_started` is true and the `completed_number` is less than the `planned_number`. Additionally, we will count the total number of such tasks.",
+  "total_tokens": "2459"
+}

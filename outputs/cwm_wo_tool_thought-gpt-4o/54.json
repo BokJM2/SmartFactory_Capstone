@@ -1,0 +1,213 @@
+{
+    "ID": 54,
+    "q_ch": "列出所有缝纫组的进度百分比。",
+    "q_en": "List the progress percentage of all sewing groups",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT working_group_id, planned_number, completed_number FROM sewing_tasks;",
+            "description": "Retrieve all sewing tasks along with their planned and completed numbers",
+            "results": [
+                {
+                    "working_group_id": 2,
+                    "planned_number": 100,
+                    "completed_number": 100
+                },
+                {
+                    "working_group_id": 9,
+                    "planned_number": 240,
+                    "completed_number": 240
+                },
+                {
+                    "working_group_id": 9,
+                    "planned_number": 150,
+                    "completed_number": 150
+                },
+                {
+                    "working_group_id": 2,
+                    "planned_number": 220,
+                    "completed_number": 220
+                },
+                {
+                    "working_group_id": 2,
+                    "planned_number": 260,
+                    "completed_number": 260
+                },
+                {
+                    "working_group_id": 8,
+                    "planned_number": 95,
+                    "completed_number": 95
+                },
+                {
+                    "working_group_id": 8,
+                    "planned_number": 110,
+                    "completed_number": 110
+                },
+                {
+                    "working_group_id": 7,
+                    "planned_number": 50,
+                    "completed_number": 50
+                },
+                {
+                    "working_group_id": 8,
+                    "planned_number": 80,
+                    "completed_number": 80
+                },
+                {
+                    "working_group_id": 2,
+                    "planned_number": 100,
+                    "completed_number": 100
+                },
+                {
+                    "working_group_id": 9,
+                    "planned_number": 140,
+                    "completed_number": 100
+                },
+                {
+                    "working_group_id": 2,
+                    "planned_number": 150,
+                    "completed_number": 120
+                },
+                {
+                    "working_group_id": 2,
+                    "planned_number": 130,
+                    "completed_number": 120
+                },
+                {
+                    "working_group_id": 2,
+                    "planned_number": 120,
+                    "completed_number": 120
+                },
+                {
+                    "working_group_id": 2,
+                    "planned_number": 185,
+                    "completed_number": 185
+                },
+                {
+                    "working_group_id": 8,
+                    "planned_number": 200,
+                    "completed_number": 200
+                },
+                {
+                    "working_group_id": 7,
+                    "planned_number": 175,
+                    "completed_number": 175
+                },
+                {
+                    "working_group_id": 7,
+                    "planned_number": 200,
+                    "completed_number": 200
+                },
+                {
+                    "working_group_id": 7,
+                    "planned_number": 95,
+                    "completed_number": 95
+                },
+                {
+                    "working_group_id": 8,
+                    "planned_number": 90,
+                    "completed_number": 90
+                },
+                {
+                    "working_group_id": 8,
+                    "planned_number": 85,
+                    "completed_number": 85
+                },
+                {
+                    "working_group_id": 8,
+                    "planned_number": 115,
+                    "completed_number": 60
+                },
+                {
+                    "working_group_id": 7,
+                    "planned_number": 110,
+                    "completed_number": 80
+                },
+                {
+                    "working_group_id": 2,
+                    "planned_number": 105,
+                    "completed_number": 105
+                },
+                {
+                    "working_group_id": 8,
+                    "planned_number": 75,
+                    "completed_number": 75
+                },
+                {
+                    "working_group_id": 9,
+                    "planned_number": 70,
+                    "completed_number": 70
+                },
+                {
+                    "working_group_id": 7,
+                    "planned_number": 60,
+                    "completed_number": 60
+                },
+                {
+                    "working_group_id": 7,
+                    "planned_number": 210,
+                    "completed_number": 210
+                },
+                {
+                    "working_group_id": 7,
+                    "planned_number": 180,
+                    "completed_number": 180
+                },
+                {
+                    "working_group_id": 2,
+                    "planned_number": 195,
+                    "completed_number": 195
+                },
+                {
+                    "working_group_id": 10,
+                    "planned_number": 260,
+                    "completed_number": 260
+                },
+                {
+                    "working_group_id": 9,
+                    "planned_number": 150,
+                    "completed_number": 0
+                },
+                {
+                    "working_group_id": 8,
+                    "planned_number": 120,
+                    "completed_number": 0
+                },
+                {
+                    "working_group_id": 10,
+                    "planned_number": 330,
+                    "completed_number": 330
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT wg.name, (SUM(st.completed_number) / SUM(st.planned_number)) * 100 AS progress_percentage FROM sewing_tasks st JOIN working_group wg ON st.working_group_id = wg.id WHERE wg.type = 'sew' GROUP BY wg.id;",
+            "description": "Calculate the progress percentage for each sewing group by summing up the completed and planned numbers for each group",
+            "results": [
+                {
+                    "name": "Master Sewers",
+                    "progress_percentage": "97.4441"
+                },
+                {
+                    "name": "Skilled Sewers",
+                    "progress_percentage": "97.2222"
+                },
+                {
+                    "name": "Advanced Sewers",
+                    "progress_percentage": "81.9588"
+                },
+                {
+                    "name": "Premier Sewers",
+                    "progress_percentage": "74.6667"
+                },
+                {
+                    "name": "Elite Sewers",
+                    "progress_percentage": "100.0000"
+                }
+            ]
+        }
+    ],
+    "response": "Sure! Here's the progress percentage of all sewing groups, neatly organized for you:\n\n| Sewing Group       | Progress Percentage |\n|--------------------|---------------------|\n| Master Sewers      | 97.44%              |\n| Skilled Sewers     | 97.22%              |\n| Advanced Sewers    | 81.96%              |\n| Premier Sewers     | 74.67%              |\n| Elite Sewers       | 100.00%             |\n\nLooks like the Elite Sewers are on top of their game with a perfect score! 🎉 Keep up the great work, everyone! 😄",
+    "token_used": 6344
+}

@@ -1,0 +1,30 @@
+{
+  "ID": 47,
+  "q_ch": "为香港理工大学最新的订单创建裁剪一个任务，该任务裁剪的产品为该订单中任意一种产品，任务期为6月30日到7月12日，负责的裁剪团队为Expert Cutters。其他字段暂时留空。返回裁剪任务编号。",
+  "q_en": "Create a cutting task for the latest order from The Hong Kong Polytechnic University, which involves cutting any product in the order. The task period is from June 30th to July 12th, and the cutting team responsible is Expert Cutters. Other fields are temporarily left blank. Return the cutting task number.",
+  "sqls": [
+    {
+      "command": [
+        "SELECT id FROM customers WHERE customer_name = 'The Hong Kong Polytechnic University';",
+        "SELECT id FROM orders WHERE user_id = '' ORDER BY created_at DESC LIMIT 1;",
+        "SELECT id FROM order_product WHERE order_id = 'no results found.' LIMIT 1;",
+        "SELECT id FROM working_group WHERE name = 'Expert Cutters';",
+        "INSERT INTO cutting_tasks (id, start_time, end_time, working_group_id, order_product_id, planned_number, completed_number, is_started) VALUES (UUID(), '2023-06-30 00:00:00', '2023-07-12 23:59:59', 'wg4', '<order_product_id>', 0, 0, FALSE);",
+        "SELECT id FROM cutting_tasks WHERE order_product_id = '<order_product_id>' AND working_group_id = 'wg4' AND start_time = '2023-06-30 00:00:00' AND end_time = '2023-07-12 23:59:59';"
+      ],
+      "Result of executing SQL": [
+        "no results found.",
+        "create table successfully.",
+        "no results found.",
+        [
+          {
+            "id": "wg4"
+          }
+        ],
+        null,
+        "no results found."
+      ]
+    }
+  ],
+  "total_tokens": 3729
+}

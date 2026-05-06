@@ -1,0 +1,22 @@
+{
+  "ID": 38,
+  "q_ch": "Advanced裁剪组还未完成的裁剪任务是哪些顾客的订单？",
+  "q_en": "Which customer orders are the cutting tasks that the Advanced Cutting Group has not yet completed?",
+  "sqls": [
+    {
+      "command": [
+        "SELECT id FROM working_group WHERE name = 'Advanced Cutting Group';",
+        "SELECT order_product_id FROM cutting_tasks WHERE working_group_id = '<working_group_id>' AND completed_number < planned_number;",
+        "SELECT order_id FROM order_product WHERE id IN (SELECT order_product_id FROM cutting_tasks WHERE working_group_id = '' AND completed_number < planned_number);",
+        "no results found."
+      ],
+      "Result of executing SQL": [
+        "no results found.",
+        "no results found.",
+        "no results found.",
+        null
+      ]
+    }
+  ],
+  "total_tokens": 16159
+}

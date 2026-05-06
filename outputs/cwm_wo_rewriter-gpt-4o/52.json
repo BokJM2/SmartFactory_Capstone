@@ -1,0 +1,164 @@
+{
+    "ID": 52,
+    "q_ch": "列出2024年6月的订单使用的原料和数量？并整理成{原料：使用数量}的形式。",
+    "q_en": "List the raw materials and quantities used for orders in June 2024? And organize it into the form of {raw materials: used quantity}.",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM orders WHERE created_at BETWEEN '2024-06-01' AND '2024-06-30';",
+            "description": "Retrieve the order IDs for orders created in June 2024",
+            "results": [
+                {
+                    "id": 10
+                },
+                {
+                    "id": 11
+                },
+                {
+                    "id": 12
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM order_product WHERE order_id IN (10, 11, 12);",
+            "description": "Retrieve the order product IDs for the orders obtained in Step1",
+            "results": [
+                {
+                    "id": 32
+                },
+                {
+                    "id": 33
+                },
+                {
+                    "id": 34
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM cutting_tasks WHERE order_product_id IN (32, 33, 34);",
+            "description": "Retrieve the cutting task IDs for the order products obtained in Step2",
+            "results": [
+                {
+                    "id": 32
+                },
+                {
+                    "id": 33
+                },
+                {
+                    "id": 34
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT produced_wip_id, completed_number FROM cutting_tasks WHERE id IN (32, 33, 34);",
+            "description": "Retrieve the produced WIP material IDs and completed numbers for the cutting tasks obtained in Step3",
+            "results": [
+                {
+                    "produced_wip_id": 8,
+                    "completed_number": 120
+                },
+                {
+                    "produced_wip_id": 10,
+                    "completed_number": 0
+                },
+                {
+                    "produced_wip_id": 2,
+                    "completed_number": 0
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT origin_material_id, number FROM wip_material WHERE wip_id IN (8, 10, 2);",
+            "description": "Retrieve the original material IDs and required quantities for the WIP materials obtained in Step4",
+            "results": [
+                {
+                    "origin_material_id": 9,
+                    "number": 0.6
+                },
+                {
+                    "origin_material_id": 1,
+                    "number": 0.35
+                },
+                {
+                    "origin_material_id": 13,
+                    "number": 0.8
+                },
+                {
+                    "origin_material_id": 1,
+                    "number": 0.4
+                },
+                {
+                    "origin_material_id": 11,
+                    "number": 0.65
+                },
+                {
+                    "origin_material_id": 3,
+                    "number": 0.2
+                },
+                {
+                    "origin_material_id": 7,
+                    "number": 1.0
+                },
+                {
+                    "origin_material_id": 9,
+                    "number": 0.2
+                },
+                {
+                    "origin_material_id": 5,
+                    "number": 0.1
+                }
+            ]
+        },
+        {
+            "type": "Thought",
+            "operation": "Multiply the completed number of each WIP material by its required quantity from Step5, and sum these values for each original material to get the total used quantity.",
+            "results": "To achieve the objective, we need to multiply the completed number of each WIP material by its required quantity from Step 5, and then sum these values for each original material to get the total used quantity. Here's how we can do it based on the provided context:\n\n1. **Retrieve Completed Numbers and WIP IDs:**\n   - From Step 4, we have the following completed numbers and their corresponding WIP IDs:\n     - WIP ID 8: Completed Number = 120\n     - WIP ID 10: Completed Number = 0\n     - WIP ID 2: Completed Number = 0\n\n2. **Retrieve Required Quantities for Each WIP ID:**\n   - From Step 5, we have the required quantities for each WIP ID:\n     - WIP ID 8:\n       - Origin Material ID 9: Required Quantity = 0.6\n       - Origin Material ID 1: Required Quantity = 0.35\n       - Origin Material ID 13: Required Quantity = 0.8\n     - WIP ID 10:\n       - Origin Material ID 1: Required Quantity = 0.4\n       - Origin Material ID 11: Required Quantity = 0.65\n       - Origin Material ID 3: Required Quantity = 0.2\n     - WIP ID 2:\n       - Origin Material ID 7: Required Quantity = 1.0\n       - Origin Material ID 9: Required Quantity = 0.2\n       - Origin Material ID 5: Required Quantity = 0.1\n\n3. **Calculate Total Used Quantity for Each Original Material:**\n   - For WIP ID 8 (Completed Number = 120):\n     - Origin Material ID 9: 120 * 0.6 = 72\n     - Origin Material ID 1: 120 * 0.35 = 42\n     - Origin Material ID 13: 120 * 0.8 = 96\n   - For WIP ID 10 (Completed Number = 0):\n     - Origin Material ID 1: 0 * 0.4 = 0\n     - Origin Material ID 11: 0 * 0.65 = 0\n     - Origin Material ID 3: 0 * 0.2 = 0\n   - For WIP ID 2 (Completed Number = 0):\n     - Origin Material ID 7: 0 * 1.0 = 0\n     - Origin Material ID 9: 0 * 0.2 = 0\n     - Origin Material ID 5: 0 * 0.1 = 0\n\n4. **Sum the Values for Each Original Material:**\n   - Origin Material ID 9: 72 + 0 = 72\n   - Origin Material ID 1: 42 + 0 = 42\n   - Origin Material ID 13: 96\n   - Origin Material ID 11: 0\n   - Origin Material ID 3: 0\n   - Origin Material ID 7: 0\n   - Origin Material ID 5: 0\n\nThe total used quantities for each original material are:\n- Material ID 9: 72\n- Material ID 1: 42\n- Material ID 13: 96\n- Material ID 11: 0\n- Material ID 3: 0\n- Material ID 7: 0\n- Material ID 5: 0"
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT id, name FROM materials WHERE id IN (9, 1, 13, 11, 3, 7, 5);",
+            "description": "Retrieve the names of the original materials",
+            "results": [
+                {
+                    "id": 1,
+                    "name": "Cotton Fabric"
+                },
+                {
+                    "id": 3,
+                    "name": "Wool"
+                },
+                {
+                    "id": 5,
+                    "name": "Silk"
+                },
+                {
+                    "id": 7,
+                    "name": "Leather"
+                },
+                {
+                    "id": 9,
+                    "name": "Synthetic Fiber"
+                },
+                {
+                    "id": 11,
+                    "name": "Denim Fabric"
+                },
+                {
+                    "id": 13,
+                    "name": "Down"
+                }
+            ]
+        },
+        {
+            "type": "Thought",
+            "operation": "Combine the material names from Step7 with the total used quantities from Step6 to create the final output format.",
+            "results": "To achieve the objective of combining the material names from Step 7 with the total used quantities from Step 6, we need to match the material IDs with their corresponding names and quantities. Here is the final output format:\n\n1. **Synthetic Fiber**: 72\n2. **Cotton Fabric**: 42\n3. **Down**: 96\n4. **Denim Fabric**: 0\n5. **Wool**: 0\n6. **Leather**: 0\n7. **Silk**: 0\n\nThis output lists each material name alongside its total used quantity."
+        }
+    ],
+    "response": "Sure thing! Let's take a look at the raw materials and quantities used for orders in June 2024. Here's a neat table to help you visualize the data:\n\n| Raw Material      | Used Quantity |\n|-------------------|---------------|\n| Synthetic Fiber   | 72            |\n| Cotton Fabric     | 42            |\n| Down              | 96            |\n| Denim Fabric      | 0             |\n| Wool              | 0             |\n| Leather           | 0             |\n| Silk              | 0             |\n\nI hope this helps! If you have any more questions, feel free to ask. 😊",
+    "token_used": 14167
+}

@@ -1,0 +1,26 @@
+{
+    "ID": 5,
+    "q_ch": "Sophia的订单创建时间是什么时候？",
+    "q_en": "When was Sophia's order created?",
+    "gt": "Sure thing! Let's find out when Sophia's order was created. 🎉\n\n| Customer Name | Order Creation Date     |\n|---------------|-------------------------|\n| Sophia        | March 18, 2024          |\n\nSophia's order was created on March 18, 2024. If you have any more questions, feel free to ask! 😊",
+    "steps": [
+        {
+            "sql": "SELECT id FROM customers WHERE customer_name = 'Sophia';",
+            "description": "Retrieve the customer ID for the customer with the name \"Sophia\"",
+            "results": [
+                {
+                    "id": 5
+                }
+            ]
+        },
+        {
+            "sql": "SELECT created_at FROM orders WHERE user_id = '5';",
+            "description": "Retrieve the creation date of the order for the customer with the retrieved customer ID",
+            "results": [
+                {
+                    "created_at": "2024-03-18 00:00:00"
+                }
+            ]
+        }
+    ]
+}

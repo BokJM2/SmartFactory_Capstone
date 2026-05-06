@@ -1,0 +1,136 @@
+{
+  "ID": 39,
+  "q_ch": "使用 Leather 的裁剪任务有哪些？",
+  "q_en": "Which cutting tasks use Leather?",
+  "sqls": [
+    {
+      "command": [
+        "SELECT id FROM materials WHERE name = 'Leather';",
+        "SELECT id FROM warehouse_material WHERE material_id = 'm7';",
+        "SELECT cutting_task_id FROM cutting_material_allocation WHERE warehouse_material_id IN (SELECT id FROM warehouse_material WHERE material_id = 'm7');",
+        "SELECT ct.id, ct.start_time, ct.end_time, ct.working_group_id, ct.order_product_id, ct.planned_number, ct.completed_number, ct.is_started FROM cutting_tasks ct WHERE ct.id IN (SELECT cutting_task_id FROM cutting_material_allocation WHERE warehouse_material_id IN (SELECT id FROM warehouse_material WHERE material_id = 'm7'));"
+      ],
+      "Result of executing SQL": [
+        [
+          {
+            "id": "m7"
+          }
+        ],
+        [
+          {
+            "id": "wm7"
+          }
+        ],
+        [
+          {
+            "cutting_task_id": "ct15"
+          },
+          {
+            "cutting_task_id": "ct16"
+          },
+          {
+            "cutting_task_id": "ct17"
+          },
+          {
+            "cutting_task_id": "ct18"
+          },
+          {
+            "cutting_task_id": "ct20"
+          },
+          {
+            "cutting_task_id": "ct25"
+          },
+          {
+            "cutting_task_id": "ct27"
+          },
+          {
+            "cutting_task_id": "ct32"
+          }
+        ],
+        [
+          {
+            "id": "ct15",
+            "start_time": "2024年03月11日 00:00",
+            "end_time": "2024年03月26日 00:00",
+            "working_group_id": "wg6",
+            "order_product_id": "op15",
+            "planned_number": 185,
+            "completed_number": 160,
+            "is_started": 1
+          },
+          {
+            "id": "ct16",
+            "start_time": "2024年03月11日 00:00",
+            "end_time": "2024年04月10日 00:00",
+            "working_group_id": "wg4",
+            "order_product_id": "op16",
+            "planned_number": 200,
+            "completed_number": 200,
+            "is_started": 1
+          },
+          {
+            "id": "ct17",
+            "start_time": "2024年03月11日 00:00",
+            "end_time": "2024年03月25日 00:00",
+            "working_group_id": "wg6",
+            "order_product_id": "op17",
+            "planned_number": 175,
+            "completed_number": 175,
+            "is_started": 1
+          },
+          {
+            "id": "ct18",
+            "start_time": "2024年03月11日 00:00",
+            "end_time": "2024年04月07日 00:00",
+            "working_group_id": "wg1",
+            "order_product_id": "op18",
+            "planned_number": 200,
+            "completed_number": 200,
+            "is_started": 1
+          },
+          {
+            "id": "ct20",
+            "start_time": "2024年03月18日 00:00",
+            "end_time": "2024年04月15日 00:00",
+            "working_group_id": "wg4",
+            "order_product_id": "op20",
+            "planned_number": 90,
+            "completed_number": 90,
+            "is_started": 1
+          },
+          {
+            "id": "ct25",
+            "start_time": "2024年04月14日 00:00",
+            "end_time": "2024年05月14日 00:00",
+            "working_group_id": "wg6",
+            "order_product_id": "op25",
+            "planned_number": 75,
+            "completed_number": 75,
+            "is_started": 1
+          },
+          {
+            "id": "ct27",
+            "start_time": "2024年04月14日 00:00",
+            "end_time": "2024年05月04日 00:00",
+            "working_group_id": "wg4",
+            "order_product_id": "op27",
+            "planned_number": 60,
+            "completed_number": 60,
+            "is_started": 1
+          },
+          {
+            "id": "ct32",
+            "start_time": "2024年06月01日 00:00",
+            "end_time": "2024年06月17日 00:00",
+            "working_group_id": "wg6",
+            "order_product_id": "op32",
+            "planned_number": 150,
+            "completed_number": 120,
+            "is_started": 1
+          }
+        ]
+      ]
+    }
+  ],
+  "total_tokens": 16473
+}

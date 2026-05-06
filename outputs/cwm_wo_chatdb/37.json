@@ -1,0 +1,9 @@
+{
+  "ID": 37,
+  "q_ch": "对所有结束时间在2024年7月前，且未完成的裁剪任务中，计划裁剪数量最多的任务是什么？",
+  "q_en": "What is the task with the highest planned quantity among all cutting tasks that have not been completed and have an end date before July 2024??",
+  "sql": "SELECT * FROM cutting_tasks WHERE is_started = FALSE AND end_time < '2024-07-01' ORDER BY planned_number DESC LIMIT 1;",
+  "thought": "To find the task with the highest planned quantity among all cutting tasks that have not been completed and have an end date before July 2024, we need to filter the cutting_tasks table based on the conditions is_started is false and end_time is before July 2024. Then, we will order the results by planned_number in descending order and select the top result.",
+  "total_tokens": "2479",
+  "rows": []
+}

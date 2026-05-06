@@ -1,0 +1,39 @@
+{
+    "ID": 4,
+    "q_ch": "James 的订单包含哪些产品？",
+    "q_en": "What products are included in James's order?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM customers WHERE customer_name = 'James';",
+            "description": "Retrieve the customer ID for the customer with the name \"James\"",
+            "results": [
+                {
+                    "id": 4
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM orders WHERE user_id = 4;",
+            "description": "Retrieve the order IDs for the customer \"James\"",
+            "results": [
+                {
+                    "id": 4
+                },
+                {
+                    "id": 12
+                }
+            ]
+        },
+        {
+            "type": "Tool",
+            "results": {
+                "input": "Retrieve the product details for each order of the customer \"James\"\n[\"tool_find_order_details, {'order_id': 4}, Find the product details of an order\", \"tool_find_order_details, {'order_id': 12}, Find the product details of an order\"]",
+                "output": "Here are the product details for each order of the customer \"James\":\n\n**Order ID: 4**\n1. **Product ID:** 22\n   - **Description:** Jacket\n   - **Attributes:** Brown, S size\n   - **Number:** 185\n\n2. **Product ID:** 26\n   - **Description:** Coat\n   - **Attributes:** Red, M size\n   - **Number:** 200\n\n3. **Product ID:** 14\n   - **Description:** Jacket\n   - **Attributes:** Yellow, L size\n   - **Number:** 175\n\n4. **Product ID:** 6\n   - **Description:** Jacket\n   - **Attributes:** Brown, L size\n   - **Number:** 200\n\n**Order ID: 12**\n1. **Product ID:** 7\n   - **Description:** Skirt\n   - **Attributes:** Purple, M size\n   - **Number:** 330"
+            }
+        }
+    ],
+    "response": "Sure thing! Let's take a look at what products are included in James's orders. Here's a breakdown of the products for each order:\n\n| **Order ID** | **Product ID** | **Description** | **Attributes** | **Number** |\n|--------------|----------------|-----------------|----------------|------------|\n| **4**        | 22             | Jacket          | Brown, S size  | 185        |\n|              | 26             | Coat            | Red, M size    | 200        |\n|              | 14             | Jacket          | Yellow, L size | 175        |\n|              | 6              | Jacket          | Brown, L size  | 200        |\n| **12**       | 7              | Skirt           | Purple, M size | 330        |\n\nJames has quite a stylish collection in his orders! 🧥👗 If you have any more questions, feel free to ask! 😊",
+    "token_used": 7647
+}

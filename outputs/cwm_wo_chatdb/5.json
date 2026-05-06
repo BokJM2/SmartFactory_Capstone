@@ -1,0 +1,13 @@
+{
+  "ID": 5,
+  "q_ch": "Sophia的订单创建时间是什么时候？",
+  "q_en": "When was Sophia's order created?",
+  "sql": "SELECT o.created_at FROM customers c JOIN orders o ON c.id = o.user_id WHERE c.customer_name = 'Sophia';",
+  "thought": "To find out when Sophia's order was created, we need to join the `customers` and `orders` tables using the customer ID and filter by the customer name 'Sophia'. We then select the order creation date.",
+  "total_tokens": "2754",
+  "rows": [
+    {
+      "created_at": "2024年03月18日 00:00"
+    }
+  ]
+}

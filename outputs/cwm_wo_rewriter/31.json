@@ -1,0 +1,68 @@
+{
+  "ID": 31,
+  "q_ch": "Premier Sewers的缝纫任务有哪些？",
+  "q_en": "What are the sewing tasks of Premier Sewers?",
+  "sqls": [
+    {
+      "command": [
+        "SELECT id FROM working_group WHERE name = 'Premier Sewers';",
+        "SELECT id, start_time, end_time, order_product_id, planned_number, completed_number, is_started FROM sewing_tasks WHERE working_group_id = 'wg9';"
+      ],
+      "Result of executing SQL": [
+        [
+          {
+            "id": "wg9"
+          }
+        ],
+        [
+          {
+            "id": "sw11",
+            "start_time": "2024年03月21日 00:00",
+            "end_time": "2024年04月14日 00:00",
+            "order_product_id": "op11",
+            "planned_number": 140,
+            "completed_number": 140,
+            "is_started": 1
+          },
+          {
+            "id": "sw2",
+            "start_time": "2024年02月02日 00:00",
+            "end_time": "2024年02月15日 00:00",
+            "order_product_id": "op2",
+            "planned_number": 240,
+            "completed_number": 240,
+            "is_started": 1
+          },
+          {
+            "id": "sw26",
+            "start_time": "2024年05月04日 00:00",
+            "end_time": "2024年05月15日 00:00",
+            "order_product_id": "op26",
+            "planned_number": 70,
+            "completed_number": 70,
+            "is_started": 1
+          },
+          {
+            "id": "sw3",
+            "start_time": "2024年01月19日 00:00",
+            "end_time": "2024年02月08日 00:00",
+            "order_product_id": "op3",
+            "planned_number": 150,
+            "completed_number": 150,
+            "is_started": 1
+          },
+          {
+            "id": "sw32",
+            "start_time": "2024年06月17日 00:00",
+            "end_time": "2024年07月14日 00:00",
+            "order_product_id": "op32",
+            "planned_number": 150,
+            "completed_number": 0,
+            "is_started": 0
+          }
+        ]
+      ]
+    }
+  ],
+  "total_tokens": 13206
+}

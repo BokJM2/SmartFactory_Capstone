@@ -1,0 +1,44 @@
+{
+    "ID": 55,
+    "q_ch": "所有订单中总共做的前三多的商品是什么？",
+    "q_en": "What are the top three products made in all orders in total?",
+    "gt": "Hey there! 😄 Let's dive into the top three products made in all orders. Here's a neat little table for you:\n\n| Product ID | Total Made | Attributes     | Description |\n|------------|------------|----------------|-------------|\n| 7          | 540        | Purple, M size | Skirt       |\n| 15         | 345        | Pink, M size   | Skirt       |\n| 27         | 260        | Yellow, S size | T-shirt     |\n\nThese are the champions of production! 🏆 If you have any more questions, feel free to ask!",
+    "steps": [
+        {
+            "sql": "SELECT p.id, SUM(op.number) as total_made FROM order_product op JOIN products p ON op.product_id = p.id GROUP BY p.id ORDER BY total_made DESC LIMIT 3;",
+            "description": "Retrieve the total number of each product made in all orders",
+            "results": [
+                {
+                    "id": 7,
+                    "total_made": "540"
+                },
+                {
+                    "id": 15,
+                    "total_made": "345"
+                },
+                {
+                    "id": 27,
+                    "total_made": "260"
+                }
+            ]
+        },
+        {
+            "sql": "SELECT p.attributes, pt.description FROM products p JOIN products_types pt ON p.products_type_id = pt.id WHERE p.id IN (7, 15, 27);",
+            "description": "Retrieve the attributes and type description for the top three products",
+            "results": [
+                {
+                    "attributes": "Purple, M size",
+                    "description": "Skirt"
+                },
+                {
+                    "attributes": "Pink, M size",
+                    "description": "Skirt"
+                },
+                {
+                    "attributes": "Yellow, S size",
+                    "description": "T-shirt"
+                }
+            ]
+        }
+    ]
+}

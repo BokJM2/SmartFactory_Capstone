@@ -1,0 +1,60 @@
+{
+    "ID": 39,
+    "q_ch": "使用 Leather 的裁剪任务有哪些？",
+    "q_en": "Which cutting tasks use Leather?",
+    "gt": "Sure thing! Here are the cutting tasks that use the material \"Leather\":\n\n| Cutting Task ID | Start Time     | End Time       | Working Group ID | Order Product ID | Produced WIP ID | Planned Number | Completed Number | Status       |\n|-----------------|----------------|----------------|------------------|------------------|-----------------|----------------|------------------|--------------|\n| 15              | March 11, 2024 | March 26, 2024 | 2                | 15               | 6               | 185            | 185              | Completed    |\n| 16              | March 11, 2024 | April 10, 2024 | 4                | 16               | 8               | 200            | 200              | Completed    |\n| 17              | March 11, 2024 | March 25, 2024 | 2                | 17               | 4               | 175            | 175              | Completed    |\n| 18              | March 11, 2024 | April 7, 2024  | 1                | 18               | 10              | 200            | 200              | Completed    |\n| 20              | March 18, 2024 | April 15, 2024 | 4                | 20               | 12              | 90             | 90               | Completed    |\n| 25              | April 14, 2024 | May 14, 2024   | 2                | 25               | 6               | 75             | 75               | Completed    |\n| 27              | April 14, 2024 | May 4, 2024    | 4                | 27               | 8               | 60             | 60               | Not Completed |\n| 32              | June 1, 2024   | June 17, 2024  | 2                | 32               | 8               | 150            | 120              | Completed    |\n\nIf you have any more questions or need further assistance, feel free to ask! 😊",
+    "steps": [
+        {
+            "sql": "SELECT id FROM materials WHERE name = 'Leather';",
+            "description": "Retrieve the material ID for the material with the name \"Leather\"",
+            "results": [
+                {
+                    "id": 7
+                }
+            ]
+        },
+        {
+            "sql": "SELECT id FROM warehouse_material WHERE material_id = '7';",
+            "description": "Retrieve the warehouse material IDs that correspond to the material ID for \"Leather\"",
+            "results": [
+                {
+                    "id": 7
+                }
+            ]
+        },
+        {
+            "sql": "SELECT cutting_task_id FROM cutting_material_allocation WHERE warehouse_material_id IN ('7');",
+            "description": "Retrieve the cutting task IDs that use the warehouse material IDs for \"Leather\"",
+            "results": [
+                {
+                    "cutting_task_id": 15
+                },
+                {
+                    "cutting_task_id": 16
+                },
+                {
+                    "cutting_task_id": 17
+                },
+                {
+                    "cutting_task_id": 18
+                },
+                {
+                    "cutting_task_id": 20
+                },
+                {
+                    "cutting_task_id": 25
+                },
+                {
+                    "cutting_task_id": 27
+                },
+                {
+                    "cutting_task_id": 32
+                }
+            ]
+        },
+        {
+            "input": "Retrieve the details of the cutting tasks using the cutting task IDs\n[\"tool_find_cutting_task, {'cutting_task_id': 15}, Find the cutting task details\", \"tool_find_cutting_task, {'cutting_task_id': 16}, Find the cutting task details\", \"tool_find_cutting_task, {'cutting_task_id': 17}, Find the cutting task details\", \"tool_find_cutting_task, {'cutting_task_id': 18}, Find the cutting task details\", \"tool_find_cutting_task, {'cutting_task_id': 20}, Find the cutting task details\", \"tool_find_cutting_task, {'cutting_task_id': 25}, Find the cutting task details\", \"tool_find_cutting_task, {'cutting_task_id': 27}, Find the cutting task details\", \"tool_find_cutting_task, {'cutting_task_id': 32}, Find the cutting task details\"]",
+            "output": "Here are the details of the cutting tasks for the specified IDs:\n\n1. **Cutting Task ID: 15**\n   - Start Time: March 11, 2024\n   - End Time: March 26, 2024\n   - Working Group ID: 2\n   - Order Product ID: 15\n   - Produced WIP ID: 6\n   - Planned Number: 185\n   - Completed Number: 185\n   - Status: Completed\n\n2. **Cutting Task ID: 16**\n   - Start Time: March 11, 2024\n   - End Time: April 10, 2024\n   - Working Group ID: 4\n   - Order Product ID: 16\n   - Produced WIP ID: 8\n   - Planned Number: 200\n   - Completed Number: 200\n   - Status: Completed\n\n3. **Cutting Task ID: 17**\n   - Start Time: March 11, 2024\n   - End Time: March 25, 2024\n   - Working Group ID: 2\n   - Order Product ID: 17\n   - Produced WIP ID: 4\n   - Planned Number: 175\n   - Completed Number: 175\n   - Status: Completed\n\n4. **Cutting Task ID: 18**\n   - Start Time: March 11, 2024\n   - End Time: April 7, 2024\n   - Working Group ID: 1\n   - Order Product ID: 18\n   - Produced WIP ID: 10\n   - Planned Number: 200\n   - Completed Number: 200\n   - Status: Completed\n\n5. **Cutting Task ID: 20**\n   - Start Time: March 18, 2024\n   - End Time: April 15, 2024\n   - Working Group ID: 4\n   - Order Product ID: 20\n   - Produced WIP ID: 12\n   - Planned Number: 90\n   - Completed Number: 90\n   - Status: Completed\n\n6. **Cutting Task ID: 25**\n   - Start Time: April 14, 2024\n   - End Time: May 14, 2024\n   - Working Group ID: 2\n   - Order Product ID: 25\n   - Produced WIP ID: 6\n   - Planned Number: 75\n   - Completed Number: 75\n   - Status: Completed\n\n7. **Cutting Task ID: 27**\n   - Start Time: April 14, 2024\n   - End Time: May 4, 2024\n   - Working Group ID: 4\n   - Order Product ID: 27\n   - Produced WIP ID: 8\n   - Planned Number: 60\n   - Completed Number: 60\n   - Status: Not Completed\n\n8. **Cutting Task ID: 32**\n   - Start Time: June 1, 2024\n   - End Time: June 17, 2024\n   - Working Group ID: 2\n   - Order Product ID: 32\n   - Produced WIP ID: 8\n   - Planned Number: 150\n   - Completed Number: 120\n   - Status: Completed\n\nIf you need further details or assistance, feel free to ask!"
+        }
+    ]
+}

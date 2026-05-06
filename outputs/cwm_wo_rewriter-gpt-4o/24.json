@@ -1,0 +1,30 @@
+{
+    "ID": 24,
+    "q_ch": "Elite Sewers 在2024年6月30日前分配的缝纫任务有哪些？",
+    "q_en": "What sewing tasks will Elite Sewers be assigned before June 30, 2024?",
+    "hint": "应查找Elite Sewers所有任务中start_time < 2024-6-30的任务",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM working_group WHERE name = 'Elite Sewers';",
+            "description": "Retrieve the working group ID for the group with the name \"Elite Sewers\"",
+            "results": [
+                {
+                    "id": 10
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM sewing_tasks WHERE working_group_id = '10' AND start_time < '2024-06-30';",
+            "description": "Retrieve the sewing tasks assigned to the working group \"Elite Sewers\" before June 30, 2024",
+            "results": [
+                {
+                    "id": 31
+                }
+            ]
+        }
+    ],
+    "response": "Hey there! 😄 Let's take a look at the sewing tasks assigned to the \"Elite Sewers\" before June 30, 2024. Here's what I found:\n\n| Task ID |\n|---------|\n| 31      |\n\nIt looks like the \"Elite Sewers\" have been assigned a task with the ID 31. If you need more details about this task, feel free to ask! 🧵✨",
+    "token_used": 6904
+}

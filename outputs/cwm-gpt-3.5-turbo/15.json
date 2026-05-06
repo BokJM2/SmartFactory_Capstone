@@ -1,0 +1,77 @@
+{
+    "ID": 15,
+    "q_ch": "剩余库存最少的原料是什么？",
+    "q_en": "What is the material with the lowest remaining inventory?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT m.name, wm.left_number FROM materials m JOIN warehouse_material wm ON m.id = wm.material_id;",
+            "description": "Retrieve the material name and remaining inventory quantity for all materials in the warehouse",
+            "results": [
+                {
+                    "name": "Cotton Fabric",
+                    "left_number": 3500
+                },
+                {
+                    "name": "Fabric Pieces",
+                    "left_number": 3200
+                },
+                {
+                    "name": "Wool",
+                    "left_number": 4100
+                },
+                {
+                    "name": "Wool Pieces",
+                    "left_number": 3070
+                },
+                {
+                    "name": "Silk",
+                    "left_number": 1100
+                },
+                {
+                    "name": "Silk Pieces",
+                    "left_number": 5400
+                },
+                {
+                    "name": "Leather",
+                    "left_number": 2200
+                },
+                {
+                    "name": "Leather Pieces",
+                    "left_number": 880
+                },
+                {
+                    "name": "Synthetic Fiber",
+                    "left_number": 2300
+                },
+                {
+                    "name": "Synthetic Fiber Pieces",
+                    "left_number": 390
+                },
+                {
+                    "name": "Denim Fabric",
+                    "left_number": 4500
+                },
+                {
+                    "name": "Denim Fabric Pieces",
+                    "left_number": 2230
+                },
+                {
+                    "name": "Down",
+                    "left_number": 1230
+                },
+                {
+                    "name": "Down Pieces",
+                    "left_number": 2420
+                }
+            ]
+        },
+        {
+            "type": "Thought",
+            "operation": "Compare the remaining inventory quantities obtained in Step1 and identify the material with the lowest quantity.",
+            "results": "To compare the remaining inventory quantities obtained in Step 1 and identify the material with the lowest quantity, we need to refer to the results from the SQL query. \n\nThe remaining inventory quantities for each material are as follows:\n- Cotton Fabric: 3500\n- Fabric Pieces: 3200\n- Wool: 4100\n- Wool Pieces: 3070\n- Silk: 1100\n- Silk Pieces: 5400\n- Leather: 2200\n- Leather Pieces: 880\n- Synthetic Fiber: 2300\n- Synthetic Fiber Pieces: 390\n- Denim Fabric: 4500\n- Denim Fabric Pieces: 2230\n- Down: 1230\n- Down Pieces: 2420\n\nTo identify the material with the lowest quantity, we need to compare the quantities listed above. The material with the lowest quantity is \"Silk\" with a remaining inventory quantity of 1100."
+        }
+    ],
+    "response": "Certainly! Based on the data retrieved from the SQL query, the material with the lowest remaining inventory is **Silk** with a quantity of **1100** units. Here is a table summarizing the remaining inventory quantities for each material:\n\n| Material              | Remaining Inventory |\n|-----------------------|---------------------|\n| Cotton Fabric         | 3500                |\n| Fabric Pieces         | 3200                |\n| Wool                  | 4100                |\n| Wool Pieces           | 3070                |\n| Silk                  | 1100                |\n| Silk Pieces           | 5400                |\n| Leather               | 2200                |\n| Leather Pieces        | 880                 |\n| Synthetic Fiber       | 2300                |\n| Synthetic Fiber Pieces| 390                 |\n| Denim Fabric          | 4500                |\n| Denim Fabric Pieces   | 2230                |\n| Down                  | 1230                |\n| Down Pieces           | 2420                |\n\nI hope this helps! If you have any more questions or need further assistance, feel free to ask. 😄",
+    "token_used": 7344
+}

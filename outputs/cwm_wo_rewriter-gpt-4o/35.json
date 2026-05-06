@@ -1,0 +1,150 @@
+{
+    "ID": 35,
+    "q_ch": "对于所有Expert Cutters负责的且尚未完成的裁剪任务，共分配了哪些原料，按照裁剪任务进行整理？",
+    "q_en": "Which materials have been allocated for all cutting tasks that are assigned to Expert Cutters and have not been completed, organized by cutting task?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM working_group WHERE name = 'Expert Cutters';",
+            "description": "Retrieve the working group ID for the group with the name \"Expert Cutters\"",
+            "results": [
+                {
+                    "id": 4
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM cutting_tasks WHERE working_group_id = '4' AND status != 2;",
+            "description": "Retrieve the cutting task IDs for tasks assigned to the \"Expert Cutters\" group that have not been completed",
+            "results": [
+                {
+                    "id": 8
+                },
+                {
+                    "id": 11
+                },
+                {
+                    "id": 16
+                },
+                {
+                    "id": 19
+                },
+                {
+                    "id": 20
+                },
+                {
+                    "id": 21
+                },
+                {
+                    "id": 26
+                },
+                {
+                    "id": 27
+                },
+                {
+                    "id": 34
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT cma.cutting_task_id, m.name AS material_name, cma.allocated_num FROM cutting_material_allocation cma JOIN warehouse_material wm ON cma.warehouse_material_id = wm.id JOIN materials m ON wm.material_id = m.id WHERE cma.cutting_task_id IN (8, 11, 16, 19, 20, 21, 26, 27, 34);",
+            "description": "Retrieve the materials allocated for each cutting task identified in Step2",
+            "results": [
+                {
+                    "cutting_task_id": 19,
+                    "material_name": "Cotton Fabric",
+                    "allocated_num": 95
+                },
+                {
+                    "cutting_task_id": 21,
+                    "material_name": "Cotton Fabric",
+                    "allocated_num": 85
+                },
+                {
+                    "cutting_task_id": 34,
+                    "material_name": "Cotton Fabric",
+                    "allocated_num": 330
+                },
+                {
+                    "cutting_task_id": 11,
+                    "material_name": "Wool",
+                    "allocated_num": 140
+                },
+                {
+                    "cutting_task_id": 16,
+                    "material_name": "Wool",
+                    "allocated_num": 200
+                },
+                {
+                    "cutting_task_id": 20,
+                    "material_name": "Wool",
+                    "allocated_num": 90
+                },
+                {
+                    "cutting_task_id": 26,
+                    "material_name": "Wool",
+                    "allocated_num": 70
+                },
+                {
+                    "cutting_task_id": 27,
+                    "material_name": "Wool",
+                    "allocated_num": 60
+                },
+                {
+                    "cutting_task_id": 11,
+                    "material_name": "Silk",
+                    "allocated_num": 140
+                },
+                {
+                    "cutting_task_id": 16,
+                    "material_name": "Leather",
+                    "allocated_num": 200
+                },
+                {
+                    "cutting_task_id": 20,
+                    "material_name": "Leather",
+                    "allocated_num": 90
+                },
+                {
+                    "cutting_task_id": 27,
+                    "material_name": "Leather",
+                    "allocated_num": 60
+                },
+                {
+                    "cutting_task_id": 19,
+                    "material_name": "Synthetic Fiber",
+                    "allocated_num": 95
+                },
+                {
+                    "cutting_task_id": 21,
+                    "material_name": "Synthetic Fiber",
+                    "allocated_num": 85
+                },
+                {
+                    "cutting_task_id": 34,
+                    "material_name": "Synthetic Fiber",
+                    "allocated_num": 330
+                },
+                {
+                    "cutting_task_id": 8,
+                    "material_name": "Denim Fabric",
+                    "allocated_num": 50
+                },
+                {
+                    "cutting_task_id": 16,
+                    "material_name": "Down",
+                    "allocated_num": 200
+                },
+                {
+                    "cutting_task_id": 27,
+                    "material_name": "Down",
+                    "allocated_num": 60
+                }
+            ]
+        }
+    ],
+    "response": "Sure thing! Let's dive into the materials allocated for the cutting tasks assigned to the \"Expert Cutters\" group that haven't been completed yet. Here's a neat table to show you the details:\n\n| Cutting Task ID | Material Name      | Allocated Quantity |\n|-----------------|--------------------|--------------------|\n| 8               | Denim Fabric       | 50                 |\n| 11              | Wool               | 140                |\n| 11              | Silk               | 140                |\n| 16              | Wool               | 200                |\n| 16              | Leather            | 200                |\n| 16              | Down               | 200                |\n| 19              | Cotton Fabric      | 95                 |\n| 19              | Synthetic Fiber    | 95                 |\n| 20              | Wool               | 90                 |\n| 20              | Leather            | 90                 |\n| 21              | Cotton Fabric      | 85                 |\n| 21              | Synthetic Fiber    | 85                 |\n| 26              | Wool               | 70                 |\n| 27              | Wool               | 60                 |\n| 27              | Leather            | 60                 |\n| 27              | Down               | 60                 |\n| 34              | Cotton Fabric      | 330                |\n| 34              | Synthetic Fiber    | 330                |\n\nI hope this helps you get a clear picture of the materials allocated for each task! If you have any more questions, feel free to ask. 😊",
+    "token_used": 8641
+}

@@ -1,0 +1,69 @@
+{
+    "ID": 9,
+    "q_ch": "William 的缝纫任务进度如何？",
+    "q_en": "What is the progress of sewing tasks for William?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM customers WHERE customer_name = 'William';",
+            "description": "Retrieve the customer ID for the customer with the name \"William\"",
+            "results": [
+                {
+                    "id": 8
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM orders WHERE user_id = 8;",
+            "description": "Retrieve the order IDs for the customer \"William\"",
+            "results": [
+                {
+                    "id": 8
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM order_product WHERE order_id IN (8);",
+            "description": "Retrieve the order product IDs for each order of the customer \"William\"",
+            "results": [
+                {
+                    "id": 28
+                },
+                {
+                    "id": 29
+                },
+                {
+                    "id": 30
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT order_product_id, SUM(completed_number) / SUM(planned_number) AS progress FROM sewing_tasks WHERE order_product_id IN (28, 29, 30) GROUP BY order_product_id;",
+            "description": "Calculate the progress of sewing tasks for each order product",
+            "results": [
+                {
+                    "order_product_id": 28,
+                    "progress": "1.0000"
+                },
+                {
+                    "order_product_id": 29,
+                    "progress": "1.0000"
+                },
+                {
+                    "order_product_id": 30,
+                    "progress": "1.0000"
+                }
+            ]
+        },
+        {
+            "type": "Thought",
+            "operation": "Aggregate the progress of all sewing tasks obtained in Step4 to determine the overall progress for the customer \"William\".",
+            "results": "To determine the overall progress for the customer \"William,\" we need to aggregate the progress of all sewing tasks obtained in Step 4. The results from Step 4 show the progress for each order product:\n\n- Order Product ID 28: Progress = 1.0000\n- Order Product ID 29: Progress = 1.0000\n- Order Product ID 30: Progress = 1.0000\n\nSince all the progress values are 1.0000, the overall progress for William's sewing tasks is also 1.0000, indicating that all tasks are fully completed."
+        }
+    ],
+    "response": "Hello there! 😄\n\nI've got some great news about the progress of sewing tasks for our customer, William. Let's take a look at the details:\n\n| Order Product ID | Progress |\n|------------------|----------|\n| 28               | 100%     |\n| 29               | 100%     |\n| 30               | 100%     |\n\n🎉 All of William's sewing tasks are fully completed! Everything is at 100% progress, which means the tasks are done and dusted. If you have any more questions or need further assistance, feel free to ask! 😊",
+    "token_used": 8422
+}

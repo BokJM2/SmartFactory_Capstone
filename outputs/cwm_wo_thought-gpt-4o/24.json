@@ -1,0 +1,35 @@
+{
+    "ID": 24,
+    "q_ch": "Elite Sewers 在2024年6月30日前分配的缝纫任务有哪些？",
+    "q_en": "What sewing tasks will Elite Sewers be assigned before June 30, 2024?",
+    "hint": "应查找Elite Sewers所有任务中start_time < 2024-6-30的任务",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM working_group WHERE name = 'Elite Sewers';",
+            "description": "Retrieve the working group ID for the working group with the name \"Elite Sewers\"",
+            "results": [
+                {
+                    "id": 10
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT st.id, st.start_time, st.end_time, op.number, p.attributes, pt.description FROM sewing_tasks st JOIN order_product op ON st.order_product_id = op.id JOIN products p ON op.product_id = p.id JOIN products_types pt ON p.products_type_id = pt.id WHERE st.working_group_id = '10' AND st.start_time < '2024-06-30';",
+            "description": "Retrieve the sewing tasks assigned to the working group \"Elite Sewers\" before June 30, 2024",
+            "results": [
+                {
+                    "id": 31,
+                    "start_time": "2024-05-26 00:00:00",
+                    "end_time": "2024-06-04 00:00:00",
+                    "number": 260,
+                    "attributes": "Pink, M size",
+                    "description": "Skirt"
+                }
+            ]
+        }
+    ],
+    "response": "Hey there! 😄 Let's take a look at the sewing tasks assigned to the \"Elite Sewers\" before June 30, 2024. Here's what I found:\n\n| Task ID | Start Time          | End Time            | Order Number | Product Attributes | Product Description |\n|---------|---------------------|---------------------|--------------|--------------------|---------------------|\n| 31      | May 26, 2024        | June 4, 2024        | 260          | Pink, M size       | Skirt               |\n\nLooks like the \"Elite Sewers\" will be working on a lovely pink skirt in size M. If you have any more questions, feel free to ask! 😊",
+    "token_used": 7039
+}

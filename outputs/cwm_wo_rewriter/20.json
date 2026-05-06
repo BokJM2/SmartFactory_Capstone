@@ -1,0 +1,20 @@
+{
+  "ID": 20,
+  "q_ch": "剩余库存为零的材料有哪些，列出材料名字？",
+  "q_en": "What are the materials with zero remaining inventory and list their names?",
+  "sqls": [
+    {
+      "command": [
+        "SELECT m.name FROM materials m JOIN warehouse_material wm ON m.id = wm.material_id WHERE wm.left_number = 0;"
+      ],
+      "Result of executing SQL": [
+        [
+          {
+            "name": "Synthetic Fiber"
+          }
+        ]
+      ]
+    }
+  ],
+  "total_tokens": 2565
+}

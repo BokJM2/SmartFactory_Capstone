@@ -1,0 +1,15 @@
+{
+    "ID": 45,
+    "q_ch": "主仓库出库Cotton Fabric100份。",
+    "q_en": "Please release 100 units of cotton fabric from the Main warehouse.",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "UPDATE warehouse_material SET left_number = left_number - 100 WHERE material_id = (SELECT id FROM materials WHERE name = 'Cotton Fabric') AND warehouse_id = (SELECT id FROM warehouse WHERE name = 'Main Warehouse');",
+            "description": "To release 100 units of 'Cotton Fabric' from the 'Main Warehouse', we need to update the 'left_number' in the 'warehouse_material' table by subtracting 100 units for the specified material and warehouse.",
+            "results": "update data successfully."
+        }
+    ],
+    "response": "Sure! Here is the response to the user's question:\n\n---\n\n📦 **Release 100 Units of Cotton Fabric from Main Warehouse**\n\nTo release 100 units of Cotton Fabric from the Main Warehouse, we have successfully updated the data in the warehouse_material table. \n\n| Description | Results |\n| ----------- | ------- |\n| To release 100 units of 'Cotton Fabric' from the 'Main Warehouse', we need to update the 'left_number' in the 'warehouse_material' table by subtracting 100 units for the specified material and warehouse. | Update data successfully. |\n\nIf you have any more questions or need further assistance, feel free to ask! 😄\n\n--- \n\nIf the SQL result is empty, the response to the user's question would be:\n\n---\n\n📦 **Release 100 Units of Cotton Fabric from Main Warehouse**\n\nI'm sorry, but it seems there was an issue with processing your request to release 100 units of Cotton Fabric from the Main Warehouse. Please let me know if you need any help or have any other questions. 😊\n\n--- \n\nI hope this helps! Let me know if you need anything else.",
+    "token_used": 5713
+}

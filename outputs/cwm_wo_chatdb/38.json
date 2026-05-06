@@ -1,0 +1,22 @@
+{
+  "ID": 38,
+  "q_ch": "Advanced裁剪组还未完成的裁剪任务是哪些顾客的订单？",
+  "q_en": "Which customer orders are the cutting tasks that the Advanced Cutting Group has not yet completed?",
+  "sql": "SELECT orders.* FROM orders JOIN order_product ON orders.id = order_product.order_id JOIN cutting_tasks ON order_product.id = cutting_tasks.order_product_id JOIN working_group ON cutting_tasks.working_group_id = working_group.id WHERE working_group.name = 'Advanced Cutters' AND cutting_tasks.completed_number < cutting_tasks.planned_number;",
+  "thought": "To determine which customer orders are associated with incomplete cutting tasks assigned to the working group 'Advanced Cutters', follow these steps: 1. Identify the ID of the 'Advanced Cutters' working group from the `working_group` table. 2. Find all cutting tasks assigned to this working group that have not been completed (`completed_number` is less than `planned_number`). 3. Retrieve the order IDs from the `order_product` table using `order_product_id` linked to the above cutting tasks. 4. Fetch and display the order details using the order IDs found in the previous step.",
+  "total_tokens": "2958",
+  "rows": [
+    {
+      "id": "o4",
+      "user_id": "c4",
+      "order_name": "James_WinterOrder",
+      "created_at": "2024年03月11日 00:00"
+    },
+    {
+      "id": "o10",
+      "user_id": "c2",
+      "order_name": "John_Jacket",
+      "created_at": "2024年06月01日 00:00"
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+{
+    "ID": 3,
+    "q_ch": "Emily订购的Dress订单生产进度如何？用百分比来表示。",
+    "q_en": "What is the production progress of the Dress ordered by Emily? Please represent it in percentage.",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM customers WHERE customer_name = 'Emily';",
+            "description": "Retrieve the customer ID for the customer named \"Emily\"",
+            "results": [
+                {
+                    "id": 3
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM orders WHERE user_id = '3';",
+            "description": "Retrieve the order IDs for orders placed by the customer \"Emily\"",
+            "results": [
+                {
+                    "id": 3
+                },
+                {
+                    "id": 11
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM products_types WHERE description = 'Dress';",
+            "description": "Retrieve the product type ID for the product type \"Dress\"",
+            "results": [
+                {
+                    "id": 3
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM products WHERE products_type_id = '3';",
+            "description": "Retrieve the product IDs for products of type \"Dress\"",
+            "results": [
+                {
+                    "id": 5
+                },
+                {
+                    "id": 13
+                },
+                {
+                    "id": 21
+                },
+                {
+                    "id": 29
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT id, number FROM order_product WHERE order_id IN ('3', '11') AND product_id IN ('5', '13', '21', '29');",
+            "description": "Retrieve the order product IDs and quantities for the products of type \"Dress\" in orders placed by \"Emily\"",
+            "results": [
+                {
+                    "id": 11,
+                    "number": 140
+                },
+                {
+                    "id": 12,
+                    "number": 150
+                },
+                {
+                    "id": 13,
+                    "number": 130
+                },
+                {
+                    "id": 14,
+                    "number": 120
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT order_product_id, SUM(completed_number) AS total_completed FROM sewing_tasks WHERE order_product_id IN ('11', '12', '13', '14') GROUP BY order_product_id;",
+            "description": "Retrieve the total completed quantity of sewing tasks for the order products identified in Step5",
+            "results": [
+                {
+                    "order_product_id": 11,
+                    "total_completed": "100"
+                },
+                {
+                    "order_product_id": 12,
+                    "total_completed": "120"
+                },
+                {
+                    "order_product_id": 13,
+                    "total_completed": "120"
+                },
+                {
+                    "order_product_id": 14,
+                    "total_completed": "120"
+                }
+            ]
+        },
+        {
+            "type": "Thought",
+            "operation": "Sum the quantities from Step5 to get the total ordered quantity and sum the completed quantities from Step6 to get the total completed quantity.",
+            "results": "To achieve the objective, we need to sum the quantities from Step 5 and the completed quantities from Step 6.\n\nFrom Step 5, the quantities are:\n- 140\n- 150\n- 130\n- 120\n\nSum of quantities from Step 5:\n140 + 150 + 130 + 120 = 540\n\nFrom Step 6, the completed quantities are:\n- 100\n- 120\n- 120\n- 120\n\nSum of completed quantities from Step 6:\n100 + 120 + 120 + 120 = 460\n\nTherefore, the total ordered quantity is 540, and the total completed quantity is 460."
+        },
+        {
+            "type": "Thought",
+            "operation": "Divide the total completed quantity by the total ordered quantity and multiply by 100 to get the production progress in percentage.",
+            "results": "To calculate the production progress in percentage, we need to divide the total completed quantity by the total ordered quantity and then multiply by 100.\n\nFrom the context provided:\n- Total ordered quantity = 540\n- Total completed quantity = 460\n\nThe production progress in percentage is calculated as follows:\n\n\\[\n\\text{Production Progress (\\%)} = \\left( \\frac{\\text{Total Completed Quantity}}{\\text{Total Ordered Quantity}} \\right) \\times 100\n\\]\n\nSubstituting the values:\n\n\\[\n\\text{Production Progress (\\%)} = \\left( \\frac{460}{540} \\right) \\times 100 \\approx 85.19\\%\n\\]\n\nTherefore, the production progress is approximately 85.19%."
+        }
+    ],
+    "response": "Sure thing! Let's take a look at the production progress for the dresses ordered by Emily. 🎉\n\nHere's a breakdown of the order and production details:\n\n| **Order Product ID** | **Ordered Quantity** | **Completed Quantity** |\n|----------------------|----------------------|------------------------|\n| 11                   | 140                  | 100                    |\n| 12                   | 150                  | 120                    |\n| 13                   | 130                  | 120                    |\n| 14                   | 120                  | 120                    |\n\nNow, let's sum up these quantities:\n\n- **Total Ordered Quantity**: 540\n- **Total Completed Quantity**: 460\n\nTo find the production progress, we calculate:\n\n\\[ \\text{Production Progress (\\%)} = \\left( \\frac{\\text{Total Completed Quantity}}{\\text{Total Ordered Quantity}} \\right) \\times 100 \\]\n\nSubstituting the values:\n\n\\[ \\text{Production Progress (\\%)} = \\left( \\frac{460}{540} \\right) \\times 100 \\approx 85.19\\% \\]\n\nSo, the production progress for Emily's dress order is approximately **85.19%**. Keep up the great work! 🎈",
+    "token_used": 10760
+}

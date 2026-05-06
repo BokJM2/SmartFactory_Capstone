@@ -1,0 +1,109 @@
+{
+    "ID": 8,
+    "q_ch": "Olivia的订单中使用了哪些原料？",
+    "q_en": "What materials were used in Olivia's order?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM customers WHERE customer_name = 'Olivia';",
+            "description": "Retrieve the customer ID for the customer with the name \"Olivia\"",
+            "results": [
+                {
+                    "id": 7
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM orders WHERE user_id = 7;",
+            "description": "Retrieve the order IDs for the customer \"Olivia\"",
+            "results": [
+                {
+                    "id": 7
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT product_id FROM order_product WHERE order_id IN (7);",
+            "description": "Retrieve the product IDs for each order belonging to \"Olivia\"",
+            "results": [
+                {
+                    "product_id": 18
+                },
+                {
+                    "product_id": 17
+                },
+                {
+                    "product_id": 10
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT material_id, number FROM product_material WHERE product_id IN (18, 17, 10);",
+            "description": "Retrieve the material IDs and quantities used for each product in \"Olivia's\" orders",
+            "results": [
+                {
+                    "material_id": 8,
+                    "number": 3
+                },
+                {
+                    "material_id": 12,
+                    "number": 1
+                },
+                {
+                    "material_id": 6,
+                    "number": 5
+                },
+                {
+                    "material_id": 4,
+                    "number": 2
+                },
+                {
+                    "material_id": 12,
+                    "number": 3
+                },
+                {
+                    "material_id": 10,
+                    "number": 4
+                },
+                {
+                    "material_id": 6,
+                    "number": 1
+                },
+                {
+                    "material_id": 2,
+                    "number": 3
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT name FROM materials WHERE id IN (8, 12, 6, 4, 10, 2);",
+            "description": "Retrieve the material names for the material IDs obtained in Step4",
+            "results": [
+                {
+                    "name": "Fabric Pieces"
+                },
+                {
+                    "name": "Wool Pieces"
+                },
+                {
+                    "name": "Silk Pieces"
+                },
+                {
+                    "name": "Leather Pieces"
+                },
+                {
+                    "name": "Synthetic Fiber Pieces"
+                },
+                {
+                    "name": "Denim Fabric Pieces"
+                }
+            ]
+        }
+    ],
+    "response": "Sure thing! Let's take a look at the materials used in Olivia's order. Here's a breakdown of the materials and their quantities:\n\n| Material Name            | Quantity |\n|--------------------------|----------|\n| Fabric Pieces            | 3        |\n| Wool Pieces              | 4        |\n| Silk Pieces              | 6        |\n| Leather Pieces           | 2        |\n| Synthetic Fiber Pieces   | 4        |\n| Denim Fabric Pieces      | 3        |\n\nIt looks like Olivia's order is quite diverse with a variety of materials! If you have any more questions, feel free to ask. 😄",
+    "token_used": 8389
+}

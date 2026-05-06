@@ -1,0 +1,9 @@
+{
+  "ID": 45,
+  "q_ch": "主仓库出库Cotton Fabric100份。",
+  "q_en": "Please release 100 units of cotton fabric from the Main warehouse.",
+  "sql": "UPDATE warehouse_material wm JOIN warehouse w ON wm.warehouse_id = w.id JOIN materials m ON wm.material_id = m.id SET wm.left_number = wm.left_number - 100 WHERE w.name = 'Main Warehouse' AND m.name = 'Cotton Fabric';",
+  "thought": "To release 100 units of 'Cotton Fabric' from the 'Main Warehouse', we need to: 1) Identify the ID of 'Main Warehouse' in the 'warehouse' table. 2) Identify the ID of 'Cotton Fabric' in the 'materials' table. 3) Locate the 'warehouse_material' entry with these IDs and decrement the 'left_number' by 100 units.",
+  "total_tokens": "2926",
+  "rows": []
+}

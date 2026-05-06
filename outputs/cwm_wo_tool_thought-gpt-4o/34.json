@@ -1,0 +1,60 @@
+{
+    "ID": 34,
+    "q_ch": "Master Cutters当前已完成的裁剪任务有哪些？",
+    "q_en": "Which cutting tasks have been completed by Master Cutters?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM working_group WHERE name = 'Master Cutters';",
+            "description": "Retrieve the working group ID for the working group with the name \"Master Cutters\"",
+            "results": [
+                {
+                    "id": 3
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT id, start_time, end_time, order_product_id, produced_wip_id, planned_number, completed_number FROM cutting_tasks WHERE working_group_id = '3' AND status = 2;",
+            "description": "Retrieve the completed cutting tasks for the working group \"Master Cutters\"",
+            "results": [
+                {
+                    "id": 3,
+                    "start_time": "2024-01-10 00:00:00",
+                    "end_time": "2024-01-19 00:00:00",
+                    "order_product_id": 3,
+                    "produced_wip_id": 2,
+                    "planned_number": 150,
+                    "completed_number": 150
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT op.id, o.order_name, p.attributes, pt.description FROM order_product op JOIN orders o ON op.order_id = o.id JOIN products p ON op.product_id = p.id JOIN products_types pt ON p.products_type_id = pt.id WHERE op.id IN (SELECT order_product_id FROM cutting_tasks WHERE working_group_id = '3' AND status = 2);",
+            "description": "Retrieve the order product details for the completed cutting tasks",
+            "results": [
+                {
+                    "id": 3,
+                    "order_name": "PolyU_Tshirt",
+                    "attributes": "Blue, L size",
+                    "description": "T-shirt"
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT m.id, m.name, m.unit FROM materials m WHERE m.id IN (SELECT produced_wip_id FROM cutting_tasks WHERE working_group_id = '3' AND status = 2);",
+            "description": "Retrieve the produced WIP material details for the completed cutting tasks",
+            "results": [
+                {
+                    "id": 2,
+                    "name": "Fabric Pieces",
+                    "unit": "pieces"
+                }
+            ]
+        }
+    ],
+    "response": "Hello there! 😄 Let's dive into the details of the completed cutting tasks by the \"Master Cutters\" working group. Here's what I found:\n\n| Task ID | Start Time       | End Time         | Order Name  | Product Attributes | Product Description | Planned Number | Completed Number | Produced WIP Material | Unit   |\n|---------|------------------|------------------|-------------|--------------------|---------------------|----------------|------------------|-----------------------|--------|\n| 3       | 2024-01-10       | 2024-01-19       | PolyU_Tshirt| Blue, L size       | T-shirt             | 150            | 150              | Fabric Pieces         | pieces |\n\nThe \"Master Cutters\" have successfully completed a task involving the production of 150 T-shirts, all in the lovely blue color and large size. The material used was \"Fabric Pieces,\" and they did a fantastic job completing the task as planned! 🎉\n\nIf you have any more questions or need further details, feel free to ask! 😊",
+    "token_used": 7934
+}

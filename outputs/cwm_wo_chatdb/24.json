@@ -1,0 +1,20 @@
+{
+  "ID": 24,
+  "q_ch": "Elite Sewers 在2024年6月30日前分配的缝纫任务有哪些？",
+  "q_en": "What sewing tasks will Elite Sewers be assigned before June 30, 2024?",
+  "sql": "SELECT st.* FROM sewing_tasks st JOIN working_group wg ON st.working_group_id = wg.id WHERE wg.name = 'Elite Sewers' AND st.end_time < '2024-06-30 00:00:00';",
+  "thought": "To find the sewing tasks assigned to the working group named 'Elite Sewers' before June 30, 2024, we need to first join the 'sewing_tasks' table with the 'working_group' table using the 'working_group_id'. Then filter based on the working group name and the end_time before the specified date.",
+  "total_tokens": "2852",
+  "rows": [
+    {
+      "id": "sw31",
+      "start_time": "2024年05月26日 00:00",
+      "end_time": "2024年06月04日 00:00",
+      "working_group_id": "wg10",
+      "order_product_id": "op31",
+      "planned_number": 260,
+      "completed_number": 260,
+      "is_started": 1
+    }
+  ]
+}

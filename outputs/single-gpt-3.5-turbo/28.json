@@ -1,0 +1,20 @@
+{
+    "ID": 28,
+    "q_ch": "香港理工大学 1月份下的订单的缝纫任务全部完成了么？",
+    "q_en": "Have all the sewing tasks for the orders placed by the Hong Kong Polytechnic University in January been completed?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT COUNT(*) AS total_sewing_tasks, SUM(st.status = 2) AS completed_sewing_tasks FROM sewing_tasks st JOIN order_product op ON st.order_product_id = op.id JOIN orders o ON op.order_id = o.id JOIN customers c ON o.user_id = c.id WHERE c.customer_name = 'PolyU' AND MONTH(o.created_at) = 1 AND YEAR(o.created_at) = YEAR(CURDATE()) AND st.status = 2;",
+            "description": "To check if all the sewing tasks for the orders placed by the customer 'PolyU' in January have been completed, we need to count the total number of sewing tasks and the number of completed sewing tasks for the orders placed by 'PolyU' in January. Then, we can compare these two counts to determine if all tasks have been completed.",
+            "results": [
+                {
+                    "total_sewing_tasks": 1,
+                    "completed_sewing_tasks": "1"
+                }
+            ]
+        }
+    ],
+    "response": "Based on the SQL query results, all sewing tasks for the orders placed by customer 'PolyU' in January have been completed! 🎉\n\nHere is a summary of the sewing tasks:\n| Total Sewing Tasks | Completed Sewing Tasks |\n|--------------------|------------------------|\n|         1          |           1            |\n\nIf you have any more questions or need further assistance, feel free to ask! 😊",
+    "token_used": 5664
+}

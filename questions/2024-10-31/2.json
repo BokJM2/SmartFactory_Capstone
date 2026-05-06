@@ -1,0 +1,45 @@
+{
+    "ID": 2,
+    "q_ch": "John 的订单全部生产完成了么？",
+    "q_en": "Have all of John's orders been completed?",
+    "gt": "Hello there! 😄 Let's take a look at John's orders and see if they've all been completed.\n\nBased on the information we have, here's a summary of John's orders and their completion status:\n\n| Order ID | Incomplete Cutting Tasks | Incomplete Sewing Tasks |\n|----------|--------------------------|-------------------------|\n| 2        | 5                        | 5                       |\n| 10       | 1                        | 1                       |\n\nIt seems that not all of John's orders have been completed yet. There are still some tasks pending in both cutting and sewing for his orders. If you have any more questions or need further assistance, feel free to ask! 😊",
+    "steps": [
+        {
+            "sql": "SELECT id FROM customers WHERE customer_name = 'John';",
+            "description": "Retrieve the customer ID for the customer with the name \"John\"",
+            "results": [
+                {
+                    "id": 2
+                }
+            ]
+        },
+        {
+            "sql": "SELECT id FROM orders WHERE user_id = '2';",
+            "description": "Retrieve all order IDs for the customer \"John\"",
+            "results": [
+                {
+                    "id": 2
+                },
+                {
+                    "id": 10
+                }
+            ]
+        },
+        {
+            "sql": "SELECT o.id, (SELECT COUNT(*) FROM cutting_tasks ct WHERE ct.order_product_id IN (SELECT op.id FROM order_product op WHERE op.order_id = o.id) AND ct.status != 2) AS incomplete_cutting_tasks, (SELECT COUNT(*) FROM sewing_tasks st WHERE st.order_product_id IN (SELECT op.id FROM order_product op WHERE op.order_id = o.id) AND st.status != 2) AS incomplete_sewing_tasks FROM orders o WHERE o.user_id = '2';",
+            "description": "Check if all products in each order have been completed by verifying the status of cutting and sewing tasks",
+            "results": [
+                {
+                    "id": 2,
+                    "incomplete_cutting_tasks": 5,
+                    "incomplete_sewing_tasks": 5
+                },
+                {
+                    "id": 10,
+                    "incomplete_cutting_tasks": 1,
+                    "incomplete_sewing_tasks": 1
+                }
+            ]
+        }
+    ]
+}

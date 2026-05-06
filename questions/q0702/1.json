@@ -1,0 +1,6 @@
+{
+  "ID": 1,
+  "q_ch": "PolyU的订单有哪些？",
+  "q_en": "What are the orders for PolyU?",
+  "gt": "SELECT o.* FROM orders o JOIN customers c ON o.user_id = c.id WHERE c.customer_name = 'PolyU';"
+}

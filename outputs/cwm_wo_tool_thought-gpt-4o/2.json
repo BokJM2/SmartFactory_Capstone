@@ -1,0 +1,77 @@
+{
+    "ID": 2,
+    "q_ch": "John 的订单全部生产完成了么？",
+    "q_en": "Have all of John's orders been completed?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM customers WHERE customer_name = 'John';",
+            "description": "Retrieve the customer ID for the customer with the name \"John\"",
+            "results": [
+                {
+                    "id": 2
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM orders WHERE user_id = '2';",
+            "description": "Retrieve all order IDs for the customer \"John\"",
+            "results": [
+                {
+                    "id": 2
+                },
+                {
+                    "id": 10
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT order_id, SUM(number) as total_quantity FROM order_product WHERE order_id IN (2, 10) GROUP BY order_id;",
+            "description": "Retrieve the total quantity of products for each order of \"John\"",
+            "results": [
+                {
+                    "order_id": 2,
+                    "total_quantity": "435"
+                },
+                {
+                    "order_id": 10,
+                    "total_quantity": "150"
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT op.order_id, SUM(st.completed_number) as completed_quantity FROM order_product op JOIN sewing_tasks st ON op.id = st.order_product_id WHERE op.order_id IN (2, 10) GROUP BY op.order_id;",
+            "description": "Retrieve the total completed quantity of sewing tasks for each order of \"John\"",
+            "results": [
+                {
+                    "order_id": 2,
+                    "completed_quantity": "435"
+                },
+                {
+                    "order_id": 10,
+                    "completed_quantity": "0"
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT oq.order_id, CASE WHEN oq.total_quantity = cq.completed_quantity THEN 'Completed' ELSE 'Not Completed' END as order_status FROM (SELECT order_id, SUM(number) as total_quantity FROM order_product WHERE order_id IN (2, 10) GROUP BY order_id) oq LEFT JOIN (SELECT op.order_id, SUM(st.completed_number) as completed_quantity FROM order_product op JOIN sewing_tasks st ON op.id = st.order_product_id WHERE op.order_id IN (2, 10) GROUP BY op.order_id) cq ON oq.order_id = cq.order_id;",
+            "description": "Compare the total completed quantity with the total quantity for each order to determine if all orders are completed",
+            "results": [
+                {
+                    "order_id": 2,
+                    "order_status": "Completed"
+                },
+                {
+                    "order_id": 10,
+                    "order_status": "Not Completed"
+                }
+            ]
+        }
+    ],
+    "response": "Hello there! 😄 Let's take a look at John's orders to see if they've all been completed. Here's what we found:\n\n| Order ID | Order Status   |\n|----------|----------------|\n| 2        | Completed      |\n| 10       | Not Completed  |\n\nIt seems like not all of John's orders are completed. Order ID 2 is all set, but Order ID 10 still needs some work. If you have any more questions or need further assistance, feel free to ask! 😊",
+    "token_used": 7965
+}

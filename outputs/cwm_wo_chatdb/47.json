@@ -1,0 +1,8 @@
+{
+  "ID": 47,
+  "q_ch": "为香港理工大学最新的订单创建裁剪一个任务，该任务裁剪的产品为该订单中任意一种产品，任务期为6月30日到7月12日，负责的裁剪团队为Expert Cutters。其他字段暂时留空。返回裁剪任务编号。",
+  "q_en": "Create a cutting task for the latest order from The Hong Kong Polytechnic University, which involves cutting any product in the order. The task period is from June 30th to July 12th, and the cutting team responsible is Expert Cutters. Other fields are temporarily left blank. Return the cutting task number.",
+  "sql": "SET @latest_order_id = (SELECT o.id FROM orders o JOIN customers c ON o.user_id = c.id WHERE c.customer_name = 'PolyU' ORDER BY o.created_at DESC LIMIT 1); SET @product_id = (SELECT product_id FROM order_product WHERE order_id = @latest_order_id LIMIT 1); SET @working_group_id = (SELECT id FROM working_group WHERE name = 'Expert Cutters' AND type = 'cut'); INSERT INTO cutting_tasks (id, start_time, end_time, working_group_id, order_product_id) VALUES (UUID(), '2023-06-30 00:00:00', '2023-07-12 23:59:59', @working_group_id, (SELECT id FROM order_product WHERE order_id = @latest_order_id AND product_id = @product_id LIMIT 1)); SELECT id FROM cutting_tasks WHERE order_product_id = (SELECT id FROM order_product WHERE order_id = @latest_order_id AND product_id = @product_id LIMIT 1);",
+  "thought": "First, we need to find the latest order from the customer 'PolyU'. Next, we need to identify the products associated with that order. Then, we need to find the ID of the working group named 'Expert Cutters'. Finally, we'll create a new cutting task with the specified duration and return its ID.",
+  "total_tokens": "3276"
+}

@@ -1,0 +1,82 @@
+{
+  "ID": 30,
+  "q_ch": "Skilled Sewers 在2024年6月前完成了多少个缝纫任务，这些缝纫任务都做了什么类型的产品？",
+  "q_en": "How many sewing tasks did Skilled Sewers complete before June 2024, and what types of products were produced for these sewing tasks?",
+  "sqls": [
+    {
+      "command": [
+        "SELECT id FROM working_group WHERE name = 'Skilled Sewers';",
+        "SELECT id, order_product_id FROM sewing_tasks WHERE working_group_id = 'wg7' AND end_time < '2024-06-01' AND completed_number = planned_number;",
+        "SELECT COUNT(*) FROM sewing_tasks WHERE working_group_id = 'wg7' AND end_time < '2024-06-01' AND completed_number = planned_number;",
+        "SELECT DISTINCT pt.description \n FROM sewing_tasks st\n JOIN order_product op ON st.order_product_id = op.id\n JOIN products p ON op.product_id = p.id\n JOIN products_types pt ON p.products_type_id = pt.id\n WHERE st.working_group_id = 'wg7' AND st.end_time < '2024-06-01' AND st.completed_number = st.planned_number;"
+      ],
+      "Result of executing SQL": [
+        [
+          {
+            "id": "wg7"
+          }
+        ],
+        [
+          {
+            "id": "sw17",
+            "order_product_id": "op17"
+          },
+          {
+            "id": "sw18",
+            "order_product_id": "op18"
+          },
+          {
+            "id": "sw19",
+            "order_product_id": "op19"
+          },
+          {
+            "id": "sw23",
+            "order_product_id": "op23"
+          },
+          {
+            "id": "sw27",
+            "order_product_id": "op27"
+          },
+          {
+            "id": "sw28",
+            "order_product_id": "op28"
+          },
+          {
+            "id": "sw29",
+            "order_product_id": "op29"
+          },
+          {
+            "id": "sw8",
+            "order_product_id": "op8"
+          }
+        ],
+        [
+          {
+            "COUNT(*)": 8
+          }
+        ],
+        [
+          {
+            "description": "Jacket"
+          },
+          {
+            "description": "Skirt"
+          },
+          {
+            "description": "Shorts"
+          },
+          {
+            "description": "Coat"
+          },
+          {
+            "description": "Sweater"
+          },
+          {
+            "description": "Pants"
+          }
+        ]
+      ]
+    }
+  ],
+  "total_tokens": 13649
+}

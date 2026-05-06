@@ -1,0 +1,50 @@
+{
+  "ID": 32,
+  "q_ch": "产品类型是Dress的缝纫任务有哪些？",
+  "q_en": "What are the sewing tasks for Dress's product type?",
+  "sql": "SELECT st.* FROM sewing_tasks st JOIN order_product op ON st.order_product_id = op.id JOIN products p ON op.product_id = p.id JOIN products_types pt ON p.products_type_id = pt.id WHERE pt.description = 'Dress';",
+  "thought": "To find the sewing tasks associated with the product type 'Dress', we need to follow these steps:\n1. Identify the `products_types` table to get the id of the product type 'Dress'.\n2. Use this id to find the corresponding products from the `products` table.\n3. Find the order products associated with these product ids from the `order_product` table.\n4. Finally, get the sewing tasks related to these order products from the `sewing_tasks` table.",
+  "total_tokens": "2853",
+  "rows": [
+    {
+      "id": "sw13",
+      "start_time": "2024年03月27日 00:00",
+      "end_time": "2024年04月06日 00:00",
+      "working_group_id": "wg2",
+      "order_product_id": "op13",
+      "planned_number": 130,
+      "completed_number": 130,
+      "is_started": 1
+    },
+    {
+      "id": "sw11",
+      "start_time": "2024年03月21日 00:00",
+      "end_time": "2024年04月14日 00:00",
+      "working_group_id": "wg9",
+      "order_product_id": "op11",
+      "planned_number": 140,
+      "completed_number": 140,
+      "is_started": 1
+    },
+    {
+      "id": "sw12",
+      "start_time": "2024年03月27日 00:00",
+      "end_time": "2024年04月12日 00:00",
+      "working_group_id": "wg2",
+      "order_product_id": "op12",
+      "planned_number": 150,
+      "completed_number": 150,
+      "is_started": 1
+    },
+    {
+      "id": "sw14",
+      "start_time": "2024年03月18日 00:00",
+      "end_time": "2024年04月08日 00:00",
+      "working_group_id": "wg2",
+      "order_product_id": "op14",
+      "planned_number": 120,
+      "completed_number": 120,
+      "is_started": 1
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+    "ID": 52,
+    "q_ch": "列出2024年6月的订单使用的原料和数量？并整理成{原料：使用数量}的形式。",
+    "q_en": "List the raw materials and quantities used for orders in June 2024? And organize it into the form of {raw materials: used quantity}.",
+    "gt": "Sure thing! Here's a lively summary of the raw materials and quantities used for orders in June 2024, organized in a neat table for you. 😄\n\n| Original Material ID | Used Quantity |\n|----------------------|---------------|\n| 1                    | 8.45          |\n| 11                   | 8.7           |\n| 3                    | 1.6           |\n| 9                    | 0.6           |\n| 13                   | 0.8           |\n| 5                    | 4.5           |\n\nFeel free to ask if you need more details or have any other questions! 😊",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM orders WHERE created_at BETWEEN '2024-06-01' AND '2024-06-30';",
+            "description": "Retrieve the order IDs for orders created in June 2024",
+            "results": [
+                {
+                    "id": 10
+                },
+                {
+                    "id": 11
+                },
+                {
+                    "id": 12
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT product_id, number FROM order_product WHERE order_id IN (SELECT id FROM orders WHERE created_at BETWEEN '2024-06-01' AND '2024-06-30');",
+            "description": "Retrieve the product IDs and quantities for each order from June 2024",
+            "results": [
+                {
+                    "product_id": 30,
+                    "number": 150
+                },
+                {
+                    "product_id": 20,
+                    "number": 120
+                },
+                {
+                    "product_id": 7,
+                    "number": 330
+                }
+            ]
+        },
+        {
+            "type": "Tool",
+            "results": {
+                "input": "Retrieve the work-in-progress material IDs and quantities required for each product\n[\"tool_get_wip_materials, {'product_id': 30}, Get the required work-in-progress materials for a product\", \"tool_get_wip_materials, {'product_id': 20}, Get the required work-in-progress materials for a product\", \"tool_get_wip_materials, {'product_id': 7}, Get the required work-in-progress materials for a product\"]",
+                "output": "Here are the work-in-progress material IDs and quantities required for each product:\n\n- **Product ID 30:**\n  - Material ID: 2, Quantity: 5\n  - Material ID: 10, Quantity: 1\n\n- **Product ID 20:**\n  - Material ID: 2, Quantity: 3\n  - Material ID: 6, Quantity: 4\n\n- **Product ID 7:**\n  - Material ID: 12, Quantity: 5\n  - Material ID: 6, Quantity: 2"
+            }
+        },
+        {
+            "type": "Tool",
+            "results": {
+                "input": "Retrieve the original material IDs and quantities required for each work-in-progress material\n['tool_get_original_materials, {\\'wip_id\\': 2}, Get the original materials for a work-in-progress material', 'tool_get_original_materials, {\\'wip_id\\': 10}, Get the original materials for a work-in-progress material', 'tool_get_original_materials, {\\'wip_id\\': 6}, Get the original materials for a work-in-progress material', 'tool_get_original_materials, {\\'wip_id\\': 12}, Get the original materials for a work-in-progress material']",
+                "output": "Here are the original material IDs and quantities required for each work-in-progress material:\n\n1. **Work-in-Progress Material ID 2:**\n   - Original Material ID 1: Quantity 0.4\n   - Original Material ID 11: Quantity 0.65\n   - Original Material ID 3: Quantity 0.2\n\n2. **Work-in-Progress Material ID 10:**\n   - Original Material ID 9: Quantity 0.6\n   - Original Material ID 1: Quantity 0.35\n   - Original Material ID 13: Quantity 0.8\n\n3. **Work-in-Progress Material ID 6:**\n   - Original Material ID 5: Quantity 0.75\n   - Original Material ID 1: Quantity 0.4\n\n4. **Work-in-Progress Material ID 12:**\n   - Original Material ID 11: Quantity 0.7\n   - Original Material ID 1: Quantity 0.5"
+            }
+        },
+        {
+            "type": "Thought",
+            "operation": "Sum the quantities of each original material obtained from the previous steps to get the total used quantity for each raw material.",
+            "results": "To achieve the objective of summing the quantities of each original material obtained from the previous steps, we need to follow these steps:\n\n1. **Identify the quantities of work-in-progress materials required for each product:**\n\n   - **Product ID 30:**\n     - Material ID 2, Quantity: 5\n     - Material ID 10, Quantity: 1\n\n   - **Product ID 20:**\n     - Material ID 2, Quantity: 3\n     - Material ID 6, Quantity: 4\n\n   - **Product ID 7:**\n     - Material ID 12, Quantity: 5\n     - Material ID 6, Quantity: 2\n\n2. **Identify the original materials and their quantities for each work-in-progress material:**\n\n   - **Work-in-Progress Material ID 2:**\n     - Original Material ID 1: Quantity 0.4\n     - Original Material ID 11: Quantity 0.65\n     - Original Material ID 3: Quantity 0.2\n\n   - **Work-in-Progress Material ID 10:**\n     - Original Material ID 9: Quantity 0.6\n     - Original Material ID 1: Quantity 0.35\n     - Original Material ID 13: Quantity 0.8\n\n   - **Work-in-Progress Material ID 6:**\n     - Original Material ID 5: Quantity 0.75\n     - Original Material ID 1: Quantity 0.4\n\n   - **Work-in-Progress Material ID 12:**\n     - Original Material ID 11: Quantity 0.7\n     - Original Material ID 1: Quantity 0.5\n\n3. **Calculate the total quantity of each original material used:**\n\n   - For **Material ID 2**:\n     - Original Material ID 1: (5 * 0.4) + (3 * 0.4) = 2 + 1.2 = 3.2\n     - Original Material ID 11: (5 * 0.65) + (3 * 0.65) = 3.25 + 1.95 = 5.2\n     - Original Material ID 3: (5 * 0.2) + (3 * 0.2) = 1 + 0.6 = 1.6\n\n   - For **Material ID 10**:\n     - Original Material ID 9: 1 * 0.6 = 0.6\n     - Original Material ID 1: 1 * 0.35 = 0.35\n     - Original Material ID 13: 1 * 0.8 = 0.8\n\n   - For **Material ID 6**:\n     - Original Material ID 5: (4 * 0.75) + (2 * 0.75) = 3 + 1.5 = 4.5\n     - Original Material ID 1: (4 * 0.4) + (2 * 0.4) = 1.6 + 0.8 = 2.4\n\n   - For **Material ID 12**:\n     - Original Material ID 11: 5 * 0.7 = 3.5\n     - Original Material ID 1: 5 * 0.5 = 2.5\n\n4. **Sum the quantities for each original material:**\n\n   - Original Material ID 1: 3.2 + 0.35 + 2.4 + 2.5 = 8.45\n   - Original Material ID 11: 5.2 + 3.5 = 8.7\n   - Original Material ID 3: 1.6\n   - Original Material ID 9: 0.6\n   - Original Material ID 13: 0.8\n   - Original Material ID 5: 4.5\n\nThus, the total used quantity for each original material is:\n\n- Original Material ID 1: 8.45\n- Original Material ID 11: 8.7\n- Original Material ID 3: 1.6\n- Original Material ID 9: 0.6\n- Original Material ID 13: 0.8\n- Original Material ID 5: 4.5"
+        }
+    ]
+}

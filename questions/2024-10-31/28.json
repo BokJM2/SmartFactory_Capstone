@@ -1,0 +1,68 @@
+{
+    "ID": 28,
+    "q_ch": "香港理工大学 1月份下的订单的缝纫任务全部完成了么？",
+    "q_en": "Have all the sewing tasks for the orders placed by the Hong Kong Polytechnic University in January been completed?",
+    "gt": "Hello there! 😄 Let's take a look at the sewing tasks for the orders placed by PolyU in January. Here's what I found:\n\n| Order Product ID | Sewing Task Status |\n|------------------|--------------------|\n| 1                | Completed          |\n| 2                | In Progress        |\n| 3                | In Progress        |\n| 4                | In Progress        |\n| 5                | In Progress        |\n\nIt seems that not all sewing tasks have been completed yet. Only the task for Order Product ID 1 is finished, while the others are still in progress. If you have any more questions or need further assistance, feel free to ask! 😊",
+    "steps": [
+        {
+            "sql": "SELECT id FROM customers WHERE customer_name = 'PolyU';",
+            "description": "Retrieve the customer ID for the customer with the name \"PolyU\"",
+            "results": [
+                {
+                    "id": 1
+                }
+            ]
+        },
+        {
+            "sql": "SELECT id FROM orders WHERE user_id = '1' AND MONTH(created_at) = 1;",
+            "description": "Retrieve the order IDs for orders placed by the customer \"PolyU\" in January",
+            "results": [
+                {
+                    "id": 1
+                }
+            ]
+        },
+        {
+            "sql": "SELECT id FROM order_product WHERE order_id IN (1);",
+            "description": "Retrieve the order_product IDs for the retrieved orders",
+            "results": [
+                {
+                    "id": 1
+                },
+                {
+                    "id": 2
+                },
+                {
+                    "id": 3
+                },
+                {
+                    "id": 4
+                },
+                {
+                    "id": 5
+                }
+            ]
+        },
+        {
+            "sql": "SELECT status FROM sewing_tasks WHERE order_product_id IN (1, 2, 3, 4, 5);",
+            "description": "Check the completion status of sewing tasks for the retrieved order_product IDs",
+            "results": [
+                {
+                    "status": 2
+                },
+                {
+                    "status": 1
+                },
+                {
+                    "status": 1
+                },
+                {
+                    "status": 1
+                },
+                {
+                    "status": 1
+                }
+            ]
+        }
+    ]
+}

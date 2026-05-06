@@ -1,0 +1,20 @@
+USER INPUT: Add 15 Pink dresses in size S and 15 Black jackets in size XL to the order named PolyU-002.
+
+ANSWER:
+```
+Step1: Retrieve the order ID for the order with the name "PolyU-002"
+SQL `SELECT id FROM orders WHERE order_name = 'PolyU-002';`
+
+Step2: Retrieve the product ID for the product with attributes "Pink, S size" and type "Dress"
+SQL `SELECT p.id FROM products p JOIN products_types pt ON p.products_type_id = pt.id WHERE p.attributes = 'Pink, S size' AND pt.description = 'Dress';`
+
+Step3: Retrieve the product ID for the product with attributes "Black, XL size" and type "Jacket"
+SQL `SELECT p.id FROM products p JOIN products_types pt ON p.products_type_id = pt.id WHERE p.attributes = 'Black, XL size' AND pt.description = 'Jacket';`
+
+Step4: Insert 15 units of the product "Pink, S size Dress" into the order
+SQL `INSERT INTO order_product (order_id, product_id, number) VALUES ('<order_id>', '<pink_s_dress_product_id>', 15);`
+
+Step5: Insert 15 units of the product "Black, XL size Jacket" into the order
+SQL `INSERT INTO order_product (order_id, product_id, number) VALUES ('<order_id>', '<black_xl_jacket_product_id>', 15);`
+
+```

@@ -1,0 +1,105 @@
+{
+    "ID": 37,
+    "q_ch": "对所有结束时间在2024年7月前，且未完成的裁剪任务中，计划裁剪数量最多的任务是什么？",
+    "q_en": "What is the task with the highest planned quantity among all cutting tasks that have not been completed and have an end date before July 2024??",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT ct.id, ct.planned_number FROM cutting_tasks ct WHERE ct.status != 2 AND ct.end_time < '2024-07-01' ORDER BY ct.planned_number DESC LIMIT 1;",
+            "description": "Retrieve the cutting task with the highest planned quantity among tasks that have not been completed and have an end date before July 2024",
+            "results": [
+                {
+                    "id": 5,
+                    "planned_number": 260
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT ct.order_product_id, ct.working_group_id, ct.produced_wip_id FROM cutting_tasks ct WHERE ct.id = '5';",
+            "description": "Retrieve the order product ID, working group ID, and produced WIP ID for the task identified in Step1",
+            "results": [
+                {
+                    "order_product_id": 5,
+                    "working_group_id": 2,
+                    "produced_wip_id": 8
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT op.order_id, op.product_id FROM order_product op WHERE op.id = '5';",
+            "description": "Retrieve the order ID and product ID for the order product identified in Step2",
+            "results": [
+                {
+                    "order_id": 1,
+                    "product_id": 27
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT o.order_name, o.user_id FROM orders o WHERE o.id = '1';",
+            "description": "Retrieve the order name and customer ID for the order identified in Step3",
+            "results": [
+                {
+                    "order_name": "PolyU_Tshirt",
+                    "user_id": 1
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT c.customer_name FROM customers c WHERE c.id = '1';",
+            "description": "Retrieve the customer name for the customer identified in Step4",
+            "results": [
+                {
+                    "customer_name": "PolyU"
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT p.products_type_id, p.attributes FROM products p WHERE p.id = '27';",
+            "description": "Retrieve the product type ID and attributes for the product identified in Step3",
+            "results": [
+                {
+                    "products_type_id": 1,
+                    "attributes": "Yellow, S size"
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT pt.description FROM products_types pt WHERE pt.id = '1';",
+            "description": "Retrieve the product type description for the product type identified in Step6",
+            "results": [
+                {
+                    "description": "T-shirt"
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT wg.name FROM working_group wg WHERE wg.id = '2';",
+            "description": "Retrieve the working group name for the working group identified in Step2",
+            "results": [
+                {
+                    "name": "Master Sewers"
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT m.name FROM materials m WHERE m.id = '8';",
+            "description": "Retrieve the material name for the produced WIP identified in Step2",
+            "results": [
+                {
+                    "name": "Leather Pieces"
+                }
+            ]
+        }
+    ],
+    "response": "Sure thing! Let's dive into the details of the task with the highest planned quantity among all cutting tasks that haven't been completed and have an end date before July 2024. Here's what we found:\n\n| **Attribute**          | **Details**               |\n|------------------------|---------------------------|\n| **Task ID**            | 5                         |\n| **Planned Quantity**   | 260                       |\n| **Order Name**         | PolyU_Tshirt              |\n| **Customer Name**      | PolyU                     |\n| **Product Type**       | T-shirt                   |\n| **Product Attributes** | Yellow, S size            |\n| **Working Group**      | Master Sewers             |\n| **Material**           | Leather Pieces            |\n\nThis task is all about creating a vibrant yellow T-shirt in size S, and it's being handled by the talented Master Sewers group. The material used is Leather Pieces, and it's all for our valued customer, PolyU. 😄\n\nIf you have any more questions or need further details, feel free to ask!",
+    "token_used": 10859
+}

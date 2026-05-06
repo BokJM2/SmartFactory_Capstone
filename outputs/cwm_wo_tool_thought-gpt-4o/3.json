@@ -1,0 +1,118 @@
+{
+    "ID": 3,
+    "q_ch": "Emily订购的Dress订单生产进度如何？用百分比来表示。",
+    "q_en": "What is the production progress of the Dress ordered by Emily? Please represent it in percentage.",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM customers WHERE customer_name = 'Emily';",
+            "description": "Retrieve the customer ID for the customer with the name \"Emily\"",
+            "results": [
+                {
+                    "id": 3
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM orders WHERE user_id = '3';",
+            "description": "Retrieve the order IDs for orders placed by the customer \"Emily\"",
+            "results": [
+                {
+                    "id": 3
+                },
+                {
+                    "id": 11
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT p.id FROM products p JOIN products_types pt ON p.products_type_id = pt.id WHERE pt.description = 'Dress';",
+            "description": "Retrieve the product IDs for products of type \"Dress\"",
+            "results": [
+                {
+                    "id": 5
+                },
+                {
+                    "id": 13
+                },
+                {
+                    "id": 21
+                },
+                {
+                    "id": 29
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT op.id, op.number FROM order_product op WHERE op.order_id IN ('3', '11') AND op.product_id IN ('5', '13', '21', '29');",
+            "description": "Retrieve the order product IDs and quantities for the products of type \"Dress\" in orders placed by \"Emily\"",
+            "results": [
+                {
+                    "id": 11,
+                    "number": 140
+                },
+                {
+                    "id": 12,
+                    "number": 150
+                },
+                {
+                    "id": 13,
+                    "number": 130
+                },
+                {
+                    "id": 14,
+                    "number": 120
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT st.order_product_id, SUM(st.completed_number) AS completed_quantity FROM sewing_tasks st WHERE st.order_product_id IN ('11', '12', '13', '14') GROUP BY st.order_product_id;",
+            "description": "Retrieve the completed quantities of sewing tasks for the order products of type \"Dress\"",
+            "results": [
+                {
+                    "order_product_id": 11,
+                    "completed_quantity": "100"
+                },
+                {
+                    "order_product_id": 12,
+                    "completed_quantity": "120"
+                },
+                {
+                    "order_product_id": 13,
+                    "completed_quantity": "120"
+                },
+                {
+                    "order_product_id": 14,
+                    "completed_quantity": "120"
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT SUM(completed_quantity) AS total_completed, SUM(number) AS total_ordered FROM (SELECT op.id, op.number, COALESCE(st.completed_quantity, 0) AS completed_quantity FROM order_product op LEFT JOIN (SELECT st.order_product_id, SUM(st.completed_number) AS completed_quantity FROM sewing_tasks st WHERE st.order_product_id IN ('11', '12', '13', '14') GROUP BY st.order_product_id) st ON op.id = st.order_product_id WHERE op.id IN ('11', '12', '13', '14')) AS subquery;",
+            "description": "Calculate the total completed quantity and total ordered quantity for the products of type \"Dress\" ordered by \"Emily\"",
+            "results": [
+                {
+                    "total_completed": "460",
+                    "total_ordered": "540"
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT (total_completed / total_ordered) * 100 AS production_progress_percentage FROM (SELECT SUM(completed_quantity) AS total_completed, SUM(number) AS total_ordered FROM (SELECT op.id, op.number, COALESCE(st.completed_quantity, 0) AS completed_quantity FROM order_product op LEFT JOIN (SELECT st.order_product_id, SUM(st.completed_number) AS completed_quantity FROM sewing_tasks st WHERE st.order_product_id IN ('11', '12', '13', '14') GROUP BY st.order_product_id) st ON op.id = st.order_product_id WHERE op.id IN ('11', '12', '13', '14')) AS subquery) AS final_query;",
+            "description": "Calculate the production progress percentage",
+            "results": [
+                {
+                    "production_progress_percentage": "85.1852"
+                }
+            ]
+        }
+    ],
+    "response": "Hello there! 😄 Let's take a look at the production progress for the dresses ordered by Emily. Here's a breakdown of the progress in percentage:\n\n| **Total Ordered** | **Total Completed** | **Production Progress (%)** |\n|-------------------|---------------------|-----------------------------|\n| 540               | 460                 | 85.19%                      |\n\nSo, the production progress for Emily's dress order is approximately **85.19%**. Keep up the great work! 🎉",
+    "token_used": 9995
+}

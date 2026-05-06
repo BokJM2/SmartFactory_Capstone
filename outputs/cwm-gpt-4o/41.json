@@ -1,0 +1,79 @@
+{
+    "ID": 41,
+    "q_ch": "我是香港理工大学，今天是2024年7月2日，请帮我创建一个订单，要50件红色, M码的T-shirt, 以及30件蓝色, XL码 的Sweater。",
+    "q_en": "I am from The Hong Kong Polytechnic University. Today is July 2, 2024. Please help me create an order for 50 red T-shirts in size M and 30 blue sweaters in size XL.",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM customers WHERE customer_name = 'PolyU';",
+            "description": "Retrieve the customer ID for the customer with the name \"PolyU\"",
+            "results": [
+                {
+                    "id": 1
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT p.id FROM products p JOIN products_types pt ON p.products_type_id = pt.id WHERE p.attributes = 'Red, M size' AND pt.description = 'T-shirt';",
+            "description": "Retrieve the product ID for the product with attributes \"Red, M size\" and type \"T-shirt\"",
+            "results": [
+                {
+                    "id": 1
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT p.id FROM products p JOIN products_types pt ON p.products_type_id = pt.id WHERE p.attributes = 'Blue, XL size' AND pt.description = 'Sweater';",
+            "description": "Retrieve the product ID for the product with attributes \"Blue, XL size\" and type \"Sweater\"",
+            "results": [
+                {
+                    "id": 17
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "INSERT INTO orders (user_id, order_name, created_at) VALUES ('1', 'Order20240702120000', '2024-07-02 12:00:00');",
+            "description": "Create a new order with the default name \"Order20240702120000\" for the customer \"PolyU\"",
+            "results": [
+                {
+                    "auto_increment_id": 13
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM orders WHERE order_name = 'Order20240702120000';",
+            "description": "Retrieve the order ID for the newly created order",
+            "results": [
+                {
+                    "id": 13
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "INSERT INTO order_product (order_id, product_id, number) VALUES ('13', '1', 50);",
+            "description": "Insert 50 units of the product \"Red, M size T-shirt\" into the order",
+            "results": [
+                {
+                    "auto_increment_id": 35
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "INSERT INTO order_product (order_id, product_id, number) VALUES ('13', '17', 30);",
+            "description": "Insert 30 units of the product \"Blue, XL size Sweater\" into the order",
+            "results": [
+                {
+                    "auto_increment_id": 36
+                }
+            ]
+        }
+    ],
+    "response": "Hello there! 😄 I'm thrilled to help you with your order. Here's a summary of what we've accomplished:\n\n| Customer Name | Order Date  | Order ID | Product Description         | Quantity |\n|---------------|-------------|----------|-----------------------------|----------|\n| PolyU         | July 2, 2024| 13       | Red, M size T-shirt         | 50       |\n|               |             |          | Blue, XL size Sweater       | 30       |\n\nYour order has been successfully created! If you have any more requests or need further assistance, feel free to ask. 😊",
+    "token_used": 9521
+}

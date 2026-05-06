@@ -1,0 +1,116 @@
+{
+    "ID": 13,
+    "q_ch": "在我们的所有仓库中，库存不为0的原材料有哪些，整理成{类型：剩余数量}的形式。",
+    "q_en": "What are the raw materials with non zero inventory in all of our warehouses, organized in the form of 'Type: Remaining Quantity'?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id, name FROM materials WHERE type = 'origin';",
+            "description": "Retrieve the IDs and names of all raw materials (origin type) from the materials table",
+            "results": [
+                {
+                    "id": 1,
+                    "name": "Cotton Fabric"
+                },
+                {
+                    "id": 3,
+                    "name": "Wool"
+                },
+                {
+                    "id": 5,
+                    "name": "Silk"
+                },
+                {
+                    "id": 7,
+                    "name": "Leather"
+                },
+                {
+                    "id": 9,
+                    "name": "Synthetic Fiber"
+                },
+                {
+                    "id": 11,
+                    "name": "Denim Fabric"
+                },
+                {
+                    "id": 13,
+                    "name": "Down"
+                },
+                {
+                    "id": 14,
+                    "name": "Down Pieces"
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT material_id, SUM(left_number) AS remaining_quantity FROM warehouse_material GROUP BY material_id;",
+            "description": "Retrieve the remaining quantities of these raw materials from all warehouses",
+            "results": [
+                {
+                    "material_id": 1,
+                    "remaining_quantity": "3500"
+                },
+                {
+                    "material_id": 2,
+                    "remaining_quantity": "3200"
+                },
+                {
+                    "material_id": 3,
+                    "remaining_quantity": "4100"
+                },
+                {
+                    "material_id": 4,
+                    "remaining_quantity": "3550"
+                },
+                {
+                    "material_id": 5,
+                    "remaining_quantity": "1100"
+                },
+                {
+                    "material_id": 6,
+                    "remaining_quantity": "5400"
+                },
+                {
+                    "material_id": 7,
+                    "remaining_quantity": "2200"
+                },
+                {
+                    "material_id": 8,
+                    "remaining_quantity": "1300"
+                },
+                {
+                    "material_id": 9,
+                    "remaining_quantity": "2300"
+                },
+                {
+                    "material_id": 10,
+                    "remaining_quantity": "1500"
+                },
+                {
+                    "material_id": 11,
+                    "remaining_quantity": "4500"
+                },
+                {
+                    "material_id": 12,
+                    "remaining_quantity": "3180"
+                },
+                {
+                    "material_id": 13,
+                    "remaining_quantity": "1230"
+                },
+                {
+                    "material_id": 14,
+                    "remaining_quantity": "2420"
+                }
+            ]
+        },
+        {
+            "type": "Thought",
+            "operation": "Join the results from Step1 and Step2, and filter out the materials with a remaining quantity of zero. Organize the results in the form of 'Type: Remaining Quantity'.",
+            "results": "To achieve the objective, we need to join the results from Step 1 and Step 2 based on the material IDs, and then filter out the materials with a remaining quantity of zero. Finally, we will organize the results in the form of 'Type: Remaining Quantity'.\n\n### Step 1 Results:\n- Material IDs and names of raw materials (origin type):\n  1. ID: 1, Name: Cotton Fabric\n  2. ID: 3, Name: Wool\n  3. ID: 5, Name: Silk\n  4. ID: 7, Name: Leather\n  5. ID: 9, Name: Synthetic Fiber\n  6. ID: 11, Name: Denim Fabric\n  7. ID: 13, Name: Down\n  8. ID: 14, Name: Down Pieces\n\n### Step 2 Results:\n- Remaining quantities of materials:\n  1. Material ID: 1, Remaining Quantity: 3500\n  2. Material ID: 2, Remaining Quantity: 3200\n  3. Material ID: 3, Remaining Quantity: 4100\n  4. Material ID: 4, Remaining Quantity: 3550\n  5. Material ID: 5, Remaining Quantity: 1100\n  6. Material ID: 6, Remaining Quantity: 5400\n  7. Material ID: 7, Remaining Quantity: 2200\n  8. Material ID: 8, Remaining Quantity: 1300\n  9. Material ID: 9, Remaining Quantity: 2300\n  10. Material ID: 10, Remaining Quantity: 1500\n  11. Material ID: 11, Remaining Quantity: 4500\n  12. Material ID: 12, Remaining Quantity: 3180\n  13. Material ID: 13, Remaining Quantity: 1230\n  14. Material ID: 14, Remaining Quantity: 2420\n\n### Join and Filter:\n1. Cotton Fabric: 3500\n2. Wool: 4100\n3. Silk: 1100\n4. Leather: 2200\n5. Synthetic Fiber: 2300\n6. Denim Fabric: 4500\n7. Down: 1230\n8. Down Pieces: 2420\n\nAll materials have a remaining quantity greater than zero, so none are filtered out.\n\n### Final Organized Results:\n- Cotton Fabric: 3500\n- Wool: 4100\n- Silk: 1100\n- Leather: 2200\n- Synthetic Fiber: 2300\n- Denim Fabric: 4500\n- Down: 1230\n- Down Pieces: 2420"
+        }
+    ],
+    "response": "Sure thing! Here's a lively and friendly summary of the raw materials with non-zero inventory in all of our warehouses, organized in a neat table for you. 😊\n\n| Material Type      | Remaining Quantity |\n|--------------------|--------------------|\n| Cotton Fabric      | 3500               |\n| Wool               | 4100               |\n| Silk               | 1100               |\n| Leather            | 2200               |\n| Synthetic Fiber    | 2300               |\n| Denim Fabric       | 4500               |\n| Down               | 1230               |\n| Down Pieces        | 2420               |\n\nThese materials are all stocked up and ready to go! 🚀 If you have any more questions, feel free to ask!",
+    "token_used": 8075
+}

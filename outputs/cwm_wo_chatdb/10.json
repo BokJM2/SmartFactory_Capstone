@@ -1,0 +1,9 @@
+{
+  "ID": 10,
+  "q_ch": "对于Michael下的SweaterAndShorts的订单，还有哪些产品没有制造完成，列出未完成产品的类型和数量？",
+  "q_en": "For Michael's SweaterAndShorts order, which other products have not been manufactured yet? Please list the types and quantities of unfinished products.",
+  "sql": "SELECT pt.description AS product_type, op.number - IFNULL(ct.completed_number, 0) - IFNULL(st.completed_number, 0) AS unfinished_quantity FROM customers c JOIN orders o ON c.id = o.user_id JOIN order_product op ON o.id = op.order_id JOIN products p ON op.product_id = p.id JOIN products_types pt ON p.products_type_id = pt.id LEFT JOIN (SELECT order_product_id, SUM(completed_number) AS completed_number FROM cutting_tasks GROUP BY order_product_id) ct ON op.id = ct.order_product_id LEFT JOIN (SELECT order_product_id, SUM(completed_number) AS completed_number FROM sewing_tasks GROUP BY order_product_id) st ON op.id = st.order_product_id WHERE c.customer_name = 'Michael' AND o.order_name = 'Michael_SweaterAndShorts' HAVING unfinished_quantity > 0;",
+  "thought": "To find the types and quantities of unfinished products for the order named 'Michael_SweaterAndShorts', associated with the customer named 'Michael', we need to follow these steps:\n1. Get the customer ID for the customer named 'Michael' from the 'customers' table.\n2. Retrieve the order ID for the order with the specified name using the obtained customer ID from the 'orders' table.\n3. Identify all the products and their quantities in the order using the 'order_product' table.\n4. Determine the unfinished quantities of these products by checking the 'cutting_tasks' and 'sewing_tasks' tables for each order product record.\n5. Provide the information about the product types and quantities of unfinished products.",
+  "total_tokens": "3182",
+  "rows": []
+}

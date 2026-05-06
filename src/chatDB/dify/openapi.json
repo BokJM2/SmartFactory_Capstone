@@ -1,0 +1,48 @@
+{
+	"openapi": "3.1.0",
+	"info": {
+		"title": "ChatDB API",
+		"description": "API for interacting with the ChatDB service.",
+		"version": "v1.0.0"
+	},
+	"servers": [
+		{
+			"url": "http://139.159.190.208:41973"
+		}
+	],
+	"paths": {
+		"/v1/chatdb": {
+			"post": {
+				"description": "Text to sql. Endpoint to interact with database using natural language.",
+				"operationId": "chatDB",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UserInputRequest"
+							}
+						}
+					}
+				},
+				"deprecated": false
+			}
+		}
+	},
+	"components": {
+		"schemas": {
+			"UserInputRequest": {
+				"type": "object",
+				"properties": {
+					"user_input": {
+						"type": "string",
+						"description": "The input provided by the user."
+					}
+				},
+				"required": [
+					"user_input"
+				]
+			}
+		}
+	}
+}

@@ -1,0 +1,6 @@
+{
+    "ID": 47,
+    "q_ch": "为香港理工大学最新的订单创建裁剪一个任务，该任务裁剪的产品为该订单中任意一种产品，任务期为6月30日到7月12日，负责的裁剪团队为Expert Cutters。其他字段暂时留空。返回裁剪任务编号。",
+    "q_en": "Create a cutting task for the latest order from The Hong Kong Polytechnic University, which involves cutting any product in the order. The task period is from June 30th to July 12th, and the cutting team responsible is Expert Cutters. Other fields are temporarily left blank. Return the cutting task number.",
+    "gt": ""
+}

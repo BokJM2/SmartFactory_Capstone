@@ -1,0 +1,57 @@
+{
+  "ID": 4,
+  "q_ch": "James 的订单包含哪些产品？",
+  "q_en": "What products are included in James's order?",
+  "sqls": [
+    {
+      "command": [
+        "SELECT id FROM customers WHERE customer_name = 'James';",
+        "SELECT id FROM orders WHERE user_id = 'c4';",
+        "SELECT p.id, p.attributes, pt.description \n FROM order_product op\n JOIN products p ON op.product_id = p.id\n JOIN products_types pt ON p.products_type_id = pt.id\n WHERE op.order_id IN (SELECT id FROM orders WHERE user_id = 'c4');"
+      ],
+      "Result of executing SQL": [
+        [
+          {
+            "id": "c4"
+          }
+        ],
+        [
+          {
+            "id": "o12"
+          },
+          {
+            "id": "o4"
+          }
+        ],
+        [
+          {
+            "id": "p7",
+            "attributes": "Purple, M size",
+            "description": "Skirt"
+          },
+          {
+            "id": "p22",
+            "attributes": "Brown, S size",
+            "description": "Jacket"
+          },
+          {
+            "id": "p26",
+            "attributes": "Red, M size",
+            "description": "Coat"
+          },
+          {
+            "id": "p14",
+            "attributes": "Yellow, L size",
+            "description": "Jacket"
+          },
+          {
+            "id": "p6",
+            "attributes": "Brown, L size",
+            "description": "Jacket"
+          }
+        ]
+      ]
+    }
+  ],
+  "total_tokens": 4047
+}

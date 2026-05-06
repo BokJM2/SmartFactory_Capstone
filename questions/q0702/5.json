@@ -1,0 +1,6 @@
+{
+    "ID": 5,
+    "q_ch": "Sophia的订单创建时间是什么时候？",
+    "q_en": "When was Sophia's order created?",
+    "gt": "SELECT o.created_at FROM orders o JOIN customers c ON o.user_id = c.id WHERE c.customer_name = 'Sophia';"
+}

@@ -1,0 +1,53 @@
+{
+    "ID": 22,
+    "q_ch": "我们现在有哪些缝纫组，哪些裁剪组？",
+    "q_en": "What sewing groups and cutting groups do we have now?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT name FROM working_group WHERE type = 'cut';",
+            "description": "Retrieve the names of all cutting groups",
+            "results": [
+                {
+                    "name": "Precision Cutters"
+                },
+                {
+                    "name": "Master Cutters"
+                },
+                {
+                    "name": "Expert Cutters"
+                },
+                {
+                    "name": "Professional Cutters"
+                },
+                {
+                    "name": "Advanced Cutters"
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT name FROM working_group WHERE type = 'sew';",
+            "description": "Retrieve the names of all sewing groups",
+            "results": [
+                {
+                    "name": "Master Sewers"
+                },
+                {
+                    "name": "Skilled Sewers"
+                },
+                {
+                    "name": "Advanced Sewers"
+                },
+                {
+                    "name": "Premier Sewers"
+                },
+                {
+                    "name": "Elite Sewers"
+                }
+            ]
+        }
+    ],
+    "response": "Sure thing! Let's take a look at the sewing and cutting groups we have right now. 😊\n\n| **Group Type** | **Group Name**          |\n|----------------|-------------------------|\n| Cutting        | Precision Cutters       |\n| Cutting        | Master Cutters          |\n| Cutting        | Expert Cutters          |\n| Cutting        | Professional Cutters    |\n| Cutting        | Advanced Cutters        |\n| Sewing         | Master Sewers           |\n| Sewing         | Skilled Sewers          |\n| Sewing         | Advanced Sewers         |\n| Sewing         | Premier Sewers          |\n| Sewing         | Elite Sewers            |\n\nThese are the fantastic groups we have in our lineup! If you have any more questions, feel free to ask. 😄",
+    "token_used": 6333
+}

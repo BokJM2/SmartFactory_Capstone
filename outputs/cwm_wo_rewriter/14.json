@@ -1,0 +1,83 @@
+{
+  "ID": 14,
+  "q_ch": "剩余库存最多的原料是什么？",
+  "q_en": "What is the material with the highest remaining inventory?",
+  "sqls": [
+    {
+      "command": [
+        "SELECT material_id, SUM(left_number) AS total_remaining\n FROM warehouse_material\n GROUP BY material_id;",
+        "SELECT m.id, m.name, m.unit, m.type, wm.total_remaining\n FROM materials m\n JOIN (\n   SELECT material_id, SUM(left_number) AS total_remaining\n   FROM warehouse_material\n   GROUP BY material_id\n ) wm ON m.id = wm.material_id\n ORDER BY wm.total_remaining DESC\n LIMIT 1;"
+      ],
+      "Result of executing SQL": [
+        [
+          {
+            "material_id": "m1",
+            "total_remaining": null
+          },
+          {
+            "material_id": "m10",
+            "total_remaining": null
+          },
+          {
+            "material_id": "m11",
+            "total_remaining": null
+          },
+          {
+            "material_id": "m12",
+            "total_remaining": null
+          },
+          {
+            "material_id": "m13",
+            "total_remaining": null
+          },
+          {
+            "material_id": "m14",
+            "total_remaining": null
+          },
+          {
+            "material_id": "m2",
+            "total_remaining": null
+          },
+          {
+            "material_id": "m3",
+            "total_remaining": null
+          },
+          {
+            "material_id": "m4",
+            "total_remaining": null
+          },
+          {
+            "material_id": "m5",
+            "total_remaining": null
+          },
+          {
+            "material_id": "m6",
+            "total_remaining": null
+          },
+          {
+            "material_id": "m7",
+            "total_remaining": null
+          },
+          {
+            "material_id": "m8",
+            "total_remaining": null
+          },
+          {
+            "material_id": "m9",
+            "total_remaining": null
+          }
+        ],
+        [
+          {
+            "id": "m6",
+            "name": "Silk Pieces",
+            "unit": "pieces",
+            "type": "wip",
+            "total_remaining": null
+          }
+        ]
+      ]
+    }
+  ],
+  "total_tokens": 7587
+}

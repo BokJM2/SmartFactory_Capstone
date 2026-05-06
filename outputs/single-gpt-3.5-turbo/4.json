@@ -1,0 +1,36 @@
+{
+    "ID": 4,
+    "q_ch": "James 的订单包含哪些产品？",
+    "q_en": "What products are included in James's order?",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT p.id, p.attributes FROM products p JOIN products_types pt ON p.products_type_id = pt.id JOIN order_product op ON p.id = op.product_id JOIN orders o ON op.order_id = o.id JOIN customers c ON o.user_id = c.id WHERE c.customer_name = 'James';",
+            "description": "To find out what products are included in James' order, we need to query the database to retrieve the product information based on the customer's name.",
+            "results": [
+                {
+                    "id": 22,
+                    "attributes": "Brown, S size"
+                },
+                {
+                    "id": 26,
+                    "attributes": "Red, M size"
+                },
+                {
+                    "id": 14,
+                    "attributes": "Yellow, L size"
+                },
+                {
+                    "id": 6,
+                    "attributes": "Brown, L size"
+                },
+                {
+                    "id": 7,
+                    "attributes": "Purple, M size"
+                }
+            ]
+        }
+    ],
+    "response": "Hey there! 🌟\n\nBased on the SQL query results, here are the products included in James' order:\n\n| Product ID | Attributes     |\n|------------|----------------|\n| 22         | Brown, S size  |\n| 26         | Red, M size    |\n| 14         | Yellow, L size |\n| 6          | Brown, L size  |\n| 7          | Purple, M size |\n\nIf you have any more questions or need further assistance, feel free to ask! 😊",
+    "token_used": 5392
+}

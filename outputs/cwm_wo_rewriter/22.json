@@ -1,0 +1,50 @@
+{
+  "ID": 22,
+  "q_ch": "我们现在有哪些缝纫组，哪些裁剪组？",
+  "q_en": "What sewing groups and cutting groups do we have now?",
+  "sqls": [
+    {
+      "command": [
+        "SELECT name FROM working_group WHERE type = 'sew';",
+        "SELECT name FROM working_group WHERE type = 'cut';"
+      ],
+      "Result of executing SQL": [
+        [
+          {
+            "name": "Elite Sewers"
+          },
+          {
+            "name": "Master Sewers"
+          },
+          {
+            "name": "Skilled Sewers"
+          },
+          {
+            "name": "Advanced Sewers"
+          },
+          {
+            "name": "Premier Sewers"
+          }
+        ],
+        [
+          {
+            "name": "Precision Cutters"
+          },
+          {
+            "name": "Master Cutters"
+          },
+          {
+            "name": "Expert Cutters"
+          },
+          {
+            "name": "Professional Cutters"
+          },
+          {
+            "name": "Advanced Cutters"
+          }
+        ]
+      ]
+    }
+  ],
+  "total_tokens": 9941
+}

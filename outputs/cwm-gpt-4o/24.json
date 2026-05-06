@@ -1,0 +1,36 @@
+{
+    "ID": 24,
+    "q_ch": "Elite Sewers 在2024年6月30日前分配的缝纫任务有哪些？",
+    "q_en": "What sewing tasks will Elite Sewers be assigned before June 30, 2024?",
+    "hint": "应查找Elite Sewers所有任务中start_time < 2024-6-30的任务",
+    "steps": [
+        {
+            "type": "SQL",
+            "sql": "SELECT id FROM working_group WHERE name = 'Elite Sewers';",
+            "description": "Retrieve the working group ID for the group with the name \"Elite Sewers\"",
+            "results": [
+                {
+                    "id": 10
+                }
+            ]
+        },
+        {
+            "type": "SQL",
+            "sql": "SELECT id, start_time, end_time, order_product_id, planned_number, completed_number, status FROM sewing_tasks WHERE working_group_id = '10' AND end_time < '2024-06-30';",
+            "description": "Retrieve the sewing tasks assigned to the working group \"Elite Sewers\" with end time before June 30, 2024",
+            "results": [
+                {
+                    "id": 31,
+                    "start_time": "2024-05-26 00:00:00",
+                    "end_time": "2024-06-04 00:00:00",
+                    "order_product_id": 31,
+                    "planned_number": 260,
+                    "completed_number": 260,
+                    "status": 1
+                }
+            ]
+        }
+    ],
+    "response": "Hey there! 😄 Let's take a look at the sewing tasks assigned to the \"Elite Sewers\" group before June 30, 2024. Here's what I found:\n\n| Task ID | Start Time          | End Time            | Order Product ID | Planned Number | Completed Number | Status |\n|---------|---------------------|---------------------|------------------|----------------|------------------|--------|\n| 31      | May 26, 2024        | June 4, 2024        | 31               | 260            | 260              | 1      |\n\nLooks like the \"Elite Sewers\" have a task lined up from May 26 to June 4, 2024, and they've already completed it! 🎉 If you have any more questions or need further details, feel free to ask! 😊",
+    "token_used": 7276
+}

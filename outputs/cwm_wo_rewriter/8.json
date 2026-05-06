@@ -1,0 +1,64 @@
+{
+  "ID": 8,
+  "q_ch": "Olivia的订单中使用了哪些原料？",
+  "q_en": "What materials were used in Olivia's order?",
+  "sqls": [
+    {
+      "command": [
+        "SELECT id FROM customers WHERE customer_name = 'Olivia';",
+        "SELECT id FROM orders WHERE user_id = 'c7';",
+        "SELECT id FROM order_product WHERE order_id IN (SELECT id FROM orders WHERE user_id = 'c7');",
+        "SELECT DISTINCT cma.warehouse_material_id \n FROM cutting_material_allocation cma\n JOIN cutting_tasks ct ON cma.cutting_task_id = ct.id\n WHERE ct.order_product_id IN (SELECT id FROM order_product WHERE order_id IN (SELECT id FROM orders WHERE user_id = 'c7'));",
+        "SELECT DISTINCT sma.warehouse_material_id FROM sewing_material_allocation sma JOIN sewing_tasks st ON sma.sewing_task_id = st.id WHERE st.order_product_id IN (SELECT id FROM order_product WHERE order_id IN (SELECT id FROM orders WHERE user_id = 'c7'));",
+        "SELECT m.id, m.name, m.unit, m.type FROM materials m WHERE m.id IN (SELECT DISTINCT cma.warehouse_material_id FROM cutting_material_allocation cma JOIN cutting_tasks ct ON cma.cutting_task_id = ct.id WHERE ct.order_product_id IN (SELECT id FROM order_product WHERE order_id IN (SELECT id FROM orders WHERE user_id = 'c7')) UNION SELECT DISTINCT sma.warehouse_material_id FROM sewing_material_allocation sma JOIN sewing_tasks st ON sma.sewing_task_id = st.id WHERE st.order_product_id IN (SELECT id FROM order_product WHERE order_id IN (SELECT id FROM orders WHERE user_id = 'c7')) );"
+      ],
+      "Result of executing SQL": [
+        [
+          {
+            "id": "c7"
+          }
+        ],
+        [
+          {
+            "id": "o7"
+          }
+        ],
+        [
+          {
+            "id": "op25"
+          },
+          {
+            "id": "op26"
+          },
+          {
+            "id": "op27"
+          }
+        ],
+        [
+          {
+            "warehouse_material_id": "wm13"
+          },
+          {
+            "warehouse_material_id": "wm3"
+          },
+          {
+            "warehouse_material_id": "wm7"
+          }
+        ],
+        [
+          {
+            "warehouse_material_id": "wm13"
+          },
+          {
+            "warehouse_material_id": "wm3"
+          },
+          {
+            "warehouse_material_id": "wm7"
+          }
+        ],
+        "no results found."
+      ]
+    }
+  ],
+  "total_tokens": 6449
+}

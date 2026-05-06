@@ -1,0 +1,50 @@
+{
+  "ID": 16,
+  "q_ch": "2024年5月1日后才开始的裁剪任务有哪些？",
+  "q_en": "What are the cutting tasks that will only start after May 1, 2024?",
+  "sql": "SELECT * FROM cutting_tasks WHERE start_time > '2024-05-01';",
+  "thought": "To retrieve the cutting tasks that will start after May 1, 2024, we need to query the cutting_tasks table with a condition where start_time is greater than May 1, 2024.",
+  "total_tokens": "2416",
+  "rows": [
+    {
+      "id": "ct31",
+      "start_time": "2024年05月10日 00:00",
+      "end_time": "2024年05月26日 00:00",
+      "working_group_id": "wg3",
+      "order_product_id": "op31",
+      "planned_number": 260,
+      "completed_number": 260,
+      "is_started": 1
+    },
+    {
+      "id": "ct32",
+      "start_time": "2024年06月01日 00:00",
+      "end_time": "2024年06月17日 00:00",
+      "working_group_id": "wg6",
+      "order_product_id": "op32",
+      "planned_number": 150,
+      "completed_number": 120,
+      "is_started": 1
+    },
+    {
+      "id": "ct33",
+      "start_time": "2024年06月25日 00:00",
+      "end_time": "2024年07月17日 00:00",
+      "working_group_id": "wg3",
+      "order_product_id": "op33",
+      "planned_number": 120,
+      "completed_number": 0,
+      "is_started": 0
+    },
+    {
+      "id": "ct34",
+      "start_time": "2024年06月30日 00:00",
+      "end_time": "2024年07月10日 00:00",
+      "working_group_id": "wg4",
+      "order_product_id": "op34",
+      "planned_number": 330,
+      "completed_number": 0,
+      "is_started": 0
+    }
+  ]
+}
