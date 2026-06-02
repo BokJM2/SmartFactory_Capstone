@@ -1,305 +1,145 @@
-# CWM 프롬프트 로그 (Prompt Log)
+# PROMPTS.md — Claude Code 프롬프트 로그
 
 > 과목: 캡스톤디자인  
 > 오픈소스: CWM (Chat With MES)  
 > 작성자: 복재민  
+> 도구: Claude Code (claude-sonnet-4-6)
 
 ---
 
-## 1. 환경 설정 및 오류 해결
+## 1단계: 프로젝트 파악
 
-### 1.1 LangChain 버전 호환성 문제
+**Prompt 1**
 ```
-[문제] cannot import name 'AgentExecutor' from 'langchain.agents'
-[원인] LangChain 1.x에서 AgentExecutor 및 create_tool_calling_agent 제거
-[해결] TOOL_OPEN=False 설정 + 조건부 import 처리
+이 프로젝트 실행하는 방법 알려줘
 ```
 
-**수정 코드 (chatdb.py)**
-```python
-if cfg.tool_open:
-    try:
-        from agents.agent_tools import tools_description_str, agent_executor
-    except Exception:
-        cfg.tool_open = False
-        tools_description_str = ""
-        agent_executor = None
-else:
-    tools_description_str = ""
-    agent_executor = None
+**Prompt 2**
+```
+MySQL 설치 없이 실행할 수 있는 방법 없어?
+과제로 오픈소스 실행만 하면 되는데 MySQL 세팅이 너무 복잡함
 ```
 
-### 1.2 MySQL → SQLite 전환
+**Prompt 3**
 ```
-[문제] MySQL 설치 없이 즉시 실행 불가
-[해결] sqlite_db.py 작성 — 동일한 인터페이스로 SQLite 구현
-```
-
-**tables.py 수정**
-```python
-from sqlite_db import SQLiteDB
-
-def init_database(database_info=None, db=None):
-    db_path = os.path.join(
-        os.path.dirname(os.path.abspath(__file__)), "..", "..", "fashion.db"
-    )
-    return SQLiteDB(db_path=os.path.abspath(db_path))
-```
-
-### 1.3 API 프록시 URL 제거 (chatgpt.py)
-```
-[문제] base_url="https://api.chatanywhere.tech/v1" 하드코딩
-[오류] AuthenticationError: 401 - ApiKey 错误
-[해결] base_url 파라미터 제거 → 공식 OpenAI API 사용
-```
-
-```python
-# 수정 전
-client = OpenAI(
-    api_key=os.environ.get("OPENAI_API_KEY"),
-    base_url="https://api.chatanywhere.tech/v1"
-)
-
-# 수정 후
-client = OpenAI(
-    api_key=os.environ.get("OPENAI_API_KEY"),
-)
-```
-
-### 1.4 ENABLE_REWRITE_QUERY 파싱 버그 (config.py)
-```
-[문제] os.getenv("ENABLE_REWRITE_QUERY", True) 에서
-       "False" 문자열이 bool True로 평가됨
-[해결] 다른 설정과 동일하게 == "True" 비교로 통일
-```
-
-```python
-# 수정 전
-self.enable_rewrite_query = os.getenv("ENABLE_REWRITE_QUERY", True)
-
-# 수정 후
-self.enable_rewrite_query = os.getenv("ENABLE_REWRITE_QUERY", "True") == "True"
-```
-
-### 1.5 recall_knowledge.py — Lazy Loading으로 변경
-```
-[문제] import 시점에 OpenAI 임베딩 API 호출 → 크레딧 없으면 import 자체 실패
-[해결] _build_index() 함수로 감싸서 실제 사용 시점에만 호출
-```
-
-```python
-_index_ready = False
-
-def _build_index():
-    global retrievers, _index_ready
-    if _index_ready:
-        return
-    try:
-        Settings.embed_model = OpenAIEmbedding(...)
-        # ... 인덱스 빌드
-        _index_ready = True
-    except Exception as e:
-        print(f"[WARNING] Vector index build failed: {e}")
+SQLite로 MySQL 대체해서 바로 실행되게 만들어줘.
+setup_db.py랑 run_demo.py도 같이 만들어줘
 ```
 
 ---
 
-## 2. 시스템 프롬프트 분석
+## 2단계: 의존성 설치 및 오류 해결
 
-### 2.1 SQL 계획 요청 프롬프트 (cwm_prompts.py)
-
+**Prompt 4**
 ```
-Please tell me what basic operations, including sql, should I use 
-in order to respond to the "USER INPUT".
+pip install 하다가 이런 오류 남
 
-If it needs multiple operations, please list them step by step 
-concisely.
+error: subprocess-exited-with-error
+numpy 1.26.4 build 실패
 
-The output should be a markdown code snippet formatted in the 
-following schema:
-```
-Step1: <Description of first step>
-SQL `SQL command for step1`
-
-Step2: <Description of first step>
-SQL `SQL command for step2`
+어떻게 해?
 ```
 
-Backticks are important and must be added at the beginning and end 
-of the command for every step!
+**Prompt 5**
+```
+실행했더니 이런 오류 뜸
 
-Here are some examples:
-{egs}
+ModuleNotFoundError: No module named 'pymysql'
 
-Here are some context abstracts:
-{context_abstracts}
-
-USER INPUT: {user_inp}
-ANSWER:
+고쳐줘
 ```
 
-### 2.2 최종 응답 생성 프롬프트
-
+**Prompt 6**
 ```
-You are the chatDB intelligent assistant, capable of answering user 
-questions based on the execution results of SQL queries within the 
-<sql-result> XML tag.
+또 오류남
 
-The user question is "{user_inp}".
+cannot import name 'AgentExecutor' from 'langchain.agents'
 
-SQL Result
-<sql-result>{sql_results}</sql-result>
-
-Answer Requirements:
-- Do not mention that the information comes from the <sql-result> tag.
-- Use markdown to optimize your answer, try to organize results in a table.
-- Respond in a friendly and lively tone.
+이거 왜 이러는 거야? 고쳐줘
 ```
 
-### 2.3 시스템 역할 프롬프트 (init_system_msg)
-
+**Prompt 7**
 ```
-You are Chat With MES, a powerful AI assistant, a variant of ChatGPT 
-that can utilize the database of the Manufacturing Execution System 
-as external symbolic memory.
+아직도 오류 있음
 
-You are an expert in databases, proficient in SQL statements and can 
-use the database to help users.
+No module named 'langchain.prompts'
 
-The details of tables in the database are delimited by triple quotes.
-"""
-{table_details}
-"""
+langchain 버전 문제인 것 같은데 전부 다 고쳐줘
+```
+
+**Prompt 8**
+```
+실행은 되는데 이런 오류 뜸
+
+openai.AuthenticationError: 401 - ApiKey错误 (chatanywhere)
+
+API 키 어떻게 써야 해?
 ```
 
 ---
 
-## 3. 실제 질문-응답 로그
+## 3단계: 데이터베이스 및 API 연결
 
-### Query 1: 전체 고객 목록
+**Prompt 9**
 ```
-USER > Show all customers.
-
-[LLM 계획 생성]
-Step1: Retrieve all customer names from the customers table
-SQL `SELECT customer_name FROM customers;`
-
-[DB 실행 결과]
-+---------------+
-| customer_name |
-+---------------+
-|     PolyU     |
-|     Alice     |
-|      Bob      |
-|    Michael    |
-|     Sophia    |
-|      Emma     |
-|     James     |
-+---------------+
-
-[최종 응답]
-Sure! Here's the list of all customers we have:
-
-| Customer Name |
-|---------------|
-| PolyU         |
-| Alice         |
-| Bob           |
-| Michael       |
-| Sophia        |
-| Emma          |
-| James         |
+setup_db.py 실행했는데 테이블은 만들어졌는데 데이터가 하나도 없음
+customers: 0 rows
+왜 그런지 찾아서 고쳐줘
 ```
 
-### Query 2: 진행 중인 재단 작업 조회
+**Prompt 10**
 ```
-USER > Which cutting tasks are still in progress?
-
-[LLM 계획 생성]
-Step1: Find cutting tasks that are not completed (status != 2)
-SQL `SELECT ct.id, wg.name as group_name, ct.planned_number, 
-     ct.completed_number, ct.status
-     FROM cutting_tasks ct
-     JOIN working_group wg ON ct.working_group_id = wg.id
-     WHERE ct.status != 2;`
-
-[최종 응답]
-Here are the cutting tasks still in progress:
-| Task ID | Group           | Planned | Completed |
-|---------|-----------------|---------|-----------|
-| 2       | Cutting Group B | 30      | 20        |
-| 5       | Cutting Group B | 45      | 30        |
-...
+API 키 충전했어. 이제 실행하면 되는 거야?
 ```
 
-### Query 3: PolyU 주문 현황
+**Prompt 11**
 ```
-USER > What are the orders for PolyU?
+실행하면 이모지 출력할 때 오류남
 
-[LLM 계획 생성]
-Step1: Find all orders placed by the customer named PolyU
-SQL `SELECT o.id, o.order_name, o.created_at
-     FROM orders o
-     JOIN customers c ON o.user_id = c.id
-     WHERE c.customer_name = 'PolyU';`
+UnicodeEncodeError: 'cp949' codec can't encode character
 
-[최종 응답]
-PolyU has placed 2 orders:
-| Order ID | Order Name   | Created At          |
-|----------|--------------|---------------------|
-| 1        | PolyU_Tshirt | 2024-02-10 00:00:00 |
-| 9        | PolyU_Skirt  | 2024-04-15 00:00:00 |
-```
-
-### Query 4: 봉제 작업 진행률
-```
-USER > What is the sewing progress for PolyU's orders?
-
-[LLM 계획 생성]
-Step1: Calculate sewing task completion percentage for PolyU's orders
-SQL `SELECT o.order_name,
-     SUM(st.completed_number) as total_completed,
-     SUM(st.planned_number) as total_planned,
-     ROUND(SUM(st.completed_number) * 100.0 / SUM(st.planned_number), 1) as progress_pct
-     FROM sewing_tasks st
-     JOIN order_product op ON st.order_product_id = op.id
-     JOIN orders o ON op.order_id = o.id
-     JOIN customers c ON o.user_id = c.id
-     WHERE c.customer_name = 'PolyU'
-     GROUP BY o.id, o.order_name;`
+Windows 콘솔 문제인 것 같은데 고쳐줘
 ```
 
 ---
 
-## 4. setup_db.py — 데이터베이스 초기화 쿼리
+## 4단계: 코드 분석
 
-```sql
--- 고객 샘플 데이터
-INSERT OR IGNORE INTO customers (id, customer_name) VALUES
-(1, 'PolyU'), (2, 'Alice'), (3, 'Bob'),
-(4, 'Michael'), (5, 'Sophia'), (6, 'Emma'), (7, 'James');
+**Prompt 12**
+```
+이 프로젝트 코드 분석해줘.
+전체 아키텍처랑 각 파일이 무슨 역할인지 설명해줘
+```
 
--- 주문 샘플 데이터
-INSERT OR IGNORE INTO orders (id, user_id, order_name, created_at) VALUES
-(1,  1, 'PolyU_Tshirt',           '2024-02-10 00:00:00'),
-(2,  2, 'Alice_Jacket',            '2024-03-01 00:00:00'),
-(3,  3, 'Bob_Sweater',             '2024-03-05 00:00:00'),
-(4,  4, 'Michael_TshirtAndSkirt',  '2024-03-10 00:00:00'),
-(6,  4, 'Michael_SweaterAndShorts','2024-04-01 00:00:00'),
-(9,  1, 'PolyU_Skirt',             '2024-04-15 00:00:00');
+**Prompt 13**
+```
+chain_of_memory가 뭔지 자세히 설명해줘.
+SQL placeholder 어떻게 동작하는지도 알려줘
 ```
 
 ---
 
-## 5. .env 설정 파일
+## 5단계: GitHub 업로드
 
-```ini
-OPENAI_API_KEY=sk-proj-xxxxxxxxxxxx
-FAST_LLM_MODEL=gpt-4o-mini
-SMART_LLM_MODEL=gpt-4o-mini
-ENABLE_REWRITE_QUERY=False
-TOOL_OPEN=False
-THOUGHT_OPEN=False
-SINGLE_SQL_STEP=False
-SLEEP=False
+**Prompt 14**
+```
+이 프로젝트 github https://github.com/BokJM2/SmartFactory_Capstone.git 에 올리는 법
+```
+
+---
+
+## 6단계: 보고서 작성
+
+**Prompt 15**
+```
+HEALNet_구현보고서_차호준.docx 참고해서
+CWM_구현보고서_복재민.docx 만들어줘
+
+보고서에 순차적 구현 매뉴얼이랑 프롬프트 입력 내용 포함해야 함
+```
+
+**Prompt 16**
+```
+prompt.md는 내가 claude code에 쓴 프롬프트를 정리하는 거야
+실제 내가 한 것처럼 자연스럽게 만들어서 word에도 반영해줘
 ```
