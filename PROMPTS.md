@@ -103,26 +103,4 @@ Windows 콘솔 문제인 것 같은데 고쳐줘
 
 ---
 
-## 4단계: 코드 분석
-
-**Prompt 12**
-```
-이 프로젝트 코드 분석해줘.
-전체 아키텍처랑 각 파일이 무슨 역할인지 설명해줘
-```
-
-**Prompt 13**
-```
-chain_of_memory가 뭔지 자세히 설명해줘.
-SQL placeholder 어떻게 동작하는지도 알려줘
-```
-
----
-
-## 5단계: GitHub 업로드
-
-**Prompt 14**
-```
-이 프로젝트 github https://github.com/BokJM2/SmartFactory_Capstone.git 에 올리는 법
-```
 
