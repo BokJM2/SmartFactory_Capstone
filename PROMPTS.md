@@ -126,20 +126,3 @@ SQL placeholder 어떻게 동작하는지도 알려줘
 이 프로젝트 github https://github.com/BokJM2/SmartFactory_Capstone.git 에 올리는 법
 ```
 
----
-
-## 6단계: 보고서 작성
-
-**Prompt 15**
-```
-HEALNet_구현보고서_차호준.docx 참고해서
-CWM_구현보고서_복재민.docx 만들어줘
-
-보고서에 순차적 구현 매뉴얼이랑 프롬프트 입력 내용 포함해야 함
-```
-
-**Prompt 16**
-```
-prompt.md는 내가 claude code에 쓴 프롬프트를 정리하는 거야
-실제 내가 한 것처럼 자연스럽게 만들어서 word에도 반영해줘
-```
